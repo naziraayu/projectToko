@@ -1,0 +1,260 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --head--: #ffc9c4;
+  --nav--: #fff;
+  --log--: #231210;
+  --hovera--: #ba7a74;
+  --main--: #fff2f0;
+  --footer--: #99716d;
+  --black--: #000;
+}
+.head {
+  width: 1265px;
+  height: 69px;
+  background: var(--head--);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  top: 0;
+  position: fixed !important;
+  position: -webkit-sticky;
+}
+
+.nav {
+  width: 1200px;
+  height: 40px;
+  background-color: var(--nav--);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px 40px 40px 10px;
+  top: 50px;
+  position: fixed !important;
+  position: -webkit-sticky;
+}
+
+.nav a {
+  color: var(--log--);
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  display: flex;
+  float: right;
+  margin-right: 50px;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+a:after {
+  content: "";
+  position: absolute;
+  background-color: var(--hovera--);
+  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+  height: 3px;
+  width: 0px;
+  bottom: 0px;
+  transition: 0.3s;
+}
+
+a:hover:after {
+  width: 55px;
+}
+
+.nav img {
+  position: relative;
+  top: -30px;
+  margin-left: 40px;
+  width: 150px;
+  height: 150px;
+  background-image: url(/img/Ellipse\ 1.png);
+}
+
+.opening img {
+  width: 1265px;
+  margin-top: 200px;
+  margin-bottom: 50px;
+  /* height: 532px; */
+}
+
+section {
+  margin-top: 70px;
+  background: var(--main--);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 1265px;
+  height: 664px;
+  text-align: center;
+  display: flex;
+}
+
+.wrapper {
+  width: 1265px;
+  height: 664px;
+  text-align: center;
+  display: flex;
+}
+
+.image img {
+  margin-left: 130px;
+  margin-top: 150px;
+  width: 270px;
+}
+.nama img {
+  margin-top: 200px;
+  width: 400px;
+  padding-left: 50px;
+}
+
+.content1 {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+  margin-left: -350px;
+  font-size: 15px;
+  line-height: 2.5em;
+}
+
+.content2 {
+  margin-top: 420px;
+  margin-left: -270px;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+.content3 {
+  margin-top: 420px;
+  margin-left: 55px;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+.main {
+  display: flex;
+}
+
+.main iframe {
+  width: 450px;
+  margin: 75px;
+}
+.main .about-us {
+  letter-spacing: 3px;
+  line-height: 1.5em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 80px;
+}
+
+.main .about-us h3.abt {
+  font-size: 20px;
+  margin-top: 80px;
+}
+
+.main .about-us p {
+  font-size: 20px;
+  line-height: 1.5em;
+}
+
+p.jln {
+  margin-top: 100px;
+}
+
+.main .about-us h3.us {
+  font-size: 20px;
+  margin-top: 60px;
+}
+
+.main .about-us h3:before {
+  content: "";
+  position: absolute;
+  background-color: var(--hovera--);
+  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+  height: 3px;
+  width: 0px;
+  bottom: 0px;
+  transition: 1s;
+  margin-bottom: -220px;
+}
+
+.main .about-us h3:hover:before {
+  width: 178px;
+}
+
+.footer {
+  width: 1265px;
+  height: 340px;
+  background: var(--footer--);
+  display: flex;
+  color: var(--nav--);
+}
+
+.contact-us img {
+  position: relative;
+  margin: 70px;
+  width: 190px;
+}
+
+.footer .content {
+  margin-top: 50px;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  margin-left: 450px;
+}
+
+.footer .content h3 {
+  margin-top: 30px;
+}
+
+.footer .content p.wa {
+  margin-top: 30px;
+}
+
+.footer .content p {
+  margin-top: 20px;
+}
+
+.content img {
+  position: absolute;
+  width: 30px;
+  margin-top: 0px;
+}
+
+.content .wa img {
+  margin-left: -450px;
+}
+
+.content .ig img {
+  margin-left: -250px;
+}
+
+.content .fb img {
+  margin-left: -235px;
+}
+
+@media screen and (max-width: 768px) {
+  .head {
+    width: 600px;
+    float: left;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    width: 550px;
+    float: left;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    width: 600px;
+    float: left;
+  }
+}
