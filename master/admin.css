@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
-
-$base-spacing-unit: 24px;
-$half-spacing-unit: $base-spacing-unit / 2;
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
 
 * {
   margin: 0;
@@ -29,12 +26,12 @@ body {
   --side--: #ffe4e1;
   --border--: #462320;
   --inputan--: #928383;
-  --save--: #00732B;
-  --table--: #be7a7480;
+  --save--: #00732b;
+  --table--: #be7a74;
   --hovtab--: #d6d6d680;
   --edit--: #0057d9;
   --hapus--: #ac0000;
-  --refresh--: #FFDD55;
+  --refresh--: #ffdd55;
 }
 
 .head {
@@ -95,23 +92,23 @@ body {
   transition: 0.3s;
 }
 
-.nav .mas a:hover:before {
+.nav .mas a:focus:before {
   width: 60px;
 }
 
-.nav .pes a:hover::before {
+.nav .pes a:focus::before {
   width: 125px;
 }
 
-.nav .eta a:hover::before {
+.nav .eta a:focus::before {
   width: 60px;
 }
 
-.nav .lap a:hover::before {
+.nav .lap a:focus::before {
   width: 70px;
 }
 
-.nav .log a:hover::before {
+.nav .log a:focus::before {
   width: 65px;
 }
 
@@ -148,19 +145,26 @@ a {
 
 .content ul li a::before {
   content: " ";
-  position: absolute;
+  position: relative;
   background-color: var(--hovera--);
   box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
   height: 3px;
   width: 0px;
-  /* transition: 0.5s; */
+  transition: 0.3s;
 }
 
-.content .ad a:hover::before {
-  position: absolute;
+.content .ad a:focus::before {
+  /* position: absolute; */
   width: 67px;
   bottom: 395px;
-  align-items: center;
+  /* align-items: center; */
+  /* transition: 0.5s; */
+  content: " ";
+  /* position: relative; */
+  background-color: var(--hovera--);
+  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+  height: 3px;
+  /* width: 0px; */
   transition: 0.5s;
 }
 
@@ -315,7 +319,8 @@ a {
   font-weight: 700;
 }
 
-.form__field:required, .form__field:invalid {
+.form__field:required,
+.form__field:invalid {
   box-shadow: none;
 }
 
@@ -346,13 +351,33 @@ a {
   flex: 1;
 } */
 
-.button button{
+.photo button {
+  position: absolute;
+  border-radius: 10px;
+  width: 158px;
+  height: 35px;
+  background: #c97d60;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+  margin-left: 15px;
+  margin-top: 80px;
+  color: var(--nav--);
+  align-items: center;
+}
+
+.photo img {
+  position: relative;
+  float: right;
+  width: 30px;
+}
+
+.button button {
   position: absolute;
   border-radius: 100%;
-  border: none;  
+  border: none;
   width: 40px;
-  margin-left: 50px;
-  margin-top: 100px;
+  margin-left: -5px;
+  margin-top: 130px;
   padding: 5px;
   font-size: 20px;
   background-color: var(--refresh--);
@@ -375,7 +400,6 @@ a {
   color: grey;
 }
 
-
 .butt button {
   width: 130px;
   height: 35px;
@@ -384,7 +408,8 @@ a {
   border-radius: 40px;
   color: var(--nav--);
   position: absolute;
-  margin: 100px;
+  margin-top: 130px;
+  margin-left: 45px;
 }
 
 .butt button:active {
@@ -424,7 +449,7 @@ a {
   border-radius: 9999px;
   border: none;
   /* border: solid 1px #333; */
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   outline: none;
   opacity: 0.8;
   background-color: var(--side--);
@@ -444,10 +469,17 @@ a {
 }
 
 .table-section {
-  height: 500px;
+  height: 400px;
   overflow: auto;
-  display: flex;
-  padding: ($half-spacing-unit * 1.5)
+  border-spacing: none;
+  /* display: flex; */
+}
+
+.table-section thead th {
+  position: sticky;
+  top: 0;
+  padding: 20px 10px;
+  color: var(--nav--);
 }
 
 .table-section table {
@@ -476,10 +508,11 @@ td {
   word-break: break-all;
   text-align: center;
   border-radius: 10px;
+  font-size: 14px;
 }
 
 .table-section td {
-  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
 }
 
 tr:hover td {
@@ -507,3 +540,16 @@ td button:nth-child(2) {
 td button:hover {
   background-color: var(--head--);
 }
+
+/* ::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;  
+} */
+
+/* ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+} */
+
+/* ::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+} */

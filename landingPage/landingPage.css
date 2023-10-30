@@ -9,13 +9,23 @@ body {
 }
 
 :root {
-  --head--: #ffc9c4;
-  --nav--: #fff;
-  --log--: #231210;
-  --hovera--: #ba7a74;
-  --main--: #fff2f0;
-  --footer--: #99716d;
-  --black--: #000;
+  --head--: #FFC9C4;
+    --nav--: #FFF;
+    --log--: #231210;
+    --hovera--: #BA7A74;
+    --main--: #FFF2F0;
+    --footer--: #99716D;
+    --black--: #000;
+    --cont--: #D9D9D9;
+    --button--: #BE7A74;
+    --side--: #FFE4E1;
+    --border--: #462320;
+    --inputan--: #928383;
+    --save--: #00732B;
+    --hovtab--: #D6D6D680;
+    --edit--: #0057D9;
+    --hapus--: #AC0000;
+    --refresh--: #FFDD55;
 }
 .head {
   width: 1265px;
@@ -82,6 +92,20 @@ a:hover:after {
   margin-top: 200px;
   margin-bottom: 50px;
   /* height: 532px; */
+}
+
+.opening h1 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 80px;
+  color: var(--border--);
+  margin-top: 300px;
+  margin-left: 350px;
+  text-shadow: var(--nav--) 10px 0 10px;
+  box-shadow: 10px var(--nav--);
+
 }
 
 section {

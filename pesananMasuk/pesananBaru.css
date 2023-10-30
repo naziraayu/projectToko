@@ -1,0 +1,247 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Poppins;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --head--: #FFC9C4;
+    --nav--: #FFF;
+    --log--: #231210;
+    --hovera--: #BA7A74;
+    --main--: #FFF2F0;
+    --footer--: #99716D;
+    --black--: #000;
+    --cont--: #D9D9D9;
+    --button--: #BE7A74;
+    --side--: #FFE4E1;
+    --border--: #462320;
+    --inputan--: #928383;
+    --save--: #00732B;
+    --hovtab--: #D6D6D680;
+    --edit--: #0057D9;
+    --hapus--: #AC0000;
+    --refresh--: #FFDD55;
+}
+  
+.head {
+    width: 1280px;
+    height: 69px;
+    background: var(--head--);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    top: 0;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 3;
+}
+    
+.nav {
+    width: 1200px;
+    height: 40px;
+    background-color: var(--nav--);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px 40px 40px 10px;
+    top: 50px;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 2;
+}
+.nav img {
+    position: relative;
+    top: -30px;
+    margin-left: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 187px;
+    background: url(/img/Ellipse\ 1.png), lightgray 50% / cover no-repeat;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+  
+.nav ul {
+    color: var(--log--);
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    list-style: none;
+    display: flex;
+    transition: color 0.5s;
+    margin-left: 230px;
+    margin-top: -163px;
+}
+    
+.nav a:before {
+    content: "";
+    position: absolute;
+    background-color: var(--hovera--);
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 2.5px;
+    width: 0px;
+    bottom: 10px;
+    transition: 0.5s;
+}
+    
+.nav .mas a:focus:before {
+    width: 60px; 
+}
+    
+.nav .pes a:focus::before {
+    width: 125px;
+}
+    
+.nav .eta a:focus::before {
+    width: 60px;
+}
+    
+.nav .lap a:focus::before {
+    width: 70px;
+}
+    
+.nav .log a:focus::before {
+    width: 65px;
+}
+    
+a {
+    text-decoration: none;
+    color: var(--log--);
+}
+    
+.nav li {
+    display: table-cell;
+    position: relative;
+    padding: 15px;
+}
+    
+.nav li.log {
+    margin-left: 400px;
+}
+
+.navbar {
+    width: 600px;
+    height: 90px;
+    border-radius: 0 0 60px 60px;
+    border: 6px solid var(--button--);
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    top: 80px;
+    position: fixed !important;
+    position: -webkit-sticky;
+    /* align-items: center;
+    justify-content: center; */
+    margin-left: 28%;
+}
+
+.content ul {
+    color: var(--log--);
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    list-style: none;
+    display: flex;
+    transition: color 0.5s;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    /* padding: 15px; */
+}
+
+.content li {
+    display: table-cell;
+    position: relative;
+    padding: 15px;
+    font-size: 17px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.content .proses {
+    margin-left: 30px;
+    margin-top: 25px;
+}
+
+.content .proses img {
+    position: relative;
+    bottom: 20px;
+    right: 75px;
+    width: 30px;
+    
+}
+/* 
+.content a:before {
+    content: "";
+    position: absolute;
+    background-color: var(--hovera--);
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 2.5px;
+    width: 0px;
+    bottom: 100px;
+    transition: 0.3s;
+}
+  
+.content .baru a:hover:before {
+    width: 60px;
+} */
+
+.list-item {
+    width: 380px;
+    height: 405px;
+    flex-shrink: 0;
+    border-radius: 30px 30px 0 0;
+    border: 6px solid var(--button--);
+    position: fixed;
+    margin: 220px 0 0 50px;
+    overflow: auto;
+}
+
+table {
+    border-bottom: 2px solid var(--button--);
+    margin-left: 20px;
+    /* display: inline-grid; */
+}
+
+.qty img {
+    width: 15px;
+    align-items:center ;
+}
+
+.nama {
+    margin: 20px 0 0 10px;
+    display: flex;
+}
+
+.nama h5 {
+    margin-left: 150px;
+    margin-top: 3px;
+}
+
+.qty {
+    margin: 10px 0 0 10px;
+    display: flex;
+}
+
+.qty h3 {
+    margin-left: 200px;
+    margin-top: -3px;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 5px;  
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+

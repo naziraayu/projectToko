@@ -167,18 +167,18 @@ button:active {
   color: white;
   box-shadow: 0 0.2rem #dfd9d9;
   transform: translateY(0.2rem);
- }
- 
- button:hover:not(:disabled) {
+}
+
+button:hover:not(:disabled) {
   background: lightcoral;
   color: white;
   text-shadow: 0 0.1rem #bcb4b4;
- }
- 
- button:disabled {
+}
+
+button:disabled {
   cursor: auto;
   color: grey;
- }  
+}
 
 .footer {
   width: 1263px;

@@ -1,0 +1,128 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Poppins;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --head--: #ffc9c4;
+    --nav--: #fff;
+    --log--: #231210;
+    --hovera--: #ba7a74;
+    --main--: #fff2f0;
+    --footer--: #99716d;
+    --black--: #000;
+    --cont--: #d9d9d9;
+    --button--: #be7a74;
+    --side--: #ffe4e1;
+    --border--: #462320;
+    --inputan--: #928383;
+    --save--: #00732b;
+    --table--: #be7a74;
+    --hovtab--: #d6d6d680;
+    --edit--: #0057d9;
+    --hapus--: #ac0000;
+    --refresh--: #ffdd55;
+}
+
+.head {
+    width: 1280px;
+    height: 69px;
+    background: var(--head--);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    top: 0;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 3;
+  }
+  
+  .nav {
+    width: 1200px;
+    height: 40px;
+    background-color: var(--nav--);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px 40px 40px 10px;
+    top: 50px;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 2;
+  }
+  .nav img {
+    position: relative;
+    top: -30px;
+    margin-left: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 187px;
+    background: url(/img/Ellipse\ 1.png), lightgray 50% / cover no-repeat;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .nav ul {
+    color: var(--log--);
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    list-style: none;
+    display: flex;
+    transition: color 0.5s;
+    margin-left: 230px;
+    margin-top: -163px;
+  }
+  
+  .nav a:before {
+    content: "";
+    position: absolute;
+    background-color: var(--hovera--);
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 2.5px;
+    width: 0px;
+    bottom: 10px;
+    transition: 0.3s;
+  }
+
+  .nav .mas a:hover:before {
+    width: 60px;
+  }
+  
+  .nav .mas a:focus:before {
+    width: 60px; 
+  }
+  
+  .nav .pes a:focus::before {
+    width: 125px;
+  }
+  
+  .nav .eta a:focus::before {
+    width: 60px;
+  }
+  
+  .nav .lap a:focus::before {
+    width: 70px;
+  }
+  
+  .nav .log a:focus::before {
+    width: 65px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--log--);
+  }
+  
+  .nav li {
+    display: table-cell;
+    position: relative;
+    padding: 15px;
+  }
+  
+  .nav li.log {
+    margin-left: 400px;
+  }

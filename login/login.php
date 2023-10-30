@@ -1,19 +1,53 @@
+<?php
+require('koneksi.php');
+if(isset($_POST['submit'])){
+    $noTelp=$_POST['no.telepon'];
+    $password=$_POST['password'];
+    if(!empty(trim($noTelp)) && !empty(trim($password))){
+        $query="select * from karyawan where no_telepon='$noTelp'";
+        $result=mysqli_query($koneksi, $query);
+        if($result){
+            $num=mysqli_num_rows($result);
+            if($num!=0){
+                $row=mysqli_fetch_assoc($result);
+                $id=$row['id_karyawan'];
+                $nama=$row['nama_karyawan'];
+                $alamat=$row['alamat'];
+                $no_telp=$row['no_telepon'];
+                $pertanyaan=$row['pertanyaan'];
+                $jawaban=$row['jawaban'];
+                $pass=$row['password'];
+                $error='berhasil login';
+                header('location:landingPage.php');
+                exit;
+            }else{
+                $error='No. Telepon salah';
+                header('location:login.php?error='.urlencode($error));
+                exit;
+            }
+        }else{
+            $error= 'Eksekusi query error';
+            header('location:login.php?error='.urlencode($error));
+            exit;
+        }
+    }else{
+        $error='No. telepon dan Password harus diisi';
+        header('location:login.php?error='.urlencode($error));
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="login.css" />
   </head>
   <body>
@@ -32,11 +66,7 @@
             <h2>SELAMAT DATANG</h2>
             <p>Masukkan nomor telepon dan password anda</p>
             <div class="input-container">
-              <input
-                type="tel"
-                name="no.telepon"
-                placeholder="No. Telephone"
-              />
+              <input type="tel" name="no.telepon" placeholder="No. Telephone" />
             </div>
             <div class="input-container">
               <input type="password" name="password" placeholder="Password" />
