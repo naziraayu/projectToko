@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu</title>
+    <title>Admin</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -37,8 +37,8 @@
         <div class="nav">
           <img src="../img/Ellipse 1.png" alt="logo" />
           <ul>
-            <li class="mas"><a href="#">MASTER</a></li>
-            <li class="pes"><a href="#">PESANAN MASUK</a></li>
+            <li class="mas"><a href="../master/admin.html">MASTER</a></li>
+            <li class="pes"><a href="">PESANAN MASUK</a></li>
             <li class="eta"><a href="#">ETALASE</a></li>
             <li class="lap"><a href="#">LAPORAN</a></li>
             <li class="log"><a href="../login/login.html">LOG OUT</a></li>
@@ -57,7 +57,7 @@
                 placeholder="Name"
                 required=""
               />
-              <label for="name" class="form__label">Nama Menu</label>
+              <label for="name" class="form__label">Nama Admin</label>
             </div>
             <div class="form__group field">
               <input
@@ -66,7 +66,7 @@
                 placeholder="Name"
                 required=""
               />
-              <label for="name" class="form__label">Deskripsi</label>
+              <label for="name" class="form__label">Telephone</label>
             </div>
             <div class="form__group field">
               <input
@@ -75,32 +75,39 @@
                 placeholder="Name"
                 required=""
               />
-              <label for="name" class="form__label">Harga Jual</label>
+              <label for="name" class="form__label">Alamat</label>
             </div>
           </div>
-        </form>
-        <div class="second-cont">
-          <div class="form__group field">
-            <select class="form__field">
-              <option value="1">Keterangan</option>
-              <option value="2">Iya?</option>
-              <option value="3">Aku</option>
-              <option value="4">Cantik</option>
-            </select>
-          </div>
-          <div class="form__group field">
-            <select class="form__field">
-              <option value="1">Jenis</option>
-              <option value="2">Iya?</option>
-              <option value="3">Aku</option>
-              <option value="4">Cantik</option>
-            </select>
+          <div class="second-cont">
+            <div class="form__group field">
+              <select class="form__field">
+                <option value="1">Pertanyaan Keamanan</option>
+                <option value="2">Iya?</option>
+                <option value="3">Aku</option>
+                <option value="4">Cantik</option>
+              </select>
+            </div>
+            <div class="form__group field">
+              <input
+                type="input"
+                class="form__field"
+                placeholder="Name"
+                required=""
+              />
+              <label for="name" class="form__label">Jawaban</label>
+            </div>
+            <div class="form__group field">
+              <input
+                type="password"
+                class="form__field"
+                placeholder="Name"
+                required=""
+              />
+              <label for="name" class="form__label">Password</label>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="photo">
-        <button><img src="../img/add.png" alt="" />Tambahkan Foto</button>
-      </div>
+        </form>
       <div class="button">
         <button>
           <i class="fa-solid fa-rotate-right" style="color: #000000"></i>
@@ -134,11 +141,11 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nama Menu</th>
-              <th>Deskripsi</th>
-              <th>Harga Jual</th>
-              <th>Keterangan</th>
-              <th>Jenis</th>
+              <th>Nama Admin</th>
+              <th>Telepon</th>
+              <th>Alamat</th>
+              <th>Pertanyaan Keamanan</th>
+              <th>Jawaban</th>
               <th>Aksi</th>
             </tr>
           </thead>

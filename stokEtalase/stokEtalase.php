@@ -35,35 +35,17 @@
     <div class="content">
     </div>
     <section class="menu">
+        <!-- <button class="card-btn"><img src="../img/plus.png" alt=""></button> -->
         <div class="container">
             <div class="slide-wrapper">
                 <button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
                 <ul class="image-list"> 
-                    <div class="image-item">
-                        <h3>Talam</h3>
-                        <img src="../img/Rectangle 64.png" alt="" class="image-item">
-                        <button class="button"><i class="fa-solid fa-circle-plus fa-2xl" style="color: #566d3f;"></i></button>
-                    </div>
-                    <div class="image-item">
-                        <img src="../img/Rectangle 65.png" alt="" class="image-item">
-                        <button class="button"><i class="fa-solid fa-circle-plus fa-2xl" style="color: #566d3f;"></i></button>
-                    </div>
-                    <div class="image-item">
-                        <img src="../img/Rectangle 66.png" alt="" class="image-item">
-                        <button class="button"><i class="fa-solid fa-circle-plus fa-2xl" style="color: #566d3f;"></i></button>
-                    </div>
-                    <div class="image-item">
-                        <img src="../img/Rectangle 64.png" alt="" class="image-item">
-                        <button class="button"><i class="fa-solid fa-circle-plus fa-2xl" style="color: #566d3f;"></i></button>
-                    </div>
-                    <div class="image-item">
-                        <img src="../img/Rectangle 65.png" alt="" class="image-item">
-                        <button class="button"><i class="fa-solid fa-circle-plus fa-2xl" style="color: #566d3f;"></i></button>
-                    </div>
-                    <div class="image-item">
-                        <img src="../img/Rectangle 66.png" alt="" class="image-item">
-                        <button class="button"><i class="fa-solid fa-circle-plus fa-2xl" style="color: #566d3f;"></i></button>
-                    </div>
+                    <img src="../img/Rectangle 64.png" alt="" class="image-item">
+                    <img src="../img/Rectangle 65.png" alt="" class="image-item">
+                    <img src="../img/Rectangle 66.png" alt="" class="image-item">
+                    <img src="../img/Rectangle 64.png" alt="" class="image-item">
+                    <img src="../img/Rectangle 65.png" alt="" class="image-item">
+                    <img src="../img/Rectangle 66.png" alt="" class="image-item">
                 </ul>
                 <button id="next-slide" class="slide-button material-symbols-rounded">chevron_right</button>
             </div>
