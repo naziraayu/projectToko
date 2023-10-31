@@ -1,40 +1,6 @@
 <?php
-require('koneksi.php');
-if(isset($_POST['submit'])){
-    $noTelp=$_POST['no.telepon'];
-    $password=$_POST['password'];
-    if(!empty(trim($noTelp)) && !empty(trim($password))){
-        $query="select * from karyawan where no_telepon='$noTelp'";
-        $result=mysqli_query($koneksi, $query);
-        if($result){
-            $num=mysqli_num_rows($result);
-            if($num!=0){
-                $row=mysqli_fetch_assoc($result);
-                $id=$row['id_karyawan'];
-                $nama=$row['nama_karyawan'];
-                $alamat=$row['alamat'];
-                $no_telp=$row['no_telepon'];
-                $pertanyaan=$row['pertanyaan'];
-                $jawaban=$row['jawaban'];
-                $pass=$row['password'];
-                $error='berhasil login';
-                header('location:landingPage.php');
-                exit;
-            }else{
-                $error='No. Telepon salah';
-                header('location:login.php?error='.urlencode($error));
-                exit;
-            }
-        }else{
-            $error= 'Eksekusi query error';
-            header('location:login.php?error='.urlencode($error));
-            exit;
-        }
-    }else{
-        $error='No. telepon dan Password harus diisi';
-        header('location:login.php?error='.urlencode($error));
-    }
-}
+require "koneksi.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,22 +28,73 @@ if(isset($_POST['submit'])){
     <section>
       <div class="container">
         <div class="form">
-          <form action="#">
+          <form action="" method="post">
             <h2>SELAMAT DATANG</h2>
             <p>Masukkan nomor telepon dan password anda</p>
             <div class="input-container">
-              <input type="tel" name="no.telepon" placeholder="No. Telephone" />
+                <label for="noTelepon"></label>
+              <input
+                type="tel"
+                name="txt_telp"
+                placeholder="No. Telephone"
+              />
             </div>
             <div class="input-container">
-              <input type="password" name="password" placeholder="Password" />
+              <input type="password" name="txt_pass" placeholder="Password" />
             </div>
             <div class="forgot">
               <span>Lupa Password? Klik <a href="#">di sini</a></span>
             </div>
             <div>
-              <button type="submit" name="submit">Login</button>
+              <button type="submit" name="btnlogin">Login</button>
             </div>
           </form>
+        </div>
+        <div>
+        <?php
+          if(isset($_POST['btnlogin'])){
+            $notelp=$_POST['txt_telp'];
+            $pass=$_POST['txt_pass'];
+
+    if(!empty(trim($notelp)) && !empty(trim($pass))){
+        $query="select * from karyawan where no_telepon='$notelp' and password='$pass'";
+        $result=mysqli_query($koneksi, $query);
+        if($result){
+            $num=mysqli_num_rows($result);
+            if($num !=0){
+                $row=mysqli_fetch_assoc($result);
+                $telp=$row['no_telepon'];
+                $pw=$row['password'];
+                if($telp == $notelp && $pw==$pass){
+                    // $_SESSION['id']=$id;
+                    // $_SESSION['user_email']=$userVal;
+                    // $_SESSION['user_fullnama']=$userName;
+                    // $_SESSION['level']=$level;
+                    header('location:admin.php');
+                    exit;
+                }else{
+                    $error='Password salah';
+                    header('location: Login.php?error='.urlencode
+                    ($error));
+                    exit;
+                }
+            }else{
+                $error='Email tidak ditemukan';
+                header('location: Login.php?error='.urlencode($error));
+                exit;
+            }
+        }else{
+            $error='Error dalam eksekusi query';
+            header('location: Login.php?error='.urlencode($error));
+            exit;
+        }
+    }else{
+        $error='Data tidak lengkap';
+        header('location: Login.php?error='.urlencode($error));
+        exit;
+    }
+          }
+        ?>
         </div>
       </div>
     </section>
@@ -101,5 +118,5 @@ if(isset($_POST['submit'])){
         </div>
       </div>
     </div>
-  </body>
+  </body>
 </html>
