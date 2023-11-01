@@ -70,7 +70,7 @@ session_start();
                     // $_SESSION['user_email']=$userVal;
                     // $_SESSION['user_fullnama']=$userName;
                     // $_SESSION['level']=$level;
-                    header('location:../master/admin.php?');
+                    header('location:admin.php');
                     exit;
                 }else{
                     $error='Password salah';
@@ -119,4 +119,4 @@ session_start();
       </div>
     </div>
   </body>
-</html>   
+</html>

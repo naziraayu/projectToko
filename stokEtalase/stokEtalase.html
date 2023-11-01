@@ -21,7 +21,13 @@
                     <li class="stok"><a href="#">STOK ETALASE</a></li>
                     <li class="pes"><a href="#">PESANAN MASUK</a></li>
                     <li class="pen"><a href="#">PENDAPATAN</a></li>
-                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+                    <!-- <li class="log"><a href="../login/login.html">LOG OUT</a></li> -->
+                    <select class="select-box">
+                        <option value="1">Nurul Hidayah</option>disabled
+                        <option value="2">Profile Saya</option>
+                        <option value="3">Pengaturan Profile</option>
+                        <option value="4">Log Out</option><a href="../login/login.html"></a>
+                      </select>
                 </ul>
             </div>
         </div>
@@ -32,7 +38,46 @@
             <img src="../img/Group 9.png" alt="">
         </div>
     </div>
-    <div class="content">
+    <div class="table-content">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <div class="table-header">
+                            <div class="stok-header">
+                                <h2>Stok Setoran</h2>
+                            </div>
+                            <div class="today">
+                                <h3>| Hari Ini</h3>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="menu">
+                            <div class="first-menu">
+                                <div class="nama-menu">
+                                    <h4>Putu Ayu</h4>
+                                </div>
+                                <div class="time">
+                                    <img src="../img/clock.png" alt="">
+                                    <p>10.00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="second-menu">
+                                <div class="jumlah">
+                                    <h3>78</h3>
+                                    <p>Pcs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <section class="menu">
         <div class="container">
@@ -40,7 +85,7 @@
                 <button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
                 <ul class="image-list"> 
                     <div class="image-item">
-                        <h3>Talam</h3>
+                        <h3 class="title">Talam</h3>
                         <img src="../img/Rectangle 64.png" alt="" class="image-item">
                         <button class="button"><i class="fa-solid fa-circle-plus fa-2xl" style="color: #566d3f;"></i></button>
                     </div>

@@ -201,35 +201,58 @@ a {
 }
 
 table {
-  border-bottom: 2px solid var(--button--);
+  
   margin-left: 20px;
   /* display: inline-grid; */
 }
 
-.qty img {
-  width: 15px;
-  align-items: center;
+.list-content {
+  display: grid;
+  position: relative;
+  border-bottom: 2px solid var(--button--);
+  bottom: 10px;
 }
 
-.nama {
-  margin: 20px 0 0 10px;
-  display: flex;
+.first-list {
+  display: inline-flex;
+  position: relative;
 }
 
-.nama h5 {
-  margin-left: 150px;
-  margin-top: 3px;
+.second-list {
+  display: inline-flex;
+  position: relative;
+}
+.first-list .nama {
+  margin: 20px 0 0 15px;
+  font-size: 15px;
 }
 
 .qty {
-  margin: 10px 0 0 10px;
-  display: flex;
+  margin: 23px 0 0 160px;
+  font-size: 15px;
 }
 
-.qty h3 {
-  margin-left: 200px;
-  margin-top: -3px;
+.second-list {
+  display: inline-flex;
+  position: relative;
 }
+
+.second-list .kode {
+  margin: 5px 0 0 15px;
+  letter-spacing: .2rem;
+  font-size: 13px;
+}
+
+.second-list .kode img{
+  width: 12px;
+}
+
+.second-list .total {
+  margin-left: 180px;
+  font-size: 20px;
+  margin-top: -10px;
+}
+
 .list-item::-webkit-scrollbar {
   display: none;
 }

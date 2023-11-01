@@ -11,6 +11,7 @@
 body {
   margin: 0;
   padding: 0;
+  background: linear-gradient(180deg, #FFF8F8 40.73%, #FFF 100%);
 }
 
 :root {
@@ -81,6 +82,22 @@ body {
   margin-top: -163px;
 }
 
+.select-box {
+  border: none;
+  outline: 0;
+  font-size: 15px;
+  background: transparent;
+  transition: border-color 0.2s;
+  width: 200px; 
+  font-size: 15px;
+  display: flex;
+  height: 2.5em;
+  text-transform: uppercase;
+  color: var(--log--);
+  margin-left: 330px;
+  margin-top: 7.5px;
+}
+
 .nav a:before {
   content: "";
   position: absolute;
@@ -149,14 +166,32 @@ a {
   width: 40px;
 }
 
-.content {
+.table-content {
   width: 400px;
   height: 350px;
-  background: #d6d6d6;
-  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  border: 2px solid var(--button--);
   position: fixed !important;
   position: -webkit-sticky;
   margin: 200px 0 0 80px;
+  overflow: auto;
+}
+
+.table-header {
+  display: inline-flex;
+  position: relative;
+  margin: 10px;
+}
+
+.table-header .today {
+  margin: 6px 0 0 5px;
+  color: #928383;
+}
+
+.table-content .menu {
+ display: grid;
+ position: relative;
+ border-bottom: 2px solid var(--button--);
+ bottom: 10px;
 }
 
 section {
@@ -167,12 +202,13 @@ section {
   margin-left: 300px;
   position: fixed;
 }
+
 .container {
   max-width: 1200px;
   width: 50%;
 }
 
-.slide-wrapper .image-list .image-item .title h2 {
+.slide-wrapper .image-list .image-item h2 {
   position: relative;
   /* margin: 0px 0 0 0px; */
   color: #000;
@@ -186,6 +222,7 @@ section {
   border-radius: 50%;
   border: none;
   outline: none;
+  top: -40px;
 }
 
 .slide-wrapper .image-list .image-item button:active {
@@ -193,8 +230,6 @@ section {
   box-shadow: 0 0.2rem #dfd9d9;
   transform: translateY(0.2rem);
 }
-
-
 
 .slide-wrapper {
   position: relative;
