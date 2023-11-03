@@ -336,6 +336,7 @@ footer.Pesanan {
   margin-top: -403px;
   margin-left: 201px;
 }
+
 .col\=12 {
   margin-top: 22px;
   margin-left: 57px;
@@ -352,10 +353,12 @@ p3.text-judul-halaman {
 
 .table_responsive {
   border-collapse: collapse;
+  
 }
 
 table.table {
   border-collapse: collapse;
+  
 }
 
 .multi-content {
