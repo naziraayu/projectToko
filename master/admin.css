@@ -77,6 +77,7 @@ body {
   list-style: none;
   display: flex;
   transition: color 0.5s;
+  position: relative;
   margin-left: 230px;
   margin-top: -163px;
 }
@@ -89,7 +90,7 @@ body {
   height: 2.5px;
   width: 0px;
   bottom: 10px;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .nav .mas a:focus:before {
@@ -153,17 +154,17 @@ a {
   transition: 0.3s;
 }
 
-.content .ad a:focus::before {
-  /* position: absolute; */
-  width: 67px;
+.content .ad a:hover::before {
+  position: absolute;
+  width: 67px; 
   bottom: 395px;
-  /* align-items: center; */
+  align-items: center;
   /* transition: 0.5s; */
-  content: " ";
+  /* content: " "; */
   /* position: relative; */
-  background-color: var(--hovera--);
-  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
-  height: 3px;
+  /* background-color: var(--hovera--); */
+  /* box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25); */
+  /* height: 3px; */
   /* width: 0px; */
   transition: 0.5s;
 }
@@ -363,6 +364,7 @@ a {
   margin-top: 80px;
   color: var(--nav--);
   align-items: center;
+  cursor: pointer;
 }
 
 .photo img {
@@ -371,36 +373,85 @@ a {
   width: 30px;
 }
 
-.button button {
-  position: absolute;
-  border-radius: 100%;
-  border: none;
-  width: 40px;
-  margin-left: -5px;
-  margin-top: 130px;
-  padding: 5px;
-  font-size: 20px;
-  background-color: var(--refresh--);
-}
-
-.button button:active {
+.photo button:active {
   color: white;
   box-shadow: 0 0.2rem #dfd9d9;
   transform: translateY(0.2rem);
 }
 
-.button button:hover:not(:disabled) {
+.photo button:hover:not(:disabled) {
   background: var(--border--);
   color: white;
   text-shadow: 0 0.1rem #bcb4b4;
 }
 
-.button button:disabled {
+.photo button:disabled {
   cursor: auto;
   color: grey;
 }
 
-.butt button {
+.refresh button {
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  height: 38px;
+  width: 40px;
+  margin-left: -150px;
+  margin-top: 130px;
+  padding: 5px;
+  font-size: 20px;
+  background-color: var(--refresh--);
+  cursor: pointer;
+}
+
+.refresh button:active {
+  color: white;
+  box-shadow: 0 0.2rem #dfd9d9;
+  transform: translateY(0.2rem);
+}
+
+.refresh button:hover:not(:disabled) {
+  background: var(--border--);
+  color: white;
+  text-shadow: 0 0.1rem #bcb4b4;
+}
+
+.refresh button:disabled {
+  cursor: auto;
+  color: grey;
+}
+
+.update button {
+  width: 130px;
+  height: 35px;
+  background-color: var(--edit--);
+  border: none;
+  border-radius: 40px;
+  color: var(--nav--);
+  position: absolute;
+  margin-top: 130px;
+  margin-left: -100px;
+  cursor: pointer;
+}
+
+.update button:active {
+  color: white;
+  box-shadow: 0 0.2rem #dfd9d9;
+  transform: translateY(0.2rem);
+}
+
+.update button:hover:not(:disabled) {
+  background: var(--border--);
+  color: white;
+  text-shadow: 0 0.1rem #bcb4b4;
+}
+
+.update button:disabled {
+  cursor: auto;
+  color: grey;
+}
+
+.save button {
   width: 130px;
   height: 35px;
   background-color: var(--save--);
@@ -410,21 +461,22 @@ a {
   position: absolute;
   margin-top: 130px;
   margin-left: 45px;
+  cursor: pointer;
 }
 
-.butt button:active {
+.save button:active {
   color: white;
   box-shadow: 0 0.2rem #dfd9d9;
   transform: translateY(0.2rem);
 }
 
-.butt button:hover:not(:disabled) {
+.save button:hover:not(:disabled) {
   background: var(--border--);
   color: white;
   text-shadow: 0 0.1rem #bcb4b4;
 }
 
-.butt button:disabled {
+.save button:disabled {
   cursor: auto;
   color: grey;
 }
@@ -473,6 +525,10 @@ a {
   overflow: auto;
   border-spacing: none;
   /* display: flex; */
+}
+
+.table .table-section::-webkit-scrollbar {
+  display: none;
 }
 
 .table-section thead th {
