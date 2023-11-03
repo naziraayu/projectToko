@@ -423,7 +423,7 @@ a {
 
 .update button {
   width: 130px;
-  height: 35px;
+  height: 35px; 
   background-color: var(--edit--);
   border: none;
   border-radius: 40px;

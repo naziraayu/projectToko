@@ -11,7 +11,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(180deg, #FFF8F8 40.73%, #FFF 100%);
+  background: linear-gradient(180deg, #fff8f8 40.73%, #fff 100%);
 }
 
 :root {
@@ -88,7 +88,7 @@ body {
   font-size: 15px;
   background: transparent;
   transition: border-color 0.2s;
-  width: 200px; 
+  width: 200px;
   font-size: 15px;
   display: flex;
   height: 2.5em;
@@ -114,7 +114,7 @@ body {
 }
 
 .nav .pes a:focus::before {
-  width: 125px;
+  width: 110px;
 }
 
 .nav .pen a:focus::before {
@@ -122,7 +122,7 @@ body {
 }
 
 .nav .log a:focus::before {
-  width: 65px;
+  width: 60px;
 }
 
 a {
@@ -173,14 +173,22 @@ a {
   position: fixed !important;
   position: -webkit-sticky;
   margin: 200px 0 0 80px;
-  overflow: auto;
+  overflow: scroll;
+}
+
+.table-content::-webkit-scrollbar {
+  display: none;
 }
 
 .table-header {
   display: inline-flex;
-  position: relative;
   margin: 10px;
 }
+
+/* .table-content .table-header {
+  position: fixed !important;
+  position: -webkit-sticky;
+} */
 
 .table-header .today {
   margin: 6px 0 0 5px;
@@ -188,10 +196,57 @@ a {
 }
 
 .table-content .menu {
- display: grid;
- position: relative;
- border-bottom: 2px solid var(--button--);
- bottom: 10px;
+  display: inline-flex;
+  position: relative;
+  bottom: 10px;
+}
+
+.menu {
+  border-bottom: 2px solid var(--button--);
+  padding: 10px;
+}
+
+.first-menu {
+  position: relative;
+  display: grid;
+  margin-left: 10px;
+}
+
+.first-menu .nama-menu {
+  font-size: 18px;
+}
+
+.first-menu .time {
+  margin-top: 5px;
+  display: inline-flex;
+  font-size: 15px;
+}
+
+.first-menu .time img {
+  width: 15px;
+  height: 15px;
+}
+
+.first-menu .time p {
+  margin: -3px 0 0 5px;
+}
+
+.second-menu {
+  position: relative;
+  margin-left: 200px;
+}
+
+.second-menu .jumlah {
+  display: inline-flex;
+}
+
+.second-menu .jumlah h3 {
+  font-size: 30px;
+}
+
+.second-menu .jumlah p {
+  font-size: 15px;
+  margin-top: 15px;
 }
 
 section {
