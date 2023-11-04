@@ -210,7 +210,7 @@ a {
 }
 
 .content .tom a:focus::before {
-  width: 100px;
+  width: 100px; 
 }
 
 .table-content {

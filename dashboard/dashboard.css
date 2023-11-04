@@ -326,10 +326,16 @@ footer.Pesanan {
   margin-top: 13px;
   gap: 42px;
 }
-.row {
-  width: 53%;
+
+.table-responsive {
+  display: flex;
+  position: relative;
+}
+
+.content {
+  width: 250px;
   height: 402px;
-  overflow-y: scroll;
+  overflow: auto;
   border-radius: 20px;
   background: #FFF;
   box-shadow: 0px 0px 24px 2px rgba(0, 0, 0, 0.25);
@@ -337,80 +343,75 @@ footer.Pesanan {
   margin-left: 201px;
 }
 
-.col\=12 {
-  margin-top: 22px;
-  margin-left: 57px;
-}
-p3.text-judul-halaman {
-  color: #BE7A74;
-  font-family: Poppins;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.table-responsive ::-webkit-scrollbar {
+  display: none;
 }
 
-
-.table_responsive {
-  border-collapse: collapse;
-  
-}
-
-table.table {
-  border-collapse: collapse;
-  
-}
-
-.multi-content {
+.table-responsive .content .menu {
+  display: inline-flex;
   position: relative;
-  width: 259px;
-  height: 87px;
-  text-align: center;
-  border-bottom: 1px solid #C97D60;
-  border-size: 89px;
+  bottom: 15px;
 }
 
-.multi-content div {
-  position: absolute;
-  width: 100%;
-  text-align: center;
+.content .menu {
+  border-bottom: 2px solid var(--button--);
+  padding: 10px;
+  margin-left: 5px;
+  /* top: 5px */
 }
-.top {
-  margin-top: -24px;
-  margin-left: -63px;
+
+.content .first-menu {
+  position: relative;
+  display: grid;
+  margin-left: -25px;
+  /* bottom: 15px; */
+}
+
+.content .first-menu .nama h4{
+  font-size: 13px;
   color: #660A00;
   font-family: Poppins;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  bottom: 20px;
 }
 
-.bottom {
-  margin-top: 2px;
-  margin-left: -115px;
+.content .first-menu .kode {
+  margin-top: 30px;
+  display: inline-flex;
+  font-size: 10px;
 }
 
-.right {
-  margin-top: -24px;
-  margin-left: 83px;
-  color: #63372C;
-  font-family: Poppins;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+.content .first-menu .kode img {
+  width: 15px;
+  height: 15px;
+  /* margin-left: 30px; */
 }
 
-.left {
-  margin-left: -24px;
-  color: #63372C;
-  font-family: Poppins;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+.content .first-menu .kode p {
+  margin: -1px 0 0 5px;
 }
+
+.content .second-menu {
+  position: relative;
+  margin-left: 20px;
+}
+
+.content .second-menu .price {
+  display: inline-flex;
+}
+
+.content .second-menu .price p {
+  font-size: 10px;
+  /* font-size: 15px; */
+  margin-top: 15px;
+}
+
+.content .title{
+  position: relative;
+  text-align: center;
+  margin-top: 25px;
+  color: var(--button--);
+}
+
 .ContainerGrafik {
   border-radius: 20px;
   background: #FFF;
