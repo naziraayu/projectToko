@@ -151,7 +151,11 @@ h1 {
   line-height: normal;
 }
 
-section.PenjualanPemesanan {text-align: center;margin-top: -5px;margin-left: 485px;}
+section.PenjualanPemesanan {
+  text-align: center;
+  margin-top: -5px;
+  margin-left: 485px;
+}
 
 .container.PenjualanPemesanan {
     display: flex;
@@ -406,7 +410,7 @@ footer.Pesanan {
 }
 
 .content .title{
-  position: relative;
+  position: relative; 
   text-align: center;
   margin-top: 25px;
   color: var(--button--);
