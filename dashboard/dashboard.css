@@ -458,3 +458,11 @@ ul.containtsamping li {
   margin-left: 154px;
   margin-top: 86px;
 }
+
+#columnchart_material {
+  position: relative;
+  margin : 15vh 0 0 90vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
