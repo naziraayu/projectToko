@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 * {
   margin: 0;
@@ -249,136 +250,127 @@ a {
   margin-top: 15px;
 }
 
-section {
+.wrapper {
+  max-width: 1100px;
+  width: 63%;
+  position:fixed;
   display: flex;
+  padding: 0 35px;
   align-items: center;
   justify-content: center;
   min-height: 115vh;
-  margin-left: 300px;
-  position: fixed;
+  margin-left: 75vh;
+  /* right: 0; */
 }
-
-.container {
-  max-width: 1200px;
-  width: 50%;
-}
-
-.slide-wrapper .image-list .image-item h2 {
-  position: relative;
-  /* margin: 0px 0 0 0px; */
-  color: #000;
-}
-
-.slide-wrapper .image-list .image-item button {
-  position: relative;
-  margin: -500px 0 0 90px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-  outline: none;
-  top: -40px;
-}
-
-.slide-wrapper .image-list .image-item button:active {
-  color: white;
-  box-shadow: 0 0.2rem #dfd9d9;
-  transform: translateY(0.2rem);
-}
-
-.slide-wrapper {
-  position: relative;
-}
-
-.slide-wrapper .slide-button {
-  position: absolute;
-  top: 50%;
-  height: 30px;
-  width: 30px;
-  color: #fff;
-  background: #000;
-  font-size: 1.5rem;
+.wrapper i {
+  top: 54%;
+  height: 40px;
+  width: 150px;
   cursor: pointer;
+  font-size: 1.25rem;
+  position: relative;
+  text-align: center;
+  line-height: 40px;
+  background: #fff;
   border-radius: 50%;
-  border: none;
-  outline: none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.23);
   transform: translateY(-50%);
+  transition: transform 0.1s linear;
 }
-
-.slide-wrapper .slide-button:hover {
-  background: #444;
+.wrapper i:active{
+  transform: translateY(-50%) scale(0.85);
 }
-
-.slide-wrapper .slide-button#prev-slide {
-  left: -20px;
+.wrapper i:first-child{
+  left: -8px;
 }
-
-.slide-wrapper .slide-button#next-slide {
-  right: -20px;
+.wrapper i:last-child{
+  right: 22px;
 }
-
-.slide-wrapper .image-list {
+.wrapper .carousel{
   display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(10, 1fr);
-  font-size: 0;
-  margin-bottom: 20px;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 12px);
   overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 15px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
   scrollbar-width: none;
 }
-
-.slide-wrapper .image-list::-webkit-scrollbar {
+.carousel::-webkit-scrollbar {
   display: none;
 }
-
-.slide-wrapper .image-list .image-item {
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
+.carousel.no-transition {
+  scroll-behavior: auto;
 }
-
-.container .slider-scrollbar {
-  height: 20px;
-  width: 100%;
-  /* background: var(--border--); */
+.carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.carousel.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+.carousel :where(.card, .img) {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
+.carousel .card {
+  scroll-snap-align: start;
+  height: 300px;
+  width: 200px;
+  list-style: none;
+  background: #462320;
+  cursor: pointer;
+  padding-bottom: 15px;
+  flex-direction: column;
+  border-radius: 8px;
+}
 
-.slider-scrollbar .scrollbar-track {
-  height: 2px;
-  width: 100%;
-  background: #ccc;
+.card .img img {
+  width: 185px;
+  height: 220px;
+  object-fit: cover;
+  /* border: 4px solid #fff; */
+  margin-top: 20px;
+}
+.carousel .card h2 {
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin: 1px 0 5px;
+  color: var(--nav--);
+}
+.carousel .card span button {
+  color: #6A6D78;
+  font-size: 1.31rem;
+  width: 30px;
+  height: 30px;
+  border-radius:50% ;
   position: relative;
-  border-radius: 4px;
+  margin: 1px 0 0 5px;
 }
-
-.slider-scrollbar:hover .scrollbar-track {
-  height: 4px;
+.carousel .card span button img {
+    height: 30px;
+    width: 30px;
+    position: relative;
+    margin: -2px;
 }
-
-.slider-scrollbar .scrollbar-thumb {
-  position: absolute;
-  height: 100%;
-  width: 50%;
-  background: #000;
-  border-radius: inherit;
-  cursor: grab;
+.carousel .card  button:active {
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+  }
+  
+@media screen and (max-width: 900px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
 }
-
-.slider-scrollbar .scrollbar-thumb:active {
-  cursor: grabbing;
-  height: 8px;
-  top: -2px;
-}
-
-.slider-scrollbar .scrollbar-thumb::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -10px;
-  bottom: -10px;
+@media screen and (max-width: 600px) {
+  .wrapper .carousel {
+    grid-auto-columns: 100%;
+  }
 }
 
 .simpan button {

@@ -534,7 +534,7 @@ a {
 .table-section thead th {
   position: sticky;
   top: 0;
-  padding: 20px 10px;
+  padding: 10px 10px;
   color: var(--nav--);
 }
 

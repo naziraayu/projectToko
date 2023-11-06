@@ -96,6 +96,7 @@ body {
   color: var(--log--);
   margin-left: 330px;
   margin-top: 7.5px;
+  text-align: center;
 }
 
 .nav a:before {
@@ -158,7 +159,7 @@ a {
   display: flex;
   transition: color 0.5s;
   align-items: center;
-  text-align: center;
+  text-align: center; 
   justify-content: center;
 }
 

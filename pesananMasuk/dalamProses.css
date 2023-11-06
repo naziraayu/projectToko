@@ -28,36 +28,7 @@
     --hapus--: #AC0000;
     --refresh--: #FFDD55;
 }
-<<<<<<< HEAD:pesananMasuk/dalamProses.css
-
-body {
-  margin: 0; 
-  padding: 0;
-}
-
-:root {
-  --head--: #ffc9c4;
-  --nav--: #fff;
-  --log--: #231210;
-  --hovera--: #ba7a74;
-  --main--: #fff2f0;
-  --footer--: #99716d;
-  --black--: #000;
-  --cont--: #d9d9d9;
-  --button--: #be7a74;
-  --side--: #ffe4e1;
-  --border--: #462320;
-  --inputan--: #928383;
-  --save--: #00732b;
-  --hovtab--: #d6d6d680;
-  --edit--: #0057d9;
-  --hapus--: #ac0000;
-  --refresh--: #ffdd55;
-}
-
-=======
   
->>>>>>> 0290d295eceaee0f69c8b31b1e388c985c55f705:pesananMasuk/pesananBaru.css
 .head {
     width: 1280px;
     height: 69px;
@@ -258,7 +229,7 @@ table {
 
 .table_responsive_pesanan {
     width: 384px;
-    height: 405px;
+    height: 450px;
     border-radius: 56px;
     border: 6px solid #BE7A74;
     margin-top: 6px;
@@ -268,8 +239,13 @@ table {
     overflow-y: scroll;
     border-collapse: collapse;
 }
+
+.table_responsive_pesanan::-webkit-scrollbar {
+    display: none;
+}
+
 td.multi-content2 {
-    border-bottom: 3px solid #BE7A74;
+    border-bottom: 2px solid #BE7A74;
     background: #FFF;
     height: 115px;
 }
@@ -277,7 +253,7 @@ td.multi-content2 {
 .nama {
     color: #660A00;
     font-family: Poppins;
-    font-size: 22px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -285,9 +261,10 @@ td.multi-content2 {
     margin-top: 25px;
 }
 
-.icon {
+.icon img {
     margin-left: 22px;
     margin-top: 3px;
+    width: 20px;
 }
 
 .kode {
@@ -298,34 +275,32 @@ td.multi-content2 {
     font-weight: 500;
     line-height: normal;
     letter-spacing: 10.9px;
-    margin-left: 58px;
-    margin-top: -34px;
+    margin-left: 50px;
+    margin-top: -30px;
 }
 .text-qty {color: #A3A3A3;font-family: Poppins;font-size: 8px;font-style: normal;font-weight: 700;line-height: normal;margin-left: 270px;padding-right: 11px;margin-top: -58px;text-align: right;}
 .qty {
     color: #621010;
     text-align: center;
-    font-family: SeoulNamsan CBL;
-    font-size: 39px;
+    font-family: Poppins    ;
+    font-size: 30px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     margin-left: 272px;
-    margin-top: -5px;
+    margin-top: 10px;
 }
 small1 {
     color: #621010;
     text-align: center;
-    font-family: SeoulNamsan CBL;
-    font-size: 36px;
+    font-family: Poppins;
+    font-size: 30px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-
-
-.row-pesanan.masuk {
+.row-pesanan-masuk {
     width: 382px;
     height: 54px;
     background: #928383;
@@ -496,4 +471,3 @@ td.multi-content3 {
         letter-spacing: 1.2px;
     }
     
-

@@ -23,7 +23,6 @@
     </header>
     <div class="background">
       <div class="opening">
-        <h1>SI-BROWNIES</h1>
         <img src="../img/Rectangle 27.png" alt="background" />
       </div>
     </div>
