@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --head--: #ffc9c4;
+    --nav--: #fff;
+    --log--: #231210;
+    --hovera--: #ba7a74;
+    --main--: #fff2f0;
+    --footer--: #99716d;
+    --black--: #000;
+    --cont--: #d9d9d9;
+    --button--: #be7a74;
+    --side--: #ffe4e1;
+    --border--: #462320;
+    --inputan--: #928383;
+    --save--: #00732B;
+    --table--: #be7a7480;
+    --hovtab--: #d6d6d680;
+    --edit--: #0057d9;
+    --hapus--: #ac0000;
+    --refresh--: #FFDD55;
+  }
+  
+  .head {
+    width: 1280px;
+    height: 69px;
+    background: var(--head--);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    top: 0;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 3;
+  }
+  
+  .nav {
+    width: 1200px;
+    height: 40px;
+    background-color: var(--nav--);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px 40px 40px 10px;
+    top: 50px;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 2;
+  }
+  .nav img {
+    position: relative;
+    top: -30px;
+    margin-left: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 187px;
+    background: url(/img/Ellipse\ 1.png), lightgray 50% / cover no-repeat;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  
+  .nav ul {
+    color: var(--log--);
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    list-style: none;
+    display: flex;
+    transition: color 0.5s;
+    margin-left: 230px;
+    margin-top: -163px;
+  }
+  
+  .nav a:before {
+    content: "";
+    position: absolute;
+    background-color: var(--hovera--);
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 2.5px;
+    width: 0px;
+    bottom: 10px;
+    transition: 0.3s;
+  }
+  
+  .nav .mas a:hover:before {
+    width: 60px;
+  }
+  
+  .nav .pes a:hover::before {
+    width: 125px;
+  }
+  
+  .nav .eta a:hover::before {
+    width: 60px;
+  }
+  
+  .nav .lap a:hover::before {
+    width: 70px;
+  }
+  
+  .nav .log a:hover::before {
+    width: 65px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--log--);
+  }
+  
+  .nav li {
+    display: table-cell;
+    position: relative;
+    padding: 15px;
+  }
+  
+  .nav li.log {
+    margin-left: 400px;
+  }
+  .gambar-pesanan {
+    display: none;
+  }
+  .teks-akila{
+    display: none;
+  }
+  .navbar {
+    margin-top: 90px;
+    margin-left: 314px;
+    border-radius: 0 0 60px 60px;
+    border: 6px solid #BE7A74;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 600px;
+    height: 90px;
+    border-top: none;
+}
+.elem-yang-bisa-diklik {
+    /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
+    position: relative;
+    z-index: 10; /* angka ini bisa disesuaikan */
+  }
+  
+  .navbar {
+    /* pastikan elemen navbar memiliki posisi relatif atau absolut */
+    position: fixed;
+    z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
+  }
+  li {
+    display: inline-block;
+    text-align: center;
+    padding: 39px;
+    position: relative;
+}
+
+span.teks-akila {
+    display: none;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    color: #231210;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 101px;
+    transform: translateX(-50%);
+}
+
+.gambar-pesanan {
+    display: none;
+}
+
+li.clicked .gambar-pesanan {
+    display: inline;
+}
+
+li.clicked .teks-akila {
+    display: block;
+}
+
+/* Tambahkan gaya untuk menahan posisi elemen yang tidak diklik */
+li:not(.clicked) {
+    position: relative; /* Mempertahankan posisi relatif */
+    top: 0; /* Membuat tetap pada posisi awal */
+}
+.content {
+    position: fixed;
+    margin-top: -17px;
+    margin-left: 69px;
+}
+.content1 {
+    position: fixed;
+    margin-top: -17px;
+    margin-left: 234px;
+}
+.content2 {
+    position: fixed;
+    margin-top: -17px;
+    margin-left: 405px;
+}
+
+img#baruImage {
+    width: 33px;
+}
+img#prosesImage{
+    width: 33px;
+}
+img#batalImage{
+    width: 33px;
+}
+.table-daftar-pesanan {
+  border-radius: 18px;
+  background: #FFF;
+  box-shadow: 0px 0px 24px 2px rgba(0, 0, 0, 0.25);
+  height: 308px;
+  width: 703px;
+  margin-left: 72px;
+  margin-top: 216px;
+  position: fixed;
+}
+
+
+
+h2 {
+  width: 642.827px;
+  height: 58.727px;
+  flex-shrink: 0;
+  color: #BE7A74;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+tbody {}
+
+td,th {
+  border: 1px solid #660A00;
+
+}
+
+th {
+  border: 1px solid #660A00;
+  background: #FFDFDC;
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 112.5% */
+  width: 108px;
+  height: 18px;
+}
+table.daftar-pesanan {
+  border-collapse: collapse;
+  margin-left: 24px;
+}
+.row {
+    position: fixed;
+    margin-top: 213px;
+    margin-left: 848px;
+}
+
+.table_responsive {
+    border-radius: 20px;
+    border: 18px solid #FFF;
+    box-shadow: 0px 0px 24px 2px rgba(0, 0, 0, 0.25);
+    width: 562px;
+    height: 572px;
+    flex-shrink: 0;
+}
+
+table.table {
+    border-collapse: collapse;
+}

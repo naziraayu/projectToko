@@ -32,9 +32,9 @@
           <img src="../img/Ellipse 1.png" alt="logo" />
           <ul>
             <li class="mas"><a href="../master/admin.html">MASTER</a></li>
-            <li class="pes"><a href="#">PESANAN MASUK</a></li>
+            <li class="pes"><a href="../pesananMasuk/dalamProses.html">PESANAN MASUK</a></li>
             <li class="eta"><a href="#">ETALASE</a></li>
-            <li class="lap"><a href="#">LAPORAN</a></li>
+            <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
             <li class="log"><a href="../login/login.html">LOG OUT</a></li>
           </ul>
         </div>
@@ -43,93 +43,52 @@
     <div class="navbar">
       <div class="content">
         <ul>
-          <li class="baru"><a href="#">Pesanan Baru</a></li>
-          <li class="proses">
-            <a href="../dashboard/dashboard.html">Dalam Proses</a
-            ><img src="../img/proses.png" alt="" />
+          <li class="baru" id="baruItem">
+            <a href="../pesananBaru/pesananBaru1.html" onclick="togglePesanan('baru')">Pesanan Baru</a>
+            <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="baruImage" style="display: none;" />
+            <span class="teks-akila" id="akilaBaru">Pesanan Baru</span>
           </li>
-          <li class="batal"><a href="#">Dibatalkan</a></li>
+          </ul>
+      </div>
+      <div class="content1">
+          <ul>
+          <li class="proses" id="prosesItem">
+            <a href="../pesananMasuk/pesananBaru.html" onclick="togglePesanan('proses')">Dalam Proses</a>
+            <img src="../img/proses.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: none;" />
+            <span class="teks-akila" id="akilaProses">Dalam Proses</span>
+          </li>
+      </ul>
+      </div>
+      <div class="content2">
+          <ul>
+          <li class="batal" id="batalItem">
+            <a href="#" onclick="togglePesanan('batal')">Dibatalkan</a>
+            <img src="../img/batal.png" alt="" class="gambar-pesanan" id="batalImage" style="display: none;" />
+            <span class="teks-akila" id="akilaBatal">Dibatalkan</span>
+          </li>
+          <!-- Item lain di sini -->
         </ul>
       </div>
     </div>
-    <!-- <div class="list-item">
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <div class="nama">
-                <h3>Sus Buah</h3>
-                <h5>Total QTY</h5>
-              </div>
-              <div class="qty">
-                <p><img src="../img/salin.png" alt="" />A0031</p>
-                <h3>500</h3>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="nama">
-                <h3>Sus Buah</h3>
-                <h5>Total QTY</h5>
-              </div>
-              <div class="qty">
-                <p><img src="../img/salin.png" alt="" />A0031</p>
-                <h3>500</h3>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="nama">
-                <h3>Sus Buah</h3>
-                <h5>Total QTY</h5>
-              </div>
-              <div class="qty">
-                <p><img src="../img/salin.png" alt="" />A0031</p>
-                <h3>500</h3>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="nama">
-                <h3>Sus Buah</h3>
-                <h5>Total QTY</h5>
-              </div>
-              <div class="qty">
-                <p><img src="../img/salin.png" alt="" />A0031</p>
-                <h3>500</h3>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="nama">
-                <h3>Sus Buah</h3>
-                <h5>Total QTY</h5>
-              </div>
-              <div class="qty">
-                <p><img src="../img/salin.png" alt="" />A0031</p>
-                <h3>500</h3>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="nama">
-                <h3>Sus Buah</h3>
-                <h5>Total QTY</h5>
-              </div>
-              <div class="qty">
-                <p><img src="../img/salin.png" alt="" />A0031</p>
-                <h3>500</h3>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
+    
+    <script>
+function togglePesanan(item) {
+      var textElement = document.getElementById(item + 'Item').querySelector('a');
+      var imageElement = document.getElementById(item + 'Image');
+      var akilaText = document.getElementById('akila' + item.charAt(0).toUpperCase() + item.slice(1));
+
+      if (textElement.style.display !== 'none') {
+        textElement.style.display = 'none'; // Sembunyikan teks
+        imageElement.style.display = 'inline'; // Tampilkan gambar/icon
+        akilaText.style.display = 'inline'; // Tampilkan teks "Akila"
+      } else {
+        textElement.style.display = 'inline'; // Tampilkan teks
+        imageElement.style.display = 'none'; // Sembunyikan gambar/icon
+        akilaText.style.display = 'none'; // Sembunyikan teks "Akila"
+      }
+    }
+
+    </script>
     <div class="table_responsive_pesanan">
        <table class="table_dtl_pesanan">
         <tr>
@@ -186,11 +145,9 @@
       </div>
   </td>
 </tr>
- </table>
+</table>
  </div>
-
-
-    <div class="row-pesanan masuk">
+    <div class="row-pesanan-masuk">
       <div class="col=12">
           <h3 class="text-judul-halaman">Detail Pesanan</h3>
       </div>
@@ -203,28 +160,72 @@
                           <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
                           <div class="right"> 45 <small>pcs</small></div>
                           <div class="left">08:00-09:00</div>
-                          <div class="left2"><input type='checkbox' nama='pesanan'></div>
+                          <label class="container">
+                            <input type="checkbox" checked="checked">
+                            <div class="checkmark"></div>
+                        </label>
                       </td>
                   </tr>
                   <tr>
                     <td class="multi-content3">
                         <div class="top">Ananta Ghaisani</div>
                         <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
-                        <div class="right"> 145 <small>pcs</small></div>
-                        </div>
+                        <div class="right"> 45 <small>pcs</small></div>
                         <div class="left">08:00-09:00</div>
-                        <div class="left2"><input type='checkbox' nama='pesanan'></div>
+                        <label class="container">
+                          <input type="checkbox" checked="checked">
+                          <div class="checkmark"></div>
+                      </label>
                     </td>
-                </tr>
-                <tr>
-                  <td class="multi-content3">
-                      <div class="top">Ananta Ghaisani</div>
-                      <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
-                      <div class="right"> 2145 <small>pcs</small></div>
-                      <div class="left">08:00-09:00</div>
-                      <div class="left2"><input type='checkbox' nama='pesanan'></div>
-                  </td>
-              </tr>
+                  </tr>
+                  <tr>
+                    <td class="multi-content3">
+                        <div class="top">Ananta Ghaisani</div>
+                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
+                        <div class="right"> 45 <small>pcs</small></div>
+                        <div class="left">08:00-09:00</div>
+                        <label class="container">
+                          <input type="checkbox" checked="checked">
+                          <div class="checkmark"></div>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="multi-content3">
+                        <div class="top">Ananta Ghaisani</div>
+                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
+                        <div class="right"> 45 <small>pcs</small></div>
+                        <div class="left">08:00-09:00</div>
+                        <label class="container">
+                          <input type="checkbox" checked="checked">
+                          <div class="checkmark"></div>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="multi-content3">
+                        <div class="top">Ananta Ghaisani</div>
+                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
+                        <div class="right"> 45 <small>pcs</small></div>
+                        <div class="left">08:00-09:00</div>
+                        <label class="container">
+                          <input type="checkbox" checked="checked">
+                          <div class="checkmark"></div>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="multi-content3">
+                        <div class="top">Ananta Ghaisani</div>
+                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
+                        <div class="right"> 45 <small>pcs</small></div>
+                        <div class="left">08:00-09:00</div>
+                        <label class="container">
+                          <input type="checkbox" checked="checked">
+                          <div class="checkmark"></div>
+                      </label>
+                    </td>
+                  </tr>
               </table>
               </div>
               <div class="dropdown">

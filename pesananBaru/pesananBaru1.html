@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="pesananBaru1.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="head">
+          <div class="nav">
+            <img src="../img/Ellipse 1.png" alt="logo" />
+            <ul>
+              <li class="mas"><a href="../master/admin.html">MASTER</a></li>
+              <li class="pes"><a href="#">PESANAN MASUK</a></li>
+              <li class="eta"><a href="#">ETALASE</a></li>
+              <li class="lap"><a href="#">LAPORAN</a></li>
+              <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+            </ul>
+          </div>
+        </div>
+        </header>
+
+        <div class="navbar">
+            <div class="content">
+              <ul>
+                <li class="baru" id="baruItem">
+                  <a href="../pesananBaru/pesananBaru1.html" onclick="togglePesanan('baru')">Pesanan Baru</a>
+                  <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="baruImage" style="display: none;" />
+                  <span class="teks-akila" id="akilaBaru">Pesanan Baru</span>
+                </li>
+                </ul>
+            </div>
+            <div class="content1">
+                <ul>
+                <li class="proses" id="prosesItem">
+                  <a href="" onclick="togglePesanan('proses')">Dalam Proses</a>
+                  <img src="../img/proses.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: none;" />
+                  <span class="teks-akila" id="akilaProses">Dalam Proses</span>
+                </li>
+            </ul>
+            </div>
+            <div class="content2">
+                <ul>
+                <li class="batal" id="batalItem">
+                  <a href="#" onclick="togglePesanan('batal')">Dibatalkan</a>
+                  <img src="../img/batal.png" alt="" class="gambar-pesanan" id="batalImage" style="display: none;" />
+                  <span class="teks-akila" id="akilaBatal">Dibatalkan</span>
+                </li>
+                <!-- Item lain di sini -->
+              </ul>
+            </div>
+          </div>
+          
+  <script>
+    function togglePesanan(item) {
+      var textElement = document.getElementById(item + 'Item').querySelector('a');
+      var imageElement = document.getElementById(item + 'Image');
+      var akilaText = document.getElementById('akila' + item.charAt(0).toUpperCase() + item.slice(1));
+
+      if (textElement.style.display !== 'none') {
+        textElement.style.display = 'none'; // Sembunyikan teks
+        imageElement.style.display = 'inline'; // Tampilkan gambar/icon
+        akilaText.style.display = 'inline'; // Tampilkan teks "Akila"
+      } else {
+        textElement.style.display = 'inline'; // Tampilkan teks
+        imageElement.style.display = 'none'; // Sembunyikan gambar/icon
+        akilaText.style.display = 'none'; // Sembunyikan teks "Akila"
+      }
+    }
+
+  </script>
+        <div class="table-daftar-pesanan">
+          <table class="daftar-pesanan">
+            <h2>DAFTAR PESANAN</h2>
+              <th>NAMA CUSTOMER</th>
+              <th>JAM PENGAMBILAN</th>
+              <th>TOTAL ITEM</th>
+              <th>TOTAL NOMINAL</th>
+              <th>STATUS PEMBAYARAN</th>
+              <th>TANDA CUSTOMER</th>
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+
+          </table>
+        </div>
+        <div class="row">
+              <div class="table_responsive">
+                  <table class="table">
+                      <tr>
+                          <td class="multi-content1">
+                              <div class="top">Ananta Ghaisani</div>
+                              <div class="left"><img src="../img/Group (1).png" alt="order"></div>
+                              <div class="bottom">08:00 - 09.00 <br>
+                                ORD-1562792779615
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                        <td class="multi-content2"> 
+                          <td> 30x</td>
+                          <td>Brownies Pandan</td>
+                          <td>2.000</td>
+                          <td>60.000</td>
+                        </td>
+                       </tr>
+                      <tr>
+                      <td class="multi-content2"> 
+                        <td> 30x</td>
+                        <td>Brownies Panggang</td>
+                        <td>2.500</td>
+                        <td>75.000</td>
+                      </td>
+                    </tr>
+                  <tr>
+                    <td class="multi-content2"> 
+                      <td> 30x</td>
+                      <td>Brownies Panggang</td>
+                      <td>2.500</td>
+                      <td>75.000</td>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="multi-content2"> 
+                      <td> 30x</td>
+                      <td>Brownies Panggang</td>
+                      <td>2.500</td>
+                      <td>75.000</td>
+                    </td> 
+                </tr>
+                <tr>
+                  <td class="multi-content3"> 
+                      <td> 30x <br>
+                        Sus buah <br>
+                        Lemper <br>
+                        Sosis Solo <br>
+                        Putu <br>
+                        Pastel <br>
+                      </td>
+                    </td> 
+                </tr>
+                     <tr>
+                          <td class="multi-content4">
+                              <div class="gembar"><img src="../img/Rectangle 58.png" alt="order"></div>
+                          </td>
+                          <td> Total:</td>
+                          <td> 234.000</td>
+                      </tr>
+                  <tr>
+                      <td class="multi-content4"> 
+                        <td>Bayar</td>
+                        <td>100.000</td>
+                      </td> 
+                  </tr>
+                  <tr>
+                    <td class="multi-content4"> 
+                      <td>Kurang</td>
+                      <td>134.000</td>
+                    </td> 
+                </tr>
+                <tr>
+                  <td class="multi-content4"> 
+                    <td>Status <br>
+                    Transaksi
+                  </td>
+                    <td>DP</td>
+                  </td> 
+              </tr>
+              <a href="#"></a>
+              <button>PROSES</button>
+              <a href="#"></a>
+              <button2>TOLAK</button2>
+
+           </table>
+        
+
+
+
+      
+</body>
+</html>
