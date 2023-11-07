@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="laporan.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Penjualan', 'Pemesanan', 'Total'],
+          ['2014', 1500000, 1000000, 2000000],
+          ['2015', 1170000, 4600000, 2500000],
+          ['2016', 6600000, 1120000, 3000000],
+          ['2017', 1030000, 5400000, 3500000],
+          ['2018', 1000000, 5000000, 3000000]
+        ]);
+
+        var options = {
+          chart: {
+            // title: 'Company Performance',
+            // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+    <script>
+        window.onresize = function() {
+            var c = document.getElementById("pieChart");
+            c.resize();
+        }
+    </script>
+    <style>
+        #left-menu {
+            display: none;
+            position: absolute;
+            background-color: black;
+            color: white;
+            left: 0;
+            top:4.8%;
+            height:100%;
+            width:25%;
+            max-width:270px;
+        }
+        .change .bar1 {
+            -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+            transform: rotate(-45deg) translate(-9px, 6px);
+        }
+    
+        .change .bar2 {opacity: 0;}
+    
+        .change .bar3 {
+            -webkit-transform: rotate(45deg) translate(-8px, -8px);
+            transform: rotate(45deg) translate(-8px, -8px);
+        }
+    
+        #left-menu h1{
+            border-bottom-style: solid;
+        }
+    
+        #left-menu .inactive {
+            font-size: 25px;
+            color: white;
+            text-decoration: none;
+        }
+    
+        #left-menu .active {
+            font-size: 25px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+        }
+        #left-menu .active:hover {
+            color: white;
+        }
+    
+        #main-content {
+            position: absolute;
+            color: black;
+            left: 30%;
+            top: 153% ;
+            height: 80%;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="head">
+            <div class="nav">
+                <img src="../img/Ellipse 1.png" alt="logo" />
+                <ul>
+                    <li class="mas"><a href="../master/admin.html">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/dalamProses.html">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
+                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="date">
+        <div class="datetime">
+            <p>Hari Ini</p>
+            <img src="../img/Group 9.png" alt="">
+        </div>
+    </div>
+    <div class="grafik">
+        <div id="columnchart_material" style="width: 1100px; height: 200px;"></div>
+    </div>
+    <section class="PenjualanPemesanan">
+        <div class="container PenjualanPemesanan">
+            <div class="bersih">
+                <h2><a href="">Pendapatan Bersih</a></h2>
+                <h3>2.135.000</h3>
+            </div>
+            <div class="setoran">
+                <h2>Setoran Supplier</h2>
+                <h3>2.135.000</h3>
+            </div>
+            <div class="kotor">
+                <h2>Pendapatan Kotor</h2>
+                <h3>3.005.000</h3>
+            </div>
+            <div class="pesan">
+                <h2>Uang Pesanan</h2>
+                <h3>3.005.000</h3>
+            </div>
+        </div>
+    </section>
+    <div class="pendapatan">
+        <h1><a href="#">PENDAPATAN BERSIH</a></h1>
+    </div>
+    <div class="table">
+        <div class="title-penjualan">
+            <h3>DETAIL PENJUALAN</h3>
+        </div>
+        <div class="table-penjualan">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama <br> Barang</th>
+                        <th>Jam Input</th>
+                        <th>Stok</th>
+                        <th>Sisa</th>
+                        <th>Laku</th>
+                        <th>Penghasilan</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                            <td>450</td>
+                            <td>500.000</td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <section>
+        <div class="container-pendapatan">
+            <div class="penjualan">
+                <h2> Penjualan</h2>
+                <h3> 700.000 </h3>
+            </div>
+            <div class="pesanan">
+                <h2>Pesanan</h2>
+                <h3>300.000</h3>
+            </div>
+            <div class="total">
+                <h2>TOTAL PENDAPATAN</h2>
+                <h3>1.000.000</h3>
+            </div>
+        </div>
+    </section>
+    <div id="main-content">
+        <pie-chart id="pieChart" style="display:block;height:50%;width:100%;position:relative;">
+            <pchart-element name="Penjualan" value="700.000" colour="#40A090">
+            <pchart-element name="Pesanan" value="300.000" colour="#BE7A74">
+        </pie-chart>
+    </div>
+</body>
+<script type = "text/javascript">
+    function myFunction(x) {
+        if (document.getElementById("left-menu").style.display == "block")
+        {
+            document.getElementById("left-menu").style.display = "none";
+            document.getElementById("main-content").style.left = "0";
+            document.getElementById("main-content").style.width = "100%";
+        } else {
+            document.getElementById("left-menu").style.display = "block";
+            document.getElementById("main-content").style.left = document.getElementById("left-menu").offsetWidth;
+            document.getElementById("main-content").style.width = window.innerWidth - document.getElementById("left-menu").offsetWidth;
+        }
+        x.classList.toggle("change");
+        var c = document.getElementById("pieChart");
+        c.resize();
+    }
+</script>
+<script src="pie-chart-js.js">
+</script> 
+    <div class="tabel">
+        <div class="title-pesanan">
+            <h3>DETAIL PESANAN</h3>
+        </div>
+        <div class="tabel-pesanan">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama <br> Barang</th>
+                        <th>Jam Antar</th>
+                        <th>Jumlah</th>
+                        <th>Penghasilan</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Kue Putu</td>
+                            <td>09.00</td>
+                            <td>500</td>
+                            <td>50</td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
