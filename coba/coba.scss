@@ -1,0 +1,21 @@
+sass input.scss output.css {
+    $d: 70;      // density
+    $w: 600;     // grid size
+    $s: 3s;       // speed
+    
+    // Generate the snow image using radial gradients
+    $grad: ();
+    @for $i from 0 to $d {
+      $v: random(4) + 2;
+      $a: random(5) * .1 + .5;
+      $grad: $grad, radial-gradient(
+          $v+px $v+px at
+          (random($w - $v * 2) + $v)+px
+          (random($w - $v * 2) + $v)+px, 
+          rgba(255,255,255,$a) 50%,
+          rgba(0,0,0,0)
+      ) !global;
+    }
+}
+
+
