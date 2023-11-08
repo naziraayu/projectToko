@@ -7,8 +7,9 @@ body {
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+  
 }
-
+ 
 :root {
   --head--: #FFC9C4;
     --nav--: #FFF;
@@ -88,11 +89,11 @@ a:hover:after {
   background-image: url(/img/Ellipse\ 1.png);
 }
 
-.opening img {
+/* .opening img {
   width: 1265px;
   margin-top: 200px;
   margin-bottom: 50px;
-  /* height: 532px; */
+  height: 532px;
 }
 
 .opening h1 {
@@ -107,13 +108,13 @@ a:hover:after {
   text-shadow: var(--nav--) 10px 0 10px;
   box-shadow: 10px var(--nav--);
 
-}
+} */
 
 section {
-  margin-top: 70px;
+  margin-top: 50px;
   background: var(--main--);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  width: 1265px;
+  width: 1264px;
   height: 664px;
   text-align: center;
   display: flex;
@@ -283,3 +284,82 @@ p.jln {
     float: left;
   }
 }
+
+/* div {
+	position: relative;
+  } */
+  
+  * {
+	-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+  }
+  
+  .slider {
+	height: 100vh;
+	-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+	-webkit-perspective: 400px;
+			perspective: 400px;
+  }
+  .slider .background {
+	position: absolute;
+	top: 15%;
+	left: 0;
+	width: 100%;
+	height: 70%;
+	-webkit-filter: blur(5px);
+			filter: blur(5px);
+  }
+  .slider .item {
+	width: 500px;
+	height: 300px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+		-ms-flex-pack: center;
+			justify-content: center;
+	-webkit-box-align: center;
+		-ms-flex-align: center;
+			align-items: center;
+	overflow: hidden;
+	-webkit-transition: -webkit-transform 0.7s;
+	transition: -webkit-transform 0.7s;
+	transition: transform 0.7s;
+	transition: transform 0.7s, -webkit-transform 0.7s;
+	position: absolute;
+  }
+  @media only screen and (max-width: 960px) {
+	.slider .item {
+	  width: 400px;
+	  height: 300px;
+	}
+  }
+  @media only screen and (max-width: 720px) {
+	.slider .item {
+	  width: 256px;
+	  height: 192px;
+	}
+  }
+  .slider .item img {
+	height: 100%;
+  }
+  .slider .item-1, .slider .item-2, .slider .item-3 {
+	top: 50%;
+	left: 50%;
+  }
+  .slider .item-1, .slider .item-4 {
+	cursor: pointer;
+  }
+  .slider .item-1 {
+	-webkit-transform: translate(-120%, -50%);
+			transform: translate(-120%, -50%);
+  }
+  .slider .item-2 {
+	-webkit-transform: translate(-50%, -50%) translateZ(80px);
+			transform: translate(-50%, -50%) translateZ(80px);
+  }
+  .slider .item-3 {
+	-webkit-transform: translate(20%, -50%);
+			transform: translate(20%, -50%);
+  }
