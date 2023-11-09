@@ -162,7 +162,7 @@ a {
 }
 
 .datetime img {
-  position: absolute;
+  position: absolute; 
   margin: 20px 0 0 330px;
   width: 40px;
 }
@@ -340,6 +340,24 @@ a {
   font-size: 1.1rem;
   margin: 1px 0 5px;
   color: var(--nav--);
+}
+.carousel .card .add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.carousel .card .add input {
+  margin-left: 4px;
+  width: 30px;
+  height: 25px;
+  border: none;
+  text-align: center;
+  outline: 0;
+  border-bottom: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-size: 18px;
 }
 .carousel .card span button {
   color: #6A6D78;
