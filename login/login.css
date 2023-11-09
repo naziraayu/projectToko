@@ -8,7 +8,7 @@ body {
   margin: 0;
 }
 
-:root {
+:root { 
   --head--: #ffc9c4;
   --nav--: #fff;
   --log--: #231210;
