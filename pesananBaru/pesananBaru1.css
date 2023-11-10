@@ -229,6 +229,31 @@ img#batalImage{
   margin-top: 20px;
   margin-left: 33px;
 }
+.content2 .img3 {
+  margin-top: 9px/* nilai top yang diinginkan */;
+  margin-left: 130px/* nilai left yang diinginkan */;
+}
+.img3 {
+  margin-top: -51px;
+}
+.img2 {
+  margin-top: -51px;
+}
+li#baruItem {
+  margin-top: 17px;
+}
+
+li#prosesItem {
+  margin-top: 17px;
+}
+.img4 {
+  margin-top: -50px;
+  margin-left: -9px;
+}
+
+li#batalItem {
+  margin-top: 18px;
+}
 
 
 h2 {

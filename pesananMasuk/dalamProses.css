@@ -154,12 +154,14 @@ a {
 }
 
 .content li {
-    display: table-cell;
-    position: relative;
     padding: 15px;
     font-size: 17px;
-    margin-top: 10px;
+    margin-top: 24px;
     cursor: pointer;
+}
+li.img2 {
+    margin-top: -13px;
+    margin-left: -102px;
 }
 
 .content .proses {
@@ -541,23 +543,19 @@ td.multi-content3 {
       .nav li.log {
         margin-left: 400px;
       }
-      .gambar-pesanan {
-        display: none;
-      }
-      .teks-akila{
-        display: none;
-      }
+
       .navbar {
-        margin-top: 90px;
-        margin-left: 314px;
-        border-radius: 0 0 60px 60px;
-        border: 6px solid #BE7A74;
-        background: #FFF;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        width: 600px;
-        height: 90px;
-        border-top: none;
-    }
+        /* pastikan elemen navbar memiliki posisi relatif atau absolut */
+        position: relative;
+        z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
+        margin-top: 10px;
+        color: #231210;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
     .elem-yang-bisa-diklik {
         /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
         position: relative;
@@ -577,38 +575,7 @@ td.multi-content3 {
         position: relative;
     }
     
-    span.teks-akila {
-        display: none;
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        color: #231210;
-        font-family: Poppins;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        width: 101px;
-        transform: translateX(-50%);
-    }
-    
-    .gambar-pesanan {
-        display: none;
-    }
-    
-    li.clicked .gambar-pesanan {
-        display: inline;
-    }
-    
-    li.clicked .teks-akila {
-        display: block;
-    }
-    
-    /* Tambahkan gaya untuk menahan posisi elemen yang tidak diklik */
-    li:not(.clicked) {
-        position: relative; /* Mempertahankan posisi relatif */
-        top: 0; /* Membuat tetap pada posisi awal */
-    }
+ 
     .content {
         position: fixed;
         margin-top: -1px;
@@ -633,4 +600,26 @@ td.multi-content3 {
     }
     img#batalImage{
         width: 33px;
+    }
+    .content2 .img3 {
+        margin-top: 9px/* nilai top yang diinginkan */;
+        margin-left: 130px/* nilai left yang diinginkan */;
+      }
+      .img3 {
+        margin-top: -51px;
+    }
+    .img2 {
+        margin-top: -55px;
+    }
+    
+    li#prosesItem {
+        margin-top: 17px;
+    }
+    .img4 {
+        margin-top: -50px;
+        margin-left: -9px;
+    }
+    
+    li#batalItem {
+        margin-top: 18px;
     }
