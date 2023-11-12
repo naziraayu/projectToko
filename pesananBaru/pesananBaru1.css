@@ -136,7 +136,7 @@
     border: 6px solid #BE7A74;
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    width: 600px;
+    width: 700px;
     height: 90px;
     border-top: none;
 }
@@ -191,19 +191,24 @@ li:not(.clicked) {
     top: 0; /* Membuat tetap pada posisi awal */
 }
 .content {
-    position: fixed;
-    margin-top: -17px;
-    margin-left: 69px;
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 43px;
 }
 .content1 {
-    position: fixed;
-    margin-top: -17px;
-    margin-left: 234px;
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 196px;
 }
 .content2 {
-    position: fixed;
-    margin-top: -17px;
-    margin-left: 405px;
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 494px;
+}
+.content3 {
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 351px;
 }
 
 img#baruImage {
