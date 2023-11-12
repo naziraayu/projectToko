@@ -123,7 +123,7 @@ a {
 }
 
 .navbar {
-    width: 600px;
+    width: 700px;
     height: 90px;
     border-radius: 0 0 60px 60px;
     border: 6px solid var(--button--);
@@ -578,19 +578,24 @@ td.multi-content3 {
  
     .content {
         position: fixed;
-        margin-top: -1px;
-        margin-left: 69px;
-    }
-    .content1 {
+        margin-top: -2px;
+        margin-left: 43px;
+      }
+      .content1 {
         position: fixed;
         margin-top: -17px;
-        margin-left: 234px;
-    }
-    .content2 {
+        margin-left: 196px;
+      }
+      .content2 {
         position: fixed;
         margin-top: -17px;
-        margin-left: 405px;
-    }
+        margin-left: 494px;
+      }
+      .content3 {
+        position: fixed;
+        margin-top: -17px;
+        margin-left: 351px;
+      }
     
     img#baruImage {
         width: 33px;
@@ -623,3 +628,16 @@ td.multi-content3 {
     li#batalItem {
         margin-top: 18px;
     }
+    .navbar a {
+        text-decoration: none;
+        color: #231210;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+        color: #AC0000;
+        border-bottom: 3px solid #BE7A74;
+    }
+      

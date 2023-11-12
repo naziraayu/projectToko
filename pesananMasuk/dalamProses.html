@@ -42,58 +42,86 @@
     </header>
     <div class="navbar">
       <div class="content">
-        <ul>
-          <li class="baru" id="baruItem">
-            <a href="../pesananBaru/pesananBaru1.html" onclick="togglePesanan('baru')">Pesanan Baru</a>
-            <div class="img2">
-            <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="baruImage" style="display: inline;" /></div>
-           
-          </li>
+          <ul>
+              <li class="baru" id="baruItem">
+                  <a href="../pesananBaru/pesananBaru1.html" onclick="togglePesanan('baru')">Pesanan Baru</a>
+                  <div class="img2">
+                      <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="baruImage" style="display: inline;" />
+                  </div>
+              </li>
           </ul>
       </div>
       <div class="content1">
           <ul>
-          <li class="proses" id="prosesItem">
-            <a href="../pesananMasuk/dalamProses.html" onclick="togglePesanan('proses')">Dalam Proses</a>
-            <div class="img3">
-            <img src="../img/proses.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" /></div>
-          </li>
-      </ul>
+              <li class="proses" id="prosesItem">
+                  <a href="../pesananMasuk/dalamProses.html" onclick="togglePesanan('proses')">Dalam Proses</a>
+                  <div class="img3">
+                      <img src="../img/proses.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
+                  </div>
+              </li>
+          </ul>
+      </div>
+      <div class="content3">
+          <ul>
+              <li class="ajukanBatal" id="batalItem">
+                  <!-- Update href sesuai dengan tujuan yang diinginkan -->
+                  <a href="../pesananMasuk/ajukanBatal.html" onclick="togglePesanan('ajukan')">Ajukan Batal</a>
+                  <div class="img3">
+                      <img src="../img/Ajukan-batal.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
+                  </div>
+              </li>
+          </ul>
       </div>
       <div class="content2">
           <ul>
-          <li class="batal" id="batalItem">
-            <a href="#" onclick="togglePesanan('batal')">Dibatalkan</a>
-            <div class="img4">
-            <img src="../img/batal.png" alt="" class="gambar-pesanan" id="batalImage" style="display: inline;" /></div>
-          </li>
-          <!-- Item lain di sini -->
-        </ul>
+              <li class="batal" id="batalItem">
+                  <a href="#" onclick="togglePesanan('batal')">Dibatalkan</a>
+                  <div class="img4">
+                      <img src="../img/batal.png" alt="" class="gambar-pesanan" id="batalImage" style="display: inline;" />
+                  </div>
+              </li>
+              <!-- Item lain di sini -->
+          </ul>
       </div>
-    </div>
-    
-    <script>
-      function togglePesanan(item) {
+  </div>
+  
+  <script>
+    function togglePesanan(item) {
         var textElement = document.getElementById(item + 'Item').querySelector('a');
         var imageElement = document.getElementById(item + 'Image');
-    
+
         if (textElement.style.display !== 'none') {
-          // Sembunyikan teks dan tampilkan gambar/icon
-          textElement.style.display = 'none';
-          imageElement.style.display = 'inline';
-    
-          // Ubah warna teks menjadi beda setelah diklik
-          textElement.style.color = '#AC0000;'; // Ganti dengan warna yang diinginkan
+            // Sembunyikan teks dan tampilkan gambar/icon
+            textElement.style.display = 'none';
+            imageElement.style.display = 'inline';
+
+            // Ubah warna teks menjadi beda setelah diklik
+            textElement.style.color = '#AC0000';
         } else {
-          // Tampilkan teks dan sembunyikan gambar/icon
-          textElement.style.display = 'inline';
-          imageElement.style.display = 'none';
-    
-          // Kembalikan warna teks ke warna awal
-          textElement.style.color = '#231210;'; // Ganti dengan warna awal
+            // Tampilkan teks dan sembunyikan gambar/icon
+            textElement.style.display = 'inline';
+            imageElement.style.display = 'none';
+
+            // Kembalikan warna teks ke warna awal
+            textElement.style.color = '#231210';
         }
-      }
-    </script>
+
+        // Hapus semua kelas "active" pada elemen navbar
+        var navbarLinks = document.querySelectorAll('.navbar a');
+        navbarLinks.forEach(function (link) {
+            link.classList.remove('active');
+        });
+
+        // Tambahkan kelas "active" pada tautan yang diklik
+        textElement.classList.add('active');
+
+        // Redirect ke halaman yang diinginkan ketika "Ajukan Batal" diklik
+        if (item === 'ajukan') {
+            window.location.href = textElement.getAttribute('href');
+        }
+    }
+</script>
+
     
     <div class="table_responsive_pesanan">
        <table class="table_dtl_pesanan">

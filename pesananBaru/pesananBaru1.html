@@ -88,32 +88,41 @@
       </div>
       
       <script>
-          function togglePesanan(item) {
-              var textElement = document.getElementById(item + 'Item').querySelector('a');
-              var imageElement = document.getElementById(item + 'Image');
-      
-              if (textElement.style.display !== 'none') {
-                  // Sembunyikan teks dan tampilkan gambar/icon
-                  textElement.style.display = 'none';
-                  imageElement.style.display = 'inline';
-      
-                  // Ubah warna teks menjadi beda setelah diklik
-                  textElement.style.color = '#AC0000'; // Ganti dengan warna yang diinginkan
-              } else {
-                  // Tampilkan teks dan sembunyikan gambar/icon
-                  textElement.style.display = 'inline';
-                  imageElement.style.display = 'none';
-      
-                  // Kembalikan warna teks ke warna awal
-                  textElement.style.color = '#231210'; // Ganti dengan warna awal
-              }
-      
-              // Redirect ke halaman yang diinginkan ketika "Ajukan Batal" diklik
-              if (item === 'ajukan') {
-                  window.location.href = textElement.getAttribute('href');
-              }
-          }
-      </script>
+        function togglePesanan(item) {
+            var textElement = document.getElementById(item + 'Item').querySelector('a');
+            var imageElement = document.getElementById(item + 'Image');
+    
+            if (textElement.style.display !== 'none') {
+                // Sembunyikan teks dan tampilkan gambar/icon
+                textElement.style.display = 'none';
+                imageElement.style.display = 'inline';
+    
+                // Ubah warna teks menjadi beda setelah diklik
+                textElement.style.color = '#AC0000';
+            } else {
+                // Tampilkan teks dan sembunyikan gambar/icon
+                textElement.style.display = 'inline';
+                imageElement.style.display = 'none';
+    
+                // Kembalikan warna teks ke warna awal
+                textElement.style.color = '#231210';
+            }
+    
+            // Hapus semua kelas "active" pada elemen navbar
+            var navbarLinks = document.querySelectorAll('.navbar a');
+            navbarLinks.forEach(function (link) {
+                link.classList.remove('active');
+            });
+    
+            // Tambahkan kelas "active" pada tautan yang diklik
+            textElement.classList.add('active');
+    
+            // Redirect ke halaman yang diinginkan ketika "Ajukan Batal" diklik
+            if (item === 'ajukan') {
+                window.location.href = textElement.getAttribute('href');
+            }
+        }
+    </script>
       
         <div class="table-daftar-pesanan">
           <table class="daftar-pesanan">

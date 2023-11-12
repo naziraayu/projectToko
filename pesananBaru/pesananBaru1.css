@@ -538,3 +538,16 @@ button.button2 {
   line-height: normal;
   letter-spacing: 2px;
 }
+.navbar a {
+  text-decoration: none;
+  color: #231210;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: #AC0000;
+  border-bottom: 3px solid #BE7A74;
+}
+
