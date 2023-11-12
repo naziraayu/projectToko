@@ -139,6 +139,11 @@
     width: 700px;
     height: 90px;
     border-top: none;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 .elem-yang-bisa-diklik {
     /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */

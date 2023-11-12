@@ -122,20 +122,7 @@ a {
     margin-left: 400px;
 }
 
-.navbar {
-    width: 700px;
-    height: 90px;
-    border-radius: 0 0 60px 60px;
-    border: 6px solid var(--button--);
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    top: 80px;
-    position: fixed !important;
-    position: -webkit-sticky;
-    /* align-items: center;
-    justify-content: center; */
-    margin-left: 28%;
-}
+
 
 .content ul {
     color: var(--log--);
@@ -301,6 +288,7 @@ small1 {
     font-weight: 400;
     line-height: normal;
 }
+
 
 .row-pesanan-masuk {
     width: 382px;
@@ -545,16 +533,20 @@ td.multi-content3 {
       }
 
       .navbar {
-        /* pastikan elemen navbar memiliki posisi relatif atau absolut */
-        position: relative;
-        z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
-        margin-top: 10px;
-        color: #231210;
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
+        margin-top: 90px;
+    margin-left: 314px;
+    border-radius: 0 0 60px 60px;
+    border: 6px solid #BE7A74;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 687px;
+    height: 85px;
+    border-top: none;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
       }
     .elem-yang-bisa-diklik {
         /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
@@ -564,9 +556,9 @@ td.multi-content3 {
       
       .navbar {
         /* pastikan elemen navbar memiliki posisi relatif atau absolut */
-        position: relative;
+        position: fixed;
         z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
-        margin-top: 10px;
+        margin-top: -129px;
       }
       li {
         display: inline-block;
@@ -578,8 +570,8 @@ td.multi-content3 {
  
     .content {
         position: fixed;
-        margin-top: -2px;
-        margin-left: 43px;
+        margin-top: 0px;
+        margin-left: 65px;
       }
       .content1 {
         position: fixed;
@@ -640,4 +632,5 @@ td.multi-content3 {
         color: #AC0000;
         border-bottom: 3px solid #BE7A74;
     }
+    
       
