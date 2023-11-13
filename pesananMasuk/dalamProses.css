@@ -122,20 +122,7 @@ a {
     margin-left: 400px;
 }
 
-.navbar {
-    width: 600px;
-    height: 90px;
-    border-radius: 0 0 60px 60px;
-    border: 6px solid var(--button--);
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    top: 80px;
-    position: fixed !important;
-    position: -webkit-sticky;
-    /* align-items: center;
-    justify-content: center; */
-    margin-left: 28%;
-}
+
 
 .content ul {
     color: var(--log--);
@@ -154,12 +141,14 @@ a {
 }
 
 .content li {
-    display: table-cell;
-    position: relative;
     padding: 15px;
     font-size: 17px;
-    margin-top: 10px;
+    margin-top: 24px;
     cursor: pointer;
+}
+li.img2 {
+    margin-top: -13px;
+    margin-left: -102px;
 }
 
 .content .proses {
@@ -299,6 +288,7 @@ small1 {
     font-weight: 400;
     line-height: normal;
 }
+
 
 .row-pesanan-masuk {
     width: 382px;
@@ -529,7 +519,7 @@ td.multi-content3 {
         line-height: normal;
         letter-spacing: 1.2px;
     }
-<<<<<<< HEAD:pesananMasuk/pesananBaru.css
+
     
 
     .nav li {
@@ -541,23 +531,23 @@ td.multi-content3 {
       .nav li.log {
         margin-left: 400px;
       }
-      .gambar-pesanan {
-        display: none;
-      }
-      .teks-akila{
-        display: none;
-      }
+
       .navbar {
         margin-top: 90px;
-        margin-left: 314px;
-        border-radius: 0 0 60px 60px;
-        border: 6px solid #BE7A74;
-        background: #FFF;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        width: 600px;
-        height: 90px;
-        border-top: none;
-    }
+    margin-left: 314px;
+    border-radius: 0 0 60px 60px;
+    border: 6px solid #BE7A74;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 687px;
+    height: 85px;
+    border-top: none;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+      }
     .elem-yang-bisa-diklik {
         /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
         position: relative;
@@ -566,9 +556,9 @@ td.multi-content3 {
       
       .navbar {
         /* pastikan elemen navbar memiliki posisi relatif atau absolut */
-        position: relative;
+        position: fixed;
         z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
-        margin-top: 10px;
+        margin-top: -129px;
       }
       li {
         display: inline-block;
@@ -577,53 +567,27 @@ td.multi-content3 {
         position: relative;
     }
     
-    span.teks-akila {
-        display: none;
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        color: #231210;
-        font-family: Poppins;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        width: 101px;
-        transform: translateX(-50%);
-    }
-    
-    .gambar-pesanan {
-        display: none;
-    }
-    
-    li.clicked .gambar-pesanan {
-        display: inline;
-    }
-    
-    li.clicked .teks-akila {
-        display: block;
-    }
-    
-    /* Tambahkan gaya untuk menahan posisi elemen yang tidak diklik */
-    li:not(.clicked) {
-        position: relative; /* Mempertahankan posisi relatif */
-        top: 0; /* Membuat tetap pada posisi awal */
-    }
+ 
     .content {
         position: fixed;
-        margin-top: -1px;
-        margin-left: 69px;
-    }
-    .content1 {
+        margin-top: 0px;
+        margin-left: 65px;
+      }
+      .content1 {
         position: fixed;
         margin-top: -17px;
-        margin-left: 234px;
-    }
-    .content2 {
+        margin-left: 196px;
+      }
+      .content2 {
         position: fixed;
         margin-top: -17px;
-        margin-left: 405px;
-    }
+        margin-left: 494px;
+      }
+      .content3 {
+        position: fixed;
+        margin-top: -17px;
+        margin-left: 351px;
+      }
     
     img#baruImage {
         width: 33px;
@@ -634,6 +598,39 @@ td.multi-content3 {
     img#batalImage{
         width: 33px;
     }
-=======
->>>>>>> f0705fd72306d70751e69edfd5c05190c307d40f:pesananMasuk/dalamProses.css
+    .content2 .img3 {
+        margin-top: 9px/* nilai top yang diinginkan */;
+        margin-left: 130px/* nilai left yang diinginkan */;
+      }
+      .img3 {
+        margin-top: -51px;
+    }
+    .img2 {
+        margin-top: -55px;
+    }
     
+    li#prosesItem {
+        margin-top: 17px;
+    }
+    .img4 {
+        margin-top: -50px;
+        margin-left: -9px;
+    }
+    
+    li#batalItem {
+        margin-top: 18px;
+    }
+    .navbar a {
+        text-decoration: none;
+        color: #231210;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+        color: #AC0000;
+        border-bottom: 3px solid #BE7A74;
+    }
+    
+      

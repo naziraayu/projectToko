@@ -12,7 +12,7 @@ carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
 });
 // Insert copies of the first few cards to end of carousel for infinite scrolling
 carouselChildrens.slice(0, cardPerView).forEach(card => {
-    carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+    carousel.insertAdjacentHTML("beforeend", card.outerHTML); 
 });
 // Scroll the carousel at appropriate postition to hide first few duplicate cards on Firefox
 carousel.classList.add("no-transition");

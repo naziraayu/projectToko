@@ -11,7 +11,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0; 
   background: linear-gradient(180deg, #fff8f8 40.73%, #fff 100%);
 }
 
@@ -224,7 +224,7 @@ a {
 }
 
 .first-menu .time img {
-  width: 15px;
+  width: 15px; 
   height: 15px;
 }
 
@@ -393,9 +393,9 @@ a {
 
 .simpan button {
   position: absolute;
-  margin-top: 180px;
-  margin-left: -360px;
-  width: 150px;
+  margin-top: 540px;
+  margin-left: 772px;
+  width: 200px;
   height: 40px;
   background-color: #566d3f;
   color: var(--nav--);

@@ -20,6 +20,13 @@ body {
   --button--: #be7a74;
 }
 
+.open img {
+  position: fixed;
+  width: 100%;
+  height: 560px;
+  top: 70px;
+}
+
 .head {
   width: 1280px;
   height: 69px;
@@ -28,6 +35,7 @@ body {
   top: 0;
   position: fixed !important;
   position: -webkit-sticky;
+  /* z-index: 1; */
 }
 
 .nav {
@@ -39,6 +47,7 @@ body {
   top: 50px;
   position: fixed !important;
   position: -webkit-sticky;
+  /* z-index: 2; */
 }
 
 .nav a {
@@ -86,6 +95,8 @@ section {
   /* text-align: center; */
   width: 100%;
   min-height: 100vh;
+  /* margin-top: -550px; */
+
 }
 
 .container {
@@ -98,7 +109,10 @@ section {
   justify-content: center;
   align-items: center;
   text-align: center;
-  display: flex;
+  display: flex; 
+  position: fixed;
+  filter: drop-shadow(4px 4px 6.599999904632568px rgba(0, 0, 0, 0.25));
+  /* z-index: 1; */
 }
 
 .container h2 {

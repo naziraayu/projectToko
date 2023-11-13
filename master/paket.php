@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="adminn.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="content">
+            <ul>
+                <li class="ad"><a href="../master/admin.html">Admin</a></li>
+                <li class="sup"><a href="../master/supplier.html">Supplier</a></li>
+                <li class="cus"><a href="../master/customer.html">Customer</a></li>
+                <li class="men"><a href="../master/menu.html">Menu</a></li>
+                <li class="pac"><a href="../master/paket.html">Paket</a></li>
+                <li class="kem"><a href="../master/kemasan.html">Kemasan</a></li>
+                <li class="supmen"><a href="../master/supMen.html">Supplier Menu</a></li>
+            </ul>
+        </div>
+    </div>
+    <header>
+        <div class="head">
+            <div class="nav">
+                <img src="../img/Ellipse 1.png" alt="logo" />
+                <ul>
+                    <li class="mas"><a href="../master/admin.html">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/dalamProses.html">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
+                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+        <div class="container">
+            <div class="form">
+                <form action="#">
+                    <div class="first-cont">
+                        <div class="form__group field">
+                            <input type="input" class="form__field" placeholder="Name" required="">
+                            <label for="name" class="form__label">Nama Paket</label>
+                        </div>
+                        <div class="form__group field">
+                            <input type="input" class="form__field" placeholder="Name" required="">
+                            <label for="name" class="form__label">Isi Paket</label>
+                        </div>
+                        <div class="form__group field">
+                            <input type="input" class="form__field" placeholder="Name" required="">
+                            <label for="name" class="form__label">Jumlah Macam</label>
+                        </div>
+                    </div>
+                    <div class="second-cont">
+                        <div class="form__group field">
+                            <select class="form__field">
+                                <option value="1">Kemasan</option>
+                                <option value="2">Iya?</option>
+                                <option value="3">Aku</option>
+                                <option value="4">Cantik</option>
+                            </select>
+                        </div>
+                        <div class="form__group field">
+                            <input type="input" class="form__field" placeholder="Name" required="">
+                            <label for="name" class="form__label">Harga Jual</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        <div class="photo">
+            <input type="file">
+            <!-- <button><img src="../img/add.png" alt="" />Tambahkan Foto</button> -->
+        </div>
+        <div class="refresh">
+            <button>
+                <i class="fa-solid fa-rotate-right" style="color: #000000"></i>
+            </button>
+        </div>
+        <div class="update">
+            <button type="button">Update</button>
+        </div>
+        <div class="save">
+        <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
+            <button type="button">Simpan</button>
+        </div>
+    </div>
+    <div class="table">
+        <div class="table-header">
+            <div class="container-input">
+                <input type="text" placeholder="Search" name="text" class="input">
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
+                </svg>
+            </div>              
+        </div>
+        <div class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama Paket</th>
+                        <th>Isi Paket</th>
+                        <th>Jumlah <br> Macam</th>
+                        <th>Kemasan</th>
+                        <th>Harga Jual</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>110803</td>
+                        <td>Nantuy</td>
+                        <td>081231559751</td>
+                        <td>Jln. Jawa</td>
+                        <td>ini siapa?</td>
+                        <td>Ini nanta</td>
+                        <td>
+                            <button><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    scroll-padding-top: 1.35rem;
+  }
+
+.row {
+    border-radius: 20px;
+    border: 18px solid #FFF;
+    box-shadow: 0px 0px 24px 2px rgba(0, 0, 0, 0.25);
+    width: 391px;
+    height: 400px;
+    flex-shrink: 0;
+    position: relative;
+    margin-left: 796px;
+    /* margin-top: -400px; */
+  }
+  
+  .table_responsive {
+    border-radius: 30px;
+    background: #FFF2F0;
+    width: 356px;
+    height: 365px;
+    overflow-y: scroll;
+  }
+  
+  
+  span.order {
+    color: #63372C;
+    font-family: Poppins;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  
+  
+  
+  td.multi-content1 {
+    display: flex;
+    width: 308px;
+    height: 75px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 14px 44px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #C97D60;
+    margin-left: 19px;
+  }
+  .top {margin-top: 12px;margin-left: 54px;color: #000;font-family: Poppins;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;}
+  img {
+    width: 36px;
+  }
+  .left {
+    margin-left: -213px;
+    margin-top: 12px;
+  }
+  
+  .bottom {
+    margin-top: 30px;
+    margin-left: -30px;
+    color: #63372C;
+    font-family: Poppins;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  td.multi-content2 {
+    display: flex;
+    width: 316px;
+    height: 152px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 14px 44px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #C97D60;
+    margin-left: 15px;
+  }
+  .item {
+    color: #000;
+    font-family: Poppins;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-left: 9px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  
+  .item span {
+    margin-right: 12px;
+    flex: 1;
+  }
+  
+  span.nama {
+    color: #000;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 290px;
+    margin-left: 11px;
+  }
+  
+  span.total {
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: -138px;
+  }
+  
+  .item2 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-left: 35px;
+    margin-top: -5px;
+    margin-bottom: 5px;
+  }
+  
+  
+  .row1 {
+    display: flex;
+  }
+  
+  .gambar-kontainer {
+    display: flex;
+    align-items: center;
+    margin-top: 11px;
+    margin-left: 9px;
+  }
+  
+  .ket-gambar {
+    margin-right: 11px;
+  }
+  
+  .row2 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 3px;
+    margin-top: 24px;
+  }
+  
+  .ket {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 11px;
+    color: #000;
+    font-family: Poppins;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    width: 117px;
+    line-height: normal;
+    margin-top: -7px;
+  }
+  
+  .ket span {
+    color: #000;
+    text-align: right;
+    font-family: Poppins;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: inline-block;
+  }
+  
+  .ket-gambar img {
+    width: 162px;
+    margin-left: 12px;
+  }
+  /* Menyembunyikan scrollbar di browser WebKit (misalnya Chrome, Safari) */
+  .table_responsive {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent; /* Warna transparan untuk scrollbar */
+  }
+  
+  /* Menyembunyikan tampilan scrollbar pada browser WebKit */
+  .table_responsive::-webkit-scrollbar {
+    width: 5px; /* Lebar scrollbar */
+    height: 5px; /* Tinggi scrollbar */
+  }
+  
+  .table_responsive::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Warna transparan untuk thumb (bagian yang dapat digerakkan) scrollbar */
+  }
+  .wrapper button {
+    width: 100px;
+    height: 33px;
+    margin: 15px;
+    cursor: pointer;
+    border: none;
+  
+  }
+  
+  button.button1 {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: #566D3F;
+    letter-spacing: 2px;
+    margin-left: 20px;
+  
+  }
+  
+  button.button2 {
+    background: #AC0000;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2px;
+  }
