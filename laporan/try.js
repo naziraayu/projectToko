@@ -11,6 +11,6 @@ leftArrow.addEventListener('click', function() {
 });
 
 rightArrow.addEventListener('click', function() {   
-    sectionIndex = (sectionIndex < 3) ? sectionIndex + 1 : 3;
+    sectionIndex = (sectionIndex < 1) ? sectionIndex + 1 : 2;
     slider.style.transform = 'translate(' + (sectionIndex) * -7 + '%)';
 });

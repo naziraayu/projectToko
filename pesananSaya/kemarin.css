@@ -1,5 +1,6 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"); */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 * {
   margin: 0;
@@ -10,8 +11,8 @@
 
 body {
   margin: 0;
-  padding: 0;
-  /* background: linear-gradient(180deg, #fff8f8 40.73%, #fff 100%); */
+  padding: 0; 
+  background: linear-gradient(180deg, #fff8f8 40.73%, #fff 100%);
 }
 
 :root {
@@ -55,7 +56,13 @@ body {
   top: 50px;
   position: fixed !important;
   position: -webkit-sticky;
-  z-index: 2;
+  z-index: 5;
+  /* animation: fadeInLeft 2s; */
+}
+.elem-yang-bisa-diklik {
+  /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
+  position: relative;
+  z-index: 10; /* angka ini bisa disesuaikan */
 }
 .nav img {
   position: relative;
@@ -82,23 +89,6 @@ body {
   margin-top: -163px;
 }
 
-.select-box {
-  border: none;
-  outline: 0;
-  font-size: 15px;
-  background: transparent;
-  transition: border-color 0.2s;
-  width: 200px;
-  font-size: 15px;
-  display: flex;
-  height: 2.5em;
-  text-transform: uppercase;
-  color: var(--log--);
-  margin-left: 330px;
-  margin-top: 7.5px;
-  text-align: center;
-}
-
 .nav a:before {
   content: "";
   position: absolute;
@@ -122,96 +112,249 @@ body {
   width: 100px;
 }
 
+.nav .log a:focus::before {
+  width: 60px;
+}
+
 a {
-    text-decoration: none;
-    color: var(--log--);
-}
-  
-.nav li {
-    display: table-cell;
-    position: relative;
-    padding: 15px;
-}
-
-.content {
-  width: 600px;
-  height: 90px;
-  border-radius: 0 0 60px 60px;
-  border: 6px solid var(--button--);
-  background: #fff;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  top: 80px;
-  position: fixed !important;
-  position: -webkit-sticky;
-  /* align-items: center;
-    justify-content: center; */
-  margin-left: 28%;
-}
-
-.content ul {
+  text-decoration: none;
   color: var(--log--);
+}
+
+.nav li {
+  display: table-cell;
+  position: relative;
+  padding: 15px;
+}
+
+.nav li.log {
+  margin-left: 400px;
+}
+div#selectetField {
+    width: 362px;
+    background: transparent;
+    position: fixed;
+    margin-left: 9px;
+    z-index: 9;
+    /* animation: fadeInLeft 2s; */
+  }
+  
+  #selectetField {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  #selectetField p {
+    margin-left: 148px; /* Menghilangkan margin default */
+    color: #BE7A74;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: -8px;
+  }
+  
+  #selectetField img {
+    margin: 0 6px; 
+    float: left; 
+    margin-left: 6px;
+    margin-top: -9px;
+  }
+  #selectetField img:last-child {
+  margin-left: 119px;
+  position: fixed;
+  }    
+  
+  .selector img[src$=".svg"] {
+    width: 39px;
+  }
+  .selector img[src$=".png"] {
+    width: 10px;
+  }
+  .selector {
+    margin-left: 868px;
+    margin-top: 60px;
+    z-index: 12;
+    position: fixed;
+  }
+  ul#list {
+    border: 1px solid #462320;
+    background: #FFF;
+    width: 251px;
+    margin-top: 31px;
+    margin-left: 130px;
+    position: fixed;
+    z-index: 9;
+  }
+  li.options {
+    border-top: 1px solid #462320;
+    background: #FFF;
+    list-style-type: none;
+    color: #000;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  span.Keterangan {
+    color: #B2B2B2;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 17px;
+  }
+  li.options1 {
+    list-style-type: none;
+    margin-left: 77px;
+  }
+  .options a {
+    margin-left: 5px;
+    margin-top: -50px;
+    /* height: 10px; */
+    position: relative;
+  }
+  .hide{
+    visibility: hidden;
+  }
+    
+  .selector-list img[src$=".png"] {
+    width: 24px;
+    margin-left: 9px;
+    margin-top: 9px;
+  }
+.navbar {
+  margin-top: 90px;
+  margin-left: 400px;
+  border-radius: 0 0 60px 60px;
+  border: 6px solid #BE7A74;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 550px;
+  height: 90px;
+  border-top: none;
   font-family: Poppins;
-  font-size: 15px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  list-style: none;
-  display: flex;
-  transition: color 0.5s;
-  align-items: center;
-  text-align: center; 
-  justify-content: center;
+  animation: fadeIn 2s;
 }
-
-.content li {
-  /* display: table-cell; */
+.navbar a {
+  text-decoration: none;
+  color: #231210;
   position: relative;
-  padding: 15px;
-  font-size: 17px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
-.content .yes {
-  margin-top: 20px;
-}
-
-.content .yes img {
+  transition: color 0.3s;
+  }
+  
+  .navbar a:hover,
+  .navbar a.active {
+  color: #AC0000;
+  border-bottom: 3px solid #BE7A74;
+  }
+.elem-yang-bisa-diklik {
+  /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
   position: relative;
-  bottom: 20px;
-  right: 51px;
-  width: 30px;
+  z-index: 10; /* angka ini bisa disesuaikan */
 }
 
-.content .today {
-  margin-left: 40px;
+.navbar {
+  /* pastikan elemen navbar memiliki posisi relatif atau absolut */
+  position: fixed;
+  z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
+}
+li {
+  display: inline-block;
+  text-align: center;
+  padding: 39px;
+  position: relative;
 }
 
-.content .tom {
-  margin-left: 70px;
-}
-
-.content a:before {
-  content: "";
+/* span.teks-akila {
+  display: none;
   position: absolute;
-  background-color: var(--hovera--);
-  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
-  height: 2.5px;
-  width: 0px;
-  bottom: 10px;
-  transition: 0.3s;
+  top: 60%;
+  left: 50%;
+  color: #231210;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 101px;
+  transform: translateX(-50%);
+} */
+
+.gambar-pesanan {
+  display: none;
 }
 
-.content .yes a:focus::before {
-  width: 102px;
+li.clicked .gambar-pesanan {
+  display: inline;
 }
 
-.content .today a:focus::before {
-  width: 110px;
+li.clicked .teks-akila {
+  display: block;
 }
 
-.content .tom a:focus::before {
-  width: 100px; 
+/* Tambahkan gaya untuk menahan posisi elemen yang tidak diklik */
+li:not(.clicked) {
+  position: relative; /* Mempertahankan posisi relatif */
+  top: 0; /* Membuat tetap pada posisi awal */
+}
+.content {
+position: fixed;
+margin-top: -17px;
+margin-left: 43px;
+}
+.content1 {
+position: fixed;
+margin-top: -17px;
+margin-left: 196px;
+}
+.content3 {
+position: fixed;
+margin-top: -17px;
+margin-left: 351px;
+}
+
+img#baruImage {
+  width: 33px;
+}
+img#prosesImage{
+  width: 33px;
+}
+img#batalImage{
+  width: 33px;
+}
+.content2 .img3 {
+  margin-top: 9px/* nilai top yang diinginkan */;
+  margin-left: 130px/* nilai left yang diinginkan */;
+}
+.img3 {
+  margin-top: -51px;
+}
+.img2 {
+  margin-top: -51px;
+}
+li#baruItem {
+  margin-top: 17px;
+}
+
+li#prosesItem {
+  margin-top: 17px;
+}
+.img4 {
+  margin-top: -50px;
+  margin-left: -9px;
+}
+
+li#batalItem {
+  margin-top: 18px;
 }
 
 .table-content {
@@ -227,7 +370,7 @@ a {
   display: inline-flex;
   margin: 10px 0 0 20px;
 }
-
+ 
 .content-yesterday {
   /* position: relative; */
   width: 430px;
@@ -236,6 +379,8 @@ a {
   background: #FFF;
   margin: 210px 0 0 50px;
   overflow: auto;
+  animation: fadeInUp;
+  animation-duration: 1s;
 }
 
 .table-header .tgl-kemarin h3{
@@ -308,6 +453,8 @@ a {
   background: #FFF;
   margin: 240px 0 0 20px;
   overflow: auto;
+  animation: fadeInRight;
+  animation-duration: 1s;
 }
 
 .table-header .today-header h2{
@@ -429,6 +576,8 @@ a {
   background: #FFF;
   margin: 240px 0 0 20px;
   overflow: auto;
+  animation: fadeInRight;
+  animation-duration: 1s;
 }
 
 .table-header .tomorrow-header h2{

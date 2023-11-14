@@ -7,7 +7,7 @@
   
   body {
     margin: 0;
-    padding: 0;
+    padding: 0; 
     /* background: linear-gradient(180deg, #fff8f8 40.73%, #fff 100%); */
   }
   
@@ -130,85 +130,118 @@
       padding: 15px;
   }
 
-  .content {
-    width: 600px;
-    height: 90px;
+  .navbar {
+    margin-top: 90px;
+    margin-left: 400px;
     border-radius: 0 0 60px 60px;
-    border: 6px solid var(--button--);
-    background: #fff;
+    border: 6px solid #BE7A74;
+    background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    top: 80px;
-    position: fixed !important;
-    position: -webkit-sticky;
-    /* align-items: center;
-      justify-content: center; */
-    margin-left: 28%;
-  }
-
-  .content ul {
-    color: var(--log--);
+    width: 550px;
+    height: 90px;
+    border-top: none;
     font-family: Poppins;
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    list-style: none;
-    display: flex;
-    transition: color 0.5s;
-    align-items: center;
+    animation: fadeIn 2s;
+  }
+  .navbar a {
+    text-decoration: none;
+    color: #231210;
+    position: relative;
+    transition: color 0.3s;
+    }
+    
+    .navbar a:hover,
+    .navbar a.active {
+    color: #AC0000;
+    border-bottom: 3px solid #BE7A74;
+    }
+  .elem-yang-bisa-diklik {
+    /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
+    position: relative;
+    z-index: 10; /* angka ini bisa disesuaikan */
+  }
+  
+  .navbar {
+    /* pastikan elemen navbar memiliki posisi relatif atau absolut */
+    position: fixed;
+    z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
+  }
+  li {
+    display: inline-block;
     text-align: center;
-    justify-content: center;
-  }
-  
-  .content li {
-    /* display: table-cell; */
+    padding: 39px;
     position: relative;
-    padding: 15px;
-    font-size: 17px;
-    margin-top: 5px;
-    cursor: pointer;
+  }
+  .gambar-pesanan {
+    display: none;
   }
   
-  .content .tom {
-    margin-top: 20px;
+  li.clicked .gambar-pesanan {
+    display: inline;
   }
   
-  .content .tom img {
-    position: relative;
-    bottom: 20px;
-    right: 40px;
-    width: 30px;
+  li.clicked .teks-akila {
+    display: block;
   }
   
-  .content .today {
-    margin-left: 60px;
+  /* Tambahkan gaya untuk menahan posisi elemen yang tidak diklik */
+  li:not(.clicked) {
+    position: relative; /* Mempertahankan posisi relatif */
+    top: 0; /* Membuat tetap pada posisi awal */
+  }
+  .content {
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 43px;
+  }
+  .content1 {
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 196px;
+  }
+  .content3 {
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 351px;
   }
   
-  .content .tom {
-    margin-left: 60px;
+  img#baruImage {
+    width: 33px;
+  }
+  img#prosesImage{
+    width: 33px;
+  }
+  img#batalImage{
+    width: 33px;
+  }
+  .content2 .img3 {
+    margin-top: 9px/* nilai top yang diinginkan */;
+    margin-left: 130px/* nilai left yang diinginkan */;
+  }
+  .img3 {
+    margin-top: -51px;
+  }
+  .img2 {
+    margin-top: -51px;
+  }
+  li#baruItem {
+    margin-top: 17px;
   }
   
-  .content a:before {
-    content: "";
-    position: absolute;
-    background-color: var(--hovera--);
-    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
-    height: 2.5px;
-    width: 0px;
-    bottom: 10px;
-    transition: 0.3s;
+  li#prosesItem {
+    margin-top: 17px;
+  }
+  .img4 {
+    margin-top: -50px;
+    margin-left: -9px;
   }
   
-  .content .yes a:focus::before {
-    width: 102px;
-  }
-  
-  .content .today a:focus::before {
-    width: 110px;
-  }
-  
-  .content .tom a:focus::before {
-    width: 100px;
+  li#batalItem {
+    margin-top: 18px;
   }
 
   .table-content {
@@ -233,6 +266,8 @@
     background: #FFF;
     margin: 240px 0 0 50px;
     overflow: auto;
+    animation: fadeInLeft;
+    animation-duration: 1s;
   }
 
   .table-header .kemarin-header h2{
@@ -310,6 +345,8 @@
     background: #FFF;
     margin: 240px 0 0 20px;
     overflow: auto;
+    animation: fadeInLeft;
+    animation-duration: 1s;
   }
   
   .table-header .today-header h2{
@@ -432,6 +469,8 @@
     background: #FFF;
     margin: 210px 0 0 20px;
     overflow: auto;
+    animation: fadeInUp;
+    animation-duration: 1s;
   }
   
   .table-header .tgl-tomorrow h3{

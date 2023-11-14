@@ -63,6 +63,8 @@ exit;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -72,6 +74,9 @@ exit;
     <link rel="stylesheet" href="login.css" />
   </head>
   <body>
+    <div class="open">
+      <img src="../img/Group 175.png" alt="">
+    </div>
     <header>
       <div class="head">
         <div class="nav">
@@ -98,7 +103,7 @@ exit;
               <input type="password" name="txt_pass" placeholder="Password" />
             </div>
             <div class="forgot">
-              <span>Lupa Password? Klik <a href="#">di sini</a></span>
+              <span>Lupa Password? Klik <a href="../lupaPassword/lupaPassword.html">di sini</a></span>
             </div>
             <div>
               <button type="submit" name="btnlogin">Login</button>
@@ -153,7 +158,7 @@ exit;
         </div>
       </div>
     </section>
-    <div class="footer">
+    <!-- <div class="footer">
       <div class="contact-us">
         <img src="../img/Ellipse 1.png" alt="logo" />
       </div>
@@ -172,6 +177,6 @@ exit;
           <p>brownies_nfriends</p>
         </div>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>

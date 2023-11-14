@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stok Etalase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,7 +15,7 @@
     <script src="stokEtalase.js" defer></script>
 </head>
 <body>
-    <header>
+    <header>  
         <div class="head">
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
@@ -34,29 +36,29 @@
     </header>
     <div class="selector">
         <div id="selectetField">
-          <p id="selectText">NURUL HIDAYAH</p>
-          <img src="../img/Vector.svg" alt="profile">
-          <img src="../img/Vector1.png" alt="profile">
+            <p id="selectText">NURUL HIDAYAH</p>
+            <img src="../img/Vector.svg" alt="profile">
+            <img src="../img/Vector1.png" alt="profile">
         </div>
         <div class="selector-list">
-        <ul id="list" class="hide">
-          <li class="options1">
-            <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
-          </li>
-          <li class="options">
-            <img src="../img/Vector(3).png" alt="profile2">
-            <p>Profil Saya</p>
-          </li>
-          <li class="options">
-            <img src="../img/Pengaturan.png" alt="pengaturan">
-            <p>Edit Profile</p>
-          </li>
-          <li class="options">
-            <img src="../img/logout.png" alt="logout">
-            <p>Logout</p>
-          </li>
-        </ul>
-      </div>
+            <ul id="list" class="hide">
+                <li class="options1">
+                    <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
+                </li>
+                <li class="options">
+                    <img src="../img/Vector(3).png" alt="profile2">
+                    <p>Profil Saya</p>
+                </li>
+                <li class="options">
+                    <img src="../img/Pengaturan.png" alt="pengaturan">
+                    <p>Edit Profile</p>
+                </li>
+                <li class="options">
+                    <img src="../img/logout.png" alt="logout">
+                    <p>Logout</p>
+                </li>
+            </ul>
+        </div>
     </div>
     <script>
         var selectetField = document.getElementById("selectetField");
@@ -74,11 +76,7 @@
                 list.classList.toggle("hide");
             });
         });
-        
-        
-        
-        </script>
-
+    </script>
     <div class="date">
         <div class="datetime">
             <p>Senin, 2 November 2023</p>
@@ -252,7 +250,71 @@
             </tbody>
         </table>
     </div>
-    <div class="wrapper">
+    <div class="container">
+        <div class="caraousel">
+            <div class="slider">
+                <section>
+                    <p>Kue</p>
+                    <img src="../img/Rectangle 64.png" alt="">
+                    <div class="add">
+                        <span><button><img src="../img/minus.png" alt=""></button></span>
+                        <input type="text" name="angka" id="">
+                        <span><button><img src="../img/plus.png" alt=""></button></span>
+                    </div>
+                </section>
+                <section>
+                    <p>Putu</p>
+                    <img src="../img/Rectangle 65.png" alt="">
+                    <div class="add">
+                        <span><button><img src="../img/minus.png" alt=""></button></span>
+                        <input type="text" name="angka" id="">
+                        <span><button><img src="../img/plus.png" alt=""></button></span>
+                    </div>
+                </section>
+                <section>
+                    <p>Talam</p>
+                    <img src="../img/Rectangle 66.png" alt="">
+                    <div class="add">
+                        <span><button><img src="../img/minus.png" alt=""></button></span>
+                        <input type="text" name="angka" id="">
+                        <span><button><img src="../img/plus.png" alt=""></button></span>
+                    </div>
+                </section>
+                <section>
+                    <p>Brownies</p>
+                    <img src="../img/Rectangle 64.png" alt="">
+                    <div class="add">
+                        <span><button><img src="../img/minus.png" alt=""></button></span>
+                        <input type="text" name="angka" id="">
+                        <span><button><img src="../img/plus.png" alt=""></button></span>
+                    </div>
+                </section>
+                <section>
+                    <p>Mochi</p>
+                    <img src="../img/Rectangle 65.png" alt="">
+                    <div class="add">
+                        <span><button><img src="../img/minus.png" alt=""></button></span>
+                        <input type="text" name="angka" id="">
+                        <span><button><img src="../img/plus.png" alt=""></button></span>
+                    </div>
+                </section>
+                <section>
+                    <p>Sus</p>
+                    <img src="../img/Rectangle 66.png" alt="">
+                    <div class="add">
+                        <span><button><img src="../img/minus.png" alt=""></button></span>
+                        <input type="text" name="angka" id="">
+                        <span><button><img src="../img/plus.png" alt=""></button></span>
+                    </div>
+                </section>
+            </div>
+            <div class="controls">
+                <span class="arrow left"><i class="fa-solid fa-angle-left"></i></span>
+                <span class="arrow right"><i class="fa-solid fa-angle-right"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="wrapper">
         <i id="left" class="fa-solid fa-angle-left"></i>
         <ul class="carousel">
           <li class="card">
@@ -310,6 +372,6 @@
             </div>
           </li>
         </ul>
-        <i id="right" class="fa-solid fa-angle-right"></i>
+        <i id="right" class="fa-solid fa-angle-right"></i> -->
 </body>
 </html>

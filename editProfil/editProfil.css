@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-body {
+body { 
   margin: 0;
   padding: 0;
   background: linear-gradient(180deg, #fff8f8 40.73%, #fff 100%);
@@ -36,214 +36,195 @@ body {
   --refresh--: #ffdd55;
 }
 
-.head {
-  width: 1280px;
-  height: 69px;
-  background: var(--head--);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  top: 0;
-  position: fixed !important;
-  position: -webkit-sticky;
-  z-index: 3;
-}
-
-.nav {
-  width: 1200px;
-  height: 40px;
-  background-color: var(--nav--);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 10px 40px 40px 10px;
-  top: 50px;
-  position: fixed !important;
-  position: -webkit-sticky;
-  z-index: 5;
-}
-.elem-yang-bisa-diklik {
-  /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
-  position: relative;
-  z-index: 10; /* angka ini bisa disesuaikan */
-}
-.nav img {
-  position: relative;
-  top: -30px;
-  margin-left: 40px;
-  width: 150px;
-  height: 150px;
-  border-radius: 187px;
-  background: url(/img/Ellipse\ 1.png), lightgray 50% / cover no-repeat;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.nav ul {
-  color: var(--log--);
-  font-family: Poppins;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  list-style: none;
-  display: flex;
-  transition: color 0.5s;
-  margin-left: 230px;
-  margin-top: -163px;
-}
-
-/* .select-box {
-  border: none;
-  outline: 0;
-  font-size: 15px;
-  background: transparent;
-  transition: border-color 0.2s;
-  width: 200px;
-  font-size: 15px;
-  display: flex;
-  height: 2.5em;
-  text-transform: uppercase;
-  color: var(--log--);
-  margin-left: 330px;
-  margin-top: 7.5px;
-} */
-
-.nav a:before {
-  content: "";
-  position: absolute;
-  background-color: var(--hovera--);
-  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
-  height: 2.5px;
-  width: 0px;
-  bottom: 10px;
-  transition: 0.3s;
-}
-
-.nav .stok a:focus::before {
-  width: 102px;
-}
-
-.nav .pes a:focus::before {
-  width: 110px;
-}
-
-.nav .pen a:focus::before {
-  width: 100px;
-}
-
-.nav .log a:focus::before {
-  width: 60px;
-}
-
-a {
-  text-decoration: none;
-  color: var(--log--);
-}
-
-.nav li {
-  display: table-cell;
-  position: relative;
-  padding: 15px;
-}
-
-.nav li.log {
-  margin-left: 400px;
-}
-div#selectetField {
-    width: 362px;
-    background: transparent;
-    position: fixed;
-    margin-left: 9px;
-    z-index: 9;
+  .head {
+    width: 1280px;
+    height: 69px;
+    background: var(--head--);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    top: 0;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 3;
   }
-  
-  #selectetField {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+
+  .nav {
+    width: 1200px;
+    height: 40px;
+    background-color: var(--nav--);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px 40px 40px 10px;
+    top: 50px;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 5;
   }
-  
-  #selectetField p {
-    margin-left: 148px; /* Menghilangkan margin default */
-    color: #BE7A74;
+  .elem-yang-bisa-diklik {
+    /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
+    position: relative;
+    z-index: 10; /* angka ini bisa disesuaikan */
+  }
+  .nav img {
+    position: relative;
+    top: -30px;
+    margin-left: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 187px;
+    background: url(/img/Ellipse\ 1.png), lightgray 50% / cover no-repeat;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .nav ul {
+    color: var(--log--);
     font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-top: -8px;
-  }
-  
-  
-  #selectetField img {
-    margin: 0 6px; 
-    float: left; 
-    margin-left: 6px;
-    margin-top: -9px;
-  }
-  #selectetField img:last-child {
-    
-  margin-left: 119px;
-    
-  position: fixed;
-    }
-    
-  
-  .selector img[src$=".svg"] {
-    width: 39px;
-  }
-  .selector img[src$=".png"] {
-    width: 10px;
-  }
-  .selector {
-    margin-left: 868px;
-    margin-top: 60px;
-    z-index: 12;
-    position: fixed;
-  }
-  ul#list {
-    border: 1px solid #462320;
-    background: #FFF;
-    width: 251px;
-    margin-top: 31px;
-    margin-left: 130px;
-    position: fixed;
-    z-index: 9;
-  }
-  li.options {
-    border-top: 1px solid #462320;
-    background: #FFF;
-    list-style-type: none;
-    color: #000;
-    font-family: Poppins;
-    font-size: 16px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    list-style: none;
+    display: flex;
+    transition: color 0.5s;
+    margin-left: 230px;
+    margin-top: -163px;
   }
-  span.Keterangan {
-    color: #B2B2B2;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-left: 17px;
+
+  .nav a:before {
+    content: "";
+    position: absolute;
+    background-color: var(--hovera--);
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 2.5px;
+    width: 0px;
+    bottom: 10px;
+    transition: 0.3s;
   }
-  li.options1 {
-    list-style-type: none;
-    margin-left: 77px;
+
+  .nav .stok a:focus::before {
+    width: 102px;
   }
-  .options p {
-    margin-left: 36px;
-    margin-top: -30px;
-    height: 34px;
+
+  .nav .pes a:focus::before {
+    width: 110px;
   }
-  .hide{
-    visibility: hidden;
+
+  .nav .pen a:focus::before {
+    width: 100px;
   }
+
+  .nav .log a:focus::before {
+    width: 60px;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--log--);
+  }
+
+  .nav li {
+    display: table-cell;
+    position: relative;
+    padding: 15px;
+  }
+
+  .nav li.log {
+    margin-left: 400px;
+  }
+  div#selectetField {
+      width: 362px;
+      background: transparent;
+      position: fixed;
+      margin-left: 9px;
+      z-index: 9;
+    }
     
-  .selector-list img[src$=".png"] {
-    width: 24px;
-    margin-left: 9px;
-    margin-top: 9px;
-  }
+    #selectetField {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    #selectetField p {
+      margin-left: 148px; /* Menghilangkan margin default */
+      color: #BE7A74;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      margin-top: -8px;
+    }
+    
+    #selectetField img {
+      margin: 0 6px; 
+      float: left; 
+      margin-left: 6px;
+      margin-top: -9px;
+    }
+    #selectetField img:last-child {
+    margin-left: 119px;
+    position: fixed;
+    }    
+    
+    .selector img[src$=".svg"] {
+      width: 39px;
+    }
+    .selector img[src$=".png"] {
+      width: 10px;
+    }
+    .selector {
+      margin-left: 868px;
+      margin-top: 60px;
+      z-index: 12;
+      position: fixed;
+    }
+    ul#list {
+      border: 1px solid #462320;
+      background: #FFF;
+      width: 251px;
+      margin-top: 31px;
+      margin-left: 130px;
+      position: fixed;
+      z-index: 9;
+    }
+    li.options {
+      border-top: 1px solid #462320;
+      background: #FFF;
+      list-style-type: none;
+      color: #000;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    span.Keterangan {
+      color: #B2B2B2;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin-left: 17px;
+    }
+    li.options1 {
+      list-style-type: none;
+      margin-left: 77px;
+    }
+    .options a {
+      margin-left: 5px;
+      margin-top: -50px;
+      /* height: 10px; */
+      position: relative;
+    }
+    .hide{
+      visibility: hidden;
+    }
+      
+    .selector-list img[src$=".png"] {
+      width: 24px;
+      margin-left: 9px;
+      margin-top: 9px;
+    }
   .wrapper {
     width: 225px;
     height: 235px;
@@ -372,7 +353,23 @@ input {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-}
+  }
+  button.button1:active {
+  color: white;
+  box-shadow: 0 0.2rem #dfd9d9;
+  transform: translateY(0.2rem);
+  }
+
+  button.button1:hover:not(:disabled) {
+  background: var(--main--);
+  color: #000;
+  text-shadow: 0 0.1rem #bcb4b4;
+  }
+
+  button.button1:disabled {
+  cursor: auto;
+  color: grey;
+  }
 .box {
     color: #928383;
     font-family: Poppins;
