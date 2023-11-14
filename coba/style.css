@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --head--: #ffc9c4;
+    --nav--: #fff;
+    --log--: #231210;
+    --hovera--: #ba7a74;
+    --main--: #fff2f0; 
+    --footer--: #99716d;
+    --black--: #000;
+    --cont--: #d9d9d9;
+    --button--: #be7a74;
+    --side--: #ffe4e1;
+    --border--: #462320;
+    --inputan--: #928383;
+    --save--: #00732B;
+    --table--: #be7a74;
+    --hovtab--: #d6d6d680;
+    --edit--: #0057d9;
+    --hapus--: #ac0000;
+    --refresh--: #FFDD55;
+  }
+
+  .card {
+    border-radius: 20px;
+    border: 18px solid #FFF;
+    box-shadow: 0px 0px 24px 2px rgba(0, 0, 0, 0.25);
+    width: 400px;
+    height: 400px;
+    flex-shrink: 0;
+    position: relative;
+    margin-left: 820px;
+    margin-top: 210px;
+  }
+  .card-nota {
+    border-radius: 30px;
+    background: #FFF2F0;
+    width: 360px;
+    height: 360px;
+    overflow-y: scroll; 
+  }
+  .card .card-nota::-webkit-scrollbar {
+    display: none;
+  }
+
+  .img-nota img {
+    width: 35px;
+    margin: 18px;
+  }
+
+  .order {
+    display: flex;
+    border-bottom: 2px solid #BE7A74;
+    margin-left: 10px;
+  }
+
+  .name {
+    margin-top: 18px;
+    line-height: 1.1em;
+  }
+
+  .name .cus {
+    font-size: 15px;
+  }
+
+  .name p {
+    font-size: 12px;
+    color: #63372C;
+  }
+
+  td.multi-content {
+    margin-left: 10px;
+    width: 316px;
+    height: 152px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 14px 44px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #C97D60;
+    margin-left: 20px;
+    padding-top: 10px;
+  }
+  .item {
+    color: #000;
+    font-family: Poppins;
+    font-size: 9px;
+    font-weight: 300;
+    margin-left: 9px;
+    justify-content: left   ;
+    display: flex;
+    margin-bottom: 4px;
+    }
+
+    .item span {
+    margin-right: 12px;
+    flex: 1;
+    }
+        
+    span.nama {
+    color: #000;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 290px;
+    margin-left: 20px;
+    margin-top: -3px;
+    }
+
+    span.harga-satuan {
+    color: #000;
+    font-family: Poppins;
+    font-style: normal;
+    line-height: normal;
+    margin-left: 50px;
+    margin-top: px;
+    }
+        
+    span.total {
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: -100px;
+    margin-top: -3px;
+    }
+        
+    .item2 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-left: 45px;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    }
+
+    /* .col3 {
+    margin-left: 10px;
+    } */
+
+    .row1 {
+    display: flex;
+    }
+        
+    .gambar-container {
+    display: flex;
+    align-items: center;
+    margin-top: 11px;
+    margin-left: 9px;
+    }
+        
+    .ket-gambar {
+    margin-right: 11px;
+    }
+        
+    .row2 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 215px;
+    margin-top: -150px;
+    }
+        
+    .ket {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 11px;
+    color: #000;
+    font-family: Poppins;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    width: 117px;
+    line-height: normal;
+    margin-top: -7px;
+    }
+        
+    .ket span {
+    color: #000;
+    text-align: right;
+    font-family: Poppins;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: inline-block;
+    }
+        
+    .ket-gambar img {
+    width: 162px;
+    margin-left: 12px;
+    }
+
+    .wrapper button {
+    width: 100px;
+    height: 33px;
+    margin: 15px;
+    cursor: pointer;
+    border: none;
+    margin-top: 80px;
+    }
+        
+    button.button1 {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: #566D3F;
+    letter-spacing: 2px;
+    margin-left: 20px;
+    }
+        
+    button.button2 {
+    background: #AC0000;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+        line-height: normal;
+        letter-spacing: 2px;
+        }

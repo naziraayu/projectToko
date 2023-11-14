@@ -136,9 +136,14 @@
     border: 6px solid #BE7A74;
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    width: 600px;
+    width: 700px;
     height: 90px;
     border-top: none;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 .elem-yang-bisa-diklik {
     /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
@@ -191,19 +196,24 @@ li:not(.clicked) {
     top: 0; /* Membuat tetap pada posisi awal */
 }
 .content {
-    position: fixed;
-    margin-top: -17px;
-    margin-left: 69px;
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 43px;
 }
 .content1 {
-    position: fixed;
-    margin-top: -17px;
-    margin-left: 234px;
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 196px;
 }
 .content2 {
-    position: fixed;
-    margin-top: -17px;
-    margin-left: 405px;
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 494px;
+}
+.content3 {
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 351px;
 }
 
 img#baruImage {
@@ -228,6 +238,31 @@ img#batalImage{
 .table-daftar-pesanan h2 {
   margin-top: 20px;
   margin-left: 33px;
+}
+.content2 .img3 {
+  margin-top: 9px/* nilai top yang diinginkan */;
+  margin-left: 130px/* nilai left yang diinginkan */;
+}
+.img3 {
+  margin-top: -51px;
+}
+.img2 {
+  margin-top: -51px;
+}
+li#baruItem {
+  margin-top: 17px;
+}
+
+li#prosesItem {
+  margin-top: 17px;
+}
+.img4 {
+  margin-top: -50px;
+  margin-left: -9px;
+}
+
+li#batalItem {
+  margin-top: 18px;
 }
 
 
@@ -508,3 +543,16 @@ button.button2 {
   line-height: normal;
   letter-spacing: 2px;
 }
+.navbar a {
+  text-decoration: none;
+  color: #231210;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: #AC0000;
+  border-bottom: 3px solid #BE7A74;
+}
+

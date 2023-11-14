@@ -56,7 +56,12 @@ body {
   top: 50px;
   position: fixed !important;
   position: -webkit-sticky;
-  z-index: 2;
+  z-index: 5;
+}
+.elem-yang-bisa-diklik {
+  /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
+  position: relative;
+  z-index: 10; /* angka ini bisa disesuaikan */
 }
 .nav img {
   position: relative;
@@ -83,7 +88,7 @@ body {
   margin-top: -163px;
 }
 
-.select-box {
+/* .select-box {
   border: none;
   outline: 0;
   font-size: 15px;
@@ -97,7 +102,7 @@ body {
   color: var(--log--);
   margin-left: 330px;
   margin-top: 7.5px;
-}
+} */
 
 .nav a:before {
   content: "";
@@ -438,4 +443,102 @@ a {
   .slider-scrollbar .scrollbar-thumb {
     width: 20%;
   }
+}
+
+div#selectetField {
+  width: 362px;
+  background: transparent;
+  position: fixed;
+  margin-left: 9px;
+  z-index: 9;
+}
+
+#selectetField {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+#selectetField p {
+  margin-left: 148px; /* Menghilangkan margin default */
+  color: #BE7A74;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: -8px;
+}
+
+
+#selectetField img {
+  margin: 0 6px; 
+  float: left; 
+  margin-left: 6px;
+  margin-top: -9px;
+}
+#selectetField img:last-child {
+  
+margin-left: 119px;
+  
+position: fixed;
+  }
+  
+
+.selector img[src$=".svg"] {
+  width: 39px;
+}
+.selector img[src$=".png"] {
+  width: 10px;
+}
+.selector {
+  margin-left: 868px;
+  margin-top: 60px;
+}
+ul#list {
+  border: 1px solid #462320;
+  background: #FFF;
+  width: 251px;
+  margin-top: 31px;
+  margin-left: 130px;
+  position: fixed;
+  z-index: 9;
+}
+li.options {
+  border-top: 1px solid #462320;
+  background: #FFF;
+  list-style-type: none;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+span.Keterangan {
+  color: #B2B2B2;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 17px;
+}
+li.options1 {
+  list-style-type: none;
+  margin-left: 77px;
+}
+.options p {
+  margin-left: 36px;
+  margin-top: -30px;
+  height: 34px;
+}
+.hide{
+  visibility: hidden;
+}
+  
+.selector-list img[src$=".png"] {
+  width: 24px;
+  margin-left: 9px;
+  margin-top: 9px;
 }

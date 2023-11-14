@@ -22,16 +22,63 @@
                     <li class="pes"><a href="../pesananSaya/kemarin.html">PESANAN SAYA</a></li>
                     <li class="pen"><a href="../pendapatan/pendapatan.html">PENDAPATAN</a></li>
                     <!-- <li class="log"><a href="../login/login.html">LOG OUT</a></li> -->
-                    <select class="select-box">
-                        <option value="1">Nurul Hidayah</option>
-                        <option value="2">Profile Saya</option>
+                    <!-- <select class="select-box"> -->
+                        <!-- <option value="1">Nurul Hidayah img</option> -->
+                        <!-- <option value="2">Profile Saya</option>
                         <option value="3">Pengaturan Profile</option>
                         <option value="4">Log Out</option><a href="../login/login.html"></a>
-                      </select>
+                    </select> -->
                 </ul>
             </div> 
         </div>
     </header>
+    <div class="selector">
+        <div id="selectetField">
+          <p id="selectText">NURUL HIDAYAH</p>
+          <img src="../img/Vector.svg" alt="profile">
+          <img src="../img/Vector1.png" alt="profile">
+        </div>
+        <div class="selector-list">
+        <ul id="list" class="hide">
+          <li class="options1">
+            <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
+          </li>
+          <li class="options">
+            <img src="../img/Vector(3).png" alt="profile2">
+            <p>Profil Saya</p>
+          </li>
+          <li class="options">
+            <img src="../img/Pengaturan.png" alt="pengaturan">
+            <p>Edit Profile</p>
+          </li>
+          <li class="options">
+            <img src="../img/logout.png" alt="logout">
+            <p>Logout</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+        var selectetField = document.getElementById("selectetField");
+        var selectText = document.getElementById("selectText");
+        var options = document.querySelectorAll(".options");
+        var list = document.getElementById("list");
+        
+        selectetField.addEventListener("click", function() {
+            list.classList.toggle("hide");
+        });
+        
+        options.forEach(option => {
+            option.addEventListener("click", function() {
+                selectText.textContent = this.textContent;
+                list.classList.toggle("hide");
+            });
+        });
+        
+        
+        
+        </script>
+
     <div class="date">
         <div class="datetime">
             <p>Senin, 2 November 2023</p>
