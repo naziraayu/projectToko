@@ -103,6 +103,7 @@
   .title img {
     position: absolute;
     margin: -400px 0 0 50px;
+    animation: slideInLeft 2s;
   }
 
   .deskripsi {
@@ -132,6 +133,12 @@
     border-radius: 30px;
     font-size: 20px;
     background: linear-gradient(75deg, #FFF8F8 40.42%, #DFBCB9 97.03%);
+    animation: fadeInUp 2s;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+  }
+  .first-card:hover {
+    transform: scale(1.1, 1.1);
   }
 
   .first-card .image img {
@@ -160,6 +167,12 @@
     border-radius: 30px;
     font-size: 20px;
     background: linear-gradient(75deg, #FFF8F8 40.42%, #DFBCB9 97.03%);
+    animation: fadeInUp 2s;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+  }
+  .second-card:hover {
+    transform: scale(1.1, 1.1);
   }
 
   .second-card .image img {
@@ -192,6 +205,7 @@
     align-items: center;
     margin-top: 300px;
     font-size: 50px;
+    animation: fadeInUp 2s;
   }
   
   /* .first-menu {
@@ -440,7 +454,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    margin: 30px 0 0 550px;
+    margin: 30px 0 0 540px;
     width: 150px;
   }
   
@@ -466,10 +480,15 @@
     display: table-cell;
     position: relative;
     padding: 20px;
+    color: var(--nav--);
+  }
+
+  .list-info a{
+    color: var(--nav--);
   }
 
   .list-info ul {
-    color: var(--log--);
+    color: var(--nav--);
     font-family: Poppins;
     font-size: 20px;
     font-style: normal;
@@ -478,7 +497,7 @@
     list-style: none;
     display: inline-flex;
     transition: color 0.5s;
-    margin-left: -360px;
+    margin-left: -350px;
     margin-top: 200px;
   }
 

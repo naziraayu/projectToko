@@ -267,7 +267,7 @@ div#selectetField {
   position: fixed;
   z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
 }
-li {
+.navbar li {
   display: inline-block;
   text-align: center;
   padding: 39px;
@@ -379,7 +379,7 @@ li#batalItem {
   background: #FFF;
   margin: 210px 0 0 50px;
   overflow: auto;
-  animation: fadeInUp;
+  animation: zoomIn;
   animation-duration: 1s;
 }
 

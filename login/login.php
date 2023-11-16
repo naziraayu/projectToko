@@ -71,7 +71,7 @@ exit;
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="loginn.css" />
   </head>
   <body>
     <div class="open">
@@ -80,7 +80,7 @@ exit;
     <header>
       <div class="head">
         <div class="nav">
-          <a href="#">Login</a>
+          <a href="../login/login.php">Login</a>
           <img src="../img/Ellipse 1.png" alt="" />
         </div>
       </div>

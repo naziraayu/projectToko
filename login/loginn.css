@@ -48,7 +48,7 @@ body {
   top: 50px;
   position: fixed !important;
   position: -webkit-sticky;
-  animation: fadeInLeft;
+  animation: slideInLeft;
   animation-duration: 2s;
   /* z-index: 2; */
 }

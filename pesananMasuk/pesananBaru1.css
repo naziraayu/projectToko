@@ -52,6 +52,7 @@ body {
   position: fixed !important;
   position: -webkit-sticky;
   z-index: 2;
+  animation: fadeInLeft 2s;
 }
 .nav img {
   position: relative;
@@ -144,6 +145,7 @@ a {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  animation: fadeIn 2s;
 }
 .elem-yang-bisa-diklik {
   /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
@@ -234,6 +236,7 @@ width: 700px;
 margin-left: 70px;
 margin-top: 210px;
 position: fixed;
+animation: fadeInLeft 2s;
 }
 .title-penjualan  h3 {
   position: relative ;
@@ -267,7 +270,7 @@ li#prosesItem {
 
 li#batalItem {
   margin-top: 18px;
-}
+} 
 
 
 .table-penjualan {
@@ -400,6 +403,7 @@ border-bottom: 3px solid #BE7A74;
   position: fixed;
   margin-left: 820px;
   margin-top: 210px;
+  animation: fadeInRight 2s;
 }
 .card-nota {
   border-radius: 30px;

@@ -30,7 +30,7 @@ body {
   --hapus--: #ac0000;
   --refresh--: #FFDD55;
 }
-
+ 
 .head {
   width: 1280px;
   height: 69px;
@@ -63,8 +63,13 @@ body {
   width: 150px;
   height: 150px;
   border-radius: 187px;
-  background: url(/img/Ellipse\ 1.png), lightgray 50% / cover no-repeat;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  /* background: url(/img/Ellipse\ 2_1.svg), lightgray 50% / cover no-repeat;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+}
+.nav img:hover {
+  transform: scale(1.2, 1.2);
 }
 
 .nav ul {
@@ -131,9 +136,10 @@ a {
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: 79px;
-    margin-top: 96px;
+    margin-top: 85px;
     width: 488px;
     height: 73px;
+    animation: fadeInDown 2s;
   }
 
 .text-hero {
@@ -177,6 +183,11 @@ section.PenjualanPemesanan {
     flex-shrink: 0;
     background-color: #40A090;
     margin-left: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.Penjualan:hover {
+  transform: scale(1.2, 1.2);
 }
 
 h2 {
@@ -208,6 +219,11 @@ h3 {
     height: 89px;
     flex-shrink: 0;
     background: #6AA475;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+.Pemesanan:hover {
+  transform: scale(1.2, 1.2);
 }
 
 .Total {
@@ -215,7 +231,12 @@ h3 {
     height: 89px;
     flex-shrink: 0;
     background: #BE7A74;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
 }
+.Total:hover {
+  transform: scale(1.2, 1.2);
+} 
 header.kue.Terjual-header {
   width: 179px;
   height: 150px;
@@ -224,6 +245,24 @@ header.kue.Terjual-header {
   align-items: center;
   margin-top: -16px;
   margin-left: -23px;
+}
+
+.jual {
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.jual:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.tunggu {
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.tunggu:hover {
+  transform: scale(1.1, 1.1);
 }
 
 footer.Detail {
@@ -359,7 +398,12 @@ footer.Pesanan {
 .table-responsive {
   display: flex;
   position: relative;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
 
+.table-responsive:hover {
+  transform: scale(1.1, 1.1);
 }
 
 .content {
@@ -495,4 +539,11 @@ ul.containtsamping li {
   text-align: center;
   animation: fadeInRight;
   animation-duration: 2s;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
 }
+
+#coloumnchart_material:hover {
+  transform: scale(1.1, 1.1);
+}
+

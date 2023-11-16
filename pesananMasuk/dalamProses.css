@@ -50,6 +50,7 @@
     position: fixed !important;
     position: -webkit-sticky;
     z-index: 2;
+    animation: fadeInLeft 2s;
 }
 .nav img {
     position: relative;
@@ -227,6 +228,7 @@ table {
     background: #FFF;
     overflow-y: scroll;
     border-collapse: collapse;
+    animation: fadeInUp 2s;
 }
 
 .table_responsive_pesanan::-webkit-scrollbar {
@@ -297,6 +299,7 @@ small1 {
     border-radius: 57px 57px 0 0;
     margin-top: 218px;
     margin-left: 513px;
+
 }
 
 td.multi-content3 {
@@ -315,6 +318,7 @@ td.multi-content3 {
         overflow-y: scroll;
         margin-top: -3px;
         position: fixed;
+
     }
     .table_responsive_detailpesanan::-webkit-scrollbar {
         display: none;
@@ -325,6 +329,7 @@ td.multi-content3 {
         margin-top: 80px;
         text-align: center;
         position: relative;
+        animation: fadeinDown 2s;
     }
     .text-judul-halaman{
         color: #FFF;
@@ -532,8 +537,8 @@ td.multi-content3 {
         margin-left: 400px;
       }
 
-      .navbar {
-        margin-top: 90px;
+    .navbar {
+    margin-top: 90px;
     margin-left: 314px;
     border-radius: 0 0 60px 60px;
     border: 6px solid #BE7A74;
@@ -547,6 +552,7 @@ td.multi-content3 {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    animation: fadeIn 2s;
       }
     .elem-yang-bisa-diklik {
         /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
