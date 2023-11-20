@@ -1,20 +1,49 @@
 <?php
 require ("../login/koneksi.php");
+$pic_uploaded=0;
 if(isset($_REQUEST['btn_save_cust'])){
 $nama_cust=$_REQUEST['txt_nama_cust'];
 $notelp_cust=$_REQUEST['txt_telp_cust'];
 $alamat_cust=$_REQUEST['txt_alamat_cust'];
 $penanda_cust=$_REQUEST['spinner_penanda_cust'];
-    if(!empty(trim($nama_cust)) && !empty(trim($alamat_cust)) && !empty(trim($notelp_cust))){
-        $query_cust="insert into user values ('', '', '$nama_cust', '$alamat_cust', '$notelp_cust', '', '', '', 'customer', '$penanda_cust')";
+
+$foto_supp=time().$_FILES['input_foto_customer']['name'];
+if (move_uploaded_file($_FILES['input_foto_customer']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+      .$foto_supp)) {
+        $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_supp;
+        $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $picName=basename($_FILES['input_foto_customer']['name']);
+        $photo=time().$picName;
+        if ($imgFileType !='jpg' && $imgFileType != 'jpeg' && $imgFileType != 'png') {
+            ?>
+          <script>
+            alert("Foto yang diupload harus .jpg atau .jpeg atau .png");
+          </script>
+          <?php
+        }elseif ($_FILES['input_foto_customer']['size'] > 2000000){
+            ?>
+            <script>
+              alert("Foto yang diupload tidak boleh lebih dari 2 mb");
+            </script>
+            <?php
+          }else{
+            $pic_uploaded=1;
+          }
+    }
+    if($pic_uploaded == 1){
+        $query_cust="insert into user values ('', '$foto_supp', '$nama_cust', '$alamat_cust', '$notelp_cust', '', '', '', 'customer', '$penanda_cust')";
         $result_cust=mysqli_query($koneksi, $query_cust);
-        $notif_cust="berhasil menambahkan";
-        header('location:customer.php?error='.urlencode($notif_cust));
-        exit();
+        ?>
+            <script>
+              alert("Berhasil menambahkan Customer");
+            </script>
+        <?php
     }else{
-        $error_cust="semua kolom harus terisi";
-        header('location:customer.php?error='.urlencode($error_cust));
-        exit();
+        ?>
+            <script>
+              alert("Gagal menambahkan Customer");
+            </script>
+        <?php
     }
 }
 
@@ -23,18 +52,53 @@ if(isset($_REQUEST['btn_update'])){
     $nama_cust=$_REQUEST['txt_nama_cust'];
     $notelp_cust=$_REQUEST['txt_telp_cust'];
     $alamat_cust=$_REQUEST['txt_alamat_cust'];
-    $penanda_cust=$_REQUEST['spinner_penanda_cust'];        
-    if(!empty(trim($nama_cust)) && !empty(trim($alamat_cust)) && !empty(trim($notelp_cust))){
+    $penanda_cust=$_REQUEST['spinner_penanda_cust'];
+    
+    $foto_supp=time().$_FILES['input_foto_customer']['name'];
+    if (move_uploaded_file($_FILES['input_foto_customer']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+      .$foto_supp)) {
+        $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_supp;
+        $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $picName=basename($_FILES['input_foto_customer']['name']);
+        $photo=time().$picName;
+        if ($imgFileType !='jpg' && $imgFileType != 'jpeg' && $imgFileType != 'png') {
+            ?>
+          <script>
+            alert("Foto yang diupload harus .jpg atau .jpeg atau .png");
+          </script>
+          <?php
+        }elseif ($_FILES['input_foto_customer']['size'] > 2000000){
+            ?>
+            <script>
+              alert("Foto yang diupload tidak boleh lebih dari 2 mb");
+            </script>
+            <?php
+          }else{
+            $pic_uploaded=1;
+          }
+    }
+    if($pic_uploaded == 1){
+                    $query="update user set photo_profile='$foto_supp', nama='$nama_cust', alamat='$alamat_cust', no_telepon='$notelp_cust', penanda='$penanda_cust' where id_user='$id'";
+                    $result=mysqli_query($koneksi, $query);
+                    ?>
+                        <script>
+                        alert("Berhasil mengubah customer");
+                        </script>
+                    <?php
+    }else if($pic_uploaded == 0){
                     $query="update user set nama='$nama_cust', alamat='$alamat_cust', no_telepon='$notelp_cust', penanda='$penanda_cust' where id_user='$id'";
                     $result=mysqli_query($koneksi, $query);
-                    $notif='berhasil menambahkan';
-                    header('location: customer.php');
-                    exit();
+                    ?>
+                        <script>
+                        alert("Berhasil mengubah customer");
+                        </script>
+                    <?php
     }else{
-        $error='gagal menambahkan';
-        header('location: customer.php?error='.urlencode
-        ($error));
-        exit;
+        ?>
+            <script>
+            alert("Gagal mengubah customer");
+            </script>
+        <?php
     }
 }
 
@@ -93,7 +157,7 @@ if (isset($_REQUEST['hapus_cust'])) {
     </header>
         <div class="container">
             <div class="form">
-                <form action="customer.php" method="post">
+                <form action="customer.php" method="post" enctype="multipart/form-data">
                     <div class="first-cont">
                         <div class="form__group field">
                             <input type="input" id="txt_nama_cust" name="txt_nama_cust" class="form__field" placeholder="Name" required="" />
@@ -122,6 +186,9 @@ if (isset($_REQUEST['hapus_cust'])) {
                         </div>
                     </div>
             </div>
+            <div class="photo">
+            <input type="file" id="input_foto_customer" name="input_foto_customer">
+            </div>  
             <div class="refresh">
                 <button type="submit" name="refresh" onclick="refreshCustomer()">
                     <i class="fa-solid fa-rotate-right" style="color: #000000"></i>
