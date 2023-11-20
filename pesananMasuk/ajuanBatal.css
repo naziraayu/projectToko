@@ -306,7 +306,7 @@
   .table-penjualan table {
     width: 100px;
     table-layout: fixed;
-    min-width: 570px;
+    min-width: 650px;
     margin-left: 25px;
     /* text-align: center; */
     border-collapse: collapse;
@@ -314,29 +314,28 @@
     /* justify-content: space-between; */
   }
 
-  .next button {
-    position: absolute;
-    width: 70px;
-    height: 300px;
-    margin: -300px 0 0 610px;
-    border-radius: 10px;
+  td button {
+    padding: 5px;
     border: none;
-    background-color: #566D3F;
+    border-radius: 6px;
     color: var(--nav--);
+    cursor: pointer;
+    background-color: var(--save--);
   }
-  .next button:active {
+  
+  td button:active {
     color: white;
     box-shadow: 0 0.2rem #dfd9d9;
     transform: translateY(0.2rem);
   }
   
-  .next button:hover:not(:disabled) {
+  td button:hover:not(:disabled) {
     background: var(--border--);
     color: white;
     text-shadow: 0 0.1rem #bcb4b4;
   }
   
-  .next button:disabled {
+  td button:disabled {
     cursor: auto;
     color: grey;
   }
