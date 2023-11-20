@@ -11,7 +11,7 @@
 body {
   margin: 0;
   padding: 0;
-  /* background: #FFF8F8; */
+  background: #FFF8F8;
 }
 
 :root {
@@ -56,6 +56,7 @@ body {
   position: fixed !important;
   position: -webkit-sticky;
   z-index: 2;
+  animation: slideInLeft 2s;
 }
 .nav img {
   position: relative;
@@ -131,11 +132,12 @@ a {
 
 .title h1 {
     position: relative;
-    margin-top: 150px;
+    margin-top: 130px;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: 30px;
+    animation: slideInDown 2s;
 }
 
 .datetime {
@@ -148,6 +150,7 @@ a {
   box-shadow: -5px 5px 4px 0px rgba(0, 0, 0, 0.25);
   margin-top:20px;
   margin-left: 80px;
+  animation: slideInLeft 2s;
   /* z-index: 1; */
 }
 
@@ -170,6 +173,7 @@ a {
   position: relative;
   margin-left: 900px;
   margin-top: -30px;
+  animation: slideInRight 2s;
 }
 
 .button button {
@@ -207,7 +211,7 @@ a {
   box-shadow: 0 0.2rem #dfd9d9;
   transform: translateY(0.2rem);
 }
-
+ 
 .button button:hover:not(:disabled) {
   background: var(--border--);
   color: white;
@@ -219,7 +223,7 @@ a {
   color: grey;
 }
 
-  /* .table {
+  .table {
     width: 1100px;
     height: 320px;
     border-radius: 20px;
@@ -227,15 +231,17 @@ a {
     box-shadow: 0px 0px 24px 2px rgba(0, 0, 0, 0.25); 
     position: fixed;
     margin: 30px 0 0 100px;
-  } */
+    animation: slideInUp 2s;
+  }
 
   .table-pesanan {
     position: relative;
     position: -webkit-sticky;
     margin-top: 30px;
-    height: 300px;
+    height: 270px;
     overflow-y: auto;
     border-spacing: none;
+    margin-left: -100px;
     /* display: flex; */
   }
   

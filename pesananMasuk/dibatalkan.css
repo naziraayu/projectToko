@@ -295,12 +295,39 @@
   .table-penjualan table {
     width: 100px;
     table-layout: fixed;
-    min-width: 650px;
+    min-width: 570px;
     margin-left: 25px;
     /* text-align: center; */
     border-collapse: collapse;
     /* letter-spacing: 0.03em; */
     /* justify-content: space-between; */
+  }
+
+  .next button {
+    position: absolute;
+    width: 70px;
+    height: 300px;
+    margin: -300px 0 0 610px;
+    border-radius: 10px;
+    border: none;
+    background-color: #566D3F;
+    color: var(--nav--);
+  }
+  .next button:active {
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+  }
+  
+  .next button:hover:not(:disabled) {
+    background: var(--border--);
+    color: white;
+    text-shadow: 0 0.1rem #bcb4b4;
+  }
+  
+  .next button:disabled {
+    cursor: auto;
+    color: grey;
   }
   
   .table-penjualan thead th {

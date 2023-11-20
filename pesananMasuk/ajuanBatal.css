@@ -8,6 +8,7 @@
   body {
     margin: 0;
     padding: 0;
+    background: #FFF8F8;
   }
   
   :root {
@@ -52,6 +53,7 @@
     position: fixed !important;
     position: -webkit-sticky;
     z-index: 2;
+    animation: slideInLeft 2s;
   }
   .nav img {
     position: relative;
@@ -144,6 +146,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    animation: fadeIn 2s;
   }
   .elem-yang-bisa-diklik {
     /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
@@ -225,6 +228,10 @@
   img#batalImage{
     width: 33px;
   }
+  img#ajukanbatalImage {
+    width: 33px;
+  }
+
   .table-daftar-pesanan {
   border-radius: 18px;
   background: #FFF;
@@ -234,6 +241,7 @@
   margin-left: 70px;
   margin-top: 210px;
   position: fixed;
+  animation: slideInLeft 2s;
   }
   .title-penjualan  h3 {
     position: relative ;
@@ -269,6 +277,9 @@
     margin-top: 18px;
   } 
   
+  li#ajukanbatalItem {
+    margin-top: 17px;
+  }
   
   .table-penjualan {
     position: relative;
@@ -295,12 +306,39 @@
   .table-penjualan table {
     width: 100px;
     table-layout: fixed;
-    min-width: 650px;
+    min-width: 570px;
     margin-left: 25px;
     /* text-align: center; */
     border-collapse: collapse;
     /* letter-spacing: 0.03em; */
     /* justify-content: space-between; */
+  }
+
+  .next button {
+    position: absolute;
+    width: 70px;
+    height: 300px;
+    margin: -300px 0 0 610px;
+    border-radius: 10px;
+    border: none;
+    background-color: #566D3F;
+    color: var(--nav--);
+  }
+  .next button:active {
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+  }
+  
+  .next button:hover:not(:disabled) {
+    background: var(--border--);
+    color: white;
+    text-shadow: 0 0.1rem #bcb4b4;
+  }
+  
+  .next button:disabled {
+    cursor: auto;
+    color: grey;
   }
   
   .table-penjualan thead th {
@@ -400,6 +438,7 @@
     position: fixed;
     margin-left: 820px;
     margin-top: 210px;
+    animation: slideInRight 2s;
   }
   .card-nota {
     border-radius: 30px;

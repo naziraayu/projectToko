@@ -188,7 +188,7 @@
   
   .second-card .isi {
     margin-left: 15px;
-    line-height: 1.2;
+    line-height: 1.2; 
   }
 
   .back img {
@@ -497,7 +497,7 @@
     list-style: none;
     display: inline-flex;
     transition: color 0.5s;
-    margin-left: -350px;
+    margin-left: -356px;
     margin-top: 200px;
   }
 

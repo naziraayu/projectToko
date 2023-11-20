@@ -7,6 +7,7 @@
   body {
     margin: 0;
     padding: 0;
+    background: #FFF8F8;
   }
   
   :root {
@@ -50,7 +51,7 @@
     position: fixed !important;
     position: -webkit-sticky;
     z-index: 2;
-    animation: fadeInLeft 2s;
+    animation: slideInLeft 2s;
 }
 .nav img {
     position: relative;
@@ -122,8 +123,6 @@ a {
 .nav li.log {
     margin-left: 400px;
 }
-
-
 
 .content ul {
     color: var(--log--);
@@ -290,7 +289,9 @@ small1 {
     font-weight: 400;
     line-height: normal;
 }
-
+.row {
+    animation: slideInDown 2s;
+}
 
 .row-pesanan-masuk {
     width: 382px;
@@ -329,7 +330,7 @@ td.multi-content3 {
         margin-top: 80px;
         text-align: center;
         position: relative;
-        animation: fadeinDown 2s;
+        animation: slideInDown 2s;
     }
     .text-judul-halaman{
         color: #FFF;
@@ -485,6 +486,7 @@ td.multi-content3 {
         margin-top: 10px;
         margin-left: 929px;
         position: fixed;
+        animation: slideInUp 2s;
     }
     .wrapper textarea {
         width: 251px;
@@ -604,6 +606,10 @@ td.multi-content3 {
     img#batalImage{
         width: 33px;
     }
+    img#ajukanbatalImage {
+        width: 33px;
+    }
+    
     .content2 .img3 {
         margin-top: 9px/* nilai top yang diinginkan */;
         margin-left: 130px/* nilai left yang diinginkan */;
@@ -622,10 +628,13 @@ td.multi-content3 {
         margin-top: -50px;
         margin-left: -9px;
     }
-    
+     
     li#batalItem {
         margin-top: 18px;
     }
+    li#ajukanbatalItem {
+        margin-top: 17px;
+      }
     .navbar a {
         text-decoration: none;
         color: #231210;
