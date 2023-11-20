@@ -19,7 +19,7 @@
     <header>
         <div class="head">
             <div class="nav">
-                <a href="../login/login.html">Login</a>
+                <a href="../login/login.php">Login</a>
                 <img src="../img/Ellipse 1.png" alt="" />
             </div>
         </div>

@@ -5,9 +5,9 @@ if(isset($_REQUEST['btn_simpanSupp'])){
     $nama_supp=$_REQUEST['txt_namaSupp'];
     $notelepon_supp=$_REQUEST['txt_notelpSupp']; 
     $alamat_supp=$_REQUEST['txt_alamatSupp'];
-    $pertanyaan_supp=$_REQUEST['spinner_pertanyaanSup'];        
-    $jawaban_supp=$_REQUEST['txt_jawabanSupp'];
-    $password_supp=$_REQUEST['txt_passwordSupp'];
+    $pertanyaan_supp=$_REQUEST['pertanyaanSup'];        
+    $jawaban_supp=$_REQUEST['jawabanSupp'];
+    $password_supp=$_REQUEST['passwordSupp'];
 
     $foto_supp=time().$_FILES['input_foto_supp']['name'];
     if (move_uploaded_file($_FILES['input_foto_supp']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'
@@ -51,9 +51,9 @@ if(isset($_REQUEST['btn_updateSupp'])){
     $nama_supp=$_REQUEST['txt_namaSupp'];
     $notelepon_supp=$_REQUEST['txt_notelpSupp']; 
     $alamat_supp=$_REQUEST['txt_alamatSupp'];
-    $pertanyaan_supp=$_REQUEST['spinner_pertanyaanSup'];        
-    $jawaban_supp=$_REQUEST['txt_jawabanSupp'];
-    $password_supp=$_REQUEST['txt_passwordSupp'];
+    $pertanyaan_supp=$_REQUEST['pertanyaanSup'];        
+    $jawaban_supp=$_REQUEST['jawabanSupp'];
+    $password_supp=$_REQUEST['passwordSupp'];
     $foto_supp=time().$_FILES['input_foto_supp']['name'];
     if (move_uploaded_file($_FILES['input_foto_supp']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'
           .$foto_supp)) {
@@ -78,16 +78,21 @@ if(isset($_REQUEST['btn_updateSupp'])){
               }
         }
     if($pic_uploaded == 1){
-                    $query="update user set nama='$nama_supp', alamat='$alamat_supp', no_telepon='$notelepon_supp', pertanyaan='$pertanyaan_supp', jawaban='$jawaban_supp', password='$password_supp', photo_profile='$foto_supp' where id_user='$id'";
-                    $result=mysqli_query($koneksi, $query);
-                    $notif='berhasil mengubah';
-                    header('location: supplier.php');
-                    exit();
+        $query="update user set nama='$nama_supp', alamat='$alamat_supp', no_telepon='$notelepon_supp', pertanyaan='$pertanyaan_supp', jawaban='$jawaban_supp', password='$password_supp', photo_profile='$foto_supp' where id_user='$id'";
+        $result=mysqli_query($koneksi, $query);
+        ?>
+            <script>alert("berhasil mengubah supplier");</script>
+        <?php
+    } else if ($pic_uploaded == 0){
+        $query="update user set nama='$nama_supp', alamat='$alamat_supp', no_telepon='$notelepon_supp', pertanyaan='$pertanyaan_supp', jawaban='$jawaban_supp', password='$password_supp' where id_user='$id'";
+        $result=mysqli_query($koneksi, $query);
+        ?>
+            <script>alert("berhasil mengubah supplier");</script>
+        <?php
     }else{
-        $error='gagal menambahkan';
-        header('location: supplier.php?error='.urlencode
-        ($error));
-        exit;
+        ?>
+            <script>alert("gagal menambahkan supplier");</script>
+        <?php
     }
 }
 
@@ -124,13 +129,13 @@ if (isset($_REQUEST['hapus_supp'])) {
     <div class="sidebar">
         <div class="content">
             <ul>
-                <li class="ad"><a href="../master/admin.html">Admin</a></li>
-                <li class="sup"><a href="../master/supplier.html">Supplier</a></li>
-                <li class="cus"><a href="../master/customer.html">Customer</a></li>
-                <li class="men"><a href="../master/menu.html">Menu</a></li>
-                <li class="pac"><a href="../master/paket.html">Paket</a></li>
-                <li class="kem"><a href="../master/kemasan.html">Kemasan</a></li>
-                <li class="supmen"><a href="../master/supMen.html">Supplier Menu</a></li>
+                <li class="ad"><a href="../master/admin.php">Admin</a></li>
+                <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
+                <li class="cus"><a href="../master/customer.php">Customer</a></li>
+                <li class="men"><a href="../master/menu.php">Menu</a></li>
+                <li class="pac"><a href="../master/paket.php">Paket</a></li>
+                <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
+                <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a></li>
             </ul>
         </div>
     </div>
@@ -154,7 +159,7 @@ if (isset($_REQUEST['hapus_supp'])) {
             <div class="first-cont">
                 <div class="form__group field">
                     <input type="input" id="txt_namaSupp" name="txt_namaSupp" id="txt_nama" class="form__field" placeholder="Name" required="">
-                    <label for="name" class="form__label">Nama Admin</label>
+                    <label for="name" class="form__label">Nama Supplier</label>
                 </div>
                 <div class="form__group field">
                     <input type="input" id="txt_notelpSupp" name="txt_notelpSupp" class="form__field" placeholder="Name" required="">
@@ -168,7 +173,7 @@ if (isset($_REQUEST['hapus_supp'])) {
             <div class="second-cont">
                 <div class="form__group field">
                 <label for="name" class="form__label">Pertanyaan</label>
-                    <select class="form__field" id="spinner_pertanyaanSup" name="spinner_pertanyaanSup">
+                    <select class="form__field" id="pertanyaanSup" name="pertanyaanSup">
                             <option >Apa nama hewan peliharaan pertama Anda?</option>
                             <option >Di mana Anda bertemu pasangan Anda?</option>
                             <option >Siapa nama guru favorit Anda di sekolah?  </option>
@@ -182,11 +187,11 @@ if (isset($_REQUEST['hapus_supp'])) {
                     </select>
                 </div>
                 <div class="form__group field">
-                    <input type="input" id="txt_jawabanSupp" name="txt_jawabanSupp" class="form__field" placeholder="Name" required="">
+                    <input type="input" id="jawabanSupp" name="jawabanSupp" class="form__field" placeholder="Name" required="">
                     <label for="name" class="form__label">Jawaban</label>
                 </div>
                 <div class="form__group field">
-                    <input type="password" id="txt_passwordSupp" name="txt_passwordSupp" class="form__field" placeholder="Name" required="">
+                    <input type="password" id="passwordSupp" name="passwordSupp" class="form__field" placeholder="Name" required="">
                     <label for="name" class="form__label">Password</label>
                 </div>
                 <div class="form__group field">
@@ -207,9 +212,9 @@ if (isset($_REQUEST['hapus_supp'])) {
                     document.getElementById('txt_notelpSupp').value='';
                     document.getElementById('txt_alamatSupp').value='';
                     document.getElementById('input_foto_supp').value='';
-                    document.getElementById('spinner_pertanyaanSup').selectedIndex=0;
-                    document.getElementById('txt_jawabanSupp').value='';
-                    document.getElementById('txt_passwordSupp').value='';
+                    document.getElementById('pertanyaanSup').selectedIndex=0;
+                    document.getElementById('jawabanSupp').value='';
+                    document.getElementById('passwordSupp').value='';
                 }
             </script>
         </div>
@@ -237,7 +242,7 @@ if (isset($_REQUEST['hapus_supp'])) {
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama Supplier</th>
+                        <th>Nama <br> Supplier</th>
                         <th>Telepon</th>
                         <th>Alamat</th>
                         <th>Pertanyaan Keamanan</th>
@@ -289,14 +294,14 @@ if (isset($_REQUEST['hapus_supp'])) {
                                     $fotoo=$row['photo_profile'];
                                     ?>
                                     <script>
-                                        document.getElementById('txt_idSupp').value="<?php echo $id_karywn; ?>";
-                                        document.getElementById('txt_namaSupp').value="<?php echo $nama; ?>";
-                                        document.getElementById('txt_notelpSupp').value="<?php echo $telepon; ?>";
-                                        document.getElementById('txt_alamatSupp').value="<?php echo $alamat; ?>";
-                                        document.getElementById('input_foto_supp').value="<?php echo $fotoo; ?>";
-                                        document.getElementById('spinner_pertanyaanSup').value="<?php echo $pertanyaann; ?>";
-                                        document.getElementById('txt_jawabanSupp').value="<?php echo $jawabann; ?>";
-                                        document.getElementById('txt_passwordSupp').value="<?php echo $passwordd; ?>";
+                                        document.getElementById('txt_idSupp').value='<?php echo $id;?>';
+                                        document.getElementById('txt_namaSupp').value='<?php echo $nama;?>';
+                                        document.getElementById('txt_notelpSupp').value='<?php echo $telepon;?>';
+                                        document.getElementById('txt_alamatSupp').value='<?php echo $alamat;?>';
+                                        document.getElementById('input_foto_supp').value='<?php echo $pertanyaann;?>';
+                                        document.getElementById('pertanyaanSup').value='<?php echo $jawabann;?>';
+                                        document.getElementById('jawabanSupp').value='<?php echo $passwordd;?>';
+                                        document.getElementById('passwordSupp').value='<?php echo $fotoo;?>';
                                     </script>
                                     <?php
                                 }

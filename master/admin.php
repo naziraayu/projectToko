@@ -1,5 +1,6 @@
 <?php
 require('../login/koneksi.php');
+$pic_uploaded=0;
 if(isset($_REQUEST['btn_simpan'])){
     $nama=$_REQUEST['txt_nama'];
     $notelepon=$_REQUEST['txt_notelp'];
@@ -8,19 +9,43 @@ if(isset($_REQUEST['btn_simpan'])){
     $jawaban=$_REQUEST['txt_jawaban'];
     $password=$_REQUEST['txt_password'];
     
-    if(!empty(trim($notelepon)) && !empty(trim($nama)) && !empty(trim($alamat)) 
-        && !empty(trim($pertanyaan)) && !empty(trim($jawaban)) && !empty(trim($password ))){
-                    $query="insert into user values(' ', '', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'karyawan', '')";
+    $foto_supp=time().$_FILES['input_foto_admin']['name'];
+    if (move_uploaded_file($_FILES['input_foto_admin']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'
+          .$foto_supp)) {
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'.$foto_supp;
+            $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            $picName=basename($_FILES['input_foto_admin']['name']);
+            $photo=time().$picName;
+            if ($imgFileType !='jpg' && $imgFileType != 'jpeg' && $imgFileType != 'png') {
+                ?>
+              <script>
+                alert("Foto yang diupload harus .jpg atau .jpeg atau .png");
+              </script>
+              <?php
+            }elseif ($_FILES['input_foto_admin']['size'] > 2000000){
+                ?>
+                <script>
+                  alert("Foto yang diupload tidak boleh lebih dari 2 mb");
+                </script>
+                <?php
+              }else{
+                $pic_uploaded=1;
+              }
+        }
+    if($pic_uploaded == 1){
+                    $query="insert into user values(' ', '$foto_supp', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'admin', '')";
                     $result=mysqli_query($koneksi, $query);
-                    $notif='berhasil menambahkan';
-                    header('location: admin.php?error='.urlencode
-                    ($notif));
-                    exit();
+                    ?>
+                        <script>
+                        alert("Berhasil menambahkan admin");
+                        </script>
+                    <?php
     }else{
-        $error='gagal menambahkan';
-        header('location: admin.php?error='.urlencode
-        ($error));
-        exit;
+        ?>
+              <script>
+              alert("Gagal menambahkan admin");
+              </script>
+            <?php
     }
 }
 
@@ -32,18 +57,52 @@ if(isset($_REQUEST['btn_update'])){
     $pertanyaan=$_REQUEST['spinner_pertanyaan'];        
     $jawaban=$_REQUEST['txt_jawaban'];
     $password=$_REQUEST['txt_password'];
-    if(!empty(trim($notelepon)) && !empty(trim($nama)) && !empty(trim($alamat)) 
-        && !empty(trim($pertanyaan)) && !empty(trim($jawaban)) && !empty(trim($password ))){
-                    $query="update user set nama='$nama', alamat='$alamat', no_telepon='$notelepon', pertanyaan='$pertanyaan', jawaban='$jawaban', password='$password' where id_user='$id'";
-                    $result=mysqli_query($koneksi, $query);
-                    $notif='berhasil mengubah';
-                    header('location: admin.php');
-                    exit();
+
+    $foto_supp=time().$_FILES['input_foto_admin']['name'];
+    if (move_uploaded_file($_FILES['input_foto_admin']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'
+          .$foto_supp)) {
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'.$foto_supp;
+            $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            $picName=basename($_FILES['input_foto_admin']['name']);
+            $photo=time().$picName;
+            if ($imgFileType !='jpg' && $imgFileType != 'jpeg' && $imgFileType != 'png') {
+                ?>
+              <script>
+                alert("Foto yang diupload harus .jpg atau .jpeg atau .png");
+              </script>
+              <?php
+            }elseif ($_FILES['input_foto_admin']['size'] > 2000000){
+                ?>
+                <script>
+                  alert("Foto yang diupload tidak boleh lebih dari 2 mb");
+                </script>
+                <?php
+              }else{
+                $pic_uploaded=1;
+              }
+        }
+    if($pic_uploaded == 1){
+        $query="update user set photo_profile='$foto_supp', nama='$nama', alamat='$alamat', no_telepon='$notelepon', pertanyaan='$pertanyaan', jawaban='$jawaban', password='$password' where id_user='$id'";
+        $result=mysqli_query($koneksi, $query);
+        ?>
+            <script>
+            alert("Berhasil mengubah admin");
+            </script>
+        <?php
+    }else if ($pic_uploaded == 0) {   
+        $query="update user set nama='$nama', alamat='$alamat', no_telepon='$notelepon', pertanyaan='$pertanyaan', jawaban='$jawaban', password='$password' where id_user='$id'";
+        $result=mysqli_query($koneksi, $query);
+        ?>
+            <script>
+            alert("Berhasil mengubah admin");
+            </script>
+        <?php
     }else{
-        $error='gagal menambahkan';
-        header('location: admin.php?error='.urlencode
-        ($error));
-        exit;
+        ?>
+            <script>
+            alert("Gagal mengubah admin");
+            </script>
+            <?php
     }
 }
 
@@ -70,10 +129,16 @@ if (isset($_REQUEST['hapus_admin'])) {
     <title>Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="adminn.css" />
   </head>
 <body>
@@ -86,8 +151,7 @@ if (isset($_REQUEST['hapus_admin'])) {
           <li class="men"><a href="../master/menu.php">Menu</a></li>
           <li class="pac"><a href="../master/paket.php">Paket</a></li>
           <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
-          <li class="supmen">
-            <a href="../master/supMen.html">Supplier Menu</a>
+          <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
           </li>
         </ul>
         </div>
@@ -108,7 +172,7 @@ if (isset($_REQUEST['hapus_admin'])) {
     </header>
     <div class="container">
         <div class="form">
-            <form action="admin.php" method="post" >
+            <form action="admin.php" method="post" enctype="multipart/form-data">
             <div class="first-cont">
                 <div class="form__group field">
                     <input type="input" name="txt_nama" id="txt_nama" class="form__field" placeholder="Name" required="">
@@ -153,6 +217,9 @@ if (isset($_REQUEST['hapus_admin'])) {
                 </div>
             </div>
         </div>
+        <div class="photo">
+            <input type="file" id="input_foto_admin" name="input_foto_admin">
+            </div>  
         <div class="refresh">
             <button type="submit" name="refresh" onclick="refreshAdmin()">
             <i class="fa-solid fa-rotate-right" style="color: #000000;"></i>
@@ -203,7 +270,7 @@ if (isset($_REQUEST['hapus_admin'])) {
                 </thead>
                 <tbody>
                 <?php
-                    $query="select * from user where akses='karyawan'";
+                    $query="select * from user where akses='admin'";
                     $result=mysqli_query($koneksi, $query);
                     $no=1;
                     while($row=mysqli_fetch_array($result)){
@@ -227,7 +294,15 @@ if (isset($_REQUEST['hapus_admin'])) {
                         <td>
                             <button><a href="admin.php?edit_admin=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="admin.php?hapus_admin=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
-                        <?php
+                        </td>
+                    <tr>
+                    <?php
+                $no++;
+            }
+            ?>
+                </tbody>
+            </table>
+            <?php
                             if (isset($_GET['edit_admin'])) {   
                             $id_edit=$_GET['edit_admin'];
                             $query="select * from user where id_user='$id_edit'";
@@ -256,14 +331,6 @@ if (isset($_REQUEST['hapus_admin'])) {
                             }
                         }
                     ?>
-                        </td>
-                    <tr>
-                    <?php
-                $no++;
-            }
-            ?>
-                </tbody>
-            </table>
         </div>
     </div>
 </body>

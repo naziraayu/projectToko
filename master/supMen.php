@@ -1,5 +1,5 @@
 <?php
-require("koneksi.php");
+require("../login/koneksi.php");
 if (isset($_REQUEST['btn_save_supMen'])) {
     $namaSupplier=$_REQUEST['spinner_supplier'];
     $namaMenu_supMen=$_REQUEST['spinner_menu'];
@@ -16,12 +16,12 @@ if (isset($_REQUEST['btn_save_supMen'])) {
         <?php
     }
 }
-
 if (isset($_REQUEST['btn_ubah_supMen'])) {
+    $id=$_REQUEST['txt_idSupp'];
     $namaSupplier=$_REQUEST['spinner_supplier'];
     $namaMenu_supMen=$_REQUEST['spinner_menu'];
     $hargaBeli_supMen=$_REQUEST['txt_hargaBeli_supMen'];
-    $query="update supplier_menu set id_karyawan='$namaSupplier', id_barang='$namaMenu_supMen', harga_beli='$hargaBeli_supMen'";
+    $query="update supplier_menu set id_user='$namaSupplier', id_barang='$namaMenu_supMen', harga_beli='$hargaBeli_supMen' where id_suppmenu='$id'";
     $result=mysqli_query($koneksi, $query);
     if ($result) {
         ?>
@@ -33,7 +33,6 @@ if (isset($_REQUEST['btn_ubah_supMen'])) {
         <?php
     }
 }
-
 if (isset($_GET['hapus_suppmenu'])) {
     $id_hapus=$_GET['hapus_suppmenu'];
     $query="delete from supplier_menu where id_suppmenu=$id_hapus";
@@ -46,26 +45,6 @@ if (isset($_GET['hapus_suppmenu'])) {
         ?>
             <script>alert("Gagal menghapus");</script>
         <?php
-    }
-}
-
-if (isset($_GET['edit_suppmenu'])) {
-    $id_edit=$_GET['edit_suppmenu'];
-    $query= "select * from supplier_menu where id_suppmenu=$id_edit";
-    $result=mysqli_query($koneksi, $query);
-    if (mysqli_num_rows($result) > 0) {
-        while ($row=mysqli_fetch_array($result)) {
-            $id_karywn=$row['id_karyawan'];
-            $id_brg=$row['id_barang'];
-            $hrgbeli=$row['harga_beli'];
-            ?>
-                <script>
-                    document.getElementById('spinner_supplier').value = '<?php echo json_encode($id_karywn); ?>';
-                    document.getElementById('spinner_menu').value = '<?php echo json_encode($id_brg); ?>';
-                    document.getElementById('txt_hargaBeli_supMen').value = '<?php echo json_encode($hrgbeli); ?>';                        
-                </script>
-            <?php
-        }     
     }
 }
 ?>
@@ -87,13 +66,13 @@ if (isset($_GET['edit_suppmenu'])) {
     <div class="sidebar">
         <div class="content">
             <ul>
-                <li class="ad"><a href="../master/admin.html">Admin</a></li>
-                <li class="sup"><a href="../master/supplier.html">Supplier</a></li>
-                <li class="cus"><a href="../master/customer.html">Customer</a></li>
-                <li class="men"><a href="../master/menu.html">Menu</a></li>
-                <li class="pac"><a href="../master/paket.html">Paket</a></li>
-                <li class="kem"><a href="../master/kemasan.html">Kemasan</a></li>
-                <li class="supmen"><a href="../master/supMen.html">Supplier Menu</a></li>
+                <li class="ad"><a href="../master/admin.php">Admin</a></li>
+                <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
+                <li class="cus"><a href="../master/customer.php">Customer</a></li>
+                <li class="men"><a href="../master/menu.php">Menu</a></li>
+                <li class="pac"><a href="../master/paket.php">Paket</a></li>
+                <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
+                <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
             </ul>
         </div>
     </div>
@@ -102,10 +81,10 @@ if (isset($_GET['edit_suppmenu'])) {
             <div class="nav">
                 <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="mas"><a href="#">MASTER</a></li>
-                    <li class="pes"><a href="#">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="#">ETALASE</a></li>
-                    <li class="lap"><a href="#">LAPORAN</a></li>
+                    <li class="mas"><a href="../master/admin.html">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/dalamProses.html">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
                     <li class="log"><a href="../login/login.html">LOG OUT</a></li>
                 </ul>
             </div>
@@ -113,23 +92,23 @@ if (isset($_GET['edit_suppmenu'])) {
     </header>
         <div class="container">
             <div class="form">
-                <form action="supMen.php" method="post" enctype="multipart/form-data">
+                <form action="supMen.php" method="post" >
                     <div class="first-cont">
                         <div class="form__group field">
-                          <select class="form__field" id="spinner_supplier" name="spinner_supplier" >
+                        <select class="form__field" id="spinner_supplier" name="spinner_supplier" >
                             <?php
-                                $qry="select * from karyawan where akses='supplier'";
+                                $qry="select * from user where akses='supplier'";
                                 $rslt=mysqli_query($koneksi, $qry);
                                 while($rw=mysqli_fetch_array($rslt)){
                             ?>
-                                <option value="<?php echo $rw['id_karyawan']; ?>" ><?php echo $rw['nama_karyawan']; ?></option>
+                                <option value="<?php echo $rw['id_user']; ?>" ><?php echo $rw['nama']; ?></option>
                             <?php
                                 }
                             ?>
                           </select>
                         </div>
                         <div class="form__group field">
-                          <select class="form__field" id="spinner_menu" name="spinner_menu" >
+                        <select class="form__field" id="spinner_menu" name="spinner_menu" >
                             <?php
                                 $qry="select * from barang";
                                 $rslt=mysqli_query($koneksi, $qry);
@@ -147,10 +126,13 @@ if (isset($_GET['edit_suppmenu'])) {
                               <input type="input" id="txt_hargaBeli_supMen" name="txt_hargaBeli_supMen" class="form__field" placeholder="Name" required="" />
                               <label for="name" class="form__label">Harga Beli</label>
                           </div>
+                          <div class="form__group field">
+                              <input type="hidden" id="txt_idSupp" name="txt_idSupp" class="form__field" placeholder="Name" required="" />
+                          </div>
                       </div>
             </div>
-        <div class="refresh">
-            <button type="submit" name="refresh" onclick="refreshsupMenu()">
+        <div class="refresh" name="refresh" onclick="refreshsupMenu()">
+            <button>
               <i class="fa-solid fa-rotate-right" style="color: #000000"></i>
             </button>
             <Script>
@@ -162,11 +144,11 @@ if (isset($_GET['edit_suppmenu'])) {
             </Script>
         </div>
         <div class="update">
-            <button type="submit" name="btn_ubah_supMen" >Update</button>
+            <button type="submit" name="btn_ubah_supMen">Update</button>
         </div>
         <div class="save">
         <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_save_supMen" >Simpan</button>
+            <button type="submit" name="btn_save_supMen">Simpan</button>
         </div>
         </form>
     </div>
@@ -192,13 +174,13 @@ if (isset($_GET['edit_suppmenu'])) {
                 </thead>
                 <tbody>
                 <?php
-                    $query="SELECT karyawan.nama_karyawan, barang.nama_barang, supplier_menu.harga_beli, supplier_menu.id_suppmenu 
-                            FROM supplier_menu JOIN karyawan ON karyawan.id_karyawan=supplier_menu.id_karyawan JOIN barang ON barang.id_barang=supplier_menu.id_barang;";
+                    $query="SELECT user.nama, barang.nama_barang, supplier_menu.harga_beli, supplier_menu.id_suppmenu 
+                            FROM supplier_menu JOIN user ON user.id_user=supplier_menu.id_user JOIN barang ON barang.id_barang=supplier_menu.id_barang;";
                     $result=mysqli_query($koneksi, $query);
                     $no=1;
                     while($row=mysqli_fetch_array($result)){
                         $id=$row['id_suppmenu'];
-                        $namaSupp=$row['nama_karyawan'];
+                        $namaSupp=$row['nama'];
                         $namaMenu=$row['nama_barang'];
                         $hargaBeli=$row['harga_beli'];           
                 ?>
@@ -210,27 +192,6 @@ if (isset($_GET['edit_suppmenu'])) {
                         <td>
                             <button><a href="supMen.php?edit_suppmenu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="supMen.php?hapus_suppmenu=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
-                            <?php
-                                if (isset($_GET['edit_suppmenu'])) {
-                                    $id_edit=$_GET['edit_suppmenu'];
-                                    $query= "select * from supplier_menu where id_suppmenu=$id_edit";
-                                    $result=mysqli_query($koneksi, $query);
-                                    if (mysqli_num_rows($result) > 0) {
-                                        while ($row=mysqli_fetch_array($result)) {
-                                            $id_karywn=$row['id_karyawan'];
-                                            $id_brg=$row['id_barang'];
-                                            $hrgbeli=$row['harga_beli'];
-                                            ?>
-                                                <script>
-                                                    document.getElementById('spinner_supplier').value = <?php echo $id_karywn; ?>;
-                                                    document.getElementById('spinner_menu').value = <?php echo $id_brg; ?>;
-                                                    document.getElementById('txt_hargaBeli_supMen').value = '<?php echo $hrgbeli; ?>';                        
-                                                </script>
-                                            <?php
-                                        }     
-                                    }
-                                }
-                            ?>
                         </td>
                     </tr>
                     <?php
@@ -239,6 +200,29 @@ if (isset($_GET['edit_suppmenu'])) {
                     ?>
                 </tbody>
             </table>
+            <?php
+                if (isset($_GET['edit_suppmenu'])) {
+                    $id_edit=$_GET['edit_suppmenu'];
+                    $query= "select * from supplier_menu where id_suppmenu=$id_edit";
+                    $result=mysqli_query($koneksi, $query);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row=mysqli_fetch_array($result)) {
+                                $id=$row['id_suppmenu'];
+                                $id_karywn=$row['id_user'];
+                                $id_brg=$row['id_barang'];
+                                $hrgbeli=$row['harga_beli'];
+            ?>
+                <script>
+                    document.getElementById('txt_idSupp').value = <?php echo $id; ?>;
+                    document.getElementById('spinner_supplier').value = <?php echo $id_karywn; ?>;
+                    document.getElementById('spinner_menu').value = <?php echo $id_brg; ?>;
+                    document.getElementById('txt_hargaBeli_supMen').value = '<?php echo $hrgbeli; ?>';                        
+                </script>
+            <?php
+                        }     
+                    }
+                }
+            ?>
         </div>
     </div>
 </body>
