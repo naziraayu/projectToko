@@ -6,8 +6,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <title>Profil</title>
-    <link rel="stylesheet" href="profil.css"/>
+    <title>gantiPassword</title>
+    <link rel="stylesheet" href="gantiPassword.css"/>
 </head>
 <body>
 </head>
@@ -74,40 +74,58 @@
         <div class="img"><img src="../img/Ellipse 8.png" alt=""></div>
         <div class="teks">Nurul Hidayah <span class="ket">Supplier</span></div>
     </div>
-<header2>
+    <header2>
         <div class="head2">
-          <div class="nav2">
+            <div class="nav2"> 
                 <ul>
-                    <li class="stok"><a href="../profil/profil.php">Lihat Profil</a></li>
-                    <li class="pes"><a href="../editProfil/editProfil.php">Edit Profile</a></li>
-                    <li class="pen"><a href="../gantiPassword/gantiPassword.html">Ganti Password</a></li>
+                    <li class="stok"><a href="../editProfil/lihatProfil.html">Lihat Profil</a></li>
+                    <li class="pes"><a href="../editProfil/editProfil.html">Edit Profile</a></li>
+                    <li class="pen"><a href="../editProfil/gantiPassword.html">Ganti Password</a></li>
                 </ul>
             </div> 
             <div class="container">
-                <div class="title">Detail Profile</div>
+                <div class="title">Ganti Password</div>
                 <div class="content">
                     <form action="#">
                         <div class="box">
-                            <span class="details"> Nama </span>
-                            <input type="text" value="Nurul Hidayah" readonly>
-                            
+                            <span class="details"> Password Lama  </span>
+                            <input type="password" id="passwordLama" value="123" />
+                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('passwordLama')">
+                       
                         </div>
                         <div class="box">
-                            <span class="details"> Alamat </span>
-                            <input type="text" value="Jalan Hayam Wuruk Gang 6" readonly>
+                            <span class="details"> Password Baru  </span>
+                            <input type="password" id="passwordBaru" value="123" />
+                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('passwordBaru')">
                         </div>
                         <div class="box">
-                            <span class="details"> No. Telephone </span>
-                            <input type="text" value="085654356278" readonly>
+                            <span class="details"> Konfirmasi Password Baru</span>
+                            <input type="password" id="konfirmasiPassword" value="123" />
+                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('konfirmasiPassword')">
                         </div>
                     </form>
                 </div>
             </div>
-            <!-- <div class="wrapper1">
+            <div class="wrapper1">
                 <div>
                 <button class="button1"type="submit1" name="proses">Simpan Profile</button>
-                </div> -->
+                </div>
         </div>
 </header2>
+<script>
+    function togglePasswordVisibility(inputId) {
+    const passwordInput = document.getElementById(inputId);
+    const passwordIcon = document.querySelector(`#${inputId} + .details img`);
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        passwordIcon.src = "../img/mata-slash.png"; // Ganti dengan ikon mata tersembunyi
+    } else {
+        passwordInput.type = "password";
+        passwordIcon.src = "../img/mata.png"; // Ganti dengan ikon mata tampil
+    }
+}
+
+</script>
 </body>
 </html>

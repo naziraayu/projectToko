@@ -80,7 +80,7 @@
                 <ul>
                     <li class="stok"><a href="../profil/profil.php">Lihat Profil</a></li>
                     <li class="pes"><a href="../editProfil/editProfil.php">Edit Profile</a></li>
-                    <li class="pen"><a href="../gantiPassword/gantiPassword.html">Ganti Password</a></li>
+                    <li class="pen"><a href="../gantiPassword/gantiPassword.php">Ganti Password</a></li>
                 </ul>
             </div> 
             <div class="container">

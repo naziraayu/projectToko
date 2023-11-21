@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Besok</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="besok.css".css" />
+</head>
+<body>
+    <header>
+        <div class="head">
+          <div class="nav">
+            <img src="../img/Ellipse 1.png" alt="logo" />
+                <ul>
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.html">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/kemarin.html">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.html">PENDAPATAN</a></li>
+                </ul>
+            </div> 
+        </div>
+    </header>
+    <div class="selector">
+        <div id="selectetField">
+            <p id="selectText">NURUL HIDAYAH</p>
+            <img src="../img/Vector.svg" alt="profile">
+            <img src="../img/Vector1.png" alt="profile">
+        </div>
+        <div class="selector-list">
+            <ul id="list" class="hide">
+                <li class="options1">
+                    <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
+                </li>
+                <li class="options">
+                    <img src="../img/Vector(3).png" alt="profile2">
+                    <a href="../editProfil/lihatProfil.html">Profil Saya</a>
+                </li>
+                <li class="options">
+                    <img src="../img/Pengaturan.png" alt="pengaturan">
+                    <a href="../editProfil/editProfil.html">Edit Profil</a>
+                </li>
+                <li class="options">
+                    <img src="../img/logout.png" alt="logout">
+                    <a href="../login/login.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var selectetField = document.getElementById("selectetField");
+        var selectText = document.getElementById("selectText");
+        var options = document.querySelectorAll(".options");
+        var list = document.getElementById("list");
+        
+        selectetField.addEventListener("click", function() {
+            list.classList.toggle("hide");
+        });
+        
+        options.forEach(option => { 
+            option.addEventListener("click", function() {
+                selectText.textContent = this.textContent;
+                list.classList.toggle("hide");
+            });
+        });
+    </script>
+    <div class="navbar">
+        <div class="content">
+            <ul>
+                <li class="baru" id="baruItem">
+                    <a href="../pesananSaya/kemarin.html" onclick="togglePesanan('baru')">Kemarin</a>
+                    <div class="img2">
+                        <img src="../img/proses.png" alt="" class="gambar-pesanan" id="baruImage" style="display: inline;" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content1">
+            <ul>
+                <li class="proses" id="prosesItem">
+                    <a href="../pesananSaya/hariIni.html" onclick="togglePesanan('proses')">Hari Ini</a>
+                    <div class="img3">
+                        <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content3">
+            <ul>
+                <li class="ajukanBatal" id="batalItem">
+                    <a href="../pesananSaya/besok.html" onclick="togglePesanan('ajukan')">Besok</a>
+                    <div class="img3">
+                        <img src="../img/Ajukan-batal.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="table-content">
+        <div class="content-yesterday">
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <div class="table-header">
+                                <div class="kemarin-header">
+                                    <h2>Kemarin</h2>
+                                </div>
+                                <div class="tgl-kemarin">
+                                    <h3>| Sabtu, 29 Oktober 2023</h3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+        <div class="content-today">
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <div class="table-header">
+                                <div class="today-header">
+                                    <h2>Hari Ini</h2>
+                                </div>
+                                <div class="tgl-today">
+                                    <h3>| Senin, 30 Oktober 2023</h3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <label class="container">
+                                        <input type="checkbox" checked="checked">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <label class="container">
+                                        <input type="checkbox" checked="checked">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <label class="container">
+                                        <input type="checkbox" checked="checked">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <label class="container">
+                                        <input type="checkbox" checked="checked">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <label class="container">
+                                        <input type="checkbox" checked="checked">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <label class="container">
+                                        <input type="checkbox" checked="checked">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <label class="container">
+                                        <input type="checkbox" checked="checked">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+        <div class="content-tomorrow">
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <div class="table-header">
+                                <div class="tomorrow-header">
+                                    <h2>Besok</h2>
+                                </div>
+                                <div class="tgl-tomorrow">
+                                    <h3>| Selasa, 31 Oktober 2023</h3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="menu">
+                                    <div class="first-menu">
+                                        <div class="nama-menu">
+                                            <h4>Putu Ayu</h4>
+                                        </div>
+                                        <div class="time">
+                                            <img src="../img/clock.png" alt="">
+                                            <p>10.00 - 11.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="second-menu">
+                                        <div class="jumlah">
+                                            <h3>78</h3>
+                                            <p>Pcs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
