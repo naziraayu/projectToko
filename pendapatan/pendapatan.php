@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="pendapatan.css">
+    <link rel="stylesheet" href="pendapatan1.css">
 </head>
 <script>
     window.onresize = function() {
@@ -81,16 +81,59 @@
                     <li class="stok"><a href="../stokEtalase/stokEtalase.html">STOK ETALASE</a></li>
                     <li class="pes"><a href="../pesananSaya/kemarin.html">PESANAN SAYA</a></li>
                     <li class="pen"><a href="../pendapatan/pendapatan.html">PENDAPATAN</a></li>
-                    <select class="select-box">
+                    <!-- <select class="select-box">
                         <option value="1">Nurul Hidayah</option>disabled
                         <option value="2">Profile Saya</option>
                         <option value="3">Pengaturan Profile</option>
                         <option value="4">Log Out</option><a href="../login/login.html"></a>
-                      </select>
+                    </select> -->
                 </ul>
             </div>
         </div>
     </header>
+    <div class="selector">
+        <div id="selectetField">
+            <p id="selectText">NURUL HIDAYAH</p>
+            <img src="../img/Vector.svg" alt="profile">
+            <img src="../img/Vector1.png" alt="profile">
+        </div>
+        <div class="selector-list">
+            <ul id="list" class="hide">
+                <li class="options1">
+                    <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
+                </li>
+                <li class="options">
+                    <img src="../img/Vector(3).png" alt="profile2">
+                    <p><a href="../profil/profil.php">Profil Saya</a></p>
+                </li>
+                <li class="options">
+                    <img src="../img/Pengaturan.png" alt="pengaturan">
+                    <p><a href="../editProfil/editProfil.php">Edit Profile</a></p>
+                </li>
+                <li class="options">
+                    <img src="../img/logout.png" alt="logout">
+                    <p><a href="../login/login.php">Logout</a></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var selectetField = document.getElementById("selectetField");
+        var selectText = document.getElementById("selectText");
+        var options = document.querySelectorAll(".options");
+        var list = document.getElementById("list");
+        
+        selectetField.addEventListener("click", function() {
+            list.classList.toggle("hide");
+        });
+        
+        options.forEach(option => {
+            option.addEventListener("click", function() {
+                selectText.textContent = this.textContent;
+                list.classList.toggle("hide");
+            });
+        });
+    </script>
     <div class="date">
         <div class="datetime">
             <p>Senin, 2 November 2023</p>
