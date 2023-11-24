@@ -424,6 +424,11 @@ color: #AC0000;
 border-bottom: 3px solid #BE7A74;
 }
 
+.card .card-nota .gambar img {
+  position: absolute;
+  width: 365px;
+}
+
 .card { 
   border-radius: 20px;
   border: 18px solid #FFF;
@@ -437,7 +442,7 @@ border-bottom: 3px solid #BE7A74;
   animation: slideInRight 2s;
 }
 .card-nota {
-  border-radius: 30px;
+  /* border-radius: 30px; */
   background: #FFF2F0;
   width: 360px;
   height: 360px;
