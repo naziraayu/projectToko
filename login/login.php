@@ -29,7 +29,7 @@ if (isset($_POST['btnlogin'])) {
                 } else if ($akses=='owner') {
                   ?>
                     <script>
-                      alert("Berhasil login sebagai Owner");
+                      alert("Berhasil Login Sebagai Owner");
                     </script>
                   <?php
                   header('location:../dashboard/dashboard.php');
@@ -37,27 +37,27 @@ if (isset($_POST['btnlogin'])) {
                 }
               }else {
                 ?>
-                  <script>alert("Password yang and masukkan salah");</script>
+                  <script>alert("Password Yang Anda Masukkan Salah");</script>
                 <?php
               }
             }else {
               ?>
-                <script>alert("No. Telepon yang anda masukkan salah");</script>
+                <script>alert("No. Telepon Yang Anda Masukkan Salah");</script>
               <?php
             }
           }else {
             ?>
-              <script>alert("Akun anda belum terdaftar");</script>
+              <script>alert("Akun Anda belum terdaftar");</script>
             <?php
           }
         }else {
           ?>
-            <script>alert("Kolom Password harus terisi");</script>
+            <script>alert("Kolom Password Harus Terisi");</script>
           <?php
         }
     }else {
       ?>
-        <script>alert("Kolom No. Telepon harus terisi");</script>
+        <script>alert("Kolom No. Telepon Harus Terisi");</script>
       <?php
     }
 }

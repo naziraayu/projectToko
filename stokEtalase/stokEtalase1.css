@@ -8,7 +8,7 @@
   font-family: Poppins;
   box-sizing: border-box;
 }
-
+ 
 body {
   margin: 0;
   padding: 0; 
@@ -455,8 +455,9 @@ a {
 .arrow.right {
   right: 0px;
 }
+
 .caraousel .slider .add {
-  margin-top: 200px;
+  margin-top: 150px;
   position: absolute;
   display: flex;
   align-items: center;
@@ -465,7 +466,7 @@ a {
 }
 .caraousel .slider .add input {
   margin-left: 4px;
-  width: 30px;
+  width: 40px;
   height: 25px;
   border: none;
   text-align: center;
@@ -474,29 +475,38 @@ a {
   background: transparent;
   color: #fff;
   font-size: 18px;
+  font-weight: 500;
 }
-.caraousel .slider span button {
-  color: #6A6D78;
+.caraousel .slider .add span button {
+  color: var(--nav--);
   font-size: 1.31rem;
   width: 30px;
   height: 30px;
   border-radius:50% ;
   position: relative;
   margin: 1px 0 0 5px;
+  cursor: pointer;
+  border: none;
+  background-color: #566d3f;
 }
-.caraousel .slider span button img {
-    height: 30px;
-    width: 30px;
-    position: relative;
-    margin: -2px;
-}
-.caraousel .slider  button:active {
-    color: white;
-    box-shadow: 0 0.2rem #dfd9d9;
-    transform: translateY(0.2rem);
-  }
 
-.simpan button {
+.caraousel .slider .simpann button {
+  position: absolute;
+  margin: 100px 0 0 -147px;
+  /* margin-top: 100px; */
+  width: 100px;
+  height: 25px;
+  background-color: #566d3f;
+  color: var(--nav--);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  /* box-shadow: -5px 5px 4px 0px rgba(0, 0, 0, 0
+  .25); */
+}
+/* .simpan button {
   position: absolute;
   margin-top: 480px;
   margin-left: 772px;
@@ -508,21 +518,38 @@ a {
   outline: none;
   border-radius: 15px;
   font-size: 15px;
-}
+} */
 
-.simpan button:active {
+.simpann button:active {
   color: white;
   box-shadow: 0 0.2rem #dfd9d9;
   transform: translateY(0.2rem);
 }
 
-.simpan button:hover:not(:disabled) {
+.simpann button:hover:not(:disabled) {
   background: var(--border--);
   color: white;
   text-shadow: 0 0.1rem #bcb4b4;
 }
 
-.simpan button:disabled {
+.simpann button:disabled {
+  cursor: auto;
+  color: grey;
+}
+
+.add span button:active {
+  color: white;
+  box-shadow: 0 0.2rem #dfd9d9;
+  transform: translateY(0.2rem);
+}
+
+.add span button:hover:not(:disabled) {
+  background: var(--border--);
+  color: white;
+  text-shadow: 0 0.1rem #bcb4b4;
+}
+
+.add span button:disabled {
   cursor: auto;
   color: grey;
 }
