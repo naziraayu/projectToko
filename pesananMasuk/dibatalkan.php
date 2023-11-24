@@ -22,11 +22,11 @@
             <div class="nav">
                 <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="mas"><a href="../master/admin.html">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.html">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
-                    <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
                 </ul> 
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div class="content"> 
                 <ul>
                     <li class="baru" id="baruItem">
-                        <a href="../pesananMasuk/pesananBaru1.html" onclick="togglePesanan('baru')">Pesanan Baru</a>
+                        <a href="../pesananMasuk/pesananBaru1.php" onclick="togglePesanan('baru')">Pesanan Baru</a>
                         <div class="img2">
                             <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="baruImage" style="display: inline;" />
                         </div> 
@@ -45,7 +45,7 @@
             <div class="content1">
                 <ul>
                     <li class="proses" id="prosesItem">
-                        <a href="../pesananMasuk/dalamProses.html" onclick="togglePesanan('proses')">Dalam Proses</a>
+                        <a href="../pesananMasuk/dalamProses.php" onclick="togglePesanan('proses')">Dalam Proses</a>
                         <div class="img3">
                             <img src="../img/proses.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
                         </div>
@@ -56,7 +56,7 @@
                 <ul>
                     <li class="ajukanBatal" id="ajukanbatalItem">
                         <!-- Update href sesuai dengan tujuan yang diinginkan -->
-                        <a href="../pesananMasuk/ajuanBatal.html" onclick="togglePesanan('ajukan')">Ajukan Batal</a>
+                        <a href="../pesananMasuk/ajuanBatal.php" onclick="togglePesanan('ajukan')">Ajukan Batal</a>
                         <div class="img3">
                             <img src="../img/Ajukan-batal.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
                         </div>
@@ -66,7 +66,7 @@
             <div class="content2">
                 <ul>
                     <li class="batal" id="batalItem">
-                        <a href="../pesananMasuk/dibatalkan.html" onclick="togglePesanan('batal')">Dibatalkan</a>
+                        <a href="../pesananMasuk/dibatalkan.php" onclick="togglePesanan('batal')">Dibatalkan</a>
                         <div class="img4">
                             <img src="../img/batal.png" alt="" class="gambar-pesanan" id="batalImage" style="display: inline;" />
                         </div>

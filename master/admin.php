@@ -157,18 +157,18 @@ if (isset($_REQUEST['hapus_admin'])) {
         </div>
     </div>
     <header>
-      <div class="head">
-        <div class="nav">
-          <img src="../img/Ellipse 1.png" alt="logo" />
-          <ul>
-            <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-            <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
-            <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
-            <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
-            <li class="log"><a href="../login/login.php">LOG OUT</a></li>
-          </ul>
+        <div class="head"> 
+            <div class="nav">
+            <img src="../img/Ellipse 1.png" alt="logo" />
+            <ul>
+                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+            </ul>
+            </div>
         </div>
-      </div>
     </header>
     <div class="container">
         <div class="form">

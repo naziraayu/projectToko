@@ -305,7 +305,7 @@ small1 {
 
 td.multi-content3 {
     border-bottom: 2px solid #C97D60;
-    background: #FFF;
+    /* background: #FFF; */
     height: 78px;
     margin-top: 6px;
     position: relative;}
@@ -320,6 +320,11 @@ td.multi-content3 {
         margin-top: -3px;
         position: fixed;
 
+    }
+    .row .table_responsive_detailpesanan .gambar img {
+        position: absolute;
+        width: 365px;
+        height: 200px;
     }
     .table_responsive_detailpesanan::-webkit-scrollbar {
         display: none;
