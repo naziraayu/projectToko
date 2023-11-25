@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etalase</title>
@@ -38,11 +38,11 @@
         </div>
     </div>
     <div class="button">
+        <div class="simpan">
+            <input type="text" name="Sisa Stok" id="" placeholder="Sisa Stok">
+        </div>
         <div class="edit">
             <button type="button"><img src="../img/edit.png" alt=""> Edit Sisa</button>
-        </div>
-        <div class="simpan">
-            <button type="button"><img src="../img/simp.png" alt=""> Simpan</button>
         </div>
     </div>
     <div class="table">

@@ -14,7 +14,7 @@ body {
   background: #FFF8F8;
 }
 
-:root {
+:root { 
   --head--: #ffc9c4;
   --nav--: #fff;
   --log--: #231210;
@@ -194,16 +194,21 @@ a {
   padding-left: 5px;
 }
 
+.button .simpan input {
+  width: 160px;
+  height: 40px;
+  border-radius: 10px;
+  border: 3px solid var(--button--);
+  padding-left: 5px;
+
+}
+
 .button .edit button {
   background: #0057d9;
-  margin-right: 10px;
+  margin-left: 10px;
   align-items: center;
   text-align: center;
   justify-content: center;
-}
-
-.button .simpan button {
-  background: var(--save--);
 }
 
 .button button:active {
