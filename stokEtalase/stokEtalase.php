@@ -84,6 +84,9 @@
         </div>
     </div>
     <div class="table-content">
+        <!-- <div class="gambar">
+            <img src="../img/Group 194.png" alt="">
+        </div> -->
         <table>
             <thead>
                 <tr>

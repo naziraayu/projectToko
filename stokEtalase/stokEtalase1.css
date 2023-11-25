@@ -148,7 +148,7 @@ a {
 
 .datetime {
   position: fixed;
-  position: -webkit-sticky;
+  position: -webkit-sticky; 
   width: 400px;
   height: 70px;
   border-radius: 50px;
@@ -182,6 +182,12 @@ a {
   margin: 150px 0 0 70px;
   overflow: scroll;
   animation: fadeInLeft 2s;
+}
+
+.table-content .gambar img {
+  position: relative;
+  width: 400px;
+  height: 350px;
 }
 
 .table-content::-webkit-scrollbar {
