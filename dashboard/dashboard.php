@@ -13,25 +13,25 @@
     <style></style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['', 'Penjualan', 'Pemesanan', 'Total'],
-          ['2014', 1500000, 1000000, 2000000],
-          ['2015', 1170000, 4600000, 2500000],
-          ['2016', 6600000, 1120000, 3000000],
-          ['2017', 1030000, 5400000, 3500000]
-        ]);
-        var options = {
-          chart: {
-            // title: 'Company Performance',
-            // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-          }
-        };
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+            ['', 'Penjualan', 'Pemesanan', 'Total'],
+            ['2014', 1500000, 1000000, 2000000],
+            ['2015', 1170000, 4600000, 2500000],
+            ['2016', 6600000, 1120000, 3000000],
+            ['2017', 1030000, 5400000, 3500000]
+            ]);
+            var options = {
+            chart: {
+                // title: 'Company Performance',
+                // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            }
+            };
+            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
     </script>
 </head>
 <body>

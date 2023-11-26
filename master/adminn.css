@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0; 
   background: #FFF8F8;
 }
 
@@ -503,8 +503,8 @@ input[type="file"]{
 }
 
 .input {
-  width: 130px;
-  padding: 10px 0px 10px 40px;
+  width: 280px;
+  padding: 10px 0px 10px 30px;
   border-radius: 9999px;
   border: none;
   /* border: solid 1px #333; */
@@ -518,14 +518,14 @@ input[type="file"]{
 .container-input svg {
   position: relative;
   top: 15px;
-  left: -30px;
+  left: -35px;
   transform: translate(0, -50%);
 }
 
-.input:focus {
+/* .input:focus {
   opacity: 1;
   width: 250px;
-}
+} */
 
 .table-section {
   height: 400px;
