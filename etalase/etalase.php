@@ -45,6 +45,9 @@
             <button type="button"><img src="../img/edit.png" alt=""> Edit Sisa</button>
         </div>
     </div>
+    <div class="setor">
+        <input type="text" name="Input Stok " placeholder="Input Stok" hidden>
+    </div>
     <div class="table">
         <div class="table-pesanan">
             <table>

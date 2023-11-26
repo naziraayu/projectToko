@@ -162,6 +162,21 @@ a {
   justify-content: center;
 }
 
+.setor {
+  position: relative;
+  margin-left: 1000px;
+  margin-top: 20px;
+  animation: slideInRight 2s;
+}
+
+.setor input {
+  width: 190px;
+  height: 40px;
+  border-radius: 10px;
+  border: 3px solid var(--button--);
+  padding-left: 5px;
+}
+
 .datetime img {
   position: absolute;
   margin: 5px 0 0 250px;
@@ -172,7 +187,7 @@ a {
   display: flex;
   position: relative;
   margin-left: 900px;
-  margin-top: -30px;
+  margin-top: -40px;
   animation: slideInRight 2s;
 }
 
@@ -192,7 +207,7 @@ a {
   justify-content: center;
   position: relative;
   padding-left: 5px;
-}
+} 
 
 .button .simpan input {
   width: 160px;
