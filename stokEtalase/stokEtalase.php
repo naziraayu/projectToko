@@ -89,18 +89,18 @@ $hari_iniTGL=$now->format('d-m-Y');
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="stokEtalase.css" /> 
+    <link rel="stylesheet" href="stokEtalase1.css" /> 
     <script src="stokEtalase.js" defer></script>
 </head>
 <body>
-    <header>  
+    <header>   
         <div class="head">
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="stok"><a href="../stokEtalase/stokEtalase.html">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/kemarin.html">PESANAN SAYA</a></li>
-                    <li class="pen"><a href="../pendapatan/pendapatan.html">PENDAPATAN</a></li>
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $_GET['id_supplier'];?>">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PENDAPATAN</a></li>
                     <!-- <li class="log"><a href="../login/login.html">LOG OUT</a></li> -->
                     <!-- <select class="select-box"> -->
                         <!-- <option value="1">Nurul Hidayah img</option> -->
@@ -108,7 +108,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                         <option value="3">Pengaturan Profile</option>
                         <option value="4">Log Out</option><a href="../login/login.html"></a>
                     </select> -->
-                </ul>
+                </ul> 
             </div> 
         </div>
     </header>
@@ -125,15 +125,15 @@ $hari_iniTGL=$now->format('d-m-Y');
                 </li>
                 <li class="options">
                     <img src="../img/Vector(3).png" alt="profile2">
-                    <p>Profil Saya</p>
+                    <p><a href="../profil/profil.php<?php echo $_GET['id_supplier'];?>">Profil Saya</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/Pengaturan.png" alt="pengaturan">
-                    <p>Edit Profile</p>
+                    <p><a href="../editProfil/editProfil.php<?php echo $_GET['id_supplier'];?>      ">Edit Profile</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/logout.png" alt="logout">
-                    <p>Logout</p>
+                    <p><a href="../login/login.php">Logout</a></p>
                 </li>
             </ul>
         </div>
@@ -156,7 +156,6 @@ $hari_iniTGL=$now->format('d-m-Y');
         });
     </script>
     <div class="date">
-    <form action="">
         <div class="datetime">
             <p><?php echo hari_ini().',  '.date('d', strtotime($hari_iniTGL)).' '.$bulan.' '.date('Y', strtotime($hari_iniTGL)); ?></p>
             <img src="../img/Group 9.png" alt="">
@@ -179,174 +178,76 @@ $hari_iniTGL=$now->format('d-m-Y');
                 </tr>
             </thead>
             <tbody>
+            <?php
+                if (isset($_GET['id_supplier'])) {
+                    $id_supp=$_GET['id_supplier'];
+                    $query="SELECT supplier_menu.id_suppmenu, SUM(detail_suppmenu_etalase.jumlah_setor) AS jumlah_setor, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.tanggal_setor, barang.nama_barang FROM detail_suppmenu_etalase JOIN supplier_menu ON detail_suppmenu_etalase.id_suppmenu=supplier_menu.id_suppmenu JOIN barang ON barang.id_barang=supplier_menu.id_barang WHERE supplier_menu.id_user='$id_supp' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_suppmenu";
+                    $result=mysqli_query($koneksi, $query);
+                    if ($num=mysqli_num_rows($result) != 0) {
+                        while ($row=mysqli_fetch_array($result)) {
+                            $id_suppmenu=$row['id_suppmenu'];
+                            $jumlh_setor=$row['jumlah_setor'];
+                            $jam=$row['jam'];
+                            $tanggal=$row['tanggal_setor'];
+                            $nama=$row['nama_barang'];
+                ?>
                 <tr>
                     <td>
                         <div class="menu">
                             <div class="first-menu">
                                 <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
+                                    <h4><?php echo $nama; ?></h4>
                                 </div>
                                 <div class="time">
                                     <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
+                                    <p><?php echo $jam;?> WIB</p>
                                 </div>
                             </div>
                             <div class="second-menu">
                                 <div class="jumlah">
-                                    <h3>78</h3>
+                                    <h3><?php echo $jumlh_setor;?></h3>
                                     <p>Pcs</p>
                                 </div>
                             </div>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>  
+                <?php }
+                }else{ ?>
+                <div class="gambar">
+                    <img src="../img/Group 194.png" alt="">
+                </div>
+                <?php } ?>
+            </tbody>
         </table>
     </div>
     <div class="container">
         <div class="caraousel">
             <div class="slider">
             <?php
-                $id_supp=$_GET['id_supplier'];
-                $qry_stokEtalase="SELECT barang.gambar_barang, barang.nama_barang, supplier_menu.harga_beli, user.id_user, supplier_menu.id_suppmenu 
-                FROM barang JOIN supplier_menu ON barang.id_barang=supplier_menu.id_barang JOIN user ON  user.id_user=supplier_menu.id_user 
-                WHERE supplier_menu.id_user='$id_supp'";
+                $qry_stokEtalase="SELECT barang.gambar_barang, barang.nama_barang, supplier_menu.harga_beli, user.id_user, supplier_menu.id_suppmenu FROM barang JOIN supplier_menu ON barang.id_barang=supplier_menu.id_barang JOIN user ON  user.id_user=supplier_menu.id_user WHERE supplier_menu.id_user='$id_supp'";
                 $rslt_stokEtalase=mysqli_query($koneksi, $qry_stokEtalase);
                 while ($row_stok=mysqli_fetch_array($rslt_stokEtalase)) {
-                $foto=$row_stok['gambar_barang'];
-                $nama=$row_stok['nama_barang'];
+                    $foto=$row_stok['gambar_barang'];
+                    $nama=$row_stok['nama_barang'];
+                    $id=$row_stok['id_suppmenu'];
             ?>
                 <section>
                     <p><?php echo $nama; ?></p>
-                    <img src="../gambar/<?php echo $foto; ?>" draggable="false" alt="">
+                    <img src="../gambar/<?php echo $foto; ?>" alt="">
                     <div class="add">
-                        <span class="dec button"><button><img src="../img/minus.png" alt=""></button></span>
-                        <input type="text" name="angka" id="" value="0">
-                        <span class="inc button"><button><img src="../img/plus.png" alt=""></button></span>
+                        <span class="dec button"><button><i class="fa-solid fa-minus"></i></button></span>
+                        <input type="text" name="angka_<?php echo $id; ?>" id=""  value="0">
+                        <span class="inc button"><button><i class="fa-solid fa-plus"></i></button></span>
+                    </div>
+                    <div class="simpann">
+                        <button type="submit" onclick="hitung(<?php echo $id; ?>)" >Simpan</button>
+                        <script>
+                            function hitung(id) {
+                                var angka=document.getElementsByName('angka_' + id)[0].value;
+                                window.location.href="stokEtalase.php?id_supplier="+ <?php echo $id_supp;?> +"&id_suppmenu="+id+"&angka="+angka;
+                            }
+                        </script>
                     </div>
                 </section>
                 <?php
@@ -382,7 +283,24 @@ $hari_iniTGL=$now->format('d-m-Y');
                         
                     }
                 </script>
-                </div>
+                <?php
+                    $jam=date('H:i:s');
+                    $tanggal=date('Y:m:d');
+                    if (isset($_GET['angka'])) {
+                        $id=$_GET['id_supplier'];   
+                        $id_suppmenu=$_GET['id_suppmenu'];
+                        $setor=$_GET['angka'];
+                        $query="INSERT INTO `detail_suppmenu_etalase` (`id_setorEtalase`, `jumlah_setor`, `sisa`, `jam`, `tanggal_setor`, `id_suppmenu`) VALUES (NULL, '$setor', 0, '$jam', '$tanggal', '$id_suppmenu')";
+                        $result=mysqli_query($koneksi, $query);
+                        ?>
+                        <script>
+                            window.location.href="stokEtalase.php?id_supplier=<?php echo $id; ?>";
+                        </script>
+                        <?php
+                    }
+                }
+                ?>
+            </div>
             <div class="controls">
                 <span class="arrow left"><i class="fa-solid fa-angle-left"></i></span>
                 <span class="arrow right"><i class="fa-solid fa-angle-right"></i></span>
@@ -390,8 +308,7 @@ $hari_iniTGL=$now->format('d-m-Y');
         </div>
     </div>
     <div class="simpan">
-        <button type="submit" name="btnSimpan">Simpan</button>
+        <button type="submit">Simpan</button>
     </div>
-    </form>____
 </body>
 </html>
