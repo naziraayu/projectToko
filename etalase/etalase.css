@@ -154,12 +154,15 @@ a {
   /* z-index: 1; */
 }
 
-.datetime p {
+.datetime input {
   margin: 8px 0 0 20px;
   /* margin-left: 100px; */
+  border: none;
+  background: transparent;
   position:absolute;
   font-size: 16px;
   justify-content: center;
+  width: 250px;
 }
 
 .setor {

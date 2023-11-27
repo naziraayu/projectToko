@@ -12,7 +12,7 @@ if (isset($_POST['btnlogin'])) {
           $num=mysqli_num_rows($result);
           if ($num != 0) {
             $row=mysqli_fetch_assoc($result);
-            $id_user= $row['id_user']; 
+            $id_user= $row['id_user'];  
             $akses=$row['akses'];
             $telp=$row['no_telepon'];
             $pw=$row['password'];
