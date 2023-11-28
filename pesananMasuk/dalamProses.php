@@ -206,7 +206,7 @@ require("../login/koneksi.php");
         }else {
             ?>
             <div class="gambar">
-                <img src="../img/Group 193.png" alt="">
+                <img src="../img/Group 193.png" alt=""> 
             </div>
             <?php
         }

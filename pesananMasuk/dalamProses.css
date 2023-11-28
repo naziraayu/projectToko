@@ -13,7 +13,7 @@
   :root {
     --head--: #FFC9C4;
     --nav--: #FFF;
-    --log--: #231210;
+    --log--: #231210; 
     --hovera--: #BA7A74;
     --main--: #FFF2F0;
     --footer--: #99716D;
@@ -532,7 +532,38 @@ td.multi-content3 {
         letter-spacing: 1.2px;
     }
 
-    
+    button.button1:active {
+        color: white;
+        box-shadow: 0 0.2rem #dfd9d9;
+        transform: translateY(0.2rem);
+      }
+      
+      button.button1:hover:not(:disabled) {
+        background: var(--border--);
+        color: white;
+        text-shadow: 0 0.1rem #bcb4b4;
+      }
+      
+      button.button1:disabled {
+        cursor: auto;
+        color: grey;
+      }
+      button.button2:active {
+        color: white;
+        box-shadow: 0 0.2rem #dfd9d9;
+        transform: translateY(0.2rem);
+      }
+      
+      button.button2:hover:not(:disabled) {
+        background: var(--border--);
+        color: white;
+        text-shadow: 0 0.1rem #bcb4b4;
+      }
+      
+      button.button2:disabled {
+        cursor: auto;
+        color: grey;
+      }
 
     .nav li {
         display: table-cell;

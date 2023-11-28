@@ -92,9 +92,9 @@
         #main-content {
             position: absolute;
             color: black;
-            left: 30%;
+            left: 25%;
             top: 158% ;
-            height: 80%;
+            height: 100%;
             width: 50%;
         }
     </style>
@@ -147,6 +147,22 @@
     <div data-aos="fade-up" data-aos-duration="1200" class="pendapatan">
         <h1 ><a href="#">PENDAPATAN BERSIH</a></h1>
     </div>
+    <section>
+        <div class="container-pendapatan">
+            <div data-aos="fade-up" data-aos-duration="1200" class="penjualan">
+                <h2>Penjualan</h2>
+                <h3>700.000 </h3>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1400" class="pesanan">
+                <h2>Pesanan</h2>
+                <h3>300.000</h3>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1200" class="hasil">
+                <h2>TOTAL PENDAPATAN</h2>
+                <h3>1.000.000</h3>
+            </div>
+        </div>
+    </section>
     <div data-aos="fade-right" data-aos-duration="1200" class="table">
         <div class="title-penjualan">
             <h3>DETAIL PENJUALAN</h3>
@@ -367,22 +383,7 @@
             </table>
         </div>
     </div>
-    <section>
-        <div class="container-pendapatan">
-            <div data-aos="fade-up" data-aos-duration="1200" class="penjualan">
-                <h2>Penjualan</h2>
-                <h3>700.000 </h3>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1400" class="pesanan">
-                <h2>Pesanan</h2>
-                <h3>300.000</h3>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1200" class="hasil">
-                <h2>TOTAL PENDAPATAN</h2>
-                <h3>1.000.000</h3>
-            </div>
-        </div>
-    </section>
+    
     <div data-aos="fade-up" data-aos-duration="1600" id="main-content">
         <pie-chart id="pieChart" style="display:block;height:50%;width:100%;position:relative;">
             <pchart-element name="Penjualan" value="700.000" colour="#40A090">
@@ -408,7 +409,7 @@
     }
 </script>
 <script src="pie-chart-js.js"></script> 
-    <div data-aos="fade-up" data-aos-duration="1200" class="tabel">
+    <div data-aos="fade-left" data-aos-duration="1200" class="tabel">
         <div class="title-pesanan">
             <h3>DETAIL PESANAN</h3>
         </div>

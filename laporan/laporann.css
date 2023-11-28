@@ -283,8 +283,8 @@ h3 {
 }
 
 .table {
-  margin: 100px 0 0 20px;
-  width: 480px;
+  margin: 100px 0 0 30px;
+  width: 680px;
   height: 400px;
   border-radius: 20px;
   background: #fff;
@@ -295,10 +295,10 @@ h3 {
 
 .title-penjualan h3 {
   position: relative;
-  margin: 30px 0 0 150px;
+  margin: 30px 0 0 230px;
   /* text-align: center; */
   color: var(--button--);
-  font-size: 20px;
+  font-size: 23px;
   padding-top: 25px;
 }
 
@@ -327,7 +327,7 @@ h3 {
 .table-penjualan table {
   width: 100px;
   table-layout: fixed;
-  min-width: 450px;
+  min-width: 650px;
   margin-left: 15px;
   /* text-align: center; */
   border-collapse: collapse;
@@ -339,7 +339,7 @@ h3 {
   position: sticky;
   top: 1;
   background-color: var(--table--);
-  font-size: 10px;
+  font-size: 13px;
   border-radius: 10px;
 }
 
@@ -355,7 +355,7 @@ td {
 
 .table-penjualan td {
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 tr:hover td {
@@ -365,8 +365,8 @@ tr:hover td {
 section {
   position: relative;
   text-align: center;
-  margin-top: -450px;
-  margin-left: 490px;
+  margin-top: 50px;
+  margin-left: 280px;
 }
 
 .container-pendapatan {
@@ -375,27 +375,30 @@ section {
 }
 
 .penjualan {
-  width: 160px;
+  width: 300px;
   height: 80px;
   background: #40a090;
   margin: 50px 0 0 35px;
   position: relative;
+  border-radius: 10px;
 }
 
 .pesanan {
-  width: 160px;
+  width: 300px;
   height: 80px;
   background: var(--button--);
   margin: 50px 0 0 10px;
   position: relative;
+  border-radius: 10px;
 }
 
 .hasil {
-  width: 320px;
+  width: 600px;
   height: 80px;
   background: #6aa475;
-  margin: 370px 0 0 -365px;
+  margin: 420px 0 0 -640px;
   position: relative;
+  border-radius: 10px;
 }
 
 .penjualan h2 {
@@ -406,8 +409,8 @@ section {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-top: 5px;
-  margin-left: -60px;
+  margin-top: 10px;
+  margin-left: -180px;
 }
 
 .penjualan h3 {
@@ -419,7 +422,7 @@ section {
   font-weight: 700;
   line-height: normal;
   margin-top: 10px;
-  margin-left: 30px;
+  margin-left: 100px;
 }
 
 .pesanan h2 {
@@ -430,8 +433,8 @@ section {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-top: 5px;
-  margin-left: -70px;
+  margin-top: 10px;
+  margin-left: -180px;
 }
 .pesanan h3 {
   color: #fff;
@@ -442,7 +445,7 @@ section {
   font-weight: 700;
   line-height: normal;
   margin-top: 10px;
-  margin-left: 30px;
+  margin-left: 100px;
 }
 
 .hasil h2 {
@@ -453,7 +456,7 @@ section {
   font-weight: 600;
   line-height: normal;
   margin-top: 10px;
-  margin-left: -150px;
+  margin-left: -400px;
   /* width: 103px; */
   /* height: 37.2px; */
 }
@@ -468,12 +471,12 @@ section {
   font-weight: 700;
   line-height: normal;
   margin-top: 5px;
-  margin-left: 140px;
+  margin-left: 350px;
 }
 
 .tabel {
-  margin: -430px 0 0 900px;
-  width: 350px;
+  margin: -430px 0 0 740px;
+  width: 500px;
   height: 400px;
   border-radius: 20px;
   background: #fff;
@@ -484,10 +487,10 @@ section {
 
 .title-pesanan h3 {
   position: relative;
-  margin: 30px 0 0 100px;
+  margin: 30px 0 0 170px;
   /* text-align: center; */
   color: var(--button--);
-  font-size: 20px;
+  font-size: 23px;
   padding-top: 25px;
 }
 
@@ -516,7 +519,7 @@ section {
 .tabel-pesanan table {
   width: 100px;
   table-layout: fixed;
-  min-width: 320px;
+  min-width: 470px;
   margin-left: 15px;
   /* text-align: center; */
   border-collapse: collapse;
@@ -528,7 +531,7 @@ section {
   position: sticky;
   top: 1;
   background-color: var(--table--);
-  font-size: 10px;
+  font-size: 13px;
   border-radius: 10px;
 }
 
@@ -539,12 +542,12 @@ td {
   word-break: break-all;
   text-align: center;
   border-radius: 10px;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .tabel-pesanan td {
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 tr:hover td {
