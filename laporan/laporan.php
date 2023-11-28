@@ -116,8 +116,8 @@
     </header>
     <div class="date">
         <div data-aos="fade-left" data-aos-duration="1200" class="datetime">
-            <p>Hari Ini</p>
-            <img src="../img/Group 9.png" alt="">
+            <input type="date">
+            <!-- <img src="../img/Group 9.png" alt=""> -->
         </div>
     </div>
     <div data-aos="zoom-in" data-aos-duration="1200" class="grafik">
@@ -156,15 +156,17 @@
                 <thead>
                     <tr>
                         <th>Nama <br> Barang</th>
+                        <th>Nama <br> Supplier</th>
                         <th>Jam Input</th>
                         <th>Stok</th>
                         <th>Sisa</th>
                         <th>Laku</th>
-                        <th>Penghasilan</th>
+                        <th>Total</th>
                     </tr>
                     <tbody>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -173,6 +175,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -181,6 +184,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -189,6 +193,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -197,6 +202,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -205,6 +211,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -213,6 +220,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -221,6 +229,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -229,6 +238,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -237,6 +247,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -245,6 +256,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -253,6 +265,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -261,6 +274,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -269,6 +283,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -277,6 +292,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -285,6 +301,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -293,6 +310,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -301,6 +319,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -309,6 +328,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -317,6 +337,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -325,6 +346,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -333,6 +355,7 @@
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -394,139 +417,162 @@
                 <thead>
                     <tr>
                         <th>Nama <br> Barang</th>
+                        <th>Mana <br> Supplier</th>
                         <th>Jam Antar</th>
                         <th>Jumlah</th>
-                        <th>Penghasilan</th>
+                        <th>Total</th>
                     </tr>
                     <tbody>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
                         </tr>
                         <tr>
                             <td>Kue Putu</td>
+                            <td>Nazira Ayu</td>
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>
@@ -839,7 +885,7 @@
                             <td>500.000</td>
                         </tr>
                         <tr>
-                            <td>Kue Putu</td>
+                            <td>Kue Putu</td>                        
                             <td>09.00</td>
                             <td>500</td>
                             <td>50</td>

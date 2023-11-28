@@ -63,7 +63,7 @@ if (isset($_GET['hapus_suppmenu'])) {
     <link rel="stylesheet" href="adminn.css" />
 </head>    
 <body>
-    <div class="sidebar">
+<div class="sidebar">
         <div class="content">
             <ul>
                 <li class="ad"><a href="../master/admin.php">Admin</a></li>
@@ -72,14 +72,15 @@ if (isset($_GET['hapus_suppmenu'])) {
                 <li class="men"><a href="../master/menu.php">Menu</a></li>
                 <li class="pac"><a href="../master/paket.php">Paket</a></li>
                 <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
-                <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
+                <li class="supmen"></li><a href="../master/supMen.php">Supplier Menu</a>
+            </li>
             </ul>
         </div>
     </div>
     <header>
         <div class="head">
             <div class="nav">
-                <img src="../img/Ellipse 1.png" alt="logo" />
+            <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
                     <li class="mas"><a href="../master/admin.php">MASTER</a></li>
                     <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>

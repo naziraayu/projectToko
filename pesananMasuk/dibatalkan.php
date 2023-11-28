@@ -1,3 +1,6 @@
+<?php
+require("../login/koneksi.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +25,7 @@
             <div class="nav">
                 <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
                     <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
                     <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
                     <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
@@ -119,332 +122,59 @@
             <div class="table-penjualan">
                 <table>
                     <thead>
-                        <tr>
-                            <th>Nama <br> Supplier</th>
-                            <th>Total QTY</th>
-                            <th>Sisa Stok</th>
-                            <th>Total Nominal</th>
-                            <th>Pengeluaran</th>
-                            <th>Pendapatan</th>
+                    <tr>
+                            <th>Nama <br> Customer</th>
+                            <th>Tanggal <br> Bayar</th>
+                            <th>Grand <br> Total</th>
+                            <th>Total <br> Bayar</th>
+                            <th>Kurang</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                         <tbody>
+                        <?php
+                            $query="SELECT user.nama, transaksi.grand_total, transaksi.dibayarkan, transaksi.tgl_transaksi, transaksi.kurang_bayar, transaksi.no_nota, status_transaksi.status, status_transaksi.tgl_pengambilan FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.status='pesanan dibatalkan' ORDER BY status_transaksi.tgl_pengambilan ASC;";
+                            $result=mysqli_query($koneksi, $query);
+                            while ($row=mysqli_fetch_array($result)) {
+                                $nama=$row['nama'];
+                                $tanggal=$row['tgl_transaksi'];
+                                $grandTotal=$row['grand_total'];
+                                $total_bayar=$row['dibayarkan'];
+                                $kurang=$row['kurang_bayar'];
+                                $status=$row['status'];
+                                $noNota=$row['no_nota'];
+                        ?>
                             <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
+                                <td><?php echo $nama; ?></td>
+                                <td><?php echo $tanggal; ?></td>
+                                <td><?php echo $grandTotal; ?></td>
+                                <td><?php echo $total_bayar; ?></td>
+                                <td><?php echo $kurang; ?></td>
+                                <td><?php echo $status; ?></td>
                                 <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
+                                    <button><a href="dibatalkan.php?tampil_batalkan=<?php echo $noNota; ?>"><i class="fa-solid fa-arrow-right"></i></a></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kue Putu</td>
-                                <td>09.00</td>
-                                <td>500</td>
-                                <td>50</td>
-                                <td>450</td>
-                                <td>500.000</td>
-                                <td>
-                                    <button><i class="fa-solid fa-arrow-right"></i></button>
-                                </td>
-                            </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </thead>
                 </table>
             </div>
         </div>
-          <!-- <table class="daftar-pesanan">
-              <h2>DAFTAR PESANAN</h2>
-            <tr>
-              <th>NAMA CUSTOMER</th>
-              <th>JAM PENGAMBILAN</th>
-              <th>TOTAL ITEM</th>
-              <th>TOTAL NOMINAL</th>
-              <th>STATUS PEMBAYARAN</th>
-              <th>TANDA CUSTOMER</th>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-            </tr>
-          </table> -->
           <div class="card">
             <div class="card-nota">
+                <?php
+                    if (isset($_GET['tampil_batalkan'])) {
+                        $no=$_GET['tampil_batalkan'];
+                        $query="SELECT user.nama, transaksi.no_nota, status_transaksi.jam FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN status_transaksi ON status_transaksi.no_nota=transaksi.no_nota WHERE transaksi.no_nota='$no'";
+                        $result=mysqli_query($koneksi, $query);
+                        while ($row=mysqli_fetch_array($result)) {
+                            $nama=$row['nama'];
+                            $jam=$row['jam'];
+                            $no_nota=$row['no_nota'];
+                ?>
                 <table>
                     <thead>
                         <tr>
@@ -452,32 +182,40 @@
                                 <div class="order">
                                     <div class="img-nota"><img src="../img/Group (1).png" alt=""></div>
                                     <div class="name">
-                                        <div class="cus"><h4>ANANTA GHAISANI</h4></div>
-                                        <div class="waktu"><p>08:00 - 09:00</p></div>
-                                        <div class="no-nota"><p>ORD-1562792779615</p></div>
+                                        <div class="cus"><h4><?php echo $nama;?></h4></div>
+                                        <div class="waktu"><p><?php echo $jam;?></p></div>
+                                        <div class="no-nota"><p><?php echo $no_nota;?></p></div>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </thead>
+                <?php }?>
                     <tbody>
                         <tr>
                             <td class="multi-content"> 
                                 <div class="col">
+                                    <?php
+                                        $query="SELECT detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, barang.harga_jual, transaksi.no_nota FROM barang JOIN detail_transaksi ON barang.id_barang=detail_transaksi.id_barang JOIN transaksi ON detail_transaksi.no_nota=transaksi.no_nota WHERE transaksi.no_nota='$no'";
+                                        $result=mysqli_query($koneksi, $query);
+                                        while ($row1=mysqli_fetch_array($result)) {
+                                            $nama_brg=$row1['nama_barang'];
+                                            $harga_jual=$row1['harga_jual'];
+                                            $total=$row1['total'];
+                                            $qty=$row1['qty'];
+                                    ?>
+                                    <div class="item"><?php echo $qty;?>x 
+                                        <span class="nama"><?php echo $nama_brg;?></span> 
+                                        <span class="harga-satuan"><?php echo $harga_jual;?></span> 
+                                        <span class="total"><?php echo $total;?></span>
+                                    </div>
+                                    <?php }?>
+                                </div>
+                                <div class="col4">
                                     <div class="item">30x 
                                         <span class="nama">Korean Garlic Cheese</span> 
                                         <span class="harga-satuan">2.000 </span> 
                                         <span class="total">60.000</span>
-                                    </div>
-                                    <div class="item">30x 
-                                        <span class="nama">Brownies Panggang</span> 
-                                        <span class="harga-satuan"> 2.500 </span> 
-                                        <span class="total">1.175.000</span>
-                                    </div>
-                                    <div class="item">30x 
-                                        <span class="nama">Paket Mini 5</span> 
-                                        <span class="harga-satuan">7.000</span>
-                                        <span class="total">210.000</span>
                                     </div>
                                 </div>
                                 <div class="col2">
@@ -497,12 +235,22 @@
                                             <div class="ket-gambar"><img src="../img/Rectangle 58.png" alt="order"></div>
                                         </div>
                                     </div>
+                                    <?php
+                                        $query="SELECT transaksi.grand_total, transaksi.dibayarkan, transaksi.kurang_bayar, transaksi.status_bayar, transaksi.bukti_bayar FROM transaksi WHERE transaksi.no_nota='$no'";
+                                        $result=mysqli_query($koneksi, $query);
+                                        while ($row2=mysqli_fetch_array($result)) {
+                                            $grand_total=$row2['grand_total'];
+                                            $dibayarkan=$row2['dibayarkan'];
+                                            $kurang_bayar=$row2['kurang_bayar'];
+                                            $status_bayar=$row2['status_bayar'];
+                                    ?>
                                     <div class="row2">
-                                        <div class="ket">Total<span class="harga">234.000</span></div>
-                                        <div class="ket">Bayar<span class="harga">100.000</span></div>
-                                        <div class="ket">Kurang<span class="harga">134.000</span></div>
-                                        <div class="ket">Status<span class="harga">DP</span></div>
+                                        <div class="ket">Total<span class="harga"><?php echo $grand_total;?></span></div>
+                                        <div class="ket">Bayar<span class="harga"><?php echo $dibayarkan;?></span></div>
+                                        <div class="ket">Kurang<span class="harga"><?php echo $kurang_bayar;?></span></div>
+                                        <div class="ket">Status<span class="harga"><?php echo $status_bayar;?></span></div>
                                     </div>
+                                    <?php }?>
                                 </div>
                             </td>
                         </tr>
@@ -510,61 +258,32 @@
                 </table>
                 <div class="wrapper">
                     <div>
-                        <button class="button1" type="submit1" name="proses">PROSES</button>
-                        <button class="button2" type="submit2" name="tolak">TOLAK</button>
+                        <button class="button2" type="submit2" name="tolak" onclick="batalkan()">BATAL</button>
+                        <script>
+                            function batalkan() {
+                                <?php
+                                    $noo=$_GET['tampil_batalkan'];
+                                    $query="UPDATE status_transaksi set status='pesanan diproses' where no_nota='$noo'";
+                                    $result=mysqli_query($koneksi, $query);
+                                    if ($result) {
+                                        ?>
+                                        alert("Pesanan batal dibatalkan");
+                                        window.location.href="dibatalkan.php";
+                                        <?php
+                                    }
+                                ?>
+                            }
+                        </script>
                     </div>
                 </div>
+                <?php }else {
+                    ?>
+                    <div class="gambar">
+                            <img src="../img/Group 194.png" alt="">
+                        </div>
+                    <?php
+                } ?>
             </div>
         </div>
-        <!-- <div class="row">
-          <div class="table_responsive">
-              <table class="table">
-                  <tr>
-                      <td class="multi-content1">
-                          <div class="top">Ananta Ghaisani</div>
-                          <div class="left"><img src="../img/Group (1).png" alt="order"></div>
-                          <div class="bottom">08:00 - 09.00 <br>
-                           <span class="order">ORD-1562792779615</span>
-                          </div>
-                      </td>
-                  </tr>
-                  <tr>
-                    <td class="multi-content2"> 
-                        <div class="col">
-                            <div class="item">30x <span class="nama">Brownies Pandan</span> <span class="harga-satuan">2.000 </span> <span class="total">60.000</span></div>
-                            <div class="item">30x <span class="nama">Brownies Panggang</span> <span class="harga-satuan"> 2.500 </span> <span class="total">75.000</span></div>
-                            <div class="item">30x <span class="nama">Paket Mini 5</span> <span class="harga-satuan">7.000</span><span class="total">210.000</span></div>
-                            <div class="item2">Sus buah</div>
-                            <div class="item2">Lemper</div>
-                            <div class="item2">Sosis Solo</div>
-                            <div class="item2">Putu</div>
-                            <div class="item2">Pastel</div>
-                        </div>
-                    </td>
-                  </tr>
-        <tr>
-          <td class="multi-content3">
-            <div class="col">
-              <div class="row1">
-                <div class="gambar-kontainer">
-                  <div class="ket-gambar"><img src="../img/Rectangle 58.png" alt="order"></div>
-                </div>
-                <div class="row2">
-                  <div class="ket">Total<span class="harga">234.000</span></div>
-                  <div class="ket">Bayar<span class="harga">100.000</span></div>
-                  <div class="ket">Kurang<span class="harga">134.000</span></div>
-                  <div class="ket">Status<span class="harga">DP</span></div>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-    </table>
-<div class="wrapper">
-  <div>
-  <button class="button1"type="submit1" name="proses">PROSES</button>
-  <button class="button2"type="submit2" name="tolak">TOLAK</button>
-  </div>
-</div> -->
 </body>
 </html>

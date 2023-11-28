@@ -1,3 +1,15 @@
+<?php
+require("../login/koneksi.php");
+if (isset($_POST['btn_edit'])) {
+    $id=$_POST['Input_Stok'];
+    $sisa_s=$_POST['Sisa_Stok'];
+    $query="update detail_suppmenu_etalase set sisa='$sisa_s' where id_setorEtalase='$id'";
+    $result=mysqli_query($koneksi, $query);
+    ?><script>
+        alert("berhasil menginputkan sisa stok");
+    </script><?php
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>  
@@ -12,18 +24,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="etalase.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet"  type="text/css" href="css/jquery-ui.css">
 </head>
 <body>
     <header>
         <div class="head"> 
             <div class="nav">
+                <form action="etalase.php" method="post">
                 <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
                     <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.html">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
+                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
                     <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
                 </ul>
             </div>
         </div>
@@ -33,21 +50,37 @@
     </div>
     <div class="date">
         <div class="datetime">
-            <p>Hari Ini</p>
-            <img src="../img/Group 9.png" alt="">
+            <input type="date" name="Hari_ini" placeholder="Hari Ini">
         </div>
     </div>
     <div class="button">
         <div class="simpan">
-            <input type="text" name="Sisa Stok" id="" placeholder="Sisa Stok">
+            <input type="text" name="Sisa_Stok" id="Sisa_Stok" placeholder="Sisa Stok">
         </div>
         <div class="edit">
-            <button type="button"><img src="../img/edit.png" alt=""> Edit Sisa</button>
+            <button type="submit" name="btn_edit" ><img src="../img/edit.png" alt=""> Edit Sisa</button>
         </div>
     </div>
     <div class="setor">
-        <input type="text" name="Input Stok " placeholder="Input Stok" hidden>
+        <input type="hidden" name="Input_Stok" id="Input_Stok" placeholder="Input Stok">
     </div>
+    <?php
+                if (isset($_GET['id_setor'])) {
+                    $id=$_GET['id_setor'];
+                    $query="select sisa, id_setorEtalase from detail_suppmenu_etalase where id_setorEtalase='$id'";
+                    $result=mysqli_query($koneksi, $query);
+                    while ($row=mysqli_fetch_array($result)) {
+                        $id_setorEtalase=$row['id_setorEtalase'];
+                        $sisa=$row['sisa'];
+                    }
+                    ?>
+                    <script>
+                        document.getElementById('Sisa_Stok').value="<?php echo $sisa;?>";
+                        document.getElementById('Input_Stok').value="<?php echo $id_setorEtalase;?>";
+                    </script>
+                    <?php   
+                }
+            ?>
     <div class="table">
         <div class="table-pesanan">
             <table>
@@ -55,177 +88,62 @@
                     <tr>
                         <th>Nama Barang</th>
                         <th>Jam Antar</th>
-                        <th>Jumlah</th>
-                        <th>Penghasilan</th>
+                        <th>Jumlah<br>Setor</th>
+                        <th>Sisa Setor</th>
                     </tr>
+                    <?php
+                    if (isset($_REQUEST['Hari_ini'])) {
+                        $tanggal=$_REQUEST['Hari_ini'];
+                        //     $query="SELECT supplier_menu.id_suppmenu, detail_suppmenu_etalase.id_setorEtalase, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.tanggal_setor, barang.nama_barang FROM detail_suppmenu_etalase JOIN supplier_menu ON detail_suppmenu_etalase.id_suppmenu=supplier_menu.id_suppmenu JOIN barang ON barang.id_barang=supplier_menu.id_barang WHERE detail_suppmenu_etalase.tanggal_setor='$tanggal' GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        //     $result=mysqli_query($koneksi, $query);
+                        //     while ($row=mysqli_fetch_array($result)) {
+                        //         $id_suppmenu=$row['id_suppmenu'];
+                        //         $id_setorEtalase=$row['id_setorEtalase'];
+                        //         $jumlah_setor=$row['jumlah_setor'];
+                        //         $sisa=$row['sisa'];
+                        //         $jam=$row['jam'];
+                        //         $tanggal_setor=$row['tanggal_setor'];
+                        //         $nama=$row['nama_barang'];
+                        ?>
+                        <!-- // <tr>
+                        // </tr> -->
+                        <script>
+                            alert("<?php echo $tanggal;?>")
+                        </script>
+                        <?php }   
+                    //}
+                    ?>
                     <tbody>
+                        <?php
+                            $query="SELECT supplier_menu.id_suppmenu, detail_suppmenu_etalase.id_setorEtalase, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.tanggal_setor, barang.nama_barang FROM detail_suppmenu_etalase JOIN supplier_menu ON detail_suppmenu_etalase.id_suppmenu=supplier_menu.id_suppmenu JOIN barang ON barang.id_barang=supplier_menu.id_barang WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                            $result=mysqli_query($koneksi, $query);
+                            while ($row=mysqli_fetch_array($result)) {
+                                $id_suppmenu=$row['id_suppmenu'];
+                                $id_setorEtalase=$row['id_setorEtalase'];
+                                $jumlah_setor=$row['jumlah_setor'];
+                                $sisa=$row['sisa'];
+                                $jam=$row['jam'];
+                                $tanggal_setor=$row['tanggal_setor'];
+                                $nama=$row['nama_barang'];
+                        ?>
                         <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
+                            <td><?php echo $nama; ?></td>
+                            <td><?php echo $jam; ?></td>
+                            <td><?php echo $jumlah_setor; ?></td>
+                            <td onclick="tampilSisa(<?php echo $id_setorEtalase; ?>)"><?php echo $sisa; ?></td>
+                            <script>
+                            function tampilSisa(id) {
+                                window.location.href="etalase.php?id_setor="+id;
+                            }
+                        </script>
                         </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </thead>
             </table>
         </div>
     </div>
+    </form>
     <div class="footer"></div>
 </body>
 </html>

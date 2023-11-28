@@ -150,7 +150,7 @@ a {
   box-shadow: -5px 5px 4px 0px rgba(0, 0, 0, 0.25);
   margin-top:20px;
   margin-left: 80px;
-  animation: slideInLeft 2s;
+  animation: slideInLeft 2s; 
   /* z-index: 1; */
 }
 

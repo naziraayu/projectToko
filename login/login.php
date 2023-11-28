@@ -12,7 +12,7 @@ if (isset($_POST['btnlogin'])) {
           $num=mysqli_num_rows($result);
           if ($num != 0) {
             $row=mysqli_fetch_assoc($result);
-            $id_user= $row['id_user'];  
+            $id_user= $row['id_user'];
             $akses=$row['akses'];
             $telp=$row['no_telepon'];
             $pw=$row['password'];
@@ -29,7 +29,7 @@ if (isset($_POST['btnlogin'])) {
                 } else if ($akses=='owner') {
                   ?>
                     <script>
-                      alert("Berhasil Login Sebagai Owner");
+                      alert("Berhasil login sebagai Owner");
                     </script>
                   <?php
                   header('location:../dashboard/dashboard.php');
@@ -37,27 +37,27 @@ if (isset($_POST['btnlogin'])) {
                 }
               }else {
                 ?>
-                  <script>alert("Password Yang Anda Masukkan Salah");</script>
+                  <script>alert("Password yang and masukkan salah");</script>
                 <?php
               }
             }else {
               ?>
-                <script>alert("No. Telepon Yang Anda Masukkan Salah");</script>
+                <script>alert("No. Telepon yang anda masukkan salah");</script>
               <?php
             }
           }else {
             ?>
-              <script>alert("Akun Anda belum terdaftar");</script>
+              <script>alert("Akun anda belum terdaftar");</script>
             <?php
           }
         }else {
           ?>
-            <script>alert("Kolom Password Harus Terisi");</script>
+            <script>alert("Kolom Password harus terisi");</script>
           <?php
         }
     }else {
       ?>
-        <script>alert("Kolom No. Telepon Harus Terisi");</script>
+        <script>alert("Kolom No. Telepon harus terisi");</script>
       <?php
     }
 }
@@ -111,7 +111,7 @@ if (isset($_POST['btnlogin'])) {
               <span>Lupa Password? Klik <a href="../lupaPassword/lupaPassword.php">di sini</a></span>
             </div>
             <div>
-              <button type="submit" name="btnlogin" >Login</button>
+              <button type="submit" name="btnlogin">Login</button>
             </div>
           </form>
         </div>

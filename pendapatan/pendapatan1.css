@@ -209,7 +209,7 @@
   }
   
   .table-penjualan thead th {
-    position: sticky;
+    position: sticky; 
     top: 1;
     background-color: var(--table--);
     font-size: 10px;

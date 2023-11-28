@@ -1,3 +1,81 @@
+<?php
+date_default_timezone_set("Asia/Jakarta");
+function hari_ini(){
+    $hari=date("D");
+    switch ($hari) {
+        case 'Sun':
+            $hari_ini='Minggu';
+            break;
+        case 'Mon':
+            $hari_ini='Senin';
+            break;
+        case 'Tue':
+            $hari_ini='Selasa';
+            break;
+        case 'Wed':
+            $hari_ini='Rabu';
+            break;
+        case 'Thu':
+            $hari_ini='Kamis';
+            break;
+        case 'Fri':
+            $hari_ini='Jumat';
+            break;
+        case 'Sat':
+            $hari_ini='Sabtu';
+            break;
+        default:
+            $hari_ini='Tidak diketahui';
+            break;
+    } return $hari_ini;
+}
+
+$now=new DateTime();
+$hari_iniTGL=$now->format('d-m-Y');
+    switch (date('m', strtotime($hari_iniTGL))) {
+            case '01':
+                $bulan='Januari';
+                break;
+            case '02':
+                $bulan='Februari';
+                break;
+            case '03':
+                $bulan='Maret';
+                break;
+            case '04':
+                $bulan='April';
+                break;
+            case '05':
+                $bulan='Mei';
+                break;
+            case '06':
+                $bulan='Juni';
+                break;
+            case '07':
+                $bulan='Julii';
+                break;
+            case '08':
+                $bulan='Agustus';
+                break;
+            case '09':
+                $bulan='September';
+                break;
+            case '010':
+                $bulan='Oktober';
+                break;
+            case '11':
+                $bulan='November';
+                break;
+            case '12':
+                $bulan='Desember';
+                break;
+        default:
+        $bulan='Tidak diketahui';
+            break;
+    }
+
+    require ("../login/koneksi.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +98,9 @@
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="stok"><a href="../stokEtalase/stokEtalase.php">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/hariIni.php">PESANAN SAYA</a></li>
-                    <li class="pen"><a href="../pendapatan/pendapatan.php">PENDAPATAN</a></li>
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $_GET['id_supplier'];?>">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PENDAPATAN</a></li>
                     <!-- <li class="log"><a href="../login/login.html">LOG OUT</a></li> -->
                     <!-- <select class="select-box"> -->
                         <!-- <option value="1">Nurul Hidayah img</option> -->
@@ -47,11 +125,11 @@
                 </li>
                 <li class="options">
                     <img src="../img/Vector(3).png" alt="profile2">
-                    <p><a href="../profil/profil.php">Profil Saya</a></p>
+                    <p><a href="../profil/profil.php<?php echo $_GET['id_supplier'];?>">Profil Saya</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/Pengaturan.png" alt="pengaturan">
-                    <p><a href="../editProfil/editProfil.php">Edit Profile</a></p>
+                    <p><a href="../editProfil/editProfil.php<?php echo $_GET['id_supplier'];?>      ">Edit Profile</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/logout.png" alt="logout">
@@ -79,14 +157,11 @@
     </script>
     <div class="date">
         <div class="datetime">
-            <p>Senin, 2 November 2023</p>
+            <p><?php echo hari_ini().',  '.date('d', strtotime($hari_iniTGL)).' '.$bulan.' '.date('Y', strtotime($hari_iniTGL)); ?></p>
             <img src="../img/Group 9.png" alt="">
         </div>
     </div>
     <div class="table-content">
-        <!-- <div class="gambar">
-            <img src="../img/Group 194.png" alt="">
-        </div> -->
         <table>
             <thead>
                 <tr>
@@ -103,231 +178,128 @@
                 </tr>
             </thead>
             <tbody>
+            <?php
+                if (isset($_GET['id_supplier'])) {
+                    $id_supp=$_GET['id_supplier'];
+                    $query="SELECT supplier_menu.id_suppmenu, SUM(detail_suppmenu_etalase.jumlah_setor) AS jumlah_setor, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.tanggal_setor, barang.nama_barang FROM detail_suppmenu_etalase JOIN supplier_menu ON detail_suppmenu_etalase.id_suppmenu=supplier_menu.id_suppmenu JOIN barang ON barang.id_barang=supplier_menu.id_barang WHERE supplier_menu.id_user='$id_supp' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_suppmenu";
+                    $result=mysqli_query($koneksi, $query);
+                    if ($num=mysqli_num_rows($result) != 0) {
+                        while ($row=mysqli_fetch_array($result)) {
+                            $id_suppmenu=$row['id_suppmenu'];
+                            $jumlh_setor=$row['jumlah_setor'];
+                            $jam=$row['jam'];
+                            $tanggal=$row['tanggal_setor'];
+                            $nama=$row['nama_barang'];
+                ?>
                 <tr>
                     <td>
                         <div class="menu">
                             <div class="first-menu">
                                 <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
+                                    <h4><?php echo $nama; ?></h4>
                                 </div>
                                 <div class="time">
                                     <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
+                                    <p><?php echo $jam;?> WIB</p>
                                 </div>
                             </div>
                             <div class="second-menu">
                                 <div class="jumlah">
-                                    <h3>78</h3>
+                                    <h3><?php echo $jumlh_setor;?></h3>
                                     <p>Pcs</p>
                                 </div>
                             </div>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="menu">
-                            <div class="first-menu">
-                                <div class="nama-menu">
-                                    <h4>Putu Ayu</h4>
-                                </div>
-                                <div class="time">
-                                    <img src="../img/clock.png" alt="">
-                                    <p>10.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="second-menu">
-                                <div class="jumlah">
-                                    <h3>78</h3>
-                                    <p>Pcs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                <?php }
+                }else{ ?>
+                <div class="gambar">
+                    <img src="../img/Group 194.png" alt="">
+                </div>
+                <?php } ?>
             </tbody>
         </table>
     </div>
     <div class="container">
         <div class="caraousel">
             <div class="slider">
+            <?php
+                $qry_stokEtalase="SELECT barang.gambar_barang, barang.nama_barang, supplier_menu.harga_beli, user.id_user, supplier_menu.id_suppmenu FROM barang JOIN supplier_menu ON barang.id_barang=supplier_menu.id_barang JOIN user ON  user.id_user=supplier_menu.id_user WHERE supplier_menu.id_user='$id_supp'";
+                $rslt_stokEtalase=mysqli_query($koneksi, $qry_stokEtalase);
+                while ($row_stok=mysqli_fetch_array($rslt_stokEtalase)) {
+                    $foto=$row_stok['gambar_barang'];
+                    $nama=$row_stok['nama_barang'];
+                    $id=$row_stok['id_suppmenu'];
+            ?>
                 <section>
-                    <p>Kue</p>
-                    <img src="../img/Rectangle 64.png" alt="">
+                    <p><?php echo $nama; ?></p>
+                    <img src="../gambar/<?php echo $foto; ?>" alt="">
                     <div class="add">
-                        <span><button><i class="fa-solid fa-minus"></i></button></span>
-                        <input type="text" name="angka" id="">
-                        <span><button><i class="fa-solid fa-plus"></i></button></span>
+                        <span class="dec button"><button><i class="fa-solid fa-minus"></i></button></span>
+                        <input type="text" name="angka_<?php echo $id; ?>" id=""  value="0">
+                        <span class="inc button"><button><i class="fa-solid fa-plus"></i></button></span>
                     </div>
                     <div class="simpann">
-                        <button type="submit">Simpan</button>
+                        <button type="submit" onclick="hitung(<?php echo $id; ?>)" >Simpan</button>
+                        <script>
+                            function hitung(id) {
+                                var angka=document.getElementsByName('angka_' + id)[0].value;
+                                window.location.href="stokEtalase.php?id_supplier="+ <?php echo $id_supp;?> +"&id_suppmenu="+id+"&angka="+angka;
+                            }
+                        </script>
                     </div>
                 </section>
-                <section>
-                    <p>Putu</p>
-                    <img src="../img/Rectangle 65.png" alt="">
-                    <div class="add">
-                        <span><button><i class="fa-solid fa-minus"></i></button></span>
-                        <input type="text" name="angka" id="">
-                        <span><button><i class="fa-solid fa-plus"></i></button></span>
-                    </div>
-                    <div class="simpann">
-                        <button type="submit">Simpan</button>
-                    </div>
-                </section>
-                <section>
-                    <p>Talam</p>
-                    <img src="../img/Rectangle 66.png" alt="">
-                    <div class="add">
-                        <span><button><i class="fa-solid fa-minus"></i></button></span>
-                        <input type="text" name="angka" id="">
-                        <span><button><i class="fa-solid fa-plus"></i></button></span>
-                    </div>
-                    <div class="simpann">
-                        <button type="submit">Simpan</button>
-                    </div>
-                </section>
-                <section>
-                    <p>Brownies</p>
-                    <img src="../img/Rectangle 64.png" alt="">
-                    <div class="add">
-                        <span><button><i class="fa-solid fa-minus"></i></button></span>
-                        <input type="text" name="angka" id="">
-                        <span><button><i class="fa-solid fa-plus"></i></button></span>
-                    </div>
-                    <div class="simpann">
-                        <button type="submit">Simpan</button>
-                    </div>
-                </section>
-                <section>
-                    <p>Mochi</p>
-                    <img src="../img/Rectangle 65.png" alt="">
-                    <div class="add">
-                        <span><button><i class="fa-solid fa-minus"></i></button></span>
-                        <input type="text" name="angka" id="">
-                        <span><button><i class="fa-solid fa-plus"></i></button></span>
-                    </div>
-                    <div class="simpann">
-                        <button type="submit">Simpan</button>
-                    </div>
-                </section>
-                <section>
-                    <p>Sus</p>
-                    <img src="../img/Rectangle 66.png" alt="">
-                    <div class="add">
-                        <span><button><i class="fa-solid fa-minus"></i></button></span>
-                        <input type="text" name="angka" id="">
-                        <span><button><i class="fa-solid fa-plus"></i></button></span>
-                    </div>
-                    <div class="simpann">
-                        <button type="submit">Simpan</button>
-                    </div>
-                </section>
+                <?php
+                    }
+                ?>
+                <script>
+                    var incrementButton=document.getElementsByClassName('inc');
+                    var decrementButton=document.getElementsByClassName('dec');
+                    for (var i =0; i < decrementButton.length; i++) {
+                        var button = decrementButton[i];
+                        button.addEventListener('click',function(event){
+                            var buttonClicked=event.target;
+                            var input=buttonClicked.parentElement;
+                            var a=input.parentElement;
+                            var b=a.parentElement.children[1];
+                            var bValue=b.value;
+                            var newValue=parseInt(bValue)-1;
+                            b.value=newValue;
+                        })
+                        
+                    }
+                    for (var i =0; i < incrementButton.length; i++) {
+                        var button = incrementButton[i];
+                        button.addEventListener('click',function(event){
+                            var buttonClicked=event.target;
+                            var input=buttonClicked.parentElement;
+                            var a=input.parentElement;
+                            var b=a.parentElement.children[1];
+                            var bValue=b.value;
+                            var newValue=parseInt(bValue)+1;
+                            b.value=newValue;
+                        })
+                        
+                    }
+                </script>
+                <?php
+                    $jam=date('H:i:s');
+                    $tanggal=date('Y:m:d');
+                    if (isset($_GET['angka'])) {
+                        $id=$_GET['id_supplier'];   
+                        $id_suppmenu=$_GET['id_suppmenu'];
+                        $setor=$_GET['angka'];
+                        $query="INSERT INTO `detail_suppmenu_etalase` (`id_setorEtalase`, `jumlah_setor`, `sisa`, `jam`, `tanggal_setor`, `id_suppmenu`) VALUES (NULL, '$setor', 0, '$jam', '$tanggal', '$id_suppmenu')";
+                        $result=mysqli_query($koneksi, $query);
+                        ?>
+                        <script>
+                            window.location.href="stokEtalase.php?id_supplier=<?php echo $id; ?>";
+                        </script>
+                        <?php
+                    }
+                }
+                ?>
             </div>
             <div class="controls">
                 <span class="arrow left"><i class="fa-solid fa-angle-left"></i></span>
@@ -338,64 +310,5 @@
     <div class="simpan">
         <button type="submit">Simpan</button>
     </div>
-    <!-- <div class="wrapper">
-        <i id="left" class="fa-solid fa-angle-left"></i>
-        <ul class="carousel">
-          <li class="card">
-            <div class="img"><img src="../img/Rectangle 64.png" alt="img" draggable="false"></div>
-            <h2>Putu</h2>
-            <div class="add">
-                <span><button><img src="../img/minus.png" alt=""></button></span>
-                <input type="text" name="angka" id="">
-                <span><button><img src="../img/plus.png" alt=""></button></span>
-            </div>
-          </li>
-          <li class="card">
-            <div class="img"><img src="../img/Rectangle 65.png" alt="img" draggable="false"></div>
-            <h2>Talam</h2>
-            <div class="add">
-                <span><button><img src="../img/minus.png" alt=""></button></span>
-                <input type="text" name="angka" id="">
-                <span><button><img src="../img/plus.png" alt=""></button></span>
-            </div>
-          </li>
-          <li class="card">
-            <div class="img"><img src="../img/Rectangle 66.png" alt="img" draggable="false"></div>
-            <h2>Talam</h2>
-            <div class="add">
-                <span><button><img src="../img/minus.png" alt=""></button></span>
-                <input type="text" name="angka" id="">
-                <span><button><img src="../img/plus.png" alt=""></button></span>
-            </div>
-          </li>
-          <li class="card">
-            <div class="img"><img src="../img/Rectangle 64.png" alt="img" draggable="false"></div>
-            <h2>Talam</h2>
-            <div class="add">
-                <span><button><img src="../img/minus.png" alt=""></button></span>
-                <input type="text" name="angka" id="">
-                <span><button><img src="../img/plus.png" alt=""></button></span>
-            </div>
-          </li>
-          <li class="card">
-            <div class="img"><img src="../img/Rectangle 65.png" alt="img" draggable="false"></div>
-            <h2>Talam</h2>
-            <div class="add">
-                <span><button><img src="../img/minus.png" alt=""></button></span>
-                <input type="text" name="angka" id="">
-                <span><button><img src="../img/plus.png" alt=""></button></span>
-            </div>
-          </li>
-          <li class="card">
-            <div class="img"><img src="../img/Rectangle 66.png" alt="img" draggable="false"></div>
-            <h2>Talam</h2>
-            <div class="add">
-                <span><button><img src="../img/minus.png" alt=""></button></span>
-                <input type="text" name="angka" id="">
-                <span><button><img src="../img/plus.png" alt=""></button></span>
-            </div>
-          </li>
-        </ul>
-        <i id="right" class="fa-solid fa-angle-right"></i> -->
 </body>
 </html>

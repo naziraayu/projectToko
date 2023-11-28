@@ -1,3 +1,6 @@
+<?php
+require("../login/koneksi.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,63 +20,63 @@
   </head>
   <body>
     <header>
-        <div class="head">
-            <div class="nav">
-            <img src="../img/Ellipse 1.png" alt="logo" />
-            <ul>
-                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-                <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
-                <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
-                <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
-                <li class="log"><a href="../login/login.php">LOG OUT</a></li>
-            </ul>
+      <div class="head">
+        <div class="nav">
+          <img src="../img/Ellipse 1.png" alt="logo" />
+          <ul>
+          <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+                </ul> 
             </div>
         </div>
     </header>
-    <div class="navbar">
-      <div class="content">
-          <ul>
-              <li class="baru" id="baruItem">
-                  <a href="../pesananMasuk/pesananBaru1.php" onclick="togglePesanan('baru')">Pesanan Baru</a>
-                  <div class="img2">
-                      <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="baruImage" style="display: inline;" />
-                  </div>
-              </li>
-          </ul>
-      </div>
-      <div class="content1">
-          <ul>
-              <li class="proses" id="prosesItem">
-                  <a href="../pesananMasuk/dalamProses.php" onclick="togglePesanan('proses')">Dalam Proses</a>
-                  <div class="img3">
-                      <img src="../img/proses.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
-                  </div>
-              </li>
-          </ul>
-      </div>
-      <div class="content3">
-          <ul>
-              <li class="ajukanBatal" id="ajukanbatalItem">
-                  <!-- Update href sesuai dengan tujuan yang diinginkan -->
-                  <a href="../pesananMasuk/ajuanBatal.php" onclick="togglePesanan('ajukan')">Ajukan Batal</a>
-                  <div class="img3">
-                      <img src="../img/Ajukan-batal.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
-                  </div>
-              </li>
-          </ul>
-      </div>
-      <div class="content2">
-          <ul>
-              <li class="batal" id="batalItem">
-                  <a href="../pesananMasuk/dibatalkan.php" onclick="togglePesanan('batal')">Dibatalkan</a>
-                  <div class="img4">
-                      <img src="../img/batal.png" alt="" class="gambar-pesanan" id="batalImage" style="display: inline;" />
-                  </div>
-              </li>
-              <!-- Item lain di sini -->
-          </ul>
-      </div>
-  </div>
+        <div class="navbar">
+            <div class="content"> 
+                <ul>
+                    <li class="baru" id="baruItem">
+                        <a href="../pesananMasuk/pesananBaru1.php" onclick="togglePesanan('baru')">Pesanan Baru</a>
+                        <div class="img2">
+                            <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="baruImage" style="display: inline;" />
+                        </div> 
+                    </li>
+                </ul>
+            </div>
+            <div class="content1">
+                <ul>
+                    <li class="proses" id="prosesItem">
+                        <a href="../pesananMasuk/dalamProses.php" onclick="togglePesanan('proses')">Dalam Proses</a>
+                        <div class="img3">
+                            <img src="../img/proses.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content3">
+                <ul>
+                    <li class="ajukanBatal" id="ajukanbatalItem">
+                        <!-- Update href sesuai dengan tujuan yang diinginkan -->
+                        <a href="../pesananMasuk/ajuanBatal.php" onclick="togglePesanan('ajukan')">Ajukan Batal</a>
+                        <div class="img3">
+                            <img src="../img/Ajukan-batal.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content2">
+                <ul>
+                    <li class="batal" id="batalItem">
+                        <a href="../pesananMasuk/dibatalkan.php" onclick="togglePesanan('batal')">Dibatalkan</a>
+                        <div class="img4">
+                            <img src="../img/batal.png" alt="" class="gambar-pesanan" id="batalImage" style="display: inline;" />
+                        </div>
+                    </li>
+                    <!-- Item lain di sini -->
+                </ul>
+            </div>
+        </div>
   
   <script>
     function togglePesanan(item) {
@@ -113,60 +116,27 @@
 </script>
     <div class="table_responsive_pesanan">
         <table class="table_dtl_pesanan">
-            <tr>
-                <td class="multi-content2">
-                    <div class="nama">SUS BUAH</div>
-                    <div class="icon"><img src="../img/salin.png"alt="order"></div>
-                    <div class="kode"> A0031</div>
-                    <div class="text-qty"> Total-QTY <br> <small1>540</small1></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="multi-content2">
-                    <div class="nama">SUS BUAH</div>
-                    <div class="icon"><img src="../img/salin.png"alt="order"></div>
-                    <div class="kode"> A0031</div>
-                    <div class="text-qty"> Total-QTY <br> <small1>40</small1></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="multi-content2">
-                    <div class="nama">SUS BUAH</div>
-                    <div class="icon"><img src="../img/salin.png"alt="order"></div>
-                    <div class="kode"> A0031</div>
-                    <div class="text-qty"> Total-QTY <br> <small1>540</small1></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="multi-content2">
-                    <div class="nama">SUS BUAH</div>
-                    <div class="icon"><img src="../img/salin.png"alt="order"></div>
-                    <div class="kode"> A0031</div>
-                    <div class="text-qty"> Total-QTY <br> <small1>540</small1></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="multi-content2">
-                    <div class="nama">SUS BUAH</div>
-                    <div class="icon"><img src="../img/salin.png"alt="order"></div>
-                    <div class="kode"> A0031</div>
-                    <div class="text-qty"> Total-QTY <br> <small1>540</small1></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="multi-content2">
-                    <div class="nama">SUS BUAH</div>
-                    <div class="icon"><img src="../img/salin.png"alt="order"></div>
-                    <div class="kode"> A0031</div>
-                    <div class="text-qty"> Total-QTY <br> <small1>540</small1></div>
-                    </div>
-                </td>
-            </tr>
+       <?php
+            $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang GROUP BY barang.id_barang";
+            $result=mysqli_query($koneksi, $query);
+            while ($row=mysqli_fetch_array($result)) {
+              $total=$row['total_qty'];
+              $id=$row['id_barang'];
+              $nama=$row['nama_barang'];
+        ?>
+        <tr>
+          <td class="multi-content2">
+
+              <div class="nama"><?php echo $nama; ?></div>
+              <a href="dalamProses.php?id_barang=<?php echo $id; ?>"><div class="icon"><img src="../img/salin.png" alt="order"></div></a>
+              <div class="kode">BRG<?php echo $id; ?></div>
+              <div class="text-qty"> Total-QTY <br> <small1><?php echo $total; ?></small1></div>
+              </div>
+          </td>
+       </tr>
+       <?php
+            }
+          ?>
         </table>
     </div>
     <div class="row">
@@ -177,78 +147,31 @@
         </div>
         <div class="table_responsive_detailpesanan">
             <table class="table_detail_pesanan">
+            <?php
+                if (isset($_GET['id_barang'])) {
+                    $id_brg=$_GET['id_barang'];
+                    $query="SELECT user.nama, status_transaksi.jam, SUM(detail_transaksi.qty) as total_qty, detail_transaksi.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer=user.id_user JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota WHERE detail_transaksi.id_barang='$id_brg' GROUP BY transaksi.no_nota";
+                    $result=mysqli_query($koneksi, $query);
+                    while ($row=mysqli_fetch_array($result)) {
+                        $nama=$row['nama'];
+                        $jam=$row['jam'];
+                        $total_qty=$row['total_qty'];
+                        $id=$row['id_barang'];
+                        $nota=$row['no_nota'];
+                ?>
                 <tr>
                     <td class="multi-content3">
-                        <div class="top">Ananta Ghaisani</div>
+                        <div class="top"><?php echo $nama;?></div>
                         <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
-                        <div class="right"> 45 <small>pcs</small></div>
-                        <div class="left">08:00-09:00</div>
+                        <div class="right"><?php echo $total_qty; ?><small>pcs</small></div>
+                        <div class="left"><?php echo $jam;?></div>
                         <label class="container">
-                            <input type="checkbox" checked="checked">
+                            <input type="checkbox" >
                             <div class="checkmark"></div>
                         </label>
                     </td>
                 </tr>
-                <tr>
-                    <td class="multi-content3">
-                        <div class="top">Ananta Ghaisani</div>
-                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
-                        <div class="right"> 45 <small>pcs</small></div>
-                        <div class="left">08:00-09:00</div>
-                        <label class="container">
-                            <input type="checkbox" checked="checked">
-                            <div class="checkmark"></div>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="multi-content3">
-                        <div class="top">Ananta Ghaisani</div>
-                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
-                        <div class="right"> 45 <small>pcs</small></div>
-                        <div class="left">08:00-09:00</div>
-                        <label class="container">
-                            <input type="checkbox" checked="checked">
-                            <div class="checkmark"></div>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="multi-content3">
-                        <div class="top">Ananta Ghaisani</div>
-                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
-                        <div class="right"> 45 <small>pcs</small></div>
-                        <div class="left">08:00-09:00</div>
-                        <label class="container">
-                            <input type="checkbox" checked="checked">
-                            <div class="checkmark"></div>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="multi-content3">
-                        <div class="top">Ananta Ghaisani</div>
-                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
-                        <div class="right"> 45 <small>pcs</small></div>
-                        <div class="left">08:00-09:00</div>
-                        <label class="container">
-                            <input type="checkbox" checked="checked">
-                            <div class="checkmark"></div>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="multi-content3">
-                        <div class="top">Ananta Ghaisani</div>
-                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
-                        <div class="right"> 45 <small>pcs</small></div>
-                        <div class="left">08:00-09:00</div>
-                        <label class="container">
-                            <input type="checkbox" checked="checked">
-                            <div class="checkmark"></div>
-                        </label>
-                    </td>
-                </tr>
+                <?php } ?>
             </table>
         </div>
         <div class="dropdown">
@@ -257,9 +180,18 @@
                 <i class="fa fa-caret-down icon"></i>
             </div>
             <div class="dropdown-list">
-                <div class="dropdown-list_item" onclick="selectOption(this)">Akila</div>
-                <div class="dropdown-list_item" onclick="selectOption(this)">Revan</div>
-                <div class="dropdown-list_item" onclick="selectOption(this)">Syakila</div>
+                <?php
+                $query="SELECT user.nama, user.no_telepon, supplier_menu.id_user FROM user JOIN supplier_menu ON user.id_user=supplier_menu.id_user WHERE supplier_menu.id_barang='$id_brg'";
+                $result=mysqli_query($koneksi, $query);
+                while ($row=mysqli_fetch_array($result)) {
+                    $nama=$row['nama'];
+                    $no_telp=$row['no_telepon'];
+                    $id_user=$row['id_user'];
+                ?>
+                    <div class="dropdown-list_item" onclick="selectOption(this)"><?php echo $nama; ?></div>
+                <?php
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -270,6 +202,15 @@
             <button class="button2"type="submit2" name="submit">SIMPAN</button>
         </div>
     </div>
+    <?php
+        }else {
+            ?>
+            <div class="gambar">
+                <img src="../img/Group 193.png" alt="">
+            </div>
+            <?php
+        }
+        ?>
     <script src="script.js"></script>
 </body>
 </html>

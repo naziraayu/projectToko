@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -13,37 +13,41 @@
     <style></style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['bar']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-            ['', 'Penjualan', 'Pemesanan', 'Total'],
-            ['2014', 1500000, 1000000, 2000000],
-            ['2015', 1170000, 4600000, 2500000],
-            ['2016', 6600000, 1120000, 3000000],
-            ['2017', 1030000, 5400000, 3500000]
-            ]);
-            var options = {
-            chart: {
-                // title: 'Company Performance',
-                // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-            }
-            };
-            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-            chart.draw(data, google.charts.Bar.convertOptions(options));
-        }
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Penjualan', 'Pemesanan', 'Total'],
+          ['2014', 1500000, 1000000, 2000000],
+          ['2015', 1170000, 4600000, 2500000],
+          ['2016', 6600000, 1120000, 3000000],
+          ['2017', 1030000, 5400000, 3500000]
+        ]);
+
+        var options = {
+          chart: {
+            // title: 'Company Performance',
+            // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
     </script>
 </head>
 <body>
     <header>
         <div class="head">
             <div class="nav">
-                <img src="../img/Ellipse 2_1.svg" alt="logo" />
-                <ul >
+            <img src="../img/Ellipse 1.png" alt="logo" />
+                <ul>
                     <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/dalamProses.html">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
-                    <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
+                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
                     <li class="log"><a href="../login/login.php">LOG OUT</a></li>
                 </ul>
             </div>
@@ -73,32 +77,36 @@
         </div>
     </section>
         <div class="Kue terjual">
-            <header class="kue Terjual-header">
-                <h4>2.978</h4>
-                <h5>Kue Terjual Hari Ini</h5>
-            </header>
-            <footer class="Detail">
-                <div class="lihatdetail">
-                    <h6>Lihat Detail
-                    <a href="https://tujuan-link.com">
-                        <img src="../img/Arrow.png" alt="Continue">
-                      </a>
-                      </h6>
-                </div>
-            </footer>
-            <header class="PesananMenunggu-header">
-                <h7>23</h7>
-                <h8>Pesanan Menunggu</h8>
-            </header>
-            <footer class="Pesanan">
-                <div class="Pesanan Menunggu">
-                    <h6>Lihat Detail
-                    <a href="https://tujuan-link.com">
-                        <img src="../img/Arrow.png" alt="Continue">
-                      </a>
-                      </h6>
-                </div>
-            </footer> 
+            <div class="jual">
+                <header class="kue Terjual-header">
+                    <h4>2.978</h4>
+                    <h5>Kue Terjual Hari Ini</h5>
+                </header>
+                <footer class="Detail">
+                    <div class="lihatdetail">
+                        <h6>Lihat Detail
+                        <a href="https://tujuan-link.com">
+                            <img src="../img/Arrow.png" alt="Continue">
+                        </a>
+                        </h6>
+                    </div>
+                </footer>
+            </div>
+            <div class="tunggu">
+                <header class="PesananMenunggu-header">
+                    <h7>23</h7>
+                    <h8>Pesanan Menunggu</h8>
+                </header>
+                <footer class="Pesanan">
+                    <div class="Pesanan Menunggu">
+                        <h6>Lihat Detail
+                        <a href="https://tujuan-link.com">
+                            <img src="../img/Arrow.png" alt="Continue">
+                        </a>
+                        </h6>
+                    </div>
+                </footer> 
+            </div>
         </div>
         <!-- <div class="row">
             <div class="col=12">

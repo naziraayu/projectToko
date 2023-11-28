@@ -148,19 +148,23 @@ a {
   /* z-index: 1; */
 }
 
-.datetime p {
-  margin: 10px 0 0 15px;
+.datetime input {
+  margin: 8px 0 0 20px;
   /* margin-left: 100px; */
-  position: absolute;
-  font-size: 15px;
+  border: none;
+  background: transparent;
+  position:absolute;
+  font-size: 16px;
   justify-content: center;
+  width: 250px;
+  cursor: pointer;
 }
 
-.datetime img {
+/* .datetime img {
   position: absolute;
   margin: 5px 0 0 250px;
   width: 30px;
-}
+} */
 
 .grafik {
   position: relative;
@@ -346,11 +350,12 @@ td {
   word-break: break-all;
   text-align: center;
   border-radius: 10px;
-  font-size: 10px;
+  /* font-size: 5px; */
 }
 
 .table-penjualan td {
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  font-size: 9px;
 }
 
 tr:hover td {
@@ -530,7 +535,7 @@ section {
 .tabel-pesanan th,
 td {
   /* border-bottom: 1px solid var(--inputan--); */
-  padding: 5px;
+  padding: 1px;
   word-break: break-all;
   text-align: center;
   border-radius: 10px;
@@ -539,6 +544,7 @@ td {
 
 .tabel-pesanan td {
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  font-size: 9px;
 }
 
 tr:hover td {

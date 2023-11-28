@@ -10,9 +10,9 @@ if (isset($_REQUEST['btn_save_paket'])) {
     $deskripsi_paket=$_REQUEST['txt_deskripsi_paket'];
 
     $foto_paket=time().$_FILES["input_foto_paket"]['name'];
-    if (move_uploaded_file($_FILES['input_foto_paket']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'
+    if (move_uploaded_file($_FILES['input_foto_paket']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
           .$foto_paket)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'.$foto_paket;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_paket;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_paket']['name']);
             $photo=time().$picName;
@@ -58,9 +58,9 @@ if (isset($_REQUEST['btn_ubah_paket'])) {
     $deskripsi_paket=$_REQUEST['txt_deskripsi_paket'];
 
     $foto_paket=time().$_FILES["input_foto_paket"]['name'];
-    if (move_uploaded_file($_FILES['input_foto_paket']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'
+    if (move_uploaded_file($_FILES['input_foto_paket']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
           .$foto_paket)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/projectToko/gambar/'.$foto_paket;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_paket;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_paket']['name']);
             $photo=time().$picName;
@@ -134,7 +134,7 @@ if (isset($_REQUEST['hapus_paket'])) {
     <link rel="stylesheet" href="adminn.css">
 </head>
 <body>
-    <div class="sidebar">
+<div class="sidebar">
         <div class="content">
             <ul>
                 <li class="ad"><a href="../master/admin.php">Admin</a></li>
@@ -143,20 +143,21 @@ if (isset($_REQUEST['hapus_paket'])) {
                 <li class="men"><a href="../master/menu.php">Menu</a></li>
                 <li class="pac"><a href="../master/paket.php">Paket</a></li>
                 <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
-                <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
+                <li class="supmen"></li><a href="../master/supMen.php">Supplier Menu</a>
+            </li>
             </ul>
         </div>
     </div>
     <header>
         <div class="head">
             <div class="nav">
-                <img src="../img/Ellipse 1.png" alt="logo" />
+            <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-                <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
-                <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
-                <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
-                <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
                 </ul>
             </div>
         </div>
@@ -248,9 +249,9 @@ if (isset($_REQUEST['hapus_paket'])) {
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama <br> Paket</th>
+                        <th>Nama Paket</th>
                         <th>Isi Paket</th>
-                        <th>Jumlah <br> Macam</th>
+                        <th>Jumlah Macam</th>
                         <th>Kemasan</th>
                         <th>Harga Jual</th>
                         <th>Deskripsi</th>
