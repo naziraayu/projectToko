@@ -48,12 +48,13 @@ if(isset($_REQUEST['btn_simpanSupp'])){
 
 if(isset($_REQUEST['btn_updateSupp'])){
     $id=$_REQUEST['txt_idSupp'];
-    $nama_supp=$_REQUEST['txt_namaSupp'];
-    $notelepon_supp=$_REQUEST['txt_notelpSupp']; 
-    $alamat_supp=$_REQUEST['txt_alamatSupp'];
-    $pertanyaan_supp=$_REQUEST['pertanyaanSup'];        
-    $jawaban_supp=$_REQUEST['jawabanSupp'];
-    $password_supp=$_REQUEST['passwordSupp'];
+    $nama=$_REQUEST['txt_namaSupp'];
+    $notelepon=$_REQUEST['txt_notelpSupp'];
+    $alamat=$_REQUEST['txt_alamatSupp'];
+    $pertanyaan=$_REQUEST['pertanyaanSup'];        
+    $jawaban=$_REQUEST['jawabanSupp'];
+    $password=$_REQUEST['passwordSupp'];
+
     $foto_supp=time().$_FILES['input_foto_supp']['name'];
     if (move_uploaded_file($_FILES['input_foto_supp']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
           .$foto_supp)) {
@@ -78,21 +79,27 @@ if(isset($_REQUEST['btn_updateSupp'])){
               }
         }
     if($pic_uploaded == 1){
-        $query="update user set nama='$nama_supp', alamat='$alamat_supp', no_telepon='$notelepon_supp', pertanyaan='$pertanyaan_supp', jawaban='$jawaban_supp', password='$password_supp', photo_profile='$foto_supp' where id_user='$id'";
+        $query="update user set photo_profile='$foto_supp', nama='$nama', alamat='$alamat', no_telepon='$notelepon', pertanyaan='$pertanyaan', jawaban='$jawaban', password='$password' where id_user='$id'";
         $result=mysqli_query($koneksi, $query);
         ?>
-            <script>alert("berhasil mengubah supplier");</script>
+            <script>
+            alert("Berhasil mengubah admin");
+            </script>
         <?php
-    } else if ($pic_uploaded == 0){
-        $query="update user set nama='$nama_supp', alamat='$alamat_supp', no_telepon='$notelepon_supp', pertanyaan='$pertanyaan_supp', jawaban='$jawaban_supp', password='$password_supp' where id_user='$id'";
+    }else if ($pic_uploaded == 0) {   
+        $query="update user set nama='$nama', alamat='$alamat', no_telepon='$notelepon', pertanyaan='$pertanyaan', jawaban='$jawaban', password='$password' where id_user='$id'";
         $result=mysqli_query($koneksi, $query);
         ?>
-            <script>alert("berhasil mengubah supplier");</script>
+            <script>
+            alert("Berhasil mengubah admin");
+            </script>
         <?php
     }else{
         ?>
-            <script>alert("gagal menambahkan supplier");</script>
-        <?php
+            <script>
+            alert("Gagal mengubah admin");
+            </script>
+            <?php
     }
 }
 
@@ -121,33 +128,34 @@ if (isset($_REQUEST['hapus_supp'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="adminn.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
     <div class="sidebar">
         <div class="content">
-            <ul>
-                <li class="ad"><a href="../master/admin.html">Admin</a></li>
-                <li class="sup"><a href="../master/supplier.html">Supplier</a></li>
-                <li class="cus"><a href="../master/customer.html">Customer</a></li>
-                <li class="men"><a href="../master/menu.html">Menu</a></li>
-                <li class="pac"><a href="../master/paket.html">Paket</a></li>
-                <li class="kem"><a href="../master/kemasan.html">Kemasan</a></li>
-                <li class="supmen"><a href="../master/supMen.html">Supplier Menu</a></li>
-            </ul>
+        <ul>
+          <li class="ad"><a href="../master/admin.php">Admin</a></li>
+          <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
+          <li class="cus"><a href="../master/customer.php">Customer</a></li>
+          <li class="men"><a href="../master/menu.php">Menu</a></li>
+          <li class="pac"><a href="../master/paket.php">Paket</a></li>
+          <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
+          <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
+          </li>
+        </ul>
         </div>
     </div>
-    <header>        
-        <div class="head">
+    <header>
+        <div class="head"> 
             <div class="nav">
-                <img src="../img/Ellipse 1.png" alt="logo" />
-                <ul>
-                    <li class="mas"><a href="#">MASTER</a></li>
-                    <li class="pes"><a href="#">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="#">ETALASE</a></li>
-                    <li class="lap"><a href="#">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
-                </ul>
+            <img src="../img/Ellipse 1.png" alt="logo" />
+            <ul>
+                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+            </ul>
             </div>
         </div>
     </header>
@@ -166,6 +174,9 @@ if (isset($_REQUEST['hapus_supp'])) {
                 <div class="form__group field">
                     <input type="input" id="txt_alamatSupp" name="txt_alamatSupp" class="form__field" placeholder="Name" required="">
                     <label for="name" class="form__label">Alamat</label>
+                </div>
+                <div class="form__group field">
+                    <input type="hidden" id="txt_idSupp" name="txt_idSupp" class="form__field" placeholder="Name" required="">
                 </div>
             </div>
             <div class="second-cont">
@@ -192,14 +203,11 @@ if (isset($_REQUEST['hapus_supp'])) {
                     <input type="password" id="passwordSupp" name="passwordSupp" class="form__field" placeholder="Name" required="">
                     <label for="name" class="form__label">Password</label>
                 </div>
-                <div class="form__group field">
-                    <input type="hidden" id="txt_idSupp" name="txt_idSupp" class="form__field" placeholder="Name" required="">
-                </div>
             </div>
         </div>
-                <div class="photo">
-                    <input type="file" id="input_foto_supp" name="input_foto_supp" class="form__field" required="">
-                </div>
+        <div class="photo">
+            <input type="file" id="input_foto_supp" name="input_foto_supp">
+            </div> 
         <div class="refresh">
             <button type="submit" name="refresh" onclick="refreshSupplier()">
             <i class="fa-solid fa-rotate-right" style="color: #000000;"></i>
@@ -222,7 +230,7 @@ if (isset($_REQUEST['hapus_supp'])) {
         </div>
         <div class="save">
             <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_simpanSupp" >Simpan</button>
+            <button type="submit" name="btn_simpanSupp" id="btn_simpanSupp">Simpan</button>
         </div>
         </form>
     </div>
@@ -273,9 +281,31 @@ if (isset($_REQUEST['hapus_supp'])) {
                         <td><?php echo $jawaban_karyawan; ?></td>
                         <td><?php echo $akses; ?></td>
                         <td>
-                            <button><a href="supplier.php?edit_supp=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editSupp(<?php echo $id; ?>)"><a href="supplier.php?edit_supp=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="supplier.php?hapus_supp=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
-                            <?php
+                            <script>
+                                function editSupp(id) {
+                                    document.getElementById('btn_simpanSupp').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_supp');
+                                        if (editAdminId) {
+                                            document.getElementById('btn_simpanSupp').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_simpanSupp').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
+                        </td>
+                    <tr>
+                    <?php
+                $no++;
+            }
+            ?>
+                </tbody>
+            </table>
+            <?php
                             if (isset($_GET['edit_supp'])) {   
                             $id_edit=$_GET['edit_supp'];
                             $query="select * from user where id_user='$id_edit'";
@@ -292,28 +322,19 @@ if (isset($_REQUEST['hapus_supp'])) {
                                     $fotoo=$row['photo_profile'];
                                     ?>
                                     <script>
-                                        document.getElementById('txt_idSupp').value='<?php echo $id;?>';
+                                        document.getElementById('txt_idSupp').value='<?php echo $id_karywn;?>';
                                         document.getElementById('txt_namaSupp').value='<?php echo $nama;?>';
                                         document.getElementById('txt_notelpSupp').value='<?php echo $telepon;?>';
                                         document.getElementById('txt_alamatSupp').value='<?php echo $alamat;?>';
-                                        document.getElementById('input_foto_supp').value='<?php echo $pertanyaann;?>';
-                                        document.getElementById('pertanyaanSup').value='<?php echo $jawabann;?>';
-                                        document.getElementById('jawabanSupp').value='<?php echo $passwordd;?>';
-                                        document.getElementById('passwordSupp').value='<?php echo $fotoo;?>';
+                                        document.getElementById('pertanyaanSup').value='<?php echo $pertanyaann;?>';
+                                        document.getElementById('jawabanSupp').value='<?php echo $jawabann;?>';
+                                        document.getElementById('passwordSupp').value='<?php echo $alamat;?>';
                                     </script>
                                     <?php
                                 }
                             }
                         }
                     ?>
-                        </td>
-                    <tr>
-                    <?php
-                $no++;
-            }
-            ?>
-                </tbody>
-            </table>
         </div>
     </div>
 </body>

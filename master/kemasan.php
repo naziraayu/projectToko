@@ -38,7 +38,15 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
               alert("Berhasil menambahkan kemasan");
               </script>
             <?php
-          }else{
+        }else if($pic_uploaded==0){
+            $query="insert into kemasan values ('', '$nama_kemasan', '$hargaJual_kemasan', '$hargaBeli_kemasan', '$deskripsi_kemasan', '') ";
+            $result=mysqli_query($koneksi, $query);
+            ?>
+              <script>
+              alert("Berhasil menambahkan kemasan");
+              </script>
+            <?php
+        }else{
             ?>
               <script>
               alert("gagal menambahkan kemasan");
@@ -77,7 +85,7 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
                   }
             }
             if ($pic_uploaded == 1) {
-                $query="update kemasan set nama_kemasan='$nama_kemasan', herga_jual='$hargaJual_kemasan', harga_beli='$hargaBeli_kemasan', deskripsi='$deskripsi_kemasan', gambar_kemasan='$foto_kemasan' where id_kemasan='$id'";
+                $query="update kemasan set nama_kemasan='$nama_kemasan', harga_jual='$hargaJual_kemasan', harga_beli='$hargaBeli_kemasan', deskripsi='$deskripsi_kemasan', gambar_kemasan='$foto_kemasan' where id_kemasan='$id'";
                 $result=mysqli_query($koneksi, $query);
                 ?>
                   <script>
@@ -85,7 +93,7 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
                   </script>
                 <?php
             }else if($pic_uploaded == 0){
-                $query="update kemasan set nama_kemasan='$nama_kemasan', herga_jual='$hargaJual_kemasan', harga_beli='$hargaBeli_kemasan', deskripsi='$deskripsi_kemasan' where id_kemasan='$id'";
+                $query="update kemasan set nama_kemasan='$nama_kemasan', harga_jual='$hargaJual_kemasan', harga_beli='$hargaBeli_kemasan', deskripsi='$deskripsi_kemasan' where id_kemasan='$id'";
                 $result=mysqli_query($koneksi, $query);
                 ?>
                   <script>
@@ -205,7 +213,7 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
         </div>
         <div class="save">
         <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_save_kemasan">Simpan</button>
+            <button type="submit" name="btn_save_kemasan" id="btn_save_kemasan">Simpan</button>
         </div>
         </form>
     </div>
@@ -239,7 +247,7 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
                     while($row=mysqli_fetch_array($result)){
                         $id=$row['id_kemasan'];
                         $namaKemasan=$row['nama_kemasan'];
-                        $hargaJualKemasan=$row['herga_jual'];
+                        $hargaJualKemasan=$row['harga_jual'];
                         $hargaBeliKemasan=$row['harga_beli'];
                         $deskripsiKemasan=$row['deskripsi'];
                         $gambarKemasan=$row['gambar_kemasan'];              
@@ -252,9 +260,23 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
                         <td><?php echo $deskripsiKemasan; ?></td>
                         <td><img src="../gambar/<?php echo $gambarKemasan; ?>" width="100" height="120" ></td>
                         <td>
-                            <button><a href="kemasan.php?edit_kmsn=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editKemasan(<?php echo $id; ?>)"><a href="kemasan.php?edit_kmsn=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="kemasan.php?hapus_kmsn=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
                         </td>
+                        <script>
+                                function editKemasan(id) {
+                                    document.getElementById('btn_save_kemasan').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_kmsn');
+                                        if (editAdminId !== null) {
+                                            document.getElementById('btn_save_kemasan').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_save_kemasan').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
                     </tr>
                     <?php
                         $no++;
@@ -271,7 +293,7 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
                                 while ($row=mysqli_fetch_array($result)) {
                                     $id_karywn=$row['id_kemasan'];
                                     $nama=$row['nama_kemasan'];
-                                    $hrgjual=$row['herga_jual'];
+                                    $hrgjual=$row['harga_jual'];
                                     $hrgbeli=$row['harga_beli'];
                                     $deskripsi=$row['deskripsi'];
                                     $fotoo=$row['gambar_kemasan'];

@@ -249,11 +249,11 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
                             <div class="menu">
                                 <label class="container">
                                     <input type="checkbox" checked="checked">
-                                        <h4><?php echo $nama_barang;?></h4>
+                                        <h4></h4>
                                 </label>
                                 <div class="first-menu">
                                     <div class="nama-menu">
-                                        <h4>Putu Ayu</h4>
+                                        <h4><?php echo $nama_barang;?></h4>
                                     </div>
                                     <div class="time">
                                         <img src="../img/clock.png" alt="">

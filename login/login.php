@@ -1,7 +1,10 @@
 <?php
 require ("koneksi.php");
 session_start();
-
+$max_attempt=3;
+if (isset($_SESSION['login_attempts'])) {
+  $_SESSION['login_attempts']=0;
+}
 if (isset($_POST['btnlogin'])) {
     $notelp=$_POST['txt_telp'];
     $pass=$_POST['txt_pass'];
@@ -16,15 +19,19 @@ if (isset($_POST['btnlogin'])) {
             $akses=$row['akses'];
             $telp=$row['no_telepon'];
             $pw=$row['password'];
+            $nama=$row['nama'];
+
             if ($notelp == $telp) {
               if ($pw == $pass) {
                 if ($akses=='supplier') {
+                  $_SESSION['user']=$row['nama'];
+                  $_SESSION['login_attempts']=0;
                   ?>
                     <script>
                       alert("Berhasil login sebagai Supplier");
                     </script>
                   <?php
-                  header('location: ../stokEtalase/stokEtalase.php?id_supplier='.urlencode($id_user));
+                  header('location: ../stokEtalase/stokEtalase.php?id_supplier='.urlencode($id_user).'&nama='.urlencode($nama));
                   exit();
                 } else if ($akses=='owner') {
                   ?>
@@ -46,6 +53,11 @@ if (isset($_POST['btnlogin'])) {
               <?php
             }
           }else {
+            $_SESSION['login_attempts']++;
+            if ($_SESSION['login_attempts'] == $max_attempt) {
+              header("location: ../lupaPassword/lupaPassword.php");
+              exit();
+            }
             ?>
               <script>alert("Akun anda belum terdaftar");</script>
             <?php
@@ -68,26 +80,28 @@ if (isset($_POST['btnlogin'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <link 
+    <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="loginn.css" />
   </head>
   <body>
     <div class="open">
-      <img src="../img/Group 175.png" alt="">
+      <img src="../img/Group 175.png" alt="" />
     </div>
     <header>
       <div class="head">
         <div class="nav">
-          <a href="../login/login.php">Login</a>
+          <a href="../login/login.html">Login</a>
           <img src="../img/Ellipse 1.png" alt="" />
         </div>
       </div>
@@ -115,25 +129,5 @@ if (isset($_POST['btnlogin'])) {
         </div>
       </div>
     </section>
-    <!-- <div class="footer">
-      <div class="contact-us">
-        <img src="../img/Ellipse 1.png" alt="logo" />
-      </div>
-      <div class="content">
-        <h3 class="ctc">Kontak Kami</h3>
-        <div class="wa">
-          <img src="../img/whatsapp_5968841.png" alt="wa" width="30px" />
-          <p>+62 810-00557-22/ +62 851-5629-6848</p>
-        </div>
-        <div class="ig">
-          <img src="../img/instagram_2111463.png" alt="ig" width="30px" />
-          <p>@brownies_nfriends</p>
-        </div>
-        <div class="fb">
-          <img src="../img/facebook_5968764.png" alt="fb" width="30px" />
-          <p>brownies_nfriends</p>
-        </div>
-      </div>
-    </div> -->
-  </body>
+    </body>
 </html>

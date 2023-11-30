@@ -38,6 +38,14 @@ if (move_uploaded_file($_FILES['input_foto_customer']['tmp_name'], $_SERVER['DOC
               alert("Berhasil menambahkan Customer");
             </script>
         <?php
+    }else if ($pic_uploaded == 0){
+        $query_cust="insert into user values ('', '', '$nama_cust', '$alamat_cust', '$notelp_cust', '', '', '', 'customer', '$penanda_cust')";
+        $result_cust=mysqli_query($koneksi, $query_cust);
+        ?>
+            <script>
+              alert("Berhasil menambahkan Customer");
+            </script>
+        <?php
     }else{
         ?>
             <script>
@@ -125,33 +133,34 @@ if (isset($_REQUEST['hapus_cust'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="adminn.css" />
+    <link rel="stylesheet" href="admin.css" />
 </head>    
 <body>
     <div class="sidebar">
         <div class="content">
-            <ul>
-                <li class="ad"><a href="../master/admin.html">Admin</a></li>
-                <li class="sup"><a href="../master/supplier.html">Supplier</a></li>
-                <li class="cus"><a href="../master/customer.html">Customer</a></li>
-                <li class="men"><a href="../master/menu.html">Menu</a></li>
-                <li class="pac"><a href="../master/paket.html">Paket</a></li>
-                <li class="kem"><a href="../master/kemasan.html">Kemasan</a></li>
-                <li class="supmen"><a href="../master/supMen.html">Supplier Menu</a></li>
-            </ul>
+        <ul>
+          <li class="ad"><a href="../master/admin.php">Admin</a></li>
+          <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
+          <li class="cus"><a href="../master/customer.php">Customer</a></li>
+          <li class="men"><a href="../master/menu.php">Menu</a></li>
+          <li class="pac"><a href="../master/paket.php">Paket</a></li>
+          <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
+          <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
+          </li>
+        </ul>
         </div>
     </div>
     <header>
-        <div class="head">
+        <div class="head"> 
             <div class="nav">
-                <img src="../img/Ellipse 1.png" alt="logo" />
-                <ul>
-                    <li class="mas"><a href="#">MASTER</a></li>
-                    <li class="pes"><a href="#">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="#">ETALASE</a></li>
-                    <li class="lap"><a href="#">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
-                </ul>
+            <img src="../img/Ellipse 1.png" alt="logo" />
+            <ul>
+                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+            </ul>
             </div>
         </div>
     </header>
@@ -207,7 +216,7 @@ if (isset($_REQUEST['hapus_cust'])) {
             </div>
             <div class="save">
             <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-                <button type="submit" name="btn_save_cust" >Simpan</button>
+                <button type="submit" name="btn_save_cust" id="btn_save_cust" >Simpan</button>
             </div>
             </form>
         </div>
@@ -255,9 +264,36 @@ if (isset($_REQUEST['hapus_cust'])) {
                         <td><?php echo $penanda; ?></td>
                         <td><?php echo $akses; ?></td>
                         <td>
-                            <button><a href="customer.php?edit_cust=<?php echo $id_karyawan; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editCustomer(<?php echo $id_karyawan; ?>)"><a href="customer.php?edit_cust=<?php echo $id_karyawan; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="customer.php?hapus_cust=<?php echo $id_karyawan; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
-                            <?php
+                        </td>
+                    <tr>
+                    <script>
+                                function editCustomer(id) {
+                                    document.getElementById('btn_save_cust').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_cust');
+                                        if (editAdminId) {
+                                            document.getElementById('btn_save_cust').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_save_cust').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
+                    <tr>
+                    <?php
+                $no++;
+            }
+            ?>    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<?php
                             if (isset($_GET['edit_cust'])) {   
                             $id_edit=$_GET['edit_cust'];
                             $query="select * from user where id_user='$id_edit'";
@@ -282,15 +318,3 @@ if (isset($_REQUEST['hapus_cust'])) {
                             }
                         }
                     ?>
-                        </td>
-                    <tr>
-                    <?php
-                $no++;
-            }
-            ?>    
-                </tbody>
-            </table>
-        </div>
-    </div>
-</body>
-</html>

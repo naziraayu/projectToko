@@ -40,6 +40,14 @@ if(isset($_REQUEST['btn_simpan'])){
                         alert("Berhasil menambahkan admin");
                         </script>
                     <?php
+    }else if($pic_uploaded == 0){
+                    $query="insert into user values(' ', '', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'admin', '')";
+                    $result=mysqli_query($koneksi, $query);
+                    ?>
+                        <script>
+                        alert("Berhasil menambahkan admin");
+                        </script>
+                    <?php
     }else{
         ?>
               <script>
@@ -137,7 +145,7 @@ if (isset($_REQUEST['hapus_admin'])) {
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="adminn.css" />
+    <link rel="stylesheet" href="admin.css" />
   </head>
 <body>
     <div class="sidebar">
@@ -149,23 +157,22 @@ if (isset($_REQUEST['hapus_admin'])) {
           <li class="men"><a href="../master/menu.php">Menu</a></li>
           <li class="pac"><a href="../master/paket.php">Paket</a></li>
           <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
-          <li class="supmen">
-            <a href="../master/supMen.php">Supplier Menu</a>
+          <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
           </li>
         </ul>
         </div>
     </div>
     <header>
-      <div class="head">
-        <div class="nav">
-          <img src="../img/Ellipse 1.png" alt="logo" />
-          <ul>
-            <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-            <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
-            <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
-            <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
-            <li class="log"><a href="../login/login.php">LOG OUT</a></li>
-          </ul>
+        <div class="head"> 
+            <div class="nav">
+            <img src="../img/Ellipse 1.png" alt="logo" />
+            <ul>
+                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+            </ul>
         </div>
       </div>
     </header>
@@ -240,7 +247,7 @@ if (isset($_REQUEST['hapus_admin'])) {
         </div>
         <div class="save">
             <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_simpan" >Simpan</button>
+            <button type="submit" name="btn_simpan" id="btn_simpan">Simpan</button>
         </div>
         </form>
     </div>
@@ -248,9 +255,9 @@ if (isset($_REQUEST['hapus_admin'])) {
         <div class="table-header">
             <div class="container-input">
                 <input type="text" placeholder="Search" name="text" class="input">
-                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
-                </svg>
+                    <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
+                    </svg>
             </div>              
         </div>
         <div class="table-section">
@@ -291,9 +298,23 @@ if (isset($_REQUEST['hapus_admin'])) {
                         <td><?php echo $jawaban_karyawan; ?></td>
                         <td><?php echo $akses; ?></td>
                         <td>
-                            <button><a href="admin.php?edit_admin=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editAdmin(<?php echo $id; ?>)"><a href="admin.php?edit_admin=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="admin.php?hapus_admin=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
                         </td>
+                            <script>
+                                function editAdmin(id) {
+                                    document.getElementById('btn_simpan').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_admin');
+                                        if (editAdminId != null) {
+                                            document.getElementById('btn_simpan').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_simpan').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
                     <tr>
                     <?php
                 $no++;

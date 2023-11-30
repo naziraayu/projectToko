@@ -133,7 +133,7 @@ if (isset($_REQUEST['hapus_menu'])) {
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="adminn.css" />
+    <link rel="stylesheet" href="admin.css" />
   </head>
   <body>
     <div class="sidebar">
@@ -217,15 +217,16 @@ if (isset($_REQUEST['hapus_menu'])) {
               document.getElementById('spinner_keterangan').selectedIndex = 0;
               document.getElementById('spinner_jenis').selectedIndex = 0;
               document.getElementById('input_foto_menu').value = '';
+              document.getElementById('txt_idMenu').value = '';
             }
           </script>
         </div>
         <div class="update">
           <button type="submit" name="btn_ubah_menu">Update</button>
         </div>
-        <div class="save">
+        <div class="save" id="btn_save_menu" style="display: block;">
           <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-          <button type="submit" name="btn_save_menu">Simpan</button>
+          <button type="submit" name="btn_save_menu" id="btn_save">Simpan</button>
         </div>
       </div>
       </form>
@@ -281,9 +282,22 @@ if (isset($_REQUEST['hapus_menu'])) {
               <td><?php echo $jenisMenu;?></td>
               <td><img src="../gambar/<?php echo $gambarMenu; ?>" width="100" height="120" ></td>
               <td>
-                <button><a href="menu.php?edit_menu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                <button id="tampil" onclick="editMenu(<?php echo $id; ?>)"><a href="menu.php?edit_menu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                 <button><a href="menu.php?hapus_menu=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
               </td>
+                              <script>
+                                function editMenu(id) {
+                                    //document.getElementById('btn_save_menu').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var editAdminId = document.getElementById('txt_idMenu').value;
+                                        if (editAdminId == null) {
+                                            document.getElementById('btn_save_menu').style.display = 'block';
+                                        } else {
+                                            document.getElementById('btn_save_menu').style.display = 'none';
+                                        }
+                                    });
+                                }
+                            </script>
             </tr>
             <?php
                 $no++;

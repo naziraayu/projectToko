@@ -58,7 +58,7 @@ if (isset($_GET['hapus_suppmenu'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="adminn.css" />
+    <link rel="stylesheet" href="admin.css" />
 </head>    
 <body>
     <div class="sidebar">
@@ -146,7 +146,7 @@ if (isset($_GET['hapus_suppmenu'])) {
         </div>
         <div class="save">
         <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_save_supMen">Simpan</button>
+            <button type="submit" name="btn_save_supMen" id="btn_save_supMen">Simpan</button>
         </div>
         </form>
     </div>
@@ -188,9 +188,23 @@ if (isset($_GET['hapus_suppmenu'])) {
                         <td><?php echo $namaMenu; ?></td>
                         <td><?php echo $hargaBeli; ?></td>
                         <td>
-                            <button><a href="supMen.php?edit_suppmenu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editsupMen(<?php echo $id; ?>)"><a href="supMen.php?edit_suppmenu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="supMen.php?hapus_suppmenu=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
                         </td>
+                        <script>
+                                function editsupMen(id) {
+                                    document.getElementById('btn_save_supMen').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_suppmenu');
+                                        if (editAdminId != null) {
+                                            document.getElementById('btn_save_supMen').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_save_supMen').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
                     </tr>
                     <?php
                         $no++;

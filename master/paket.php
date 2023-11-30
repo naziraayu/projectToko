@@ -129,7 +129,7 @@ if (isset($_REQUEST['hapus_paket'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="adminn.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
     <div class="sidebar">
@@ -228,7 +228,7 @@ if (isset($_REQUEST['hapus_paket'])) {
         </div>
         <div class="save">
         <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_save_paket">Simpan</button>
+            <button type="submit" name="btn_save_paket" id="btn_save_paket">Simpan</button>
         </div>
         </form>
     </div>
@@ -282,8 +282,22 @@ if (isset($_REQUEST['hapus_paket'])) {
                         <td><?php echo $deskripsiPaket; ?></td>
                         <td><img src="../gambar/<?php echo $gambarPaket; ?>" width="100" height="120" ></td>
                         <td>
-                            <button><a href="paket.php?ubah_paket=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editAdmin(<?php echo $id; ?>)"><a href="paket.php?ubah_paket=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="paket.php?hapus_paket=<?php echo $id; ?>"><i class="fa-solid fa-trash"></a></i></button>
+                            <script>
+                                function editAdmin(id) {
+                                    document.getElementById('btn_save_paket').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('ubah_paket');
+                                        if (editAdminId != null) {
+                                            document.getElementById('btn_save_paket').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_save_paket').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
                         </td>
                     </tr>
                     <?php
