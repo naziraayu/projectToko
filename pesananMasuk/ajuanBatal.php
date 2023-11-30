@@ -133,7 +133,7 @@ require("../login/koneksi.php");
                         </tr>
                         <tbody>
                         <?php
-                            $query="SELECT user.nama, transaksi.grand_total, transaksi.dibayarkan, transaksi.tgl_transaksi, transaksi.kurang_bayar, transaksi.no_nota, status_transaksi.status, status_transaksi.tgl_pengambilan FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.status='ajukan pembatalan' ORDER BY status_transaksi.tgl_pengambilan ASC";
+                            $query="SELECT user.nama, transaksi.grand_total, transaksi.dibayarkan, transaksi.tgl_transaksi, transaksi.kurang_bayar, transaksi.no_nota, status_transaksi.status, status_transaksi.tgl_pengambilan FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.status='ajukan pembatalan' AND status_transaksi.tgl_pengambilan=DATE_ADD(CURDATE(), INTERVAL 2 DAY) ORDER BY status_transaksi.tgl_pengambilan ASC";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) {
                                 $nama=$row['nama'];
@@ -280,7 +280,7 @@ require("../login/koneksi.php");
                             function tolakpesanan() {
                                 <?php
                                     $noo=$_GET['tampil_ajukan'];
-                                    $query="UPDATE status_transaksi set status='pesanan diproses' where no_nota='$noo'";
+                                    $query="UPDATE status_transaksi set status='pesanan dibatalkan' where no_nota='$noo'";
                                     $result=mysqli_query($koneksi, $query);
                                     if ($result) {
                                         ?>

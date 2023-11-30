@@ -129,11 +129,11 @@ $hari_iniTGL=$now->format('d-m-Y');
                 </li>
                 <li class="options">
                     <img src="../img/Vector(3).png" alt="profile2">
-                    <p><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $_GET['id_supplier'];?>&nama=<?php echo $_GET['nama'];?>">Profil Saya</a></p>
+                    <p><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $_GET['id_supplier'];?>&nama=<?php echo $nama;?>">Profil Saya</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/Pengaturan.png" alt="pengaturan">
-                    <p><a href="../editProfil/editProfil.php?id_supplier=<?php echo $_GET['id_supplier'];?>&nama=<?php echo $_GET['nama'];?>">Edit Profile</a></p>
+                    <p><a href="../editProfil/editProfil.php?id_supplier=<?php echo $_GET['id_supplier'];?>&nama=<?php echo $nama;?>">Edit Profile</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/logout.png" alt="logout">
