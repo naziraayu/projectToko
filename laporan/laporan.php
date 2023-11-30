@@ -427,8 +427,39 @@ require("../login/koneksi.php");
     
     <div data-aos="fade-up" data-aos-duration="1600" id="main-content">
         <pie-chart id="pieChart" style="display:block;height:50%;width:100%;position:relative;">
-            <pchart-element name="Penjualan" value="700.000" colour="#40A090">
-            <pchart-element name="Pesanan" value="300.000" colour="#BE7A74">
+        <?php
+            $penjualan_total=0;
+            $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+            $result=mysqli_query($koneksi, $query);
+                while ($row=mysqli_fetch_array($result)) { 
+                    $nama_brg=$row['nama_barang'];
+                    $nama_user=$row['nama'];
+                    $harga_beli=$row['harga_beli'];
+                    $jam=$row['jam'];
+                    $jumlah_setor=$row['jumlah_setor'];
+                    $sisa=$row['sisa'];
+                    $laku=$row['laku'];
+                    $hasil=$row['bersih'];
+                    $penjualan_total += $hasil;
+                }
+        ?>
+            <pchart-element name="Penjualan" value="<?php echo $penjualan_total;?>" colour="#40A090">
+            <?php
+                $pendapatan_total=0;
+                $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=curdate() ORDER BY status_transaksi.jam";
+                $result=mysqli_query($koneksi, $query);
+                    while ($row=mysqli_fetch_array($result)) {
+                        $no_nota=$row['no_nota'];
+                        $tanggal=$row['tgl_pengambilan'];
+                        $jam=$row['jam'];
+                        $qty=$row['qty'];
+                        $total=$row['total'];
+                        $nama_barang=$row['nama_barang'];
+                        $nama=$row['nama'];
+                        $pendapatan_total += $total;
+                    }
+                ?>
+            <pchart-element name="Pesanan" value="<?php echo $pendapatan_total;?>" colour="#BE7A74">
         </pie-chart>
     </div>
 </body>
