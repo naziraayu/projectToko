@@ -75,6 +75,7 @@ $hari_iniTGL=$now->format('d-m-Y');
     }
 
     require ("../login/koneksi.php");
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,22 +115,25 @@ $hari_iniTGL=$now->format('d-m-Y');
     </header>
     <div class="selector">
         <div id="selectetField">
-            <p id="selectText">NURUL HIDAYAH</p>
+                    <?php
+                    $nama=$_SESSION['user'];
+                    ?>  
+            <p id="selectText"><?php echo $nama;?></p>
             <img src="../img/Vector.svg" alt="profile">
             <img src="../img/Vector1.png" alt="profile">
         </div>
         <div class="selector-list">
             <ul id="list" class="hide">
                 <li class="options1">
-                    <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
+                    <p> <?php echo $nama;?><br> <span class="Keterangan">Supplier</span></p>
                 </li>
                 <li class="options">
                     <img src="../img/Vector(3).png" alt="profile2">
-                    <p><a href="../profil/profil.php<?php echo $_GET['id_supplier'];?>">Profil Saya</a></p>
+                    <p><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $_GET['id_supplier'];?>&nama=<?php echo $_GET['nama'];?>">Profil Saya</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/Pengaturan.png" alt="pengaturan">
-                    <p><a href="../editProfil/editProfil.php<?php echo $_GET['id_supplier'];?>      ">Edit Profile</a></p>
+                    <p><a href="../editProfil/editProfil.php?id_supplier=<?php echo $_GET['id_supplier'];?>&nama=<?php echo $_GET['nama'];?>">Edit Profile</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/logout.png" alt="logout">
