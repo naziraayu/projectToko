@@ -71,40 +71,44 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
     <link rel="stylesheet" href="kemarin.css" />
 </head>
 <body>
+<?php
+        $nama=$_GET['nama'];
+        $id=$_GET['id_supplier'];
+    ?>
     <header>
         <div class="head">
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $_GET['id_supplier'];?>">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PESANAN SAYA</a></li>
-                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PENDAPATAN</a></li>
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul>
             </div> 
         </div>
     </header>
     <div class="selector">
-        <div id="selectetField">
-            <p id="selectText">NURUL HIDAYAH</p>
+        <div id="selectetField">  
+            <p id="selectText"><?php echo $nama;?></p>
             <img src="../img/Vector.svg" alt="profile">
             <img src="../img/Vector1.png" alt="profile">
         </div>
         <div class="selector-list">
             <ul id="list" class="hide">
                 <li class="options1">
-                    <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
+                    <p> <?php echo $nama;?><br><span class="Keterangan">Supplier</span></p>
                 </li>
                 <li class="options">
                     <img src="../img/Vector(3).png" alt="profile2">
-                    <a href="../editProfil/lihatProfil.html">Profil Saya</a>
+                    <p><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Profil Saya</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/Pengaturan.png" alt="pengaturan">
-                    <a href="../editProfil/editProfil.html">Edit Profil</a>
+                    <p><a href="../editProfil/editProfil.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Edit Profile</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/logout.png" alt="logout">
-                    <a href="../login/login.html">Logout</a>
+                    <p><a href="../login/login.php">Logout</a></p>
                 </li>
             </ul>
         </div>
@@ -126,15 +130,11 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
             });
         });
     </script>
-    <!-- <div class="wrapper">
-        <div class="img"><img src="../img/Ellipse 8.png" alt=""></div>
-        <div class="teks">Nurul Hidayah <span class="ket">Supplier</span></div>
-    </div> -->
     <div class="navbar">
         <div class="content">
             <ul>
                 <li class="baru" id="baruItem">
-                    <a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $_GET['id_supplier'];?>" onclick="togglePesanan('baru')">Kemarin</a>
+                    <a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>" onclick="togglePesanan('baru')">Kemarin</a>
                     <div class="img2">
                         <img src="../img/proses.png" alt="" class="gambar-pesanan" id="baruImage" style="display: inline;" />
                     </div>
@@ -144,7 +144,7 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
         <div class="content1">
             <ul>
                 <li class="proses" id="prosesItem">
-                    <a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $_GET['id_supplier'];?>" onclick="togglePesanan('proses')">Hari Ini</a>
+                    <a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>" onclick="togglePesanan('proses')">Hari Ini</a>
                     <div class="img3">
                         <img src="../img/Frame(4).png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
                     </div>
@@ -154,7 +154,7 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
         <div class="content3">
             <ul>
                 <li class="ajukanBatal" id="batalItem">
-                    <a href="../pesananSaya/besok.php?id_supplier=<?php echo $_GET['id_supplier'];?>" onclick="togglePesanan('ajukan')">Besok</a>
+                    <a href="../pesananSaya/besok.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>" onclick="togglePesanan('ajukan')">Besok</a>
                     <div class="img3">
                         <img src="../img/Ajukan-batal.png" alt="" class="gambar-pesanan" id="prosesImage" style="display: inline;" />
                     </div>

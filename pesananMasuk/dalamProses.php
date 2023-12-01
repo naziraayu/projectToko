@@ -146,12 +146,11 @@ require("../login/koneksi.php");
             </div>
         </div>
         <div class="table_responsive_detailpesanan">
-            <form action="dalamProses.php" method="post" id="myForm">
             <table class="table_detail_pesanan">
             <?php
                 if (isset($_GET['id_barang'])) {
                     $id_brg=$_GET['id_barang'];
-                    $query="SELECT user.nama, status_transaksi.jam, status_transaksi.tgl_pengambilan, SUM(detail_transaksi.qty) as total_qty, detail_transaksi.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer=user.id_user JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota WHERE detail_transaksi.id_barang='$id_brg' AND status_transaksi.tgl_pengambilan=DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY transaksi.no_nota;";
+                    $query="SELECT user.nama, status_transaksi.jam, status_transaksi.tgl_pengambilan, SUM(detail_transaksi.qty) as total_qty, detail_transaksi.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer=user.id_user JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota WHERE detail_transaksi.id_barang='$id_brg' AND status_transaksi.tgl_pengambilan=DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND detail_transaksi.id_supplier IS NULL GROUP BY transaksi.no_nota";
                     $result=mysqli_query($koneksi, $query);
                     while ($row=mysqli_fetch_array($result)) {
                         $nama=$row['nama'];
@@ -175,10 +174,27 @@ require("../login/koneksi.php");
                 <?php } ?>
             </table>
         </div>
-        </form>
+            <?php
+                if (isset($_GET['id_supplier'])) {
+                    $supp=$_GET['id_supplier'];
+                    $brg=$_GET['id_barang'];
+                    $nota=$_GET['no_nota'];
+                    $query="update detail_transaksi set id_supplier='$supp' where id_barang='$brg' and no_nota='$nota'";
+                    $result=mysqli_query($koneksi, $query);
+                    if ($result) {
+                    ?>
+                    <script>
+                        alert("Berhasil menambahkan pesanan ke supplier");
+                        window.location.href="dalamProses.php?id_barang=<?php echo $brg;?>";
+                    </script>
+                    <?php
+                }}
+            ?>
+        <form action="dalamProses.php" method="post">
         <div class="dropdown">
             <div class="dropdown-list">
-                <select class="select" name="dropdown" id="dropdown">
+                <select class="select" id="spiner_supp" name="spiner_supp" onchange="redirectToPage()">
+                <option value="">Pilih Supplier</option>
                 <?php
                     $query = "SELECT user.nama, user.no_telepon, supplier_menu.id_user FROM user JOIN supplier_menu ON user.id_user=supplier_menu.id_user WHERE supplier_menu.id_barang='$id_brg'";
                     $result = mysqli_query($koneksi, $query);
@@ -193,28 +209,25 @@ require("../login/koneksi.php");
                 </select>
             </div>
         </div>
-        <div class="wrapper">
-        <textarea placeholder="Template kalimat ..." ></textarea>
-        <div>
-            <!-- <button class="button1" type="submit" name="submit">Kirim Pesan</button> -->
-            <button class="button2" type="submit" name="simpan">SIMPAN</button>
-            <?php
-                if (isset($_REQUEST['simpan'])) {
-                    $supp = $_POST['dropdown'];
-                    $id_supp = $_GET['id_barang'];
-                    $nota = $_GET['no_nota'];
-                    $query = "UPDATE detail_transaksi SET id_supplier='$supp' WHERE id_barang='$id_supp' AND no_nota='$nota'";
-                    $result = mysqli_query($koneksi, $query);
+        <script>
+        function redirectToPage() {
+            // Get the selected option value
+            var selectedValue = document.getElementById("spiner_supp").value;
 
-                    if ($result) {
-                        echo '<script>alert("Berhasil menambahkan ID Supplier");</script>';
-                    } else {
-                        echo '<script>alert("Gagal menambahkan ID Supplier");</script>';
-                    }
-                }
-            ?>
+            // If the value is not empty, redirect to the desired page
+            if (selectedValue) {
+                var url = "dalamProses.php?id_barang=<?php echo $_GET['id_barang']; ?>&no_nota=<?php echo $_GET['no_nota']; ?>&id_supplier=" + selectedValue;
+                window.location.href = url;
+            }
+        }
+</script>
+        <div class="wrapper">
+            <textarea placeholder="Template kalimat ..." ></textarea>
+            <div>
+                <!-- <button class="button1" type="submit" name="submit">Kirim Pesan</button> -->
+                <button class="button2" type="submit" name="simpan">SIMPAN</button>
+            </div>
         </div>
-    </div>
       </form>
     </div>
     <?php

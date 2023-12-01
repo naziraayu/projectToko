@@ -94,30 +94,24 @@ $hari_iniTGL=$now->format('d-m-Y');
     <script src="stokEtalase.js" defer></script>
 </head>
 <body>
-    <header>   
+    <header>
+    <?php
+        $nama=$_GET['nama'];
+        $id=$_GET['id_supplier'];
+    ?>   
         <div class="head">
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $_GET['id_supplier'];?>">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PESANAN SAYA</a></li>
-                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PENDAPATAN</a></li>
-                    <!-- <li class="log"><a href="../login/login.html">LOG OUT</a></li> -->
-                    <!-- <select class="select-box"> -->
-                        <!-- <option value="1">Nurul Hidayah img</option> -->
-                        <!-- <option value="2">Profile Saya</option>
-                        <option value="3">Pengaturan Profile</option>
-                        <option value="4">Log Out</option><a href="../login/login.html"></a>
-                    </select> -->
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul> 
             </div> 
         </div>
     </header>
     <div class="selector">
-        <div id="selectetField">
-                    <?php
-                    $nama=$_SESSION['user'];
-                    ?>  
+        <div id="selectetField">  
             <p id="selectText"><?php echo $nama;?></p>
             <img src="../img/Vector.svg" alt="profile">
             <img src="../img/Vector1.png" alt="profile">
@@ -129,11 +123,11 @@ $hari_iniTGL=$now->format('d-m-Y');
                 </li>
                 <li class="options">
                     <img src="../img/Vector(3).png" alt="profile2">
-                    <p><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $_GET['id_supplier'];?>&nama=<?php echo $nama;?>">Profil Saya</a></p>
+                    <p><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Profil Saya</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/Pengaturan.png" alt="pengaturan">
-                    <p><a href="../editProfil/editProfil.php?id_supplier=<?php echo $_GET['id_supplier'];?>&nama=<?php echo $nama;?>">Edit Profile</a></p>
+                    <p><a href="../editProfil/editProfil.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Edit Profile</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/logout.png" alt="logout">

@@ -150,42 +150,40 @@ $hari_iniTGL=$now->format('d-m-Y');
     }
 </style>
 <body>
+    <?php
+        $nama=$_GET['nama'];
+        $id=$_GET['id_supplier'];
+    ?>
     <header>
         <div class="head">
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $_GET['id_supplier'];?>">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PESANAN SAYA</a></li>
-                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PENDAPATAN</a></li>
-                    <!-- <select class="select-box">
-                        <option value="1">Nurul Hidayah</option>disabled
-                        <option value="2">Profile Saya</option>
-                        <option value="3">Pengaturan Profile</option>
-                        <option value="4">Log Out</option><a href="../login/login.html"></a>
-                    </select> -->
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul>
             </div>
         </div>
     </header>
     <div class="selector">
-        <div id="selectetField">
-            <p id="selectText">NURUL HIDAYAH</p>
+        <div id="selectetField">  
+            <p id="selectText"><?php echo $nama;?></p>
             <img src="../img/Vector.svg" alt="profile">
             <img src="../img/Vector1.png" alt="profile">
         </div>
         <div class="selector-list">
             <ul id="list" class="hide">
                 <li class="options1">
-                    <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
+                    <p> <?php echo $nama;?><br> <span class="Keterangan">Supplier</span></p>
                 </li>
                 <li class="options">
                     <img src="../img/Vector(3).png" alt="profile2">
-                    <p><a href="../profil/profil.php">Profil Saya</a></p>
+                    <p><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Profil Saya</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/Pengaturan.png" alt="pengaturan">
-                    <p><a href="../editProfil/editProfil.php">Edit Profile</a></p>
+                    <p><a href="../editProfil/editProfil.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Edit Profile</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/logout.png" alt="logout">

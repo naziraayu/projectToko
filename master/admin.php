@@ -218,7 +218,7 @@ if (isset($_REQUEST['hapus_admin'])) {
                     <label for="name" class="form__label">Jawaban</label>
                 </div>
                 <div class="form__group field">
-                    <input type="password" id="txt_password" name="txt_password" class="form__field" placeholder="Name" required="">
+                    <input type="password" id="txt_password" name="txt_password" class="form__field" required="">
                     <label for="name" class="form__label">Password</label>
                 </div>
             </div>
@@ -254,11 +254,17 @@ if (isset($_REQUEST['hapus_admin'])) {
     <div class="table">
         <div class="table-header">
             <div class="container-input">
-                <input type="text" placeholder="Search" name="text" class="input">
-                    <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                <input type="text" placeholder="Search" name="text" id="searchInput" class="input" />
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" onclick="cari()">
                     <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
-                    </svg>
-            </div>              
+                </svg>
+            </div>  
+            <script>
+                function cari() {
+                    var searchInputValue = document.getElementById("searchInput").value;
+                    window.location.href="admin.php?cari="+searchInputValue;
+                }
+            </script>            
         </div>
         <div class="table-section">
             <table> 
@@ -274,7 +280,61 @@ if (isset($_REQUEST['hapus_admin'])) {
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <?php
+                    if (isset($_GET['cari'])) {
+                        $cari=$_GET['cari'];
+                        ?>
+                        <tbody>
+                <?php
+                    $query="select * from user where akses='admin' and LOWER(nama) LIKE LOWER('%$cari%')";
+                    $result=mysqli_query($koneksi, $query);
+                    $no=1;
+                    while($row=mysqli_fetch_array($result)){
+                        $id=$row['id_user'];
+                        $nama_karyawan=$row['nama'];
+                        $alamat_karyawan=$row['alamat'];
+                        $noTelepon_karyawan=$row['no_telepon'];
+                        $pertanyaan_karyawan=$row['pertanyaan'];
+                        $jawaban_karyawan=$row['jawaban'];
+                        $akses=$row['akses'];
+                        //$password_karyawan=$row['password'];
+                ?>
+                    <tr>
+                        <td><?php echo $no; ?></td>    
+                        <td><?php echo $nama_karyawan; ?></td>
+                        <td><?php echo $alamat_karyawan; ?></td>
+                        <td><?php echo $noTelepon_karyawan; ?></td>
+                        <td><?php echo $pertanyaan_karyawan; ?></td>
+                        <td><?php echo $jawaban_karyawan; ?></td>
+                        <td><?php echo $akses; ?></td>
+                        <td>
+                            <button onclick="editAdmin(<?php echo $id; ?>)"><a href="admin.php?edit_admin=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button><a href="admin.php?hapus_admin=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
+                        </td>
+                            <script>
+                                function editAdmin(id) {
+                                    document.getElementById('btn_simpan').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_admin');
+                                        if (editAdminId != null) {
+                                            document.getElementById('btn_simpan').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_simpan').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
+                    <tr>
+                    <?php
+                $no++;
+            }
+            ?>
+                </tbody>
+                        <?php
+                    }else {
+                        ?>
+                        <tbody>
                 <?php
                     $query="select * from user where akses='admin'";
                     $result=mysqli_query($koneksi, $query);
@@ -321,6 +381,9 @@ if (isset($_REQUEST['hapus_admin'])) {
             }
             ?>
                 </tbody>
+                        <?php
+                    }
+                ?>
             </table>
             <?php
                             if (isset($_GET['edit_admin'])) {   

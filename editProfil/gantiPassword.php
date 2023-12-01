@@ -3,20 +3,21 @@ require("../login/koneksi.php");
 if (isset($_POST['proses'])) {
     $pwLama=$_POST['Pass_baru'];
     $konfirmPW=$_POST['konfirm_pass'];
-    $id=$_POST['txt_id'];
+    $id_txt=$_POST['txt_id'];
+    $nama=$_POST['nama'];
     if ($pwLama == $konfirmPW) {
-        $query="update user set password='$konfirmPW' where id_user='$id'";
+        $query="update user set password='$konfirmPW' where id_user='$id_txt'";
         $result=mysqli_query($koneksi, $query);
         ?>
         <script>
             alert("berhasil mengubah password");
-            window.location.href="gantiPassword.php?id_supplier=<?php echo $id; ?>";
+            window.location.href="gantiPassword.php?id_supplier=<?php echo $id_txt; ?>&nama=<?php echo $nama;?>";
         </script>
         <?php
     }else {?>
         <script>
             alert("gagal mengubah password");
-            window.location.href="gantiPassword.php?id_supplier=<?php echo $id; ?>";
+            window.location.href="gantiPassword.php?id_supplier=<?php echo $id_txt; ?>&nama=<?php echo $nama;?>";
         </script>
     <?php }
 }
@@ -36,42 +37,46 @@ if (isset($_POST['proses'])) {
 </head>
 <body>
     <header>
+    <?php
+    $id=$_GET['id_supplier'];
+    $nama=$_GET['nama'];
+    ?>
         <div class="head">
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="stok"><a href="../stokEtalase/stokEtalase.html">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/kemarin.html">PESANAN SAYA</a></li>
-                    <li class="pen"><a href="../pendapatan/pendapatan.html">PENDAPATAN</a></li>
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul>
             </div> 
         </div>
     </header>
     <div class="selector">
         <div id="selectetField">
-          <p id="selectText">NURUL HIDAYAH</p>
+          <p id="selectText"><?php echo $nama;?></p>
           <img src="../img/Vector.svg" alt="profile">
           <img src="../img/Vector1.png" alt="profile">
         </div>
         <div class="selector-list">
-        <ul id="list" class="hide">
-          <li class="options1">
-            <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
-          </li>
-          <li class="options">
-            <img src="../img/Vector(3).png" alt="profile2">
-            <p>Profil Saya</p>
-          </li>
-          <li class="options">
-            <img src="../img/Pengaturan.png" alt="pengaturan">
-            <p>Edit Profile</p>
-          </li>
-          <li class="options">
-            <img src="../img/logout.png" alt="logout">
-            <p>Logout</p>
-          </li>
-        </ul>
-      </div>
+            <ul id="list" class="hide">
+                <li class="options1">
+                    <p><?php echo $nama;?> <br> <span class="Keterangan">Supplier</span></p>
+                </li>
+                <li class="options">
+                    <img src="../img/Vector(3).png" alt="profile2">
+                    <a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Profil Saya</a>
+                </li>
+                <li class="options">
+                    <img src="../img/Pengaturan.png" alt="pengaturan">
+                    <a href="../editProfil/editProfil.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Edit Profil</a>
+                </li>
+                <li class="options">
+                    <img src="../img/logout.png" alt="logout">
+                    <a href="../login/login.php">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <script>
         var selectetField = document.getElementById("selectetField");
@@ -114,9 +119,9 @@ if (isset($_POST['proses'])) {
         <div class="head2">
             <div class="nav2"> 
                 <ul>
-                    <li class="stok"><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $id; ?>">Lihat Profil</a></li>
-                    <li class="pes"><a href="../editProfil/editProfil.php?id_supplier=<?php echo $id; ?>">Edit Profile</a></li>
-                    <li class="pen"><a href="../editProfil/gantiPassword.php?id_supplier=<?php echo $id; ?>">Ganti Password</a></li>
+                    <li class="stok"><a href="../editProfil/lihatProfile.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>">Lihat Profil</a></li>
+                    <li class="pes"><a href="../editProfil/editProfil.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>">Edit Profile</a></li>
+                    <li class="pen"><a href="../editProfil/gantiPassword.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>">Ganti Password</a></li>
                 </ul>
             </div> 
             <div class="container">
@@ -140,6 +145,9 @@ if (isset($_POST['proses'])) {
                         <div class="box">
                             <input type="hidden" name="txt_id" id="txt_id" placeholder="Id" >
                         </div>
+                        <div class="box">
+                            <input type="hidden" name="nama" id="nama" placeholder="Id" >
+                        </div>
                 </div>
             </div>
             <div class="wrapper1">
@@ -150,6 +158,7 @@ if (isset($_POST['proses'])) {
         <script>
             document.getElementById('txt_PWLama').value="<?php echo $password;?>";
             document.getElementById('txt_id').value="<?php echo $id;?>";
+            document.getElementById('nama').value="<?php echo $nama;?>";
         </script>
             <?php
                     }
