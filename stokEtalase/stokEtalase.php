@@ -285,14 +285,15 @@ $hari_iniTGL=$now->format('d-m-Y');
                     $jam=date('H:i:s');
                     $tanggal=date('Y:m:d');
                     if (isset($_GET['angka'])) {
-                        $id=$_GET['id_supplier'];   
+                        $id=$_GET['id_supplier'];
+                        $nama=$_GET['nama'];   
                         $id_suppmenu=$_GET['id_suppmenu'];
                         $setor=$_GET['angka'];
                         $query="INSERT INTO `detail_suppmenu_etalase` (`id_setorEtalase`, `jumlah_setor`, `sisa`, `jam`, `tanggal_setor`, `id_suppmenu`) VALUES (NULL, '$setor', 0, '$jam', '$tanggal', '$id_suppmenu')";
                         $result=mysqli_query($koneksi, $query);
                         ?>
                         <script>
-                            window.location.href="stokEtalase.php?id_supplier=<?php echo $id; ?>";
+                            window.location.href="stokEtalase.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>";
                         </script>
                         <?php
                     }

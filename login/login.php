@@ -24,21 +24,20 @@
               if ($notelp == $telp) {
                 if ($pw == $pass) {
                   if ($akses=='supplier') {
-                    $_SESSION['login_attempts']=0;
                     ?>
                       <script>
                         alert("Berhasil login sebagai Supplier");
+                        window.location.href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id_user;?>&nama=<?php echo $nama;?>";
                       </script>
                     <?php
-                    header('location: ../stokEtalase/stokEtalase.php?id_supplier='.urlencode($id_user).'&nama='.urlencode($nama));
                     exit();
                   } else if ($akses=='owner') {
                     ?>
                       <script>
                         alert("Berhasil login sebagai Owner");
+                        window.location.href="../dashboard/dashboard.php?nama=<?php echo $nama;?>";
                       </script>
                     <?php
-                    header('location:../dashboard/dashboard.php');
                     exit;
                   }
                 }else {
@@ -100,7 +99,7 @@
       <header>
         <div class="head">
           <div class="nav">
-            <a href="../login/login.html">Login</a>
+            <a href="../login/login.php">Login</a>
             <img src="../img/Ellipse 1.png" alt="" />
           </div>
         </div>

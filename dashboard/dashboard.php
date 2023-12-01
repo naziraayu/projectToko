@@ -1,3 +1,6 @@
+<?php
+require("../login/koneksi.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,19 +47,22 @@
             <div class="nav">
                 <img src="../img/Ellipse 2_1.svg" alt="logo" />
                 <ul >
-                    <li class="mas"><a href="../master/admin.html">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/dalamProses.html">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
-                    <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/dalamProses.php">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
                 </ul>
             </div>
         </div>
     </header>
     <header2>
+        <?php 
+        $nama=$_GET['nama'];
+        ?>
         <div class="Welcome">
             <div class="text-hero">
-                <h1>Selamat Datang, Owner Asti Ghaliyah!</h1>
+                <h1>Selamat Datang, Owner <?php echo $nama;?>!</h1>
             </div>
     </header2>
     <!-- Penjualan Pemesanan -->
