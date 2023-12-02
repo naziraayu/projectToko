@@ -33,14 +33,22 @@ if (isset($_REQUEST['btn_save_paket'])) {
               }
         }
         if ($pic_uploaded == 1) {
-            $query="insert into paket values ('', '$nama_paket', '$isi_paket', '$jumlahMacam_paket', '$hargaJual_paket', '$deskripsi_paket', '$foto_paket', '$kemasan_paket')";
+            $query="insert into paket values ('', '$foto_paket', '$nama_paket', '$hargaJual_paket', '$isi_paket', '$jumlahMacam_paket', '$deskripsi_paket', '$kemasan_paket')";
             $result=mysqli_query($koneksi, $query);
             ?>
               <script>
               alert("Berhasil menambahkan paket");
               </script>
             <?php
-          }else{
+        }else if($pic_uploaded == 0){
+            $query="insert into paket values ('', '', '$nama_paket', '$hargaJual_paket', '$isi_paket', '$jumlahMacam_paket', '$deskripsi_paket', '$kemasan_paket')";
+            $result=mysqli_query($koneksi, $query);
+            ?>
+              <script>
+              alert("Berhasil menambahkan paket");
+              </script>
+            <?php
+        }else{
             ?>
               <script>
               alert("gagal menambahkan paket");

@@ -24,6 +24,7 @@
               if ($notelp == $telp) {
                 if ($pw == $pass) {
                   if ($akses=='supplier') {
+                    $_SESSION['login_attempts'] = 0;
                     ?>
                       <script>
                         alert("Berhasil login sebagai Supplier");
@@ -32,6 +33,7 @@
                     <?php
                     exit();
                   } else if ($akses=='owner') {
+                    $_SESSION['login_attempts'] = 0;
                     ?>
                       <script>
                         alert("Berhasil login sebagai Owner");

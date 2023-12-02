@@ -179,6 +179,7 @@ $hari_iniTGL=$now->format('d-m-Y');
             <?php
                 if (isset($_GET['id_supplier'])) {
                     $id_supp=$_GET['id_supplier'];
+                    $nama_supp=$_GET['nama'];
                     $query="SELECT supplier_menu.id_suppmenu, SUM(detail_suppmenu_etalase.jumlah_setor) AS jumlah_setor, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.tanggal_setor, barang.nama_barang FROM detail_suppmenu_etalase JOIN supplier_menu ON detail_suppmenu_etalase.id_suppmenu=supplier_menu.id_suppmenu JOIN barang ON barang.id_barang=supplier_menu.id_barang WHERE supplier_menu.id_user='$id_supp' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_suppmenu";
                     $result=mysqli_query($koneksi, $query);
                     if ($num=mysqli_num_rows($result) != 0) {
@@ -243,7 +244,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                         <script>
                             function hitung(id) {
                                 var angka=document.getElementsByName('angka_' + id)[0].value;
-                                window.location.href="stokEtalase.php?id_supplier="+ <?php echo $id_supp;?> +"&id_suppmenu="+id+"&angka="+angka;
+                                window.location.href="stokEtalase.php?id_supplier=" + <?php echo $id_supp;?> + "&nama=" + "<?php echo $nama_supp;?>" + "&id_suppmenu="+id+"&angka="+angka;
                             }
                         </script>
                     </div>

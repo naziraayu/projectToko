@@ -32,7 +32,15 @@ $pic_uploaded=0;
             }
       }
       if ($pic_uploaded == 1) {
-        $query="insert into barang values ('', '$nama_menu', '$hargaJual_menu', '$keterangan_menu', '$jenis_menu', '$deskripsi_menu', '$foto_menu')";
+        $query="insert into barang values ('', '$foto_menu', '$nama_menu', '$hargaJual_menu', '$keterangan_menu', '$jenis_menu', '$deskripsi_menu')";
+        $result=mysqli_query($koneksi, $query);
+        ?>
+          <script>
+          alert("Berhasil menambahkan menu");
+          </script>
+        <?php
+      }else if($pic_uploaded == 0){
+        $query="insert into barang values ('', '', '$nama_menu', '$hargaJual_menu', '$keterangan_menu', '$jenis_menu', '$deskripsi_menu')";
         $result=mysqli_query($koneksi, $query);
         ?>
           <script>

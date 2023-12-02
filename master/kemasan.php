@@ -31,7 +31,7 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
               }
         }
         if ($pic_uploaded == 1) {
-            $query="insert into kemasan values ('', '$nama_kemasan', '$hargaJual_kemasan', '$hargaBeli_kemasan', '$deskripsi_kemasan', '$foto_kemasan') ";
+            $query="insert into kemasan values ('', '$foto_kemasan', '$nama_kemasan', '$hargaJual_kemasan', '$hargaBeli_kemasan', '$deskripsi_kemasan') ";
             $result=mysqli_query($koneksi, $query);
             ?>
               <script>
@@ -39,7 +39,7 @@ if (isset($_REQUEST['btn_save_kemasan'])) {
               </script>
             <?php
         }else if($pic_uploaded==0){
-            $query="insert into kemasan values ('', '$nama_kemasan', '$hargaJual_kemasan', '$hargaBeli_kemasan', '$deskripsi_kemasan', '') ";
+            $query="insert into kemasan values ('', '', '$nama_kemasan', '$hargaJual_kemasan', '$hargaBeli_kemasan', '$deskripsi_kemasan') ";
             $result=mysqli_query($koneksi, $query);
             ?>
               <script>
