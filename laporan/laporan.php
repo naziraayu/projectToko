@@ -26,11 +26,11 @@ require("../login/koneksi.php");
           ['', 'Penjualan', 'Pemesanan', 'Total'],
           <?php
             $pendapatan_total=0;
-            $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=curdate() ORDER BY status_transaksi.jam";
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() ORDER BY status_transaksi.jam";
             $result=mysqli_query($koneksi, $query);
             while ($row=mysqli_fetch_array($result)) {
                 $no_nota=$row['no_nota'];
-                $tanggal=$row['tgl_pengambilan'];
+                $tanggal=$row['tanggal_pengambilan'];
                 $jam=$row['jam'];
                 $qty=$row['qty'];
                 $total=$row['total'];
@@ -39,7 +39,7 @@ require("../login/koneksi.php");
                 $pendapatan_total += $total;
             }
             $penjualan_total=0;
-                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase;";
                         $result=mysqli_query($koneksi, $query);
                         while ($row=mysqli_fetch_array($result)) { 
                             $nama_brg=$row['nama_barang'];
@@ -53,11 +53,11 @@ require("../login/koneksi.php");
                             $penjualan_total += $hasil;
             }
             $pendapatan_kmrn=0;
-            $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=DATE_SUB(CURDATE(), INTERVAL 1 DAY) ORDER BY status_transaksi.jam";
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 1 DAY) ORDER BY status_transaksi.jam";
             $result=mysqli_query($koneksi, $query);
             while ($row=mysqli_fetch_array($result)) {
                 $no_nota=$row['no_nota'];
-                $tanggal=$row['tgl_pengambilan'];
+                $tanggal=$row['tanggal_pengambilan'];
                 $jam=$row['jam'];
                 $qty=$row['qty'];
                 $total=$row['total'];
@@ -80,11 +80,11 @@ require("../login/koneksi.php");
                             $penjualan_kmrn += $hasil;
             }
             $pendapatan_kmrn2=0;
-            $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=DATE_SUB(CURDATE(), INTERVAL 2 DAY) ORDER BY status_transaksi.jam";
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 2 DAY) ORDER BY status_transaksi.jam";
             $result=mysqli_query($koneksi, $query);
             while ($row=mysqli_fetch_array($result)) {
                 $no_nota=$row['no_nota'];
-                $tanggal=$row['tgl_pengambilan'];
+                $tanggal=$row['tanggal_pengambilan'];
                 $jam=$row['jam'];
                 $qty=$row['qty'];
                 $total=$row['total'];
@@ -107,11 +107,11 @@ require("../login/koneksi.php");
                             $penjualan_kmrn2 += $hasil;
             }
             $pendapatan_kmrn3=0;
-            $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=DATE_SUB(CURDATE(), INTERVAL 3 DAY) ORDER BY status_transaksi.jam";
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 3 DAY) ORDER BY status_transaksi.jam";
             $result=mysqli_query($koneksi, $query);
             while ($row=mysqli_fetch_array($result)) {
                 $no_nota=$row['no_nota'];
-                $tanggal=$row['tgl_pengambilan'];
+                $tanggal=$row['tanggal_pengambilan'];
                 $jam=$row['jam'];
                 $qty=$row['qty'];
                 $total=$row['total'];
@@ -134,11 +134,11 @@ require("../login/koneksi.php");
                             $penjualan_kmrn3 += $hasil;
             }
             $pendapatan_kmrn4=0;
-            $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=DATE_SUB(CURDATE(), INTERVAL 3 DAY) ORDER BY status_transaksi.jam";
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 3 DAY) ORDER BY status_transaksi.jam";
             $result=mysqli_query($koneksi, $query);
             while ($row=mysqli_fetch_array($result)) {
                 $no_nota=$row['no_nota'];
-                $tanggal=$row['tgl_pengambilan'];
+                $tanggal=$row['tanggal_pengambilan'];
                 $jam=$row['jam'];
                 $qty=$row['qty'];
                 $total=$row['total'];
@@ -273,7 +273,7 @@ require("../login/koneksi.php");
                 <h2><a href="#setorn">Setoran Supplier</a></h2>
                 <?php
                             $setoran_total=0;
-                            $query="SELECT user.nama, SUM(detail_suppmenu_etalase.jumlah_setor) AS setoran, SUM(detail_suppmenu_etalase.sisa) AS sisa, barang.harga_jual, supplier_menu.harga_beli, (SUM(detail_suppmenu_etalase.jumlah_setor) * barang.harga_jual) AS total_nominal, (SUM(detail_suppmenu_etalase.jumlah_setor) * supplier_menu.harga_beli - SUM(detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli) AS pengeluaran, ((SUM(detail_suppmenu_etalase.jumlah_setor) * barang.harga_jual) - (SUM(detail_suppmenu_etalase.jumlah_setor) * supplier_menu.harga_beli - SUM(detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli)) AS pendapatan FROM barang JOIN supplier_menu ON barang.id_barang=supplier_menu.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu GROUP BY user.nama, barang.harga_jual";
+                            $query="SELECT user.nama, SUM(detail_suppmenu_etalase.jumlah_setor) AS setoran, SUM(detail_suppmenu_etalase.sisa) AS sisa, barang.harga_jual, supplier_menu.harga_beli, (SUM(detail_suppmenu_etalase.jumlah_setor) * barang.harga_jual) AS total_nominal, (SUM(detail_suppmenu_etalase.jumlah_setor) * supplier_menu.harga_beli - SUM(detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli) AS pengeluaran, ((SUM(detail_suppmenu_etalase.jumlah_setor) * barang.harga_jual) - (SUM(detail_suppmenu_etalase.jumlah_setor) * supplier_menu.harga_beli - SUM(detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli)) AS pendapatan FROM barang JOIN supplier_menu ON barang.id_barang=supplier_menu.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY user.nama, barang.harga_jual";
                             $result=mysqli_query($koneksi, $query);
                             while($row=mysqli_fetch_array($result)){
                                 $nama=$row['nama'];
@@ -283,7 +283,7 @@ require("../login/koneksi.php");
                                 $total=$row['total_nominal'];
                                 $pengeluaran=$row['pengeluaran'];
                                 $pendapatan=$row['pendapatan'];
-                                $setoran_total += $pendapatan;
+                                $setoran_total += $pengeluaran;
                             }
                         ?>
                 <h3 id="setoran_supp"></h3>
@@ -296,13 +296,13 @@ require("../login/koneksi.php");
                 <h2><a href="#uang-pesan">Uang Pesanan</a></h2>
                         <?php
                             $uang_pesanan=0;
-                            $query="SELECT user.nama, transaksi.no_nota, SUM(detail_transaksi.qty) AS total_qty, status_transaksi.tgl_pengambilan, transaksi.grand_total, transaksi.status_bayar, user.penanda FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tgl_pengambilan BETWEEN curdate() AND DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY transaksi.no_nota ORDER BY status_transaksi.tgl_pengambilan ASC";
+                            $query="SELECT user.nama, transaksi.no_nota, SUM(detail_transaksi.qty) AS total_qty, status_transaksi.tanggal_pengambilan, transaksi.grand_total, transaksi.status_bayar, user.penanda FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tanggal_pengambilan BETWEEN curdate() AND DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY transaksi.no_nota ORDER BY status_transaksi.tanggal_pengambilan ASC";
                             $result=mysqli_query($koneksi, $query);
                             while($row=mysqli_fetch_array($result)){
                                 $nama=$row['nama'];
                                 $no_nota=$row['no_nota'];
                                 $total_qty=$row['total_qty'];
-                                $tanggal=$row['tgl_pengambilan'];
+                                $tanggal=$row['tanggal_pengambilan'];
                                 $total=$row['grand_total'];
                                 $status=$row['status_bayar'];
                                 $penanda=$row['penanda'];
@@ -323,7 +323,7 @@ require("../login/koneksi.php");
                 <h2>Penjualan</h2>
                     <?php
                         $penjualan_total=0;
-                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
                         $result=mysqli_query($koneksi, $query);
                         while ($row=mysqli_fetch_array($result)) { 
                             $nama_brg=$row['nama_barang'];
@@ -343,11 +343,11 @@ require("../login/koneksi.php");
                 <h2>Pesanan</h2>
                         <?php
                             $pendapatan_total=0;
-                            $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=curdate() ORDER BY status_transaksi.jam";
+                            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() ORDER BY status_transaksi.jam";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) {
                                 $no_nota=$row['no_nota'];
-                                $tanggal=$row['tgl_pengambilan'];
+                                $tanggal=$row['tanggal_pengambilan'];
                                 $jam=$row['jam'];
                                 $qty=$row['qty'];
                                 $total=$row['total'];
@@ -429,7 +429,7 @@ require("../login/koneksi.php");
         <pie-chart id="pieChart" style="display:block;height:50%;width:100%;position:relative;">
         <?php
             $penjualan_total=0;
-            $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+            $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
             $result=mysqli_query($koneksi, $query);
                 while ($row=mysqli_fetch_array($result)) { 
                     $nama_brg=$row['nama_barang'];
@@ -446,11 +446,11 @@ require("../login/koneksi.php");
             <pchart-element name="Penjualan" value="<?php echo $penjualan_total;?>" colour="#40A090">
             <?php
                 $pendapatan_total=0;
-                $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=curdate() ORDER BY status_transaksi.jam";
+                $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() ORDER BY status_transaksi.jam";
                 $result=mysqli_query($koneksi, $query);
                     while ($row=mysqli_fetch_array($result)) {
                         $no_nota=$row['no_nota'];
-                        $tanggal=$row['tgl_pengambilan'];
+                        $tanggal=$row['tanggal_pengambilan'];
                         $jam=$row['jam'];
                         $qty=$row['qty'];
                         $total=$row['total'];
@@ -498,11 +498,11 @@ require("../login/koneksi.php");
                     </tr>
                     <tbody>
                         <?php
-                            $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=curdate() ORDER BY status_transaksi.jam";
+                            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() ORDER BY status_transaksi.jam";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) {
                                 $no_nota=$row['no_nota'];
-                                $tanggal=$row['tgl_pengambilan'];
+                                $tanggal=$row['tanggal_pengambilan'];
                                 $jam=$row['jam'];
                                 $qty=$row['qty'];
                                 $total=$row['total'];
@@ -665,13 +665,13 @@ require("../login/koneksi.php");
                     </tr>
                     <tbody>
                     <?php
-                            $query="SELECT user.nama, transaksi.no_nota, SUM(detail_transaksi.qty) AS total_qty, status_transaksi.tgl_pengambilan, transaksi.grand_total, transaksi.status_bayar, user.penanda FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tgl_pengambilan BETWEEN curdate() AND DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY transaksi.no_nota ORDER BY status_transaksi.tgl_pengambilan ASC";
+                            $query="SELECT user.nama, transaksi.no_nota, SUM(detail_transaksi.qty) AS total_qty, status_transaksi.tanggal_pengambilan, transaksi.grand_total, transaksi.status_bayar, user.penanda FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tanggal_pengambilan BETWEEN curdate() AND DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY transaksi.no_nota ORDER BY status_transaksi.tanggal_pengambilan ASC";
                             $result=mysqli_query($koneksi, $query);
                             while($row=mysqli_fetch_array($result)){
                                 $nama=$row['nama'];
                                 $no_nota=$row['no_nota'];
                                 $total_qty=$row['total_qty'];
-                                $tanggal=$row['tgl_pengambilan'];
+                                $tanggal=$row['tanggal_pengambilan'];
                                 $total=$row['grand_total'];
                                 $status=$row['status_bayar'];
                                 $penanda=$row['penanda'];
