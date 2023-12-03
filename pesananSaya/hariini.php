@@ -142,7 +142,7 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
                     <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
                     <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul>
             </div> 
@@ -244,13 +244,13 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
                     <?php
                     if(isset($_GET['id_supplier'])){
                         $id=$_GET['id_supplier'];
-                        $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang, status_transaksi.tgl_pengambilan, status_transaksi.jam FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang JOIN transaksi ON detail_transaksi.no_nota=transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tgl_pengambilan=DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND detail_transaksi.id_supplier='$id' GROUP BY barang.id_barang";
+                        $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang, status_transaksi.tanggal_pengambilan, status_transaksi.jam FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang JOIN transaksi ON detail_transaksi.no_nota=transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND detail_transaksi.id_suplier='$id' GROUP BY barang.id_barang";
                         $result=mysqli_query($koneksi, $query);
                         while ($row=mysqli_fetch_array($result)) {
                             $total_qty=$row['total_qty'];
                             $id_barang=$row['id_barang'];
                             $nama_barang=$row['nama_barang'];
-                            $tanggal=$row['tgl_pengambilan'];
+                            $tanggal=$row['tanggal_pengambilan'];
                             $jam=$row['jam'];
                     ?>
                     <tr>
@@ -295,13 +295,13 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
                     </tr>
                     <tbody>
                             <?php
-                                $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang, status_transaksi.tgl_pengambilan, status_transaksi.jam FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang JOIN transaksi ON detail_transaksi.no_nota=transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tgl_pengambilan=curdate() AND detail_transaksi.id_supplier='$id' GROUP BY barang.id_barang";
+                                $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang, status_transaksi.tanggal_pengambilan, status_transaksi.jam FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang JOIN transaksi ON detail_transaksi.no_nota=transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tanggal_pengambilan=curdate() AND detail_transaksi.id_suplier='$id' GROUP BY barang.id_barang";
                                 $result=mysqli_query($koneksi, $query);
                                 while ($row=mysqli_fetch_array($result)) {
                                     $total_qty=$row['total_qty'];
                                     $id_barang=$row['id_barang'];
                                     $nama_barang=$row['nama_barang'];
-                                    $tanggal=$row['tgl_pengambilan'];
+                                    $tanggal=$row['tanggal_pengambilan'];
                                     $jam=$row['jam'];
                             ?>
                         <tr>
@@ -351,13 +351,13 @@ $bulan_besok = strftime('%B', strtotime($besok_tgl));
                     </tr>
                     <tbody>
                         <?php
-                            $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang, status_transaksi.tgl_pengambilan, status_transaksi.jam FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang JOIN transaksi ON detail_transaksi.no_nota=transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tgl_pengambilan=DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND detail_transaksi.id_supplier='$id' GROUP BY barang.id_barang";
+                            $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang, status_transaksi.tanggal_pengambilan, status_transaksi.jam FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang JOIN transaksi ON detail_transaksi.no_nota=transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tanggal_pengambilan=DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND detail_transaksi.id_suplier='$id' GROUP BY barang.id_barang";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) {
                                 $total_qty=$row['total_qty'];
                                 $id_barang=$row['id_barang'];
                                 $nama_barang=$row['nama_barang'];
-                                $tanggal=$row['tgl_pengambilan'];
+                                $tanggal=$row['tanggal_pengambilan'];
                                 $jam=$row['jam'];
                         ?>
                         <tr>

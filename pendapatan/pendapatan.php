@@ -160,7 +160,7 @@ $hari_iniTGL=$now->format('d-m-Y');
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
                     <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
                     <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul>
             </div>
@@ -233,7 +233,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                         <?php
                         if(isset($_GET['id_supplier'])){
                             $id=$_GET['id_supplier'];
-                            $query="SELECT barang.nama_barang, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, detail_suppmenu_etalase.jumlah_setor * supplier_menu.harga_beli AS total FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE user.id_user='9' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                            $query="SELECT barang.nama_barang, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, detail_suppmenu_etalase.jumlah_setor * supplier_menu.harga_beli AS total FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE user.id_user='$id' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) { 
                                 $nama_brg=$row['nama_barang'];
@@ -268,7 +268,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                 <h2> Penjualan</h2>
                 <?php
                         $penjualan_total=0;
-                        $query="SELECT barang.nama_barang, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, detail_suppmenu_etalase.jumlah_setor * supplier_menu.harga_beli AS total FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE user.id_user='9' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $query="SELECT barang.nama_barang, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, detail_suppmenu_etalase.jumlah_setor * supplier_menu.harga_beli AS total FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE user.id_user='$id' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) { 
                                 $nama_brg=$row['nama_barang'];
@@ -282,13 +282,13 @@ $hari_iniTGL=$now->format('d-m-Y');
                         $penjualan_total += $hasil;
                     ?>
                     <?php } ?>
-                    <h3 id="penjualan" ><?php echo $penjualan_total;?></h3>
+                    <h3 id="penjualan" >Rp.<?php echo number_format($penjualan_total, 0,',','.');?></h3>
             </div>
             <div class="pesanan">
                 <h2>Pesanan</h2>
                 <?php
                 $pendapatan_total=0;
-                $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=curdate() AND user.id_user='$id' ORDER BY status_transaksi.jam";
+                $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() AND user.id_user='$id' ORDER BY status_transaksi.jam;";
                 $result=mysqli_query($koneksi, $query);
                 while ($row=mysqli_fetch_array($result)) {
                     $no_nota=$row['no_nota'];
@@ -301,7 +301,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                     $pendapatan_total += $total;
                 ?>
                 <?php } ?>
-                <h3 id="pendapatan" ><?php echo $pendapatan_total;?></h3>
+                <h3 id="pendapatan" ><?php echo number_format($pendapatan_total, 0,',','.');?></h3>
             </div>
             <div class="total">
                 <h2>TOTAL PENDAPATAN</h2>
@@ -311,7 +311,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                 var penjualanTotal = <?php echo $penjualan_total; ?>;
                 var pendapatanTotal = <?php echo $pendapatan_total; ?>;
                 var totalPendapatan = penjualanTotal + pendapatanTotal;
-                document.getElementById('total').innerHTML = totalPendapatan;
+                document.getElementById('total').innerHTML = totalPendapatan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
             </script>
         </div>
     </section>
@@ -319,7 +319,7 @@ $hari_iniTGL=$now->format('d-m-Y');
         <pie-chart id="pieChart" style="display:block;height:50%;width:100%;position:relative;">
                     <?php
                         $penjualan_total=0;
-                        $query="SELECT barang.nama_barang, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, detail_suppmenu_etalase.jumlah_setor * supplier_menu.harga_beli AS total FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE user.id_user='9' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $query="SELECT barang.nama_barang, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, detail_suppmenu_etalase.jumlah_setor * supplier_menu.harga_beli AS total FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE user.id_user='$id' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) { 
                                 $nama_brg=$row['nama_barang'];
@@ -336,7 +336,7 @@ $hari_iniTGL=$now->format('d-m-Y');
             <pchart-element name="Penjualan" value="<?php echo $penjualan_total;?>" colour="#40A090">
             <?php
                 $pendapatan_total=0;
-                $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=curdate() AND user.id_user='$id' ORDER BY status_transaksi.jam";
+                $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() AND user.id_user='$id' ORDER BY status_transaksi.jam";
                 $result=mysqli_query($koneksi, $query);
                 while ($row=mysqli_fetch_array($result)) {
                     $no_nota=$row['no_nota'];
@@ -388,7 +388,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                     <tbody>
                         <?php
                             $pendapatan_total=0;
-                            $query="SELECT transaksi.no_nota, status_transaksi.tgl_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_supplier=user.id_user WHERE status_transaksi.tgl_pengambilan=curdate() AND user.id_user='$id' ORDER BY status_transaksi.jam";
+                            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() AND user.id_user='$id' ORDER BY status_transaksi.jam ";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) {
                                 $no_nota=$row['no_nota'];

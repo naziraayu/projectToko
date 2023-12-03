@@ -33,7 +33,7 @@ if(isset($_REQUEST['btn_simpan'])){
               }
         }
     if($pic_uploaded == 1){
-                    $query="insert into user values(' ', '$foto_supp', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'admin', '')";
+                    $query="insert into user values(' ', '$foto_supp', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'karyawan', '')";
                     $result=mysqli_query($koneksi, $query);
                     ?>
                         <script>
@@ -41,7 +41,7 @@ if(isset($_REQUEST['btn_simpan'])){
                         </script>
                     <?php
     }else if($pic_uploaded == 0){
-                    $query="insert into user values(' ', '', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'admin', '')";
+                    $query="insert into user values(' ', '', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'karyawan', '')";
                     $result=mysqli_query($koneksi, $query);
                     ?>
                         <script>
@@ -286,7 +286,7 @@ if (isset($_REQUEST['hapus_admin'])) {
                         ?>
                         <tbody>
                 <?php
-                    $query="select * from user where akses='admin' and LOWER(nama) LIKE LOWER('%$cari%')";
+                    $query="select * from user where akses='karyawan' and LOWER(nama) LIKE LOWER('%$cari%')";
                     $result=mysqli_query($koneksi, $query);
                     $no=1;
                     while($row=mysqli_fetch_array($result)){
@@ -336,7 +336,7 @@ if (isset($_REQUEST['hapus_admin'])) {
                         ?>
                         <tbody>
                 <?php
-                    $query="select * from user where akses='admin'";
+                    $query="select * from user where akses='karyawan'";
                     $result=mysqli_query($koneksi, $query);
                     $no=1;
                     while($row=mysqli_fetch_array($result)){

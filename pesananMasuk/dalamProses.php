@@ -117,7 +117,7 @@ require("../login/koneksi.php");
     <div class="table_responsive_pesanan">
         <table class="table_dtl_pesanan">
        <?php
-            $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang, status_transaksi.tgl_pengambilan FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang JOIN transaksi ON detail_transaksi.no_nota=transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tgl_pengambilan=DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY barang.id_barang";
+            $query="SELECT SUM(dp.qty) as total_qty, b.id_barang, b.nama_barang, st.tanggal_pengambilan FROM barang b JOIN detail_paket dp ON dp.id_barang = b.id_barang JOIN detail_paket_tr dpt ON dpt.identitas_pkt = dp.identitas_pkt JOIN transaksi t ON dpt.no_nota = t.no_nota JOIN status_transaksi st ON t.no_nota = st.no_nota WHERE st.tanggal_pengambilan = '2023-12-04' GROUP BY b.id_barang, b.nama_barang, st.tanggal_pengambilan UNION SELECT SUM(dt.qty) as total_qty, b.id_barang, b.nama_barang, st.tanggal_pengambilan FROM barang b JOIN detail_transaksi dt ON dt.id_barang = b.id_barang JOIN transaksi t ON dt.no_nota = t.no_nota JOIN status_transaksi st ON t.no_nota = st.no_nota WHERE st.tanggal_pengambilan = DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY b.id_barang, b.nama_barang, st.tanggal_pengambilan";
             $result=mysqli_query($koneksi, $query);
             while ($row=mysqli_fetch_array($result)) {
               $total=$row['total_qty'];
@@ -150,7 +150,7 @@ require("../login/koneksi.php");
             <?php
                 if (isset($_GET['id_barang'])) {
                     $id_brg=$_GET['id_barang'];
-                    $query="SELECT user.nama, status_transaksi.jam, status_transaksi.tgl_pengambilan, SUM(detail_transaksi.qty) as total_qty, detail_transaksi.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer=user.id_user JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota WHERE detail_transaksi.id_barang='$id_brg' AND status_transaksi.tgl_pengambilan=DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND detail_transaksi.id_supplier IS NULL GROUP BY transaksi.no_nota";
+                    $query="SELECT user.nama, status_transaksi.jam, status_transaksi.tanggal_pengambilan, SUM(detail_paket.qty) as total_qty, detail_paket.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer = user.id_user JOIN status_transaksi ON transaksi.no_nota = status_transaksi.no_nota JOIN detail_paket_tr ON transaksi.no_nota = detail_paket_tr.no_nota JOIN detail_paket ON detail_paket_tr.identitas_pkt = detail_paket.identitas_pkt WHERE detail_paket.id_barang = '$id_brg' AND status_transaksi.tanggal_pengambilan = DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND detail_paket.id_suplier IS NULL GROUP BY transaksi.no_nota UNION SELECT user.nama, status_transaksi.jam, status_transaksi.tanggal_pengambilan, SUM(detail_transaksi.qty) as total_qty, detail_transaksi.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer = user.id_user JOIN status_transaksi ON transaksi.no_nota = status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota = detail_transaksi.no_nota WHERE detail_transaksi.id_barang = '$id_brg' AND status_transaksi.tanggal_pengambilan = DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND detail_transaksi.id_suplier IS NULL GROUP BY transaksi.no_nota";
                     $result=mysqli_query($koneksi, $query);
                     while ($row=mysqli_fetch_array($result)) {
                         $nama=$row['nama'];
@@ -179,7 +179,7 @@ require("../login/koneksi.php");
                     $supp=$_GET['id_supplier'];
                     $brg=$_GET['id_barang'];
                     $nota=$_GET['no_nota'];
-                    $query="update detail_transaksi set id_supplier='$supp' where id_barang='$brg' and no_nota='$nota'";
+                    $query="update detail_transaksi set id_suplier='$supp' where id_barang='$brg' and no_nota='$nota'";
                     $result=mysqli_query($koneksi, $query);
                     if ($result) {
                     ?>

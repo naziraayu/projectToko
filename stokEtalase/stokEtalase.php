@@ -104,7 +104,7 @@ $hari_iniTGL=$now->format('d-m-Y');
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
                     <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/kemarin.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
                     <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul> 
             </div> 
@@ -294,6 +294,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                         $result=mysqli_query($koneksi, $query);
                         ?>
                         <script>
+                            alert("Berhasil setor ke toko")
                             window.location.href="stokEtalase.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>";
                         </script>
                         <?php

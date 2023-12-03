@@ -64,13 +64,13 @@ if (isset($_GET['hapus_suppmenu'])) {
     <div class="sidebar">
         <div class="content">
             <ul>
-                <li class="ad"><a href="../master/admin.html">Admin</a></li>
-                <li class="sup"><a href="../master/supplier.html">Supplier</a></li>
-                <li class="cus"><a href="../master/customer.html">Customer</a></li>
-                <li class="men"><a href="../master/menu.html">Menu</a></li>
-                <li class="pac"><a href="../master/paket.html">Paket</a></li>
-                <li class="kem"><a href="../master/kemasan.html">Kemasan</a></li>
-                <li class="supmen"><a href="../master/supMen.html">Supplier Menu</a></li>
+                <li class="ad"><a href="../master/admin.php">Admin</a></li>
+                <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
+                <li class="cus"><a href="../master/customer.php">Customer</a></li>
+                <li class="men"><a href="../master/menu.php">Menu</a></li>
+                <li class="pac"><a href="../master/paket.php">Paket</a></li>
+                <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
+                <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a></li>
             </ul>
         </div>
     </div>
@@ -79,11 +79,11 @@ if (isset($_GET['hapus_suppmenu'])) {
             <div class="nav">
                 <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="mas"><a href="../master/admin.html">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/dalamProses.html">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
-                    <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/dalamProses.php">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
                 </ul>
             </div>
         </div>
@@ -196,7 +196,7 @@ if (isset($_GET['hapus_suppmenu'])) {
                         <td><?php echo $no; ?></td>
                         <td><?php echo $namaSupp; ?></td>
                         <td><?php echo $namaMenu; ?></td>
-                        <td><?php echo $hargaBeli; ?></td>
+                        <td>Rp.<?php echo number_format($hargaBeli, 0,',','.'); ?></td>
                         <td>
                             <button onclick="editsupMen(<?php echo $id; ?>)"><a href="supMen.php?edit_suppmenu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="supMen.php?hapus_suppmenu=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
@@ -240,7 +240,7 @@ if (isset($_GET['hapus_suppmenu'])) {
                         <td><?php echo $no; ?></td>
                         <td><?php echo $namaSupp; ?></td>
                         <td><?php echo $namaMenu; ?></td>
-                        <td><?php echo $hargaBeli; ?></td>
+                        <td>Rp.<?php echo number_format($hargaBeli, 0,',','.'); ?></td>
                         <td>
                             <button onclick="editsupMen(<?php echo $id; ?>)"><a href="supMen.php?edit_suppmenu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="supMen.php?hapus_suppmenu=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
