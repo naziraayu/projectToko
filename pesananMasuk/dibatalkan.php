@@ -1,5 +1,6 @@
 <?php
 require("../login/koneksi.php");
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,7 +134,7 @@ require("../login/koneksi.php");
                         </tr>
                         <tbody>
                         <?php
-                            $query="SELECT user.nama, transaksi.grand_total, transaksi.dibayarkan, transaksi.tgl_transaksi, transaksi.kurang_bayar, transaksi.no_nota, status_transaksi.status, status_transaksi.tgl_pengambilan FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.status='pesanan dibatalkan' ORDER BY status_transaksi.tgl_pengambilan ASC;";
+                            $query="SELECT user.nama, transaksi.grand_total, transaksi.dibayarkan, transaksi.tgl_transaksi, transaksi.kurang_bayar, transaksi.no_nota, status_transaksi.status, status_transaksi.tanggal_pengambilan FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.status='pesanan dibatalkan' ORDER BY status_transaksi.tanggal_pengambilan ASC;";
                             $result=mysqli_query($koneksi, $query);
                             while ($row=mysqli_fetch_array($result)) {
                                 $nama=$row['nama'];
@@ -212,29 +213,49 @@ require("../login/koneksi.php");
                                     <?php }?>
                                 </div>
                                 <div class="col4">
-                                    <div class="item">30x 
-                                        <span class="nama">Korean Garlic Cheese</span> 
-                                        <span class="harga-satuan">2.000 </span> 
-                                        <span class="total">60.000</span>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="item2">Sus buah</div>
-                                    <div class="item2">Lemper</div>
-                                    <div class="item2">Sosis Solo</div>
-                                    <div class="item2">Putu</div>
-                                    <div class="item2">Pastel</div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="multi-content2">
-                                <div class="col3">
-                                    <div class="row1">
-                                        <div class="gambar-container">
-                                            <div class="ket-gambar"><img src="../img/Rectangle 58.png" alt="order"></div>
+                                        <?php
+                                            $query="SELECT detail_paket_tr.qty, detail_paket_tr.total, paket.nama_paket, paket.harga_jual, transaksi.no_nota FROM paket JOIN detail_paket_tr ON paket.id_paket=detail_paket_tr.id_paket JOIN transaksi ON detail_paket_tr.no_nota=transaksi.no_nota WHERE transaksi.no_nota='$no'";
+                                            $result=mysqli_query($koneksi, $query);
+                                            while ($row1=mysqli_fetch_array($result)) {
+                                                $nama_brg=$row1['nama_paket'];
+                                                $harga_jual=$row1['harga_jual'];
+                                                $total=$row1['total'];
+                                                $qty=$row1['qty'];
+                                        ?>
+                                            <div class="item"><?php echo $qty;?>x 
+                                            <span class="nama"><?php echo $nama_brg;?></span> 
+                                            <span class="harga-satuan"><?php echo $harga_jual;?></span> 
+                                            <span class="total"><?php echo $total;?></span>
+                                        <?php } ?>
                                         </div>
                                     </div>
+                                    <div class="col2">
+                                        <?php
+                                            $query="SELECT detail_paket_tr.qty, detail_paket_tr.total, paket.nama_paket, paket.harga_jual, transaksi.no_nota, barang.nama_barang, detail_paket.identitas_pkt FROM paket JOIN detail_paket_tr ON paket.id_paket=detail_paket_tr.id_paket JOIN transaksi ON detail_paket_tr.no_nota=transaksi.no_nota JOIN detail_paket ON detail_paket_tr.identitas_pkt=detail_paket.identitas_pkt JOIN barang ON detail_paket.id_barang=barang.id_barang WHERE transaksi.no_nota='$no';";
+                                            $result=mysqli_query($koneksi, $query);
+                                            while ($row1=mysqli_fetch_array($result)) {
+                                                $nama_brg=$row1['nama_barang'];
+                                        ?>
+                                                <div class="item2"><?php echo $nama_brg;?></div>
+                                        <?php }?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="multi-content2">
+                                    <div class="col3">
+                                        <div class="row1">
+                                            <div class="gambar-container">
+                                        <?php
+                                            $query="SELECT bukti_bayar FROM transaksi WHERE transaksi.no_nota='$no';";
+                                            $result=mysqli_query($koneksi, $query);
+                                            while ($row1=mysqli_fetch_array($result)) {
+                                                $nama_brg=$row1['bukti_bayar'];
+                                        ?> 
+                                                <div class="ket-gambar"><img src="../gambar/<?php echo $nama_brg;?>" alt="order" width="100" height="150" ></div>
+                                        <?php } ?>
+                                            </div>
+                                        </div>
                                     <?php
                                         $query="SELECT transaksi.grand_total, transaksi.dibayarkan, transaksi.kurang_bayar, transaksi.status_bayar, transaksi.bukti_bayar FROM transaksi WHERE transaksi.no_nota='$no'";
                                         $result=mysqli_query($koneksi, $query);
@@ -263,14 +284,9 @@ require("../login/koneksi.php");
                             function batalkan() {
                                 <?php
                                     $noo=$_GET['tampil_batalkan'];
-                                    $query="UPDATE status_transaksi set status='pesanan diproses' where no_nota='$noo'";
-                                    $result=mysqli_query($koneksi, $query);
-                                    if ($result) {
                                         ?>
-                                        alert("Pesanan batal dibatalkan");
-                                        window.location.href="dibatalkan.php";
+                                        window.location.href="dibatalkan.php?tolak=<?php echo $noo;?>";
                                         <?php
-                                    }
                                 ?>
                             }
                         </script>
@@ -285,5 +301,18 @@ require("../login/koneksi.php");
                 } ?>
             </div>
         </div>
+        <?php
+        if (isset($_GET['tolak'])) {
+            $no=$_GET['tolak'];
+            $query="UPDATE status_transaksi set status='pesanan diproses' where no_nota='$no'";
+            $result=mysqli_query($koneksi, $query);
+            ?>
+            <script>
+                alert("Pesanan batal dibatalkan");
+                window.location.href="dibatalkan.php";
+            </script>
+            <?php
+        }
+        ?>
 </body>
-</html>
+</html>     

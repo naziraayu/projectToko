@@ -1,5 +1,9 @@
+<?php
+require("../login/koneksi.php");
+session_start();
+?>
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +23,7 @@
     <header>
         <div class="head">
             <div class="nav">
-                <a href="../login/login.php">Login</a>
+                <a href="../login/login.html">Login</a>
                 <img src="../img/Ellipse 1.png" alt="" />
             </div>
         </div>
@@ -27,52 +31,98 @@
     <section>
         <div class="container">
             <div class="form">
-                <form action="#">
-                    <h2>LUPA PASSWORD</h2>
-                    <p>Masukkan nomor telepon anda</p>
-                    <div class="wrapper">
-                        <div class="input-container">
-                            <input type="telp" name="" placeholder="Masukkan No. Telephone"/>
-                            <button type="button">CEK</button>
-                        </div>
-                        <div class="input-container1">
-                            <input type="text" name="" placeholder="Pertanyaan"/>
-                        </div>
-                        <div class="input-container">
-                            <input type="text" name="" placeholder="Masukkan Jawaban"/>
-                            <button type="button">CEK</button>
-                        </div>
-                        <div class="input-pw">
-                            <input type="password" name="password" placeholder="Password"/>
-                            <label for="password" class="label">Password kamu adalah</label>
-                        </div>
-                        <div class="button">
-                            <button type="submit" name="submit">KEMBALI KE LOGIN</button>
-                        </div>
+                <h2>LUPA PASSWORD</h2>
+                <p>Masukkan nomor telepon anda</p>
+                <div class="wrapper">
+                    <div class="input-container">
+                        <input type="telp" id="txt_telp" name="txt_telp" placeholder="Masukkan No. Telephone"/>
+                        <button type="submit" name="cekTelp" onclick="cekTelp()">CEK</button>
+                        <script>
+                            function cekTelp() {
+                                var telp=document.getElementById('txt_telp').value;
+                                var url="lupaPassword.php?no_telp=" + encodeURIComponent(telp);
+                                window.location.href=url;
+                            }
+                        </script>
                     </div>
-                </form>
+                    <div class="input-container1">
+                            <input type="text" id="txt_pertanyaan" name="txt_pertanyaan" placeholder="Pertanyaan"/>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="txt_jawaban" name="txt_jawaban" placeholder="Masukkan Jawaban"/>
+                        <button type="submit" name="cekJawaban" onclick="cekJawaban()">CEK</button>
+                        <script>
+                            function cekJawaban() {
+                                var telp=document.getElementById('txt_telp').value;
+                                var tanya=document.getElementById('txt_pertanyaan').value;
+                                var jawab=document.getElementById('txt_jawaban').value;
+                                var url="lupaPassword.php?no_telp=" + encodeURIComponent(telp) + "&jawaban=" + encodeURIComponent(jawab) + "&pertanyaan=" + encodeURIComponent(tanya);
+                                window.location.href=url;
+                            }
+                        </script>
+                    </div>
+                    <div class="input-pw">
+                        <input type="text" id="password" name="password" placeholder="Password"/>
+                        <label for="password" class="label">Password kamu adalah</label>
+                    </div>
+                    <div class="button">
+                        <button type="submit" name="backLogin" onclick="backToLogin()" >KEMBALI KE LOGIN</button>
+                    </div>
+                    <script>
+                        function backToLogin() {
+                            window.location.href="../login/login.php";
+                        }
+                    </script>
+                </div>
             </div>
         </div>
     </section>
-    <!-- <div class="footer">
-        <div class="contact-us">
-            <img src="../img/Ellipse 1.png" alt="logo" />
-        </div>
-        <div class="content">
-            <h3 class="ctc">Kontak Kami</h3>
-            <div class="wa">
-                <img src="../img/whatsapp_5968841.png" alt="wa" width="30px" />
-                <p>+62 810-00557-22/ +62 851-5629-6848</p>
-            </div>
-            <div class="ig">
-                <img src="../img/instagram_2111463.png" alt="ig" width="30px" />
-                <p>@brownies_nfriends</p>
-            </div>
-            <div class="fb">
-                <img src="../img/facebook_5968764.png" alt="fb" width="30px" />
-                <p>brownies_nfriends</p>
-            </div>
-        </div>
-    </div> -->
 </body>
 </html>
+<?php
+    if ($_GET['no_telp']) {
+        $no=$_GET['no_telp'];
+        $query="select * from user where no_telepon='$no'";
+        $result=mysqli_query($koneksi, $query);
+            if (mysqli_num_rows($result) != 0) {
+                $row=mysqli_fetch_array($result);
+                $noTelp=$row['no_telepon'];
+                $pertanyaan=$row['pertanyaan'];
+                ?>
+                <script>
+                    document.getElementById("txt_telp").value="<?php echo $noTelp; ?>";
+                    document.getElementById("txt_pertanyaan").value="<?php echo $pertanyaan; ?>";
+                </script>
+                <?php
+            }else {
+                ?>
+                     <script> alert("No. Telepon yang anda masukkan salah atau belum terdaftar") </script>
+                <?php
+            }   
+    }
+    if ($_GET['no_telp'] && $_GET['jawaban'] && $_GET['pertanyaan']) {
+        $no=$_GET['no_telp'];
+        $jwban=$_GET['jawaban'];
+        $query="select * from user where no_telepon='$no' and jawaban='$jwban'";
+        $result=mysqli_query($koneksi, $query);
+        if (mysqli_num_rows($result) != 0) {
+            $row=mysqli_fetch_array($result);
+            $noTelp=$row['no_telepon'];
+            $pertanyaan=$row['pertanyaan'];
+            $jawaban=$row['jawaban'];
+            $pass=$row['password'];
+            ?>
+            <script>
+                document.getElementById("txt_telp").value="<?php echo $noTelp; ?>";
+                document.getElementById("txt_pertanyaan").value="<?php echo $pertanyaan; ?>";
+                document.getElementById("txt_jawaban").value="<?php echo $jawaban; ?>";
+                document.getElementById("password").value="<?php echo $pass; ?>";
+            </script>
+            <?php
+        }else {
+            ?>
+                <script> alert("akun anda tidak ditemukan") </script>
+            <?php
+        }
+    }
+?>

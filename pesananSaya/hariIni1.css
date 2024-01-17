@@ -1,0 +1,631 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #fff8f8 40.73%, #fff 100%);
+  }
+  
+  :root {
+    --head--: #ffc9c4;
+    --nav--: #fff;
+    --log--: #231210;
+    --hovera--: #ba7a74;
+    --main--: #fff2f0;
+    --footer--: #99716d;
+    --black--: #000; 
+    --cont--: #d9d9d9;
+    --button--: #be7a74;
+    --side--: #ffe4e1;
+    --border--: #462320;
+    --inputan--: #928383;
+    --save--: #00732b;
+    --table--: #be7a74;
+    --hovtab--: #d6d6d680;
+    --edit--: #0057d9;
+    --hapus--: #ac0000;
+    --refresh--: #ffdd55;
+  }
+  
+  .head {
+    width: 100%;
+    height: 69px;
+    background: var(--head--);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    top: 0;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 3;
+  }
+  
+  .nav {
+    width: 1200px;
+    height: 40px;
+    background-color: var(--nav--);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px 40px 40px 10px;
+    top: 50px;
+    position: fixed !important;
+    position: -webkit-sticky;
+    z-index: 5;
+    /* animation: fadeInLeft 2s; */
+  }
+  .elem-yang-bisa-diklik {
+    /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
+    position: relative;
+    z-index: 10; /* angka ini bisa disesuaikan */
+  }
+  .nav img {
+    position: relative;
+    top: -30px;
+    margin-left: 40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 187px;
+    background: url(/img/Ellipse\ 1.png), lightgray 50% / cover no-repeat;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  
+  .nav ul {
+    color: var(--log--);
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    list-style: none;
+    display: flex;
+    transition: color 0.5s;
+    margin-left: 230px;
+    margin-top: -163px;
+  }
+  
+  .nav a:before {
+    content: "";
+    position: absolute;
+    background-color: var(--hovera--);
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 2.5px;
+    width: 0px;
+    bottom: 10px;
+    transition: 0.3s;
+  }
+  
+  .nav .stok a:focus::before {
+    width: 102px;
+  }
+  
+  .nav .pes a:focus::before {
+    width: 110px;
+  }
+  
+  .nav .pen a:focus::before {
+    width: 100px;
+  }
+  
+  .nav .log a:focus::before {
+    width: 60px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--log--);
+  }
+  
+  .nav li {
+    display: table-cell;
+    position: relative;
+    padding: 15px;
+  }
+  
+  .nav li.log {
+    margin-left: 400px;
+  }
+  div#selectetField {
+      width: 362px;
+      background: transparent;
+      position: fixed;
+      margin-left: 9px;
+      z-index: 9;
+      /* animation: fadeInLeft 2s; */
+    }
+    
+    #selectetField {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    #selectetField p {
+      margin-left: 148px; /* Menghilangkan margin default */
+      color: #BE7A74;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      margin-top: -8px;
+    }
+    
+    #selectetField img {
+      margin: 0 6px; 
+      float: left; 
+      margin-left: 6px;
+      margin-top: -9px;
+    }
+    #selectetField img:last-child {
+    margin-left: 119px;
+    position: fixed;
+    }    
+    
+    .selector img[src$=".svg"] {
+      width: 39px;
+    }
+    .selector img[src$=".png"] {
+      width: 10px;
+    }
+    .selector {
+      margin-left: 868px;
+      margin-top: 60px;
+      /* z-index: 12;
+      position: fixed; */
+    }
+    ul#list {
+      border: 1px solid #462320;
+      background: #FFF;
+      width: 251px;
+      margin-top: 31px;
+      margin-left: 130px;
+      position: fixed;
+      z-index: 9;
+    }
+    li.options {
+      border-top: 1px solid #462320;
+      background: #FFF;
+      list-style-type: none;
+      color: #000;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    span.Keterangan {
+      color: #B2B2B2;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin-left: 17px;
+    }
+    li.options1 {
+      list-style-type: none;
+      margin-left: 77px;
+    }
+    .options p {
+      margin-left: 36px;
+      margin-top: -30px;
+      height: 34px;
+      /* position: relative; */
+    }
+    .hide{
+      visibility: hidden;
+    }
+      
+    .selector-list img[src$=".png"] {
+      width: 24px;
+      margin-left: 9px;
+      margin-top: 9px;
+    }
+  .navbar {
+    margin-top: 30px;
+    margin-left: 400px;
+    border-radius: 0 0 60px 60px;
+    border: 6px solid #BE7A74;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 550px;
+    height: 90px;
+    border-top: none;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    animation: fadeIn 2s;
+  }
+  .navbar a {
+    text-decoration: none;
+    color: #231210;
+    position: relative;
+    transition: color 0.3s;
+    }
+    
+    .navbar a:hover,
+    .navbar a.active {
+    color: #AC0000;
+    border-bottom: 3px solid #BE7A74;
+    }
+  .elem-yang-bisa-diklik {
+    /* pastikan elemen yang bisa diklik memiliki posisi relatif atau absolut */
+    position: relative;
+    z-index: 10; /* angka ini bisa disesuaikan */
+  }
+  
+  .navbar {
+    /* pastikan elemen navbar memiliki posisi relatif atau absolut */
+    position: fixed;
+    z-index: 5; /* angka ini bisa lebih rendah dari elemen yang bisa diklik */
+  }
+  .navbar li {
+    display: inline-block;
+    text-align: center;
+    padding: 39px;
+    position: relative;
+  }
+  .gambar-pesanan {
+    display: none;
+  }
+  
+  li.clicked .gambar-pesanan {
+    display: inline;
+  }
+  
+  li.clicked .teks-akila {
+    display: block;
+  }
+  
+  /* Tambahkan gaya untuk menahan posisi elemen yang tidak diklik */
+  li:not(.clicked) {
+    position: relative; /* Mempertahankan posisi relatif */
+    top: 0; /* Membuat tetap pada posisi awal */
+  }
+  .content {
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 43px;
+  }
+  .content1 {
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 196px;
+  }
+  .content3 {
+  position: fixed;
+  margin-top: -17px;
+  margin-left: 351px;
+  }
+  
+  img#baruImage {
+    width: 33px;
+  }
+  img#prosesImage{
+    width: 33px;
+  }
+  img#batalImage{
+    width: 33px;
+  }
+  .content2 .img3 {
+    margin-top: 9px/* nilai top yang diinginkan */;
+    margin-left: 130px/* nilai left yang diinginkan */;
+  }
+  .img3 {
+    margin-top: -51px;
+  }
+  .img2 {
+    margin-top: -51px;
+  }
+  li#baruItem {
+    margin-top: 17px;
+  }
+  
+  li#prosesItem {
+    margin-top: 17px;
+  }
+  .img4 {
+    margin-top: -50px;
+    margin-left: -9px;
+  }
+  
+  li#batalItem {
+    margin-top: 18px;
+  }
+  
+  
+  .table-content {
+    display: flex;
+    position: relative;
+  }
+  
+  .table-content ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .table-header {
+    display: inline-flex;
+    margin: 10px 0 0 20px;
+  }
+
+  .content-yesterday {
+    /* position: relative; */
+    width: 360px;
+    height: 330px;
+    border: 2px solid #BE7A74;
+    background: #FFF;
+    margin: 180px 0 0 50px;
+    overflow: auto;
+    animation: fadeInLeft;
+    animation-duration: 1s;
+  }
+
+  .table-header .kemarin-header h2{
+    font-size: 20px;
+  }
+  
+  .table-header .tgl-kemarin h3{
+    font-size: 15px;
+    margin: 4px 0 0 5px;
+    color: #928383;
+  }
+
+  .table-content .content-yesterday .menu {
+    display: inline-flex;
+    position: relative;
+    bottom: 10px;
+  }
+  
+  .content-yesterday .menu {
+    border-bottom: 2px solid var(--button--);
+    padding: 10px;
+    margin-left: 10px;
+    top: 10px;
+  }
+  
+  .content-yesterday .first-menu {
+    position: relative;
+    display: grid;
+    margin-left: 10px;
+  }
+  
+  .content-yesterday .first-menu .nama-menu {
+    font-size: 17px;
+  }
+  
+  .content-yesterday .first-menu .time {
+    margin-top: 5px;
+    display: inline-flex;
+    font-size: 15px;
+  }
+  
+  .content-yesterday .first-menu .time img {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .content-yesterday .first-menu .time p {
+    margin: -3px 0 0 5px;
+    font-size: 14px;
+  }
+  
+  .content-yesterday .second-menu {
+    position: relative;
+    margin-left: 100px;
+  }
+  
+  .content-yesterday .second-menu .jumlah {
+    display: inline-flex;
+    margin-top: 5px;
+  }
+  
+  .content-yesterday .second-menu .jumlah h3 {
+    font-size: 25px;
+  }
+  
+  .content-yesterday .second-menu .jumlah p {
+    font-size: 10px;
+    margin-top: 15px;
+  } 
+
+  .content-today {
+    /* position: relative; */
+    width: 430px;
+    height: 380px;
+    border: 2px solid #BE7A74;
+    background: #FFF;
+    margin: 150px 0 0 20px;
+    overflow: auto;
+    animation: zoomIn;
+    animation-duration: 1s;
+  }
+  
+  .table-header .tgl-today h3{
+    margin: 6px 0 0 5px;
+    color: #928383;
+    font-size: 18px;
+  }
+
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .container {
+    position: relative;
+    cursor: pointer;
+    font-size: 10px;
+    width: 2em;
+    height: 2em;
+    user-select: none;
+    border: 4px solid #D9D9D9;
+    display: block;
+    margin-left: -10px;
+    margin-top: 15px;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .checkmark:after {
+    content: '';
+    position: absolute;
+    margin: 1.4px;
+    background-color: #BE7A74;
+    width: 80%;
+    height: 80%;
+    transform: scale(0);  
+    transition: .1s ease;
+  }
+  
+  .container input:checked ~ .checkmark:after {
+    transform: scale(1);
+  }
+  
+  
+  .table-content .content-today .menu {
+    display: inline-flex;
+    position: relative;
+    bottom: 10px;
+  }
+  
+  .content-today .menu {
+    border-bottom: 2px solid var(--button--);
+    padding: 10px;
+    margin-left: 10px;
+    top: 10px
+  }
+  
+  .content-today .first-menu {
+    position: relative;
+    display: grid;
+    margin-left: 10px;
+  }
+  
+  .content-today .first-menu .nama-menu {
+    font-size: 18px;
+  }
+  
+  .content-today .first-menu .time {
+    margin-top: 5px;
+    display: inline-flex;
+    font-size: 15px;
+  }
+  
+  .content-today .first-menu .time img {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .content-today .first-menu .time p {
+    margin: -3px 0 0 5px;
+  }
+  
+  .content-today .second-menu {
+    position: relative;
+    margin-left: 150px;
+  }
+  
+  .content-today .second-menu .jumlah {
+    display: inline-flex;
+  }
+  
+  .content-today .second-menu .jumlah h3 {
+    font-size: 30px;
+  }
+  
+  .content-today .second-menu .jumlah p {
+    font-size: 15px;
+    margin-top: 15px;
+  }
+
+  .content-tomorrow {
+    width: 360px;
+    height: 330px;
+    border: 2px solid #BE7A74;
+    background: #FFF;
+    margin: 180px 0 0 20px;
+    overflow: auto;
+    animation: fadeInRight;
+    animation-duration: 1s;
+  }
+  
+  .table-header .tomorrow-header h2{
+    font-size: 20px;
+  }
+  
+  .table-header .tgl-tomorrow h3{
+    font-size: 15px;
+    margin: 4px 0 0 5px;
+    color: #928383;
+  }
+  
+  .table-content .content-tomorrow .menu {
+    display: inline-flex;
+    position: relative;
+    bottom: 10px;
+  }
+  
+  .content-tomorrow .menu {
+    border-bottom: 2px solid var(--button--);
+    padding: 10px;
+    margin-left: 10px;
+    top: 10px;
+  }
+  
+  .content-tomorrow .first-menu {
+    position: relative;
+    display: grid;
+    margin-left: 5px;
+  }
+  
+  .content-tomorrow .first-menu .nama-menu {
+    font-size: 17px;
+  }
+  
+  .content-tomorrow .first-menu .time {
+    margin-top: 5px;
+    display: inline-flex;
+    font-size: 15px;
+  }
+  
+  .content-tomorrow .first-menu .time img {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .content-tomorrow .first-menu .time p {
+    margin: -3px 0 0 5px;
+    font-size: 14px;
+  }
+  
+  .content-tomorrow .second-menu {
+    position: relative;
+    margin-left: 100px;
+  }
+  
+  .content-tomorrow .second-menu .jumlah {
+    display: inline-flex;
+    margin-top: 5px;
+  }
+  
+  .content-tomorrow .second-menu .jumlah h3 {
+    font-size: 25px;
+  }
+  
+  .content-tomorrow .second-menu .jumlah p {
+    font-size: 10px;
+    margin-top: 15px;
+  }

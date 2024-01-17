@@ -1,3 +1,7 @@
+<?php
+require("../login/koneksi.php");
+// session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="laporann.css">
+    <link rel="stylesheet" href="laporan.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -21,17 +25,153 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['', 'Penjualan', 'Pemesanan', 'Total'],
-          ['2014', 1500000, 1000000, 2000000],
-          ['2015', 1170000, 4600000, 2500000],
-          ['2016', 6600000, 1120000, 3000000],
-          ['2017', 1030000, 5400000, 3500000],
-          ['2018', 1000000, 5000000, 3000000]
+          <?php
+            $pendapatan_total=0;
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() ORDER BY status_transaksi.jam";
+            $result=mysqli_query($koneksi, $query);
+            while ($row=mysqli_fetch_array($result)) {
+                $no_nota=$row['no_nota'];
+                $tanggal=$row['tanggal_pengambilan'];
+                $jam=$row['jam'];
+                $qty=$row['qty'];
+                $total=$row['total'];
+                $nama_barang=$row['nama_barang'];
+                $nama=$row['nama'];
+                $pendapatan_total += $total;
+            }
+            $penjualan_total=0;
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase;";
+                        $result=mysqli_query($koneksi, $query);
+                        while ($row=mysqli_fetch_array($result)) { 
+                            $nama_brg=$row['nama_barang'];
+                            $nama_user=$row['nama'];
+                            $harga_beli=$row['harga_beli'];
+                            $jam=$row['jam'];
+                            $jumlah_setor=$row['jumlah_setor'];
+                            $sisa=$row['sisa'];
+                            $laku=$row['laku'];
+                            $hasil=$row['bersih'];
+                            $penjualan_total += $hasil;
+            }
+            $pendapatan_kmrn=0;
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 1 DAY) ORDER BY status_transaksi.jam";
+            $result=mysqli_query($koneksi, $query);
+            while ($row=mysqli_fetch_array($result)) {
+                $no_nota=$row['no_nota'];
+                $tanggal=$row['tanggal_pengambilan'];
+                $jam=$row['jam'];
+                $qty=$row['qty'];
+                $total=$row['total'];
+                $nama_barang=$row['nama_barang'];
+                $nama=$row['nama'];
+                $pendapatan_kmrn += $total;
+            }
+            $penjualan_kmrn=0;
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=DATE_SUB(CURDATE(), INTERVAL 1 DAY) GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $result=mysqli_query($koneksi, $query);
+                        while ($row=mysqli_fetch_array($result)) { 
+                            $nama_brg=$row['nama_barang'];
+                            $nama_user=$row['nama'];
+                            $harga_beli=$row['harga_beli'];
+                            $jam=$row['jam'];
+                            $jumlah_setor=$row['jumlah_setor'];
+                            $sisa=$row['sisa'];
+                            $laku=$row['laku'];
+                            $hasil=$row['bersih'];
+                            $penjualan_kmrn += $hasil;
+            }
+            $pendapatan_kmrn2=0;
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 2 DAY) ORDER BY status_transaksi.jam";
+            $result=mysqli_query($koneksi, $query);
+            while ($row=mysqli_fetch_array($result)) {
+                $no_nota=$row['no_nota'];
+                $tanggal=$row['tanggal_pengambilan'];
+                $jam=$row['jam'];
+                $qty=$row['qty'];
+                $total=$row['total'];
+                $nama_barang=$row['nama_barang'];
+                $nama=$row['nama'];
+                $pendapatan_kmrn2 += $total;
+            }
+            $penjualan_kmrn2=0;
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=DATE_SUB(CURDATE(), INTERVAL 2 DAY) GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $result=mysqli_query($koneksi, $query);
+                        while ($row=mysqli_fetch_array($result)) { 
+                            $nama_brg=$row['nama_barang'];
+                            $nama_user=$row['nama'];
+                            $harga_beli=$row['harga_beli'];
+                            $jam=$row['jam'];
+                            $jumlah_setor=$row['jumlah_setor'];
+                            $sisa=$row['sisa'];
+                            $laku=$row['laku'];
+                            $hasil=$row['bersih'];
+                            $penjualan_kmrn2 += $hasil;
+            }
+            $pendapatan_kmrn3=0;
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 3 DAY) ORDER BY status_transaksi.jam";
+            $result=mysqli_query($koneksi, $query);
+            while ($row=mysqli_fetch_array($result)) {
+                $no_nota=$row['no_nota'];
+                $tanggal=$row['tanggal_pengambilan'];
+                $jam=$row['jam'];
+                $qty=$row['qty'];
+                $total=$row['total'];
+                $nama_barang=$row['nama_barang'];
+                $nama=$row['nama'];
+                $pendapatan_kmrn3 += $total;
+            }
+            $penjualan_kmrn3=0;
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=DATE_SUB(CURDATE(), INTERVAL 3 DAY) GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $result=mysqli_query($koneksi, $query);
+                        while ($row=mysqli_fetch_array($result)) { 
+                            $nama_brg=$row['nama_barang'];
+                            $nama_user=$row['nama'];
+                            $harga_beli=$row['harga_beli'];
+                            $jam=$row['jam'];
+                            $jumlah_setor=$row['jumlah_setor'];
+                            $sisa=$row['sisa'];
+                            $laku=$row['laku'];
+                            $hasil=$row['bersih'];
+                            $penjualan_kmrn3 += $hasil;
+            }
+            $pendapatan_kmrn4=0;
+            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=DATE_SUB(CURDATE(), INTERVAL 3 DAY) ORDER BY status_transaksi.jam";
+            $result=mysqli_query($koneksi, $query);
+            while ($row=mysqli_fetch_array($result)) {
+                $no_nota=$row['no_nota'];
+                $tanggal=$row['tanggal_pengambilan'];
+                $jam=$row['jam'];
+                $qty=$row['qty'];
+                $total=$row['total'];
+                $nama_barang=$row['nama_barang'];
+                $nama=$row['nama'];
+                $pendapatan_kmrn4 += $total;
+            }
+            $penjualan_kmrn4=0;
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=DATE_SUB(CURDATE(), INTERVAL 3 DAY) GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $result=mysqli_query($koneksi, $query);
+                        while ($row=mysqli_fetch_array($result)) { 
+                            $nama_brg=$row['nama_barang'];
+                            $nama_user=$row['nama'];
+                            $harga_beli=$row['harga_beli'];
+                            $jam=$row['jam'];
+                            $jumlah_setor=$row['jumlah_setor'];
+                            $sisa=$row['sisa'];
+                            $laku=$row['laku'];
+                            $hasil=$row['bersih'];
+                            $penjualan_kmrn4 += $hasil;
+            }
+          ?>
+        //   ['4 days ago', <?php //$pendapatan_kmrn4;?>, <?php //$penjualan_kmrn4;?>, <?php //$pendapatan_kmrn4 += $penjualan_kmrn4;?>],
+          //['3 days ago', <?php //$penjualan_kmrn3;?>, <?php //$pendapatan_kmrn3;?>, <?php //$penjualan_kmrn3 += $pendapatan_kmrn3;?>],
+          ['2 days ago', <?php $pendapatan_kmrn2;?>, <?php $pendapatan_kmrn2;?>, <?php echo $penjualan_kmrn2 += $pendapatan_kmrn2;?>],
+          ['Yesterday', <?php $pendapatan_kmrn;?>, <?php echo $penjualan_kmrn?>, <?php echo $pendapatan_kmrn += $penjualan_kmrn;?>],
+          ['Today', <?php echo $pendapatan_total;?>, <?php echo $penjualan_total;?>, <?php echo $pendapatan_total += $penjualan_total;?>]
         ]);
 
         var options = {
           chart: {
-            // title: 'Company Performance',
-            // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+           
           }
         };
 
@@ -100,26 +240,27 @@
     </style>
 </head>
 <body>
+<form action="laporan.php" method="post">
     <header>
         <div class="head"> 
             <div class="nav">
                 <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="mas"><a href="../master/admin.html">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.html">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.html">ETALASE</a></li>
-                    <li class="lap"><a href="../laporan/laporan.html">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.html">LOG OUT</a></li>
+                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
                 </ul>
             </div>
         </div>
     </header>
-    <div class="date">
+    <!-- <div class="date">
         <div data-aos="fade-left" data-aos-duration="1200" class="datetime">
             <input type="date">
-            <!-- <img src="../img/Group 9.png" alt=""> -->
+            <img src="../img/Group 9.png" alt="">
         </div>
-    </div>
+    </div> -->
     <div data-aos="zoom-in" data-aos-duration="1200" class="grafik">
         <div id="columnchart_material" style="width: 1100px; height: 200px;"></div>
     </div>
@@ -127,19 +268,49 @@
         <div class="container PenjualanPemesanan">
             <div data-aos="fade-up" data-aos-duration="1200" class="bersih">
                 <h2><a href="#pendptn">Pendapatan Bersih</a></h2>
-                <h3>2.135.000</h3>
+                <h3 id="bersih"></h3>
             </div>
             <div data-aos="fade-up" data-aos-duration="1400" class="setoran">
                 <h2><a href="#setorn">Setoran Supplier</a></h2>
-                <h3>2.135.000</h3>
+                <?php
+                            $setoran_total=0;
+                            $query="SELECT user.nama, SUM(detail_suppmenu_etalase.jumlah_setor) AS setoran, SUM(detail_suppmenu_etalase.sisa) AS sisa, barang.harga_jual, supplier_menu.harga_beli, (SUM(detail_suppmenu_etalase.jumlah_setor) * barang.harga_jual) AS total_nominal, (SUM(detail_suppmenu_etalase.jumlah_setor) * supplier_menu.harga_beli - SUM(detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli) AS pengeluaran, ((SUM(detail_suppmenu_etalase.jumlah_setor) * barang.harga_jual) - (SUM(detail_suppmenu_etalase.jumlah_setor) * supplier_menu.harga_beli - SUM(detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli)) AS pendapatan FROM barang JOIN supplier_menu ON barang.id_barang=supplier_menu.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY user.nama, barang.harga_jual";
+                            $result=mysqli_query($koneksi, $query);
+                            while($row=mysqli_fetch_array($result)){
+                                $nama=$row['nama'];
+                                $setoran=$row['setoran'];
+                                $sisa=$row['sisa'];
+                                $harga_jual=$row['harga_jual'];
+                                $total=$row['total_nominal'];
+                                $pengeluaran=$row['pengeluaran'];
+                                $pendapatan=$row['pendapatan'];
+                                $setoran_total += $pengeluaran;
+                            }
+                        ?>
+                <h3 id="setoran_supp"></h3>
             </div>
             <div data-aos="fade-up" data-aos-duration="1600" class="kotor">
                 <h2><a href="#ktr">Pendapatan Kotor</a></h2>
-                <h3>3.005.000</h3>
+                <h3 id="pendapatan_kotor"></h3>
             </div>
             <div data-aos="fade-up" data-aos-duration="1800" class="pesan">
                 <h2><a href="#uang-pesan">Uang Pesanan</a></h2>
-                <h3>3.005.000</h3>
+                        <?php
+                            $uang_pesanan=0;
+                            $query="SELECT user.nama, transaksi.no_nota, SUM(detail_transaksi.qty) AS total_qty, status_transaksi.tanggal_pengambilan, transaksi.grand_total, transaksi.status_bayar, user.penanda FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tanggal_pengambilan BETWEEN curdate() AND DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY transaksi.no_nota ORDER BY status_transaksi.tanggal_pengambilan ASC";
+                            $result=mysqli_query($koneksi, $query);
+                            while($row=mysqli_fetch_array($result)){
+                                $nama=$row['nama'];
+                                $no_nota=$row['no_nota'];
+                                $total_qty=$row['total_qty'];
+                                $tanggal=$row['tanggal_pengambilan'];
+                                $total=$row['grand_total'];
+                                $status=$row['status_bayar'];
+                                $penanda=$row['penanda'];
+                                $uang_pesanan += $total;
+                            }
+                        ?>
+                <h3 id="uang_pesanan"></h3>
             </div>
         </div>
     </section>
@@ -151,15 +322,59 @@
         <div class="container-pendapatan">
             <div data-aos="fade-up" data-aos-duration="1200" class="penjualan">
                 <h2>Penjualan</h2>
-                <h3>700.000 </h3>
+                    <?php
+                        $penjualan_total=0;
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $result=mysqli_query($koneksi, $query);
+                        while ($row=mysqli_fetch_array($result)) { 
+                            $nama_brg=$row['nama_barang'];
+                            $nama_user=$row['nama'];
+                            $harga_beli=$row['harga_beli'];
+                            $jam=$row['jam'];
+                            $jumlah_setor=$row['jumlah_setor'];
+                            $sisa=$row['sisa'];
+                            $laku=$row['laku'];
+                            $hasil=$row['bersih'];
+                            $penjualan_total += $hasil;
+                        }
+                        ?>
+                <h3 id="penjualan" ></h3>
             </div>
             <div data-aos="fade-up" data-aos-duration="1400" class="pesanan">
                 <h2>Pesanan</h2>
-                <h3>300.000</h3>
+                        <?php
+                            $pendapatan_total=0;
+                            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() ORDER BY status_transaksi.jam";
+                            $result=mysqli_query($koneksi, $query);
+                            while ($row=mysqli_fetch_array($result)) {
+                                $no_nota=$row['no_nota'];
+                                $tanggal=$row['tanggal_pengambilan'];
+                                $jam=$row['jam'];
+                                $qty=$row['qty'];
+                                $total=$row['total'];
+                                $nama_barang=$row['nama_barang'];
+                                $nama=$row['nama'];
+                                $pendapatan_total += $total;
+                            }
+                        ?>
+                <h3 id="pendapatan" ></h3>
             </div>
             <div data-aos="fade-up" data-aos-duration="1200" class="hasil">
                 <h2>TOTAL PENDAPATAN</h2>
-                <h3>1.000.000</h3>
+                <h3 id="total" ></h3>
+                <script>
+                var penjualanTotal = <?php echo $penjualan_total; ?>;
+                document.getElementById('penjualan').innerHTML = penjualanTotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                var pendapatanTotal = <?php echo $pendapatan_total; ?>;
+                document.getElementById('pendapatan').innerHTML = pendapatanTotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                var totalPendapatan = penjualanTotal + pendapatanTotal;
+                document.getElementById('total').innerHTML = totalPendapatan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                document.getElementById('bersih').innerHTML = totalPendapatan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                var setoran_total = <?php echo $setoran_total;?>;
+                document.getElementById('setoran_supp').innerHTML = setoran_total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });  
+                var uang_pesanan = <?php echo $uang_pesanan;?>;
+                document.getElementById('uang_pesanan').innerHTML = uang_pesanan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+            </script>
             </div>
         </div>
     </section>
@@ -180,214 +395,72 @@
                         <th>Total</th>
                     </tr>
                     <tbody>
+                        <?php
+                        $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+                        $result=mysqli_query($koneksi, $query);
+                        while ($row=mysqli_fetch_array($result)) { 
+                            $nama_brg=$row['nama_barang'];
+                            $nama_user=$row['nama'];
+                            $harga_beli=$row['harga_beli'];
+                            $jam=$row['jam'];
+                            $jumlah_setor=$row['jumlah_setor'];
+                            $sisa=$row['sisa'];
+                            $laku=$row['laku'];
+                            $hasil=$row['bersih'];
+                        ?>
                         <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
+                            <td><?php echo $nama_brg; ?></td>
+                            <td><?php echo $nama_user; ?></td>
+                            <td><?php echo $jam; ?></td>
+                            <td><?php echo $jumlah_setor; ?></td>
+                            <td><?php echo $sisa; ?></td>
+                            <td><?php echo $laku; ?></td>
+                            <td>Rp <?php echo number_format($hasil, 0,',','.'); ?></td>
                         </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
-                </thead>
+                    </thead>
             </table>
         </div>
     </div>
     
     <div data-aos="fade-up" data-aos-duration="1600" id="main-content">
         <pie-chart id="pieChart" style="display:block;height:50%;width:100%;position:relative;">
-            <pchart-element name="Penjualan" value="700.000" colour="#40A090">
-            <pchart-element name="Pesanan" value="300.000" colour="#BE7A74">
+        <?php
+            $penjualan_total=0;
+            $query="SELECT barang.nama_barang, barang.harga_jual, supplier_menu.harga_beli, user.nama, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.jumlah_setor, detail_suppmenu_etalase.sisa, detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa AS laku, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli ) AS total, ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) AS untung, (((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * barang.harga_jual ) - ((detail_suppmenu_etalase.jumlah_setor - detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli )) AS bersih  FROM barang JOIN supplier_menu ON supplier_menu.id_barang=barang.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu WHERE detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_setorEtalase";
+            $result=mysqli_query($koneksi, $query);
+                while ($row=mysqli_fetch_array($result)) { 
+                    $nama_brg=$row['nama_barang'];
+                    $nama_user=$row['nama'];
+                    $harga_beli=$row['harga_beli'];
+                    $jam=$row['jam'];
+                    $jumlah_setor=$row['jumlah_setor'];
+                    $sisa=$row['sisa'];
+                    $laku=$row['laku'];
+                    $hasil=$row['bersih'];
+                    $penjualan_total += $hasil;
+                }
+        ?>
+            <pchart-element name="Penjualan" value="<?php echo $penjualan_total;?>" colour="#40A090">
+            <?php
+                $pendapatan_total=0;
+                $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() ORDER BY status_transaksi.jam";
+                $result=mysqli_query($koneksi, $query);
+                    while ($row=mysqli_fetch_array($result)) {
+                        $no_nota=$row['no_nota'];
+                        $tanggal=$row['tanggal_pengambilan'];
+                        $jam=$row['jam'];
+                        $qty=$row['qty'];
+                        $total=$row['total'];
+                        $nama_barang=$row['nama_barang'];
+                        $nama=$row['nama'];
+                        $pendapatan_total += $total;
+                    }
+                ?>
+            <pchart-element name="Pesanan" value="<?php echo $pendapatan_total;?>" colour="#BE7A74">
         </pie-chart>
     </div>
 </body>
@@ -417,167 +490,37 @@
             <table>
                 <thead>
                     <tr>
+                        <th>No. Nota</th>
                         <th>Nama <br> Barang</th>
-                        <th>Mana <br> Supplier</th>
+                        <th>Nama <br> Supplier</th>
                         <th>Jam Antar</th>
                         <th>Jumlah</th>
                         <th>Total</th>
                     </tr>
                     <tbody>
+                        <?php
+                            $query="SELECT transaksi.no_nota, status_transaksi.tanggal_pengambilan, status_transaksi.jam, detail_transaksi.qty, detail_transaksi.total, barang.nama_barang, user.nama FROM transaksi JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN barang ON detail_transaksi.id_barang=barang.id_barang JOIN user ON detail_transaksi.id_suplier=user.id_user WHERE status_transaksi.tanggal_pengambilan=curdate() ORDER BY status_transaksi.jam";
+                            $result=mysqli_query($koneksi, $query);
+                            while ($row=mysqli_fetch_array($result)) {
+                                $no_nota=$row['no_nota'];
+                                $tanggal=$row['tanggal_pengambilan'];
+                                $jam=$row['jam'];
+                                $qty=$row['qty'];
+                                $total=$row['total'];
+                                $nama_barang=$row['nama_barang'];
+                                $nama=$row['nama'];
+                        ?>
                         <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
+                            <td><?php echo $no_nota;?></td>
+                            <td><?php echo $nama_barang;?></td>
+                            <td><?php echo $nama;?></td>
+                            <td><?php echo $jam;?></td>
+                            <td><?php echo $qty;?></td>
+                            <td>Rp <?php echo number_format($total, 0,',','.'); ?></td>
                         </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>Nazira Ayu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                        </tr>
+                        <?php
+                            }
+                        ?>
                     </tbody>
                 </thead>
             </table>
@@ -603,182 +546,27 @@
                         <th>Pendapatan</th>
                     </tr>
                     <tbody>
+                        <?php
+                            $query="SELECT user.nama, SUM(detail_suppmenu_etalase.jumlah_setor) AS setoran, SUM(detail_suppmenu_etalase.sisa) AS sisa, barang.harga_jual, supplier_menu.harga_beli, (SUM(detail_suppmenu_etalase.jumlah_setor) * barang.harga_jual) AS total_nominal, (SUM(detail_suppmenu_etalase.jumlah_setor) * supplier_menu.harga_beli - SUM(detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli) AS pengeluaran, ((SUM(detail_suppmenu_etalase.jumlah_setor) * barang.harga_jual) - (SUM(detail_suppmenu_etalase.jumlah_setor) * supplier_menu.harga_beli - SUM(detail_suppmenu_etalase.sisa) * supplier_menu.harga_beli)) AS pendapatan FROM barang JOIN supplier_menu ON barang.id_barang=supplier_menu.id_barang JOIN user ON user.id_user=supplier_menu.id_user JOIN detail_suppmenu_etalase ON supplier_menu.id_suppmenu=detail_suppmenu_etalase.id_suppmenu GROUP BY user.nama, barang.harga_jual";
+                            $result=mysqli_query($koneksi, $query);
+                            while($row=mysqli_fetch_array($result)){
+                                $nama=$row['nama'];
+                                $setoran=$row['setoran'];
+                                $sisa=$row['sisa'];
+                                $harga_jual=$row['harga_jual'];
+                                $total=$row['total_nominal'];
+                                $pengeluaran=$row['pengeluaran'];
+                                $pendapatan=$row['pendapatan'];
+                        ?>
                         <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
+                            <td><?php echo $nama; ?></td>
+                            <td><?php echo $setoran; ?></td>
+                            <td><?php echo $sisa; ?></td>
+                            <td>Rp <?php echo number_format($total, 0,',','.'); ?></td>
+                            <td>Rp <?php echo number_format($pengeluaran, 0,',','.'); ?></td>
+                            <td>Rp <?php echo number_format($pendapatan, 0,',','.'); ?></td>
                         </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </thead>
             </table>
@@ -849,12 +637,12 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="wrapper">
+            <!-- <div class="wrapper">
                 <div>
                     <button class="button1" type="submit1" name="proses">PROSES</button>
                     <button class="button2" type="submit2" name="tolak">TOLAK</button>
                 </div>
-            </div> 
+            </div>  -->
         </div>
     </div>
     <div id="uang-pesan" class="u"></div>
@@ -870,189 +658,39 @@
                 <thead>
                     <tr>
                         <th>Nama <br> Customer</th>
-                        <th>Total Stok</th>
-                        <th>Sisa Stok</th>
+                        <th>Total</th>
+                        <th>Tanggal Ambil</th>
                         <th>Total Nominal</th>
                         <th>Status <br> Pembayaran</th>
                         <th>Tanda <br> Customer</th>
                     </tr>
                     <tbody>
+                    <?php
+                            $query="SELECT user.nama, transaksi.no_nota, SUM(detail_transaksi.qty) AS total_qty, status_transaksi.tanggal_pengambilan, transaksi.grand_total, transaksi.status_bayar, user.penanda FROM user JOIN transaksi ON user.id_user=transaksi.id_customer JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota WHERE status_transaksi.tanggal_pengambilan BETWEEN curdate() AND DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY transaksi.no_nota ORDER BY status_transaksi.tanggal_pengambilan ASC";
+                            $result=mysqli_query($koneksi, $query);
+                            while($row=mysqli_fetch_array($result)){
+                                $nama=$row['nama'];
+                                $no_nota=$row['no_nota'];
+                                $total_qty=$row['total_qty'];
+                                $tanggal=$row['tanggal_pengambilan'];
+                                $total=$row['grand_total'];
+                                $status=$row['status_bayar'];
+                                $penanda=$row['penanda'];
+                        ?>
                         <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
+                            <td><?php echo $nama;?></td>
+                            <td><?php echo $total_qty;?></td>
+                            <td><?php echo $tanggal;?></td>
+                            <td><?php echo $total;?></td>
+                            <td><?php echo $status;?></td>
+                            <td onclick="tampilNota(<?php echo $no_nota; ?>)"><?php echo $penanda;?></td>
+                            <script>
+                            function tampilNota(no) {
+                                window.location.href="laporan.php?id_setor="+no;
+                            }
+                            </script>
                         </tr>
-                        <tr>
-                            <td>Kue Putu</td>                        
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
-                        <tr>
-                            <td>Kue Putu</td>
-                            <td>09.00</td>
-                            <td>500</td>
-                            <td>50</td>
-                            <td>450</td>
-                            <td>500.000</td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </thead>
             </table>
@@ -1122,14 +760,8 @@
                         </td> 
                 </tbody>
             </table>
-            <div class="wrapper1">
-                <div>
-                    <button class="button11" type="submit1" name="proses">PROSES</button>
-                    <button class="button21" type="submit2" name="tolak">TOLAK</button>
-                </div>
-            </div>
-        </div>
     </div>
+    </from>
 </body>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>

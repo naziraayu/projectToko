@@ -1,5 +1,6 @@
 <?php
 require("../login/koneksi.php");
+// session_start();
 $pic_uploaded=0;
 if (isset($_REQUEST['btn_save_paket'])) {
     $nama_paket=$_REQUEST['txt_nama_paket'];
@@ -10,9 +11,9 @@ if (isset($_REQUEST['btn_save_paket'])) {
     $deskripsi_paket=$_REQUEST['txt_deskripsi_paket'];
 
     $foto_paket=time().$_FILES["input_foto_paket"]['name'];
-    if (move_uploaded_file($_FILES['input_foto_paket']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+    if (move_uploaded_file($_FILES['input_foto_paket']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'
           .$foto_paket)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_paket;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'.$foto_paket;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_paket']['name']);
             $photo=time().$picName;
@@ -33,14 +34,22 @@ if (isset($_REQUEST['btn_save_paket'])) {
               }
         }
         if ($pic_uploaded == 1) {
-            $query="insert into paket values ('', '$nama_paket', '$isi_paket', '$jumlahMacam_paket', '$hargaJual_paket', '$deskripsi_paket', '$foto_paket', '$kemasan_paket')";
+            $query="insert into paket values ('', '$foto_paket', '$nama_paket', '$hargaJual_paket', '$isi_paket', '$jumlahMacam_paket', '$deskripsi_paket', '$kemasan_paket')";
             $result=mysqli_query($koneksi, $query);
             ?>
               <script>
               alert("Berhasil menambahkan paket");
               </script>
             <?php
-          }else{
+        }else if($pic_uploaded == 0){
+            $query="insert into paket values ('', '', '$nama_paket', '$hargaJual_paket', '$isi_paket', '$jumlahMacam_paket', '$deskripsi_paket', '$kemasan_paket')";
+            $result=mysqli_query($koneksi, $query);
+            ?>
+              <script>
+              alert("Berhasil menambahkan paket");
+              </script>
+            <?php
+        }else{
             ?>
               <script>
               alert("gagal menambahkan paket");
@@ -58,9 +67,9 @@ if (isset($_REQUEST['btn_ubah_paket'])) {
     $deskripsi_paket=$_REQUEST['txt_deskripsi_paket'];
 
     $foto_paket=time().$_FILES["input_foto_paket"]['name'];
-    if (move_uploaded_file($_FILES['input_foto_paket']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+    if (move_uploaded_file($_FILES['input_foto_paket']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'
           .$foto_paket)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_paket;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'.$foto_paket;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_paket']['name']);
             $photo=time().$picName;
@@ -125,8 +134,6 @@ if (isset($_REQUEST['hapus_paket'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paket</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -134,7 +141,7 @@ if (isset($_REQUEST['hapus_paket'])) {
     <link rel="stylesheet" href="adminn.css">
 </head>
 <body>
-<div class="sidebar">
+    <div class="sidebar">
         <div class="content">
             <ul>
                 <li class="ad"><a href="../master/admin.php">Admin</a></li>
@@ -143,18 +150,17 @@ if (isset($_REQUEST['hapus_paket'])) {
                 <li class="men"><a href="../master/menu.php">Menu</a></li>
                 <li class="pac"><a href="../master/paket.php">Paket</a></li>
                 <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
-                <li class="supmen"></li><a href="../master/supMen.php">Supplier Menu</a>
-            </li>
+                <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a></li>
             </ul>
         </div>
     </div>
     <header>
         <div class="head">
             <div class="nav">
-            <img src="../img/Ellipse 1.png" alt="logo" />
+                <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
                     <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                    <li class="pes"><a href="../pesananMasuk/dalamProses.php">PESANAN MASUK</a></li>
                     <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
                     <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
                     <li class="log"><a href="../login/login.php">LOG OUT</a></li>
@@ -205,53 +211,59 @@ if (isset($_REQUEST['hapus_paket'])) {
                             <label for="name" class="form__label">Deskripsi</label>
                         </div>
                     </div>
-            </div>
-        <div class="photo">
+                </div>
+                <div class="photo">
             <input type="file" id="input_foto_paket" name="input_foto_paket">
             <!-- <button><img src="../img/add.png" alt="" />Tambahkan Foto</button> -->
         </div>
-        <div type="submit" name="refresh" class="refresh">
-            <button>
-                <i class="fa-solid fa-rotate-right" style="color: #000000"></i>
-            </button>
-            <script>
-                function refreshPaket() {
-                    document.getElementById('txt_nama_paket').value = '';
-                    document.getElementById('txt_isi_paket').value = '';
-                    document.getElementById('txt_jumlahMacam_paket').value = '';
-                    document.getElementById('input_foto_paket').value = '';
-                    document.getElementById('spinner_kemasan_paket').selectedIndex = 0;
-                    document.getElementById('txt_hargaJual_paket').value = '';
-                    document.getElementById('txt_deskripsi_paket').value = '';
-                }
-            </script>
-        </div>
-        <div class="update">
-            <button type="submit" name="btn_ubah_paket">Update</button>
-        </div>
-        <div class="save">
-        <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_save_paket">Simpan</button>
-        </div>
+            <div type="submit" name="refresh" class="refresh">
+                <button>
+                    <i class="fa-solid fa-rotate-right" style="color: #000000"></i>
+                </button>
+                <script>
+                    function refreshPaket() {
+                        document.getElementById('txt_nama_paket').value = '';
+                        document.getElementById('txt_isi_paket').value = '';
+                        document.getElementById('txt_jumlahMacam_paket').value = '';
+                        document.getElementById('input_foto_paket').value = '';
+                        document.getElementById('spinner_kemasan_paket').selectedIndex = 0;
+                        document.getElementById('txt_hargaJual_paket').value = '';
+                        document.getElementById('txt_deskripsi_paket').value = '';
+                    }
+                </script>
+            </div>
+            <div class="update">
+                <button type="submit" name="btn_ubah_paket">Update</button>
+            </div>
+            <div class="save">
+            <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
+                <button type="submit" name="btn_save_paket" id="btn_save_paket">Simpan</button>
+            </div>
         </form>
     </div>
     <div class="table">
         <div class="table-header">
             <div class="container-input">
-                <input type="text" placeholder="Search" name="text" class="input">
-                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+            <input type="text" placeholder="Search" name="text" id="searchInput" class="input" />
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" onclick="cari()">
                   <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
                 </svg>
-            </div>              
+            </div> 
+            <script>
+                function cari() {
+                    var searchInputValue = document.getElementById("searchInput").value;
+                    window.location.href="paket.php?cari="+searchInputValue;
+                }
+            </script>             
         </div>
         <div class="table-section">
             <table>
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Paket</th>
+                        <th>Nama <br> Paket</th>
                         <th>Isi Paket</th>
-                        <th>Jumlah Macam</th>
+                        <th>Jumlah <br> Macam</th>
                         <th>Kemasan</th>
                         <th>Harga Jual</th>
                         <th>Deskripsi</th>
@@ -259,7 +271,63 @@ if (isset($_REQUEST['hapus_paket'])) {
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <?php
+                if (isset($_GET['cari'])) {
+                    $cari=$_GET['cari'];
+                    ?>
+                    <tbody>
+                <?php
+                    $query="SELECT paket.id_paket, paket.nama_paket, paket.jumlah_kue, paket.macam, paket.harga_jual, paket.deskripsi, paket.gambar_paket, 
+                    kemasan.nama_kemasan FROM paket JOIN kemasan ON kemasan.id_kemasan=paket.id_kemasan WHERE LOWER(paket.nama_paket) LIKE LOWER('%$cari%');";
+                    $result=mysqli_query($koneksi, $query);
+                    $no=1;
+                    while($row=mysqli_fetch_array($result)){
+                        $id=$row['id_paket'];
+                        $namaPaket=$row['nama_paket'];
+                        $isiPaket=$row['jumlah_kue'];
+                        $macamPaket=$row['macam'];
+                        $hargaJualPaket=$row['harga_jual'];
+                        $deskripsiPaket=$row['deskripsi'];
+                        $gambarPaket=$row['gambar_paket'];   
+                        $namaKemasanPaket=$row['nama_kemasan'];           
+                ?>
+                    <tr>
+                        <td><?php echo $no; ?></td>
+                        <td><?php echo $namaPaket; ?></td>
+                        <td><?php echo $isiPaket; ?></td>
+                        <td><?php echo $macamPaket; ?></td>
+                        <td><?php echo $namaKemasanPaket; ?></td>
+                        <td>Rp <?php echo number_format($hargaJualPaket, 0,',','.'); ?></td>
+                        <td><?php echo $deskripsiPaket; ?></td>
+                        <td><img src="../gambar/<?php echo $gambarPaket; ?>" width="100" height="120" ></td>
+                        <td>
+                            <button onclick="editAdmin(<?php echo $id; ?>)"><a href="paket.php?ubah_paket=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button><a href="paket.php?hapus_paket=<?php echo $id; ?>"><i class="fa-solid fa-trash"></a></i></button>
+                            <script>
+                                function editAdmin(id) {
+                                    document.getElementById('btn_save_paket').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('ubah_paket');
+                                        if (editAdminId != null) {
+                                            document.getElementById('btn_save_paket').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_save_paket').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                    <?php
+                        $no++;
+                    }
+                    ?>
+                </tbody>
+                    <?php
+                }else {
+                    ?>
+                    <tbody>
                 <?php
                     $query="SELECT paket.id_paket, paket.nama_paket, paket.jumlah_kue, paket.macam, paket.harga_jual, paket.deskripsi, paket.gambar_paket, 
                             kemasan.nama_kemasan FROM paket JOIN kemasan ON kemasan.id_kemasan=paket.id_kemasan";
@@ -285,8 +353,22 @@ if (isset($_REQUEST['hapus_paket'])) {
                         <td><?php echo $deskripsiPaket; ?></td>
                         <td><img src="../gambar/<?php echo $gambarPaket; ?>" width="100" height="120" ></td>
                         <td>
-                            <button><a href="paket.php?ubah_paket=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editAdmin(<?php echo $id; ?>)"><a href="paket.php?ubah_paket=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="paket.php?hapus_paket=<?php echo $id; ?>"><i class="fa-solid fa-trash"></a></i></button>
+                            <script>
+                                function editAdmin(id) {
+                                    document.getElementById('btn_save_paket').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('ubah_paket');
+                                        if (editAdminId != null) {
+                                            document.getElementById('btn_save_paket').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_save_paket').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
                         </td>
                     </tr>
                     <?php
@@ -294,6 +376,9 @@ if (isset($_REQUEST['hapus_paket'])) {
                     }
                     ?>
                 </tbody>
+                    <?php
+                }
+                ?>
             </table>
             <?php
                             if (isset($_GET['ubah_paket'])) {   

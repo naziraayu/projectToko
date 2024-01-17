@@ -1,5 +1,6 @@
 <?php
 require("../login/koneksi.php");
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +118,7 @@ require("../login/koneksi.php");
     <div class="table_responsive_pesanan">
         <table class="table_dtl_pesanan">
        <?php
-            $query="SELECT SUM(detail_transaksi.qty) as total_qty, barang.id_barang, barang.nama_barang FROM barang JOIN detail_transaksi ON detail_transaksi.id_barang=barang.id_barang GROUP BY barang.id_barang";
+            $query="SELECT SUM(dp.qty) as total_qty, b.id_barang, b.nama_barang, st.tanggal_pengambilan FROM barang b JOIN detail_paket dp ON dp.id_barang = b.id_barang JOIN detail_paket_tr dpt ON dpt.identitas_pkt = dp.identitas_pkt JOIN transaksi t ON dpt.no_nota = t.no_nota JOIN status_transaksi st ON t.no_nota = st.no_nota WHERE st.tanggal_pengambilan = '2023-12-04' GROUP BY b.id_barang, b.nama_barang, st.tanggal_pengambilan UNION SELECT SUM(dt.qty) as total_qty, b.id_barang, b.nama_barang, st.tanggal_pengambilan FROM barang b JOIN detail_transaksi dt ON dt.id_barang = b.id_barang JOIN transaksi t ON dt.no_nota = t.no_nota JOIN status_transaksi st ON t.no_nota = st.no_nota WHERE st.tanggal_pengambilan = DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY b.id_barang, b.nama_barang, st.tanggal_pengambilan";
             $result=mysqli_query($koneksi, $query);
             while ($row=mysqli_fetch_array($result)) {
               $total=$row['total_qty'];
@@ -150,7 +151,7 @@ require("../login/koneksi.php");
             <?php
                 if (isset($_GET['id_barang'])) {
                     $id_brg=$_GET['id_barang'];
-                    $query="SELECT user.nama, status_transaksi.jam, SUM(detail_transaksi.qty) as total_qty, detail_transaksi.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer=user.id_user JOIN status_transaksi ON transaksi.no_nota=status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota=detail_transaksi.no_nota WHERE detail_transaksi.id_barang='$id_brg' GROUP BY transaksi.no_nota";
+                    $query="SELECT user.nama, status_transaksi.jam, status_transaksi.tanggal_pengambilan, SUM(detail_paket.qty) as total_qty, detail_paket.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer = user.id_user JOIN status_transaksi ON transaksi.no_nota = status_transaksi.no_nota JOIN detail_paket_tr ON transaksi.no_nota = detail_paket_tr.no_nota JOIN detail_paket ON detail_paket_tr.identitas_pkt = detail_paket.identitas_pkt WHERE detail_paket.id_barang = '$id_brg' AND status_transaksi.tanggal_pengambilan = DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND detail_paket.id_suplier IS NULL GROUP BY transaksi.no_nota UNION SELECT user.nama, status_transaksi.jam, status_transaksi.tanggal_pengambilan, SUM(detail_transaksi.qty) as total_qty, detail_transaksi.id_barang, transaksi.no_nota FROM user JOIN transaksi ON transaksi.id_customer = user.id_user JOIN status_transaksi ON transaksi.no_nota = status_transaksi.no_nota JOIN detail_transaksi ON transaksi.no_nota = detail_transaksi.no_nota WHERE detail_transaksi.id_barang = '$id_brg' AND status_transaksi.tanggal_pengambilan = DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND detail_transaksi.id_suplier IS NULL GROUP BY transaksi.no_nota";
                     $result=mysqli_query($koneksi, $query);
                     while ($row=mysqli_fetch_array($result)) {
                         $nama=$row['nama'];
@@ -162,11 +163,11 @@ require("../login/koneksi.php");
                 <tr>
                     <td class="multi-content3">
                         <div class="top"><?php echo $nama;?></div>
-                        <div class="bottom"><img src="../img/Group.svg" alt="order"></div>
+                        <a href="dalamProses.php?id_barang=<?php echo $_GET['id_barang'];?>&no_nota=<?php echo $nota;?>"><div class="bottom"><img src="../img/Group.svg" alt="order"></div></a>
                         <div class="right"><?php echo $total_qty; ?><small>pcs</small></div>
                         <div class="left"><?php echo $jam;?></div>
                         <label class="container">
-                            <input type="checkbox" >
+                            <input type="checkbox">
                             <div class="checkmark"></div>
                         </label>
                     </td>
@@ -174,39 +175,67 @@ require("../login/koneksi.php");
                 <?php } ?>
             </table>
         </div>
+            <?php
+                if (isset($_GET['id_supplier'])) {
+                    $supp=$_GET['id_supplier'];
+                    $brg=$_GET['id_barang'];
+                    $nota=$_GET['no_nota'];
+                    $query="update detail_transaksi set id_suplier='$supp' where id_barang='$brg' and no_nota='$nota'";
+                    $result=mysqli_query($koneksi, $query);
+                    if ($result) {
+                    ?>
+                    <script>
+                        alert("Berhasil menambahkan pesanan ke supplier");
+                        window.location.href="dalamProses.php?id_barang=<?php echo $brg;?>";
+                    </script>
+                    <?php
+                }}
+            ?>
+        <form action="dalamProses.php" method="post">
         <div class="dropdown">
-            <div class="dropdown-select" onclick="toggleDropdown()">
-                <span class="select">Pilih Supplier</span>
-                <i class="fa fa-caret-down icon"></i>
-            </div>
             <div class="dropdown-list">
+                <select class="select" id="spiner_supp" name="spiner_supp" onchange="redirectToPage()">
+                <option value="">Pilih Supplier</option>
                 <?php
-                $query="SELECT user.nama, user.no_telepon, supplier_menu.id_user FROM user JOIN supplier_menu ON user.id_user=supplier_menu.id_user WHERE supplier_menu.id_barang='$id_brg'";
-                $result=mysqli_query($koneksi, $query);
-                while ($row=mysqli_fetch_array($result)) {
-                    $nama=$row['nama'];
-                    $no_telp=$row['no_telepon'];
-                    $id_user=$row['id_user'];
-                ?>
-                    <div class="dropdown-list_item" onclick="selectOption(this)"><?php echo $nama; ?></div>
-                <?php
-                    }
-                ?>
+                    $query = "SELECT user.nama, user.no_telepon, supplier_menu.id_user FROM user JOIN supplier_menu ON user.id_user=supplier_menu.id_user WHERE supplier_menu.id_barang='$id_brg'";
+                    $result = mysqli_query($koneksi, $query);
+                    while ($row = mysqli_fetch_array($result)) {
+                        $nama = $row['nama'];
+                        $no_telp = $row['no_telepon'];
+                        $id_user = $row['id_user'];
+                        ?>
+                        <option value="<?php echo $id_user; ?>"><?php echo $nama; ?></option>
+                    <?php }
+                    ?>
+                </select>
             </div>
         </div>
-    </div>
-    <div class="wrapper">
-        <textarea placeholder="Template kalimat ..." ></textarea>
-        <div>
-            <button class="button1"type="submit" name="submit">Kirim Pesan</button>
-            <button class="button2"type="submit2" name="submit">SIMPAN</button>
+        <script>
+        function redirectToPage() {
+            // Get the selected option value
+            var selectedValue = document.getElementById("spiner_supp").value;
+
+            // If the value is not empty, redirect to the desired page
+            if (selectedValue) {
+                var url = "dalamProses.php?id_barang=<?php echo $_GET['id_barang']; ?>&no_nota=<?php echo $_GET['no_nota']; ?>&id_supplier=" + selectedValue;
+                window.location.href = url;
+            }
+        }
+</script>
+        <div class="wrapper">
+            <textarea placeholder="Template kalimat ..." ></textarea>
+            <div>
+                <!-- <button class="button1" type="submit" name="submit">Kirim Pesan</button> -->
+                <button class="button2" type="submit" name="simpan">SIMPAN</button>
+            </div>
         </div>
+      </form>
     </div>
     <?php
         }else {
             ?>
             <div class="gambar">
-                <img src="../img/Group 193.png" alt=""> 
+                <img src="../img/Group 193.png" alt="">
             </div>
             <?php
         }

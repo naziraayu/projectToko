@@ -1,5 +1,6 @@
 <?php
 require('../login/koneksi.php');
+// session_start();
 $pic_uploaded=0;
 if(isset($_REQUEST['btn_simpan'])){
     $nama=$_REQUEST['txt_nama'];
@@ -10,9 +11,9 @@ if(isset($_REQUEST['btn_simpan'])){
     $password=$_REQUEST['txt_password'];
     
     $foto_supp=time().$_FILES['input_foto_admin']['name'];
-    if (move_uploaded_file($_FILES['input_foto_admin']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+    if (move_uploaded_file($_FILES['input_foto_admin']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'
           .$foto_supp)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_supp;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'.$foto_supp;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_admin']['name']);
             $photo=time().$picName;
@@ -33,7 +34,15 @@ if(isset($_REQUEST['btn_simpan'])){
               }
         }
     if($pic_uploaded == 1){
-                    $query="insert into user values(' ', '$foto_supp', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'admin', '')";
+                    $query="insert into user values(' ', '$foto_supp', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'karyawan', '')";
+                    $result=mysqli_query($koneksi, $query);
+                    ?>
+                        <script>
+                        alert("Berhasil menambahkan admin");
+                        </script>
+                    <?php
+    }else if($pic_uploaded == 0){
+                    $query="insert into user values(' ', '', '$nama', '$alamat', '$notelepon', '$pertanyaan',  '$jawaban', '$password', 'karyawan', '')";
                     $result=mysqli_query($koneksi, $query);
                     ?>
                         <script>
@@ -59,9 +68,9 @@ if(isset($_REQUEST['btn_update'])){
     $password=$_REQUEST['txt_password'];
 
     $foto_supp=time().$_FILES['input_foto_admin']['name'];
-    if (move_uploaded_file($_FILES['input_foto_admin']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+    if (move_uploaded_file($_FILES['input_foto_admin']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'
           .$foto_supp)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_supp;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'.$foto_supp;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_admin']['name']);
             $photo=time().$picName;
@@ -127,8 +136,6 @@ if (isset($_REQUEST['hapus_admin'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -144,31 +151,31 @@ if (isset($_REQUEST['hapus_admin'])) {
 <body>
     <div class="sidebar">
         <div class="content">
-            <ul>
-                <li class="ad"><a href="../master/admin.php">Admin</a></li>
-                <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
-                <li class="cus"><a href="../master/customer.php">Customer</a></li>
-                <li class="men"><a href="../master/menu.php">Menu</a></li>
-                <li class="pac"><a href="../master/paket.php">Paket</a></li>
-                <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
-                <li class="supmen"></li><a href="../master/supMen.php">Supplier Menu</a>
-            </li>
-            </ul>
+        <ul>
+          <li class="ad"><a href="../master/admin.php">Admin</a></li>
+          <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
+          <li class="cus"><a href="../master/customer.php">Customer</a></li>
+          <li class="men"><a href="../master/menu.php">Menu</a></li>
+          <li class="pac"><a href="../master/paket.php">Paket</a></li>
+          <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
+          <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
+          </li>
+        </ul>
         </div>
     </div>
     <header>
-        <div class="head">
+        <div class="head"> 
             <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
-                <ul>
-                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
-                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
-                </ul>
-            </div>
+            <ul>
+                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+            </ul>
         </div>
+      </div>
     </header>
     <div class="container">
         <div class="form">
@@ -212,14 +219,14 @@ if (isset($_REQUEST['hapus_admin'])) {
                     <label for="name" class="form__label">Jawaban</label>
                 </div>
                 <div class="form__group field">
-                    <input type="password" id="txt_password" name="txt_password" class="form__field" placeholder="Name" required="">
+                    <input type="password" id="txt_password" name="txt_password" class="form__field" required="">
                     <label for="name" class="form__label">Password</label>
                 </div>
             </div>
         </div>
         <div class="photo">
             <input type="file" id="input_foto_admin" name="input_foto_admin">
-            </div>  
+        </div>  
         <div class="refresh">
             <button type="submit" name="refresh" onclick="refreshAdmin()">
             <i class="fa-solid fa-rotate-right" style="color: #000000;"></i>
@@ -241,25 +248,31 @@ if (isset($_REQUEST['hapus_admin'])) {
         </div>
         <div class="save">
             <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_simpan" >Simpan</button>
+            <button type="submit" name="btn_simpan" id="btn_simpan">Simpan</button>
         </div>
         </form>
     </div>
     <div class="table">
         <div class="table-header">
             <div class="container-input">
-                <input type="text" placeholder="Search" name="text" class="input">
-                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
+                <input type="text" placeholder="Search" name="text" id="searchInput" class="input" />
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" onclick="cari()">
+                    <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
                 </svg>
-            </div>              
+            </div>  
+            <script>
+                function cari() {
+                    var searchInputValue = document.getElementById("searchInput").value;
+                    window.location.href="admin.php?cari="+searchInputValue;
+                }
+            </script>            
         </div>
         <div class="table-section">
             <table> 
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama Admin</th>
+                        <th>Nama <br> Admin</th>
                         <th>Telepon</th>
                         <th>Alamat</th>
                         <th>Pertanyaan Keamanan</th>
@@ -268,9 +281,13 @@ if (isset($_REQUEST['hapus_admin'])) {
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
                 <?php
-                    $query="select * from user where akses='admin'";
+                    if (isset($_GET['cari'])) {
+                        $cari=$_GET['cari'];
+                        ?>
+                        <tbody>
+                <?php
+                    $query="select * from user where akses='karyawan' and LOWER(nama) LIKE LOWER('%$cari%')";
                     $result=mysqli_query($koneksi, $query);
                     $no=1;
                     while($row=mysqli_fetch_array($result)){
@@ -292,15 +309,82 @@ if (isset($_REQUEST['hapus_admin'])) {
                         <td><?php echo $jawaban_karyawan; ?></td>
                         <td><?php echo $akses; ?></td>
                         <td>
-                            <button><a href="admin.php?edit_admin=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editAdmin(<?php echo $id; ?>)"><a href="admin.php?edit_admin=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="admin.php?hapus_admin=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
                         </td>
+                            <script>
+                                function editAdmin(id) {
+                                    document.getElementById('btn_simpan').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_admin');
+                                        if (editAdminId != null) {
+                                            document.getElementById('btn_simpan').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_simpan').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
                     <tr>
                     <?php
                 $no++;
             }
             ?>
                 </tbody>
+                        <?php
+                    }else {
+                        ?>
+                        <tbody>
+                <?php
+                    $query="select * from user where akses='karyawan'";
+                    $result=mysqli_query($koneksi, $query);
+                    $no=1;
+                    while($row=mysqli_fetch_array($result)){
+                        $id=$row['id_user'];
+                        $nama_karyawan=$row['nama'];
+                        $alamat_karyawan=$row['alamat'];
+                        $noTelepon_karyawan=$row['no_telepon'];
+                        $pertanyaan_karyawan=$row['pertanyaan'];
+                        $jawaban_karyawan=$row['jawaban'];
+                        $akses=$row['akses'];
+                        //$password_karyawan=$row['password'];
+                ?>
+                    <tr>
+                        <td><?php echo $no; ?></td>    
+                        <td><?php echo $nama_karyawan; ?></td>
+                        <td><?php echo $alamat_karyawan; ?></td>
+                        <td><?php echo $noTelepon_karyawan; ?></td>
+                        <td><?php echo $pertanyaan_karyawan; ?></td>
+                        <td><?php echo $jawaban_karyawan; ?></td>
+                        <td><?php echo $akses; ?></td>
+                        <td>
+                            <button onclick="editAdmin(<?php echo $id; ?>)"><a href="admin.php?edit_admin=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button><a href="admin.php?hapus_admin=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
+                        </td>
+                            <script>
+                                function editAdmin(id) {
+                                    document.getElementById('btn_simpan').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_admin');
+                                        if (editAdminId != null) {
+                                            document.getElementById('btn_simpan').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_simpan').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
+                    <tr>
+                    <?php
+                $no++;
+            }
+            ?>
+                </tbody>
+                        <?php
+                    }
+                ?>
             </table>
             <?php
                             if (isset($_GET['edit_admin'])) {   

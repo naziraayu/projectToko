@@ -75,6 +75,7 @@ $hari_iniTGL=$now->format('d-m-Y');
     }
 
     require ("../login/koneksi.php");
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,43 +94,40 @@ $hari_iniTGL=$now->format('d-m-Y');
     <script src="stokEtalase.js" defer></script>
 </head>
 <body>
-    <header>   
+    <header>
+    <?php
+        $nama=$_GET['nama'];
+        $id=$_GET['id_supplier'];
+    ?>   
         <div class="head">
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $_GET['id_supplier'];?>">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PESANAN SAYA</a></li>
-                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $_GET['id_supplier'];?>">PENDAPATAN</a></li>
-                    <!-- <li class="log"><a href="../login/login.html">LOG OUT</a></li> -->
-                    <!-- <select class="select-box"> -->
-                        <!-- <option value="1">Nurul Hidayah img</option> -->
-                        <!-- <option value="2">Profile Saya</option>
-                        <option value="3">Pengaturan Profile</option>
-                        <option value="4">Log Out</option><a href="../login/login.html"></a>
-                    </select> -->
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul> 
             </div> 
         </div>
     </header>
     <div class="selector">
-        <div id="selectetField">
-            <p id="selectText">NURUL HIDAYAH</p>
+        <div id="selectetField">  
+            <p id="selectText"><?php echo $nama;?></p>
             <img src="../img/Vector.svg" alt="profile">
             <img src="../img/Vector1.png" alt="profile">
         </div>
         <div class="selector-list">
             <ul id="list" class="hide">
                 <li class="options1">
-                    <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
+                    <p> <?php echo $nama;?><br> <span class="Keterangan">Supplier</span></p>
                 </li>
                 <li class="options">
                     <img src="../img/Vector(3).png" alt="profile2">
-                    <p><a href="../profil/profil.php<?php echo $_GET['id_supplier'];?>">Profil Saya</a></p>
+                    <p><a href="../editProfil/lihatProfil.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Profil Saya</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/Pengaturan.png" alt="pengaturan">
-                    <p><a href="../editProfil/editProfil.php<?php echo $_GET['id_supplier'];?>      ">Edit Profile</a></p>
+                    <p><a href="../editProfil/editProfil.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Edit Profile</a></p>
                 </li>
                 <li class="options">
                     <img src="../img/logout.png" alt="logout">
@@ -181,6 +179,7 @@ $hari_iniTGL=$now->format('d-m-Y');
             <?php
                 if (isset($_GET['id_supplier'])) {
                     $id_supp=$_GET['id_supplier'];
+                    $nama_supp=$_GET['nama'];
                     $query="SELECT supplier_menu.id_suppmenu, SUM(detail_suppmenu_etalase.jumlah_setor) AS jumlah_setor, detail_suppmenu_etalase.jam, detail_suppmenu_etalase.tanggal_setor, barang.nama_barang FROM detail_suppmenu_etalase JOIN supplier_menu ON detail_suppmenu_etalase.id_suppmenu=supplier_menu.id_suppmenu JOIN barang ON barang.id_barang=supplier_menu.id_barang WHERE supplier_menu.id_user='$id_supp' AND detail_suppmenu_etalase.tanggal_setor=curdate() GROUP BY detail_suppmenu_etalase.id_suppmenu";
                     $result=mysqli_query($koneksi, $query);
                     if ($num=mysqli_num_rows($result) != 0) {
@@ -245,7 +244,7 @@ $hari_iniTGL=$now->format('d-m-Y');
                         <script>
                             function hitung(id) {
                                 var angka=document.getElementsByName('angka_' + id)[0].value;
-                                window.location.href="stokEtalase.php?id_supplier="+ <?php echo $id_supp;?> +"&id_suppmenu="+id+"&angka="+angka;
+                                window.location.href="stokEtalase.php?id_supplier=" + <?php echo $id_supp;?> + "&nama=" + "<?php echo $nama_supp;?>" + "&id_suppmenu="+id+"&angka="+angka;
                             }
                         </script>
                     </div>
@@ -287,14 +286,16 @@ $hari_iniTGL=$now->format('d-m-Y');
                     $jam=date('H:i:s');
                     $tanggal=date('Y:m:d');
                     if (isset($_GET['angka'])) {
-                        $id=$_GET['id_supplier'];   
+                        $id=$_GET['id_supplier'];
+                        $nama=$_GET['nama'];   
                         $id_suppmenu=$_GET['id_suppmenu'];
                         $setor=$_GET['angka'];
                         $query="INSERT INTO `detail_suppmenu_etalase` (`id_setorEtalase`, `jumlah_setor`, `sisa`, `jam`, `tanggal_setor`, `id_suppmenu`) VALUES (NULL, '$setor', 0, '$jam', '$tanggal', '$id_suppmenu')";
                         $result=mysqli_query($koneksi, $query);
                         ?>
                         <script>
-                            window.location.href="stokEtalase.php?id_supplier=<?php echo $id; ?>";
+                            alert("Berhasil setor ke toko")
+                            window.location.href="stokEtalase.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>";
                         </script>
                         <?php
                     }

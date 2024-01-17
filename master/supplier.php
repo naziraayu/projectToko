@@ -1,5 +1,6 @@
 <?php
 require('../login/koneksi.php');
+// session_start();
 $pic_uploaded=0;
 if(isset($_REQUEST['btn_simpanSupp'])){
     $nama_supp=$_REQUEST['txt_namaSupp'];
@@ -10,9 +11,9 @@ if(isset($_REQUEST['btn_simpanSupp'])){
     $password_supp=$_REQUEST['passwordSupp'];
 
     $foto_supp=time().$_FILES['input_foto_supp']['name'];
-    if (move_uploaded_file($_FILES['input_foto_supp']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+    if (move_uploaded_file($_FILES['input_foto_supp']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'
           .$foto_supp)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_supp;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'.$foto_supp;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_supp']['name']);
             $photo=time().$picName;
@@ -48,16 +49,17 @@ if(isset($_REQUEST['btn_simpanSupp'])){
 
 if(isset($_REQUEST['btn_updateSupp'])){
     $id=$_REQUEST['txt_idSupp'];
-    $nama_supp=$_REQUEST['txt_namaSupp'];
-    $notelepon_supp=$_REQUEST['txt_notelpSupp']; 
-    $alamat_supp=$_REQUEST['txt_alamatSupp'];
-    $pertanyaan_supp=$_REQUEST['pertanyaanSup'];        
-    $jawaban_supp=$_REQUEST['jawabanSupp'];
-    $password_supp=$_REQUEST['passwordSupp'];
+    $nama=$_REQUEST['txt_namaSupp'];
+    $notelepon=$_REQUEST['txt_notelpSupp'];
+    $alamat=$_REQUEST['txt_alamatSupp'];
+    $pertanyaan=$_REQUEST['pertanyaanSup'];        
+    $jawaban=$_REQUEST['jawabanSupp'];
+    $password=$_REQUEST['passwordSupp'];
+
     $foto_supp=time().$_FILES['input_foto_supp']['name'];
-    if (move_uploaded_file($_FILES['input_foto_supp']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+    if (move_uploaded_file($_FILES['input_foto_supp']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'
           .$foto_supp)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_supp;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'.$foto_supp;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_supp']['name']);
             $photo=time().$picName;
@@ -78,21 +80,27 @@ if(isset($_REQUEST['btn_updateSupp'])){
               }
         }
     if($pic_uploaded == 1){
-        $query="update user set nama='$nama_supp', alamat='$alamat_supp', no_telepon='$notelepon_supp', pertanyaan='$pertanyaan_supp', jawaban='$jawaban_supp', password='$password_supp', photo_profile='$foto_supp' where id_user='$id'";
+        $query="update user set photo_profile='$foto_supp', nama='$nama', alamat='$alamat', no_telepon='$notelepon', pertanyaan='$pertanyaan', jawaban='$jawaban', password='$password' where id_user='$id'";
         $result=mysqli_query($koneksi, $query);
         ?>
-            <script>alert("berhasil mengubah supplier");</script>
+            <script>
+            alert("Berhasil mengubah supplier");
+            </script>
         <?php
-    } else if ($pic_uploaded == 0){
-        $query="update user set nama='$nama_supp', alamat='$alamat_supp', no_telepon='$notelepon_supp', pertanyaan='$pertanyaan_supp', jawaban='$jawaban_supp', password='$password_supp' where id_user='$id'";
+    }else if ($pic_uploaded == 0) {   
+        $query="update user set nama='$nama', alamat='$alamat', no_telepon='$notelepon', pertanyaan='$pertanyaan', jawaban='$jawaban', password='$password' where id_user='$id'";
         $result=mysqli_query($koneksi, $query);
         ?>
-            <script>alert("berhasil mengubah supplier");</script>
+            <script>
+            alert("Berhasil mengubah supplier");
+            </script>
         <?php
     }else{
         ?>
-            <script>alert("gagal menambahkan supplier");</script>
-        <?php
+            <script>
+            alert("Gagal mengubah supplier");
+            </script>
+            <?php
     }
 }
 
@@ -101,12 +109,12 @@ if (isset($_REQUEST['hapus_supp'])) {
     $query="delete from user where id_user='$id_menu'";
     if (mysqli_query($koneksi, $query)) {
         ?>
-        <script>alert("berhasil menghapus");</script>
+        <script>alert("Berhasil Menghapus");</script>
         <?php
         header("Location: supplier.php");
     }else{
         ?>
-        <script>alert("gagal menghapus");</script>
+        <script>alert("Gagal Menghapus");</script>
         <?php
     }
 }
@@ -117,8 +125,6 @@ if (isset($_REQUEST['hapus_supp'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supplier</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -126,31 +132,31 @@ if (isset($_REQUEST['hapus_supp'])) {
     <link rel="stylesheet" href="adminn.css">
 </head>
 <body>
-<div class="sidebar">
+    <div class="sidebar">
         <div class="content">
-            <ul>
-                <li class="ad"><a href="../master/admin.php">Admin</a></li>
-                <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
-                <li class="cus"><a href="../master/customer.php">Customer</a></li>
-                <li class="men"><a href="../master/menu.php">Menu</a></li>
-                <li class="pac"><a href="../master/paket.php">Paket</a></li>
-                <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
-                <li class="supmen"></li><a href="../master/supMen.php">Supplier Menu</a>
-            </li>
-            </ul>
+        <ul>
+          <li class="ad"><a href="../master/admin.php">Admin</a></li>
+          <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
+          <li class="cus"><a href="../master/customer.php">Customer</a></li>
+          <li class="men"><a href="../master/menu.php">Menu</a></li>
+          <li class="pac"><a href="../master/paket.php">Paket</a></li>
+          <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
+          <li class="supmen"><a href="../master/supMen.php">Supplier Menu</a>
+          </li>
+        </ul>
         </div>
     </div>
     <header>
-        <div class="head">
+        <div class="head"> 
             <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
-                <ul>
-                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
-                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
-                </ul>
+            <ul>
+                <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+                <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
+                <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+                <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+                <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+            </ul>
             </div>
         </div>
     </header>
@@ -160,7 +166,7 @@ if (isset($_REQUEST['hapus_supp'])) {
             <div class="first-cont">
                 <div class="form__group field">
                     <input type="input" id="txt_namaSupp" name="txt_namaSupp" id="txt_nama" class="form__field" placeholder="Name" required="">
-                    <label for="name" class="form__label">Nama Admin</label>
+                    <label for="name" class="form__label">Nama Supplier</label>
                 </div>
                 <div class="form__group field">
                     <input type="input" id="txt_notelpSupp" name="txt_notelpSupp" class="form__field" placeholder="Name" required="">
@@ -169,6 +175,9 @@ if (isset($_REQUEST['hapus_supp'])) {
                 <div class="form__group field">
                     <input type="input" id="txt_alamatSupp" name="txt_alamatSupp" class="form__field" placeholder="Name" required="">
                     <label for="name" class="form__label">Alamat</label>
+                </div>
+                <div class="form__group field">
+                    <input type="hidden" id="txt_idSupp" name="txt_idSupp" class="form__field" placeholder="Name" required="">
                 </div>
             </div>
             <div class="second-cont">
@@ -195,14 +204,11 @@ if (isset($_REQUEST['hapus_supp'])) {
                     <input type="password" id="passwordSupp" name="passwordSupp" class="form__field" placeholder="Name" required="">
                     <label for="name" class="form__label">Password</label>
                 </div>
-                <div class="form__group field">
-                    <input type="hidden" id="txt_idSupp" name="txt_idSupp" class="form__field" placeholder="Name" required="">
-                </div>
             </div>
         </div>
-                <div class="photo">
-                    <input type="file" id="input_foto_supp" name="input_foto_supp" class="form__field" required="">
-                </div>
+        <div class="photo">
+            <input type="file" id="input_foto_supp" name="input_foto_supp">
+        </div>
         <div class="refresh">
             <button type="submit" name="refresh" onclick="refreshSupplier()">
             <i class="fa-solid fa-rotate-right" style="color: #000000;"></i>
@@ -225,25 +231,31 @@ if (isset($_REQUEST['hapus_supp'])) {
         </div>
         <div class="save">
             <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-            <button type="submit" name="btn_simpanSupp" >Simpan</button>
+            <button type="submit" name="btn_simpanSupp" id="btn_simpanSupp">Simpan</button>
         </div>
         </form>
     </div>
     <div class="table">
         <div class="table-header">
             <div class="container-input">
-                <input type="text" placeholder="Search" name="text" class="input">
-                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                <input type="text" placeholder="Search" name="text" id="searchInput" class="input" />
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" onclick="cari()">
                   <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
                 </svg>
-            </div>              
+            </div> 
+            <script>
+                function cari() {
+                    var searchInputValue = document.getElementById("searchInput").value;
+                    window.location.href="supplier.php?cari="+searchInputValue;
+                }
+            </script>             
         </div>
         <div class="table-section">
             <table> 
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama Supplier</th>
+                        <th>Nama <br> Supplier</th>
                         <th>Telepon</th>
                         <th>Alamat</th>
                         <th>Pertanyaan Keamanan</th>
@@ -252,7 +264,61 @@ if (isset($_REQUEST['hapus_supp'])) {
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <?php
+                    if (isset($_GET['cari'])) {
+                        $cari=$_GET['cari'];
+                        ?>
+                        <tbody>
+                <?php
+                    $query="select * from user where akses='supplier' and LOWER(nama) LIKE LOWER('%$cari%')";
+                    $result=mysqli_query($koneksi, $query);
+                    $no=1;
+                    while($row=mysqli_fetch_array($result)){
+                        $id=$row['id_user'];
+                        $nama_karyawan=$row['nama'];
+                        $alamat_karyawan=$row['alamat'];
+                        $noTelepon_karyawan=$row['no_telepon'];
+                        $pertanyaan_karyawan=$row['pertanyaan'];
+                        $jawaban_karyawan=$row['jawaban'];
+                        $akses=$row['akses'];
+                        //$password_karyawan=$row['password'];
+                ?>
+                    <tr>
+                        <td><?php echo $no; ?></td>    
+                        <td><?php echo $nama_karyawan; ?></td>
+                        <td><?php echo $alamat_karyawan; ?></td>
+                        <td><?php echo $noTelepon_karyawan; ?></td>
+                        <td><?php echo $pertanyaan_karyawan; ?></td>
+                        <td><?php echo $jawaban_karyawan; ?></td>
+                        <td><?php echo $akses; ?></td>
+                        <td>
+                            <button onclick="editSupp(<?php echo $id; ?>)"><a href="supplier.php?edit_supp=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button><a href="supplier.php?hapus_supp=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
+                            <script>
+                                function editSupp(id) {
+                                    document.getElementById('btn_simpanSupp').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_supp');
+                                        if (editAdminId) {
+                                            document.getElementById('btn_simpanSupp').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_simpanSupp').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
+                        </td>
+                    <tr>
+                    <?php
+                $no++;
+            }
+            ?>
+                </tbody>
+                        <?php
+                    }else {
+                        ?>
+                        <tbody>
                 <?php
                     $query="select * from user where akses='supplier'";
                     $result=mysqli_query($koneksi, $query);
@@ -276,9 +342,34 @@ if (isset($_REQUEST['hapus_supp'])) {
                         <td><?php echo $jawaban_karyawan; ?></td>
                         <td><?php echo $akses; ?></td>
                         <td>
-                            <button><a href="supplier.php?edit_supp=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button onclick="editSupp(<?php echo $id; ?>)"><a href="supplier.php?edit_supp=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                             <button><a href="supplier.php?hapus_supp=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
-                            <?php
+                            <script>
+                                function editSupp(id) {
+                                    document.getElementById('btn_simpanSupp').style.display = 'none';
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        var urlParams = new URLSearchParams(window.location.search);
+                                        var editAdminId = urlParams.get('edit_supp');
+                                        if (editAdminId) {
+                                            document.getElementById('btn_simpanSupp').style.display = 'none';
+                                        } else {
+                                            document.getElementById('btn_simpanSupp').style.display = 'block';
+                                        }
+                                    });
+                                }
+                            </script>
+                        </td>
+                    <tr>
+                    <?php
+                $no++;
+            }
+            ?>
+                </tbody>
+                        <?php
+                    }
+                ?>
+            </table>
+            <?php
                             if (isset($_GET['edit_supp'])) {   
                             $id_edit=$_GET['edit_supp'];
                             $query="select * from user where id_user='$id_edit'";
@@ -295,28 +386,19 @@ if (isset($_REQUEST['hapus_supp'])) {
                                     $fotoo=$row['photo_profile'];
                                     ?>
                                     <script>
-                                        document.getElementById('txt_idSupp').value='<?php echo $id;?>';
+                                        document.getElementById('txt_idSupp').value='<?php echo $id_karywn;?>';
                                         document.getElementById('txt_namaSupp').value='<?php echo $nama;?>';
                                         document.getElementById('txt_notelpSupp').value='<?php echo $telepon;?>';
                                         document.getElementById('txt_alamatSupp').value='<?php echo $alamat;?>';
-                                        document.getElementById('input_foto_supp').value='<?php echo $pertanyaann;?>';
-                                        document.getElementById('pertanyaanSup').value='<?php echo $jawabann;?>';
-                                        document.getElementById('jawabanSupp').value='<?php echo $passwordd;?>';
-                                        document.getElementById('passwordSupp').value='<?php echo $fotoo;?>';
+                                        document.getElementById('pertanyaanSup').value='<?php echo $pertanyaann;?>';
+                                        document.getElementById('jawabanSupp').value='<?php echo $jawabann;?>';
+                                        document.getElementById('passwordSupp').value='<?php echo $alamat;?>';
                                     </script>
                                     <?php
                                 }
                             }
                         }
                     ?>
-                        </td>
-                    <tr>
-                    <?php
-                $no++;
-            }
-            ?>
-                </tbody>
-            </table>
         </div>
     </div>
 </body>

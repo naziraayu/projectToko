@@ -1,3 +1,28 @@
+<?php
+require("../login/koneksi.php");
+session_start();
+if (isset($_POST['proses'])) {
+    $pwLama=$_POST['Pass_baru'];
+    $konfirmPW=$_POST['konfirm_pass'];
+    $id_txt=$_POST['txt_id'];
+    $nama=$_POST['nama'];
+    if ($pwLama == $konfirmPW) {
+        $query="update user set password='$konfirmPW' where id_user='$id_txt'";
+        $result=mysqli_query($koneksi, $query);
+        ?>
+        <script>
+            alert("berhasil mengubah password");
+            window.location.href="gantiPassword.php?id_supplier=<?php echo $id_txt; ?>&nama=<?php echo $nama;?>";
+        </script>
+        <?php
+    }else {?>
+        <script>
+            alert("gagal mengubah password");
+            window.location.href="gantiPassword.php?id_supplier=<?php echo $id_txt; ?>&nama=<?php echo $nama;?>";
+        </script>
+    <?php }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,42 +38,46 @@
 </head>
 <body>
     <header>
+    <?php
+    $id=$_GET['id_supplier'];
+    $nama=$_GET['nama'];
+    ?>
         <div class="head">
           <div class="nav">
             <img src="../img/Ellipse 1.png" alt="logo" />
                 <ul>
-                    <li class="stok"><a href="../stokEtalase/stokEtalase.html">STOK ETALASE</a></li>
-                    <li class="pes"><a href="../pesananSaya/kemarin.html">PESANAN SAYA</a></li>
-                    <li class="pen"><a href="../pendapatan/pendapatan.html">PENDAPATAN</a></li>
+                    <li class="stok"><a href="../stokEtalase/stokEtalase.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">STOK ETALASE</a></li>
+                    <li class="pes"><a href="../pesananSaya/hariIni.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PESANAN SAYA</a></li>
+                    <li class="pen"><a href="../pendapatan/pendapatan.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">PENDAPATAN</a></li>
                 </ul>
             </div> 
         </div>
     </header>
     <div class="selector">
         <div id="selectetField">
-          <p id="selectText">NURUL HIDAYAH</p>
+          <p id="selectText"><?php echo $nama;?></p>
           <img src="../img/Vector.svg" alt="profile">
           <img src="../img/Vector1.png" alt="profile">
         </div>
         <div class="selector-list">
-        <ul id="list" class="hide">
-          <li class="options1">
-            <p>Nurul Hidayah <br> <span class="Keterangan">Supplier</span></p>
-          </li>
-          <li class="options">
-            <img src="../img/Vector(3).png" alt="profile2">
-            <p>Profil Saya</p>
-          </li>
-          <li class="options">
-            <img src="../img/Pengaturan.png" alt="pengaturan">
-            <p>Edit Profile</p>
-          </li>
-          <li class="options">
-            <img src="../img/logout.png" alt="logout">
-            <p>Logout</p>
-          </li>
-        </ul>
-      </div>
+            <ul id="list" class="hide">
+                <li class="options1">
+                    <p><?php echo $nama;?> <br> <span class="Keterangan">Supplier</span></p>
+                </li>
+                <li class="options">
+                    <img src="../img/Vector(3).png" alt="profile2">
+                    <a href="../editProfil/lihatProfil.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Profil Saya</a>
+                </li>
+                <li class="options">
+                    <img src="../img/Pengaturan.png" alt="pengaturan">
+                    <a href="../editProfil/editProfil.php?id_supplier=<?php echo $id;?>&nama=<?php echo $nama;?>">Edit Profil</a>
+                </li>
+                <li class="options">
+                    <img src="../img/logout.png" alt="logout">
+                    <a href="../login/login.php">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <script>
         var selectetField = document.getElementById("selectetField");
@@ -70,47 +99,73 @@
         
         
         </script>
+                    <?php
+                        if(isset($_GET['id_supplier'])){
+                            $id=$_GET['id_supplier'];
+                            $query="select * from user where id_user='$id'";
+                            $result=mysqli_query($koneksi, $query);
+                            while($row=mysqli_fetch_array($result)){
+                                $nama=$row['nama'];
+                                $id=$row['id_user'];
+                                $akses=$row['akses'];
+                                $foto=$row['photo_profile'];
+                                $password=$row['password'];
+                            ?>
     <div class="wrapper">
-        <div class="img"><img src="../img/Ellipse 8.png" alt=""></div>
-        <div class="teks">Nurul Hidayah <span class="ket">Supplier</span></div>
+        <div class="img"><img src="../gambar/<?php echo $foto; ?>" width="100" height="150" alt=""></div>
+        <div class="teks"><?php echo $nama; ?> <span class="ket"><?php echo $akses; ?></span></div>
     </div>
     <header2>
+        <form action="gantiPassword.php" method="post" enctype="multipart/form-data">
         <div class="head2">
             <div class="nav2"> 
                 <ul>
-                    <li class="stok"><a href="../editProfil/lihatProfil.html">Lihat Profil</a></li>
-                    <li class="pes"><a href="../editProfil/editProfil.html">Edit Profile</a></li>
-                    <li class="pen"><a href="../editProfil/gantiPassword.html">Ganti Password</a></li>
+                    <li class="stok"><a href="../editProfil/lihatProfil.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>">Lihat Profil</a></li>
+                    <li class="pes"><a href="../editProfil/editProfil.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>">Edit Profile</a></li>
+                    <li class="pen"><a href="../editProfil/gantiPassword.php?id_supplier=<?php echo $id; ?>&nama=<?php echo $nama;?>">Ganti Password</a></li>
                 </ul>
             </div> 
             <div class="container">
                 <div class="title">Ganti Password</div>
                 <div class="content">
-                    <form action="#">
                         <div class="box">
                             <span class="details"> Password Lama  </span>
-                            <input type="password" id="passwordLama" value="123" />
-                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('passwordLama')">
-                       
+                            <input type="password" name="txt_PWLama" id="txt_PWLama">
+                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('txt_PWLama')">                       
                         </div>
                         <div class="box">
                             <span class="details"> Password Baru  </span>
-                            <input type="password" id="passwordBaru" value="123" />
-                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('passwordBaru')">
+                            <input type="password" name="Pass_baru" id="Pass_baru">
+                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('Pass_baru')">
                         </div>
                         <div class="box">
-                            <span class="details"> Konfirmasi Password Baru</span>
-                            <input type="password" id="konfirmasiPassword" value="123" />
-                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('konfirmasiPassword')">
+                            <span class="details"> Konfirmasi Password Baru </span>
+                            <input type="text" name="konfirm_pass" id="konfirm_pass">
+                            <img src="../img/mata.png" alt="hide" onclick="togglePasswordVisibility('konfirm_pass')">
                         </div>
-                    </form>
+                        <div class="box">
+                            <input type="hidden" name="txt_id" id="txt_id" placeholder="Id" >
+                        </div>
+                        <div class="box">
+                            <input type="hidden" name="nama" id="nama" placeholder="Id" >
+                        </div>
                 </div>
             </div>
             <div class="wrapper1">
                 <div>
-                <button class="button1"type="submit1" name="proses">Simpan Profile</button>
+                <button class="button1" type="submit" name="proses">Simpan Password</button>
                 </div>
         </div>
+        <script>
+            document.getElementById('txt_PWLama').value="<?php echo $password;?>";
+            document.getElementById('txt_id').value="<?php echo $id;?>";
+            document.getElementById('nama').value="<?php echo $nama;?>";
+        </script>
+            <?php
+                    }
+                }
+            ?>           
+        </form>
 </header2>
 <script>
     function togglePasswordVisibility(inputId) {

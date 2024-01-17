@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
-    <link rel="stylesheet" href="landingg.css">\
+    <link rel="stylesheet" href="landing.css">\
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,7 +22,7 @@
                 <img src="../img/Ellipse 1.png" alt="logo" />
             </div>
         </div>
-    </header>
+    </header> 
     <div class="header" id="home">    
         <div class="background">
             <img src="../img/background.png" alt="">
@@ -55,7 +55,8 @@
             </div>
         </div>
     </div>
-    <div class="wrapper" id="best_seller">
+    <div class="best" id="best_seller"></div>
+    <div class="wrapper" >
         <div class="back">
             <h1 data-aos="fade-up" data-aos-duration="1000">BEST SELLER MENU</h1>
             <img src="../img/Rectangle 119.png" alt="">
@@ -120,7 +121,9 @@
                 </div>
             </div>
         </div>
-    <div class="wrap-content" id="produk">
+    </div>
+    <div class="pro" id="produkk"></div>
+    <div class="wrap-content">
         <div class="back-content">
             <img src="../img/back-contact.png" alt="">
         </div>
@@ -128,7 +131,7 @@
             <div class="product">
                 <h2>Hight Quality Product</h2>
                 <p>Dalam upaya menjaga kualitas produk, <br> Brownies n Friends melakukan seleksi dalam memasukkan produk baru ke dalam koleksi. <br> Seleksi dengan memilih kue dengan harga dan kualitas terbaik</p>
-                <button type="button">Hubungi Toko</button>
+                <button type="button"><a href="#info">Hubungi Toko</a></button>
             </div>
         </div>
     </div>
@@ -167,22 +170,22 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#best_seller">Best Seller</a></li>
-                <li><a href="#produk">Info</a></li>
+                <li><a href="#produkk">Info</a></li>
                 <li><a href="#maps">Location</a></li>
                 <li><a href="#info">Contact Us</a></li>
             </ul>
         </div>
         <div class="content-us">
             <div class="wrapper">
-                <a class="icon facebook" href="https://link_social_mendia_anda">
+                <a class="icon facebook" href="https://www.facebook.com/profile.php?id=100054885064485">
                     <div class="tooltip">Facebook</div>
                     <span><i class="fab fa-facebook"></i></span>
                 </a>
-                <a class="icon whatsapp" href="https://link_social_mendia_anda">
+                <a class="icon whatsapp" href="https://wa.me/6285156296848">
                     <div class="tooltip">Whatsapp</div>
                     <span><i class="fab fa-whatsapp"></i></span>
                 </a>
-                <a class="icon instagram" href="https://link_social_mendia_anda">
+                <a class="icon instagram" href="https://instagram.com/brownies_nfriends?igshid=NzZlODBkYWE4Ng==">
                     <div class="tooltip">Instagram</div>
                     <span><i class="fab fa-instagram"></i></span>
                 </a>

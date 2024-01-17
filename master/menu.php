@@ -1,5 +1,6 @@
 <?php
 require("../login/koneksi.php");
+// session_start();
 $pic_uploaded=0;
   if (isset($_REQUEST['btn_save_menu'])) {
       $nama_menu=$_REQUEST['txt_nama_menu'];
@@ -9,9 +10,9 @@ $pic_uploaded=0;
       $jenis_menu=$_REQUEST['spinner_jenis'];
 
       $foto_menu=time().$_FILES["input_foto_menu"]['name'];
-      if (move_uploaded_file($_FILES['input_foto_menu']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+      if (move_uploaded_file($_FILES['input_foto_menu']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'
           .$foto_menu)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_menu;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'.$foto_menu;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_menu']['name']);
             $photo=time().$picName;
@@ -32,7 +33,15 @@ $pic_uploaded=0;
             }
       }
       if ($pic_uploaded == 1) {
-        $query="insert into barang values ('', '$nama_menu', '$hargaJual_menu', '$keterangan_menu', '$jenis_menu', '$deskripsi_menu', '$foto_menu')";
+        $query="insert into barang values ('', '$foto_menu', '$nama_menu', '$hargaJual_menu', '$keterangan_menu', '$jenis_menu', '$deskripsi_menu')";
+        $result=mysqli_query($koneksi, $query);
+        ?>
+          <script>
+          alert("Berhasil menambahkan menu");
+          </script>
+        <?php
+      }else if($pic_uploaded == 0){
+        $query="insert into barang values ('', '', '$nama_menu', '$hargaJual_menu', '$keterangan_menu', '$jenis_menu', '$deskripsi_menu')";
         $result=mysqli_query($koneksi, $query);
         ?>
           <script>
@@ -56,9 +65,9 @@ if(isset($_REQUEST['btn_ubah_menu'])){
     $jenis_menu=$_REQUEST['spinner_jenis'];
 
       $foto_menu=time().$_FILES["input_foto_menu"]['name'];
-      if (move_uploaded_file($_FILES['input_foto_menu']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'
+      if (move_uploaded_file($_FILES['input_foto_menu']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'
           .$foto_menu)) {
-            $target_file=$_SERVER['DOCUMENT_ROOT'].'/toko/projectToko/projectToko/gambar/'.$foto_menu;
+            $target_file=$_SERVER['DOCUMENT_ROOT'].'/sibrownies/projectToko/gambar/'.$foto_menu;
             $imgFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $picName=basename($_FILES['input_foto_menu']['name']);
             $photo=time().$picName;
@@ -123,8 +132,6 @@ if (isset($_REQUEST['hapus_menu'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -138,33 +145,34 @@ if (isset($_REQUEST['hapus_menu'])) {
     <link rel="stylesheet" href="adminn.css" />
   </head>
   <body>
-  <div class="sidebar">
-        <div class="content">
-            <ul>
-                <li class="ad"><a href="../master/admin.php">Admin</a></li>
-                <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
-                <li class="cus"><a href="../master/customer.php">Customer</a></li>
-                <li class="men"><a href="../master/menu.php">Menu</a></li>
-                <li class="pac"><a href="../master/paket.php">Paket</a></li>
-                <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
-                <li class="supmen"></li><a href="../master/supMen.php">Supplier Menu</a>
-            </li>
-            </ul>
-        </div>
+    <div class="sidebar">
+      <div class="content">
+        <ul>
+          <li class="ad"><a href="../master/admin.php">Admin</a></li>
+          <li class="sup"><a href="../master/supplier.php">Supplier</a></li>
+          <li class="cus"><a href="../master/customer.php">Customer</a></li>
+          <li class="men"><a href="../master/menu.php">Menu</a></li>
+          <li class="pac"><a href="../master/paket.php">Paket</a></li>
+          <li class="kem"><a href="../master/kemasan.php">Kemasan</a></li>
+          <li class="supmen">
+            <a href="../master/supMen.php">Supplier Menu</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <header>
-        <div class="head">
-            <div class="nav">
-            <img src="../img/Ellipse 1.png" alt="logo" />
-                <ul>
-                    <li class="mas"><a href="../master/admin.php">MASTER</a></li>
-                    <li class="pes"><a href="../pesananMasuk/pesananBaru1.php">PESANAN MASUK</a></li>
-                    <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
-                    <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
-                    <li class="log"><a href="../login/login.php">LOG OUT</a></li>
-                </ul>
-            </div>
+      <div class="head">
+        <div class="nav">
+          <img src="../img/Ellipse 1.png" alt="logo" />
+          <ul>
+            <li class="mas"><a href="../master/admin.php">MASTER</a></li>
+            <li class="pes"><a href="../pesananMasuk/dalamProses.php">PESANAN MASUK</a></li>
+            <li class="eta"><a href="../etalase/etalase.php">ETALASE</a></li>
+            <li class="lap"><a href="../laporan/laporan.php">LAPORAN</a></li>
+            <li class="log"><a href="../login/login.php">LOG OUT</a></li>
+          </ul>
         </div>
+      </div>
     </header>
     <div class="container">
       <div class="form">
@@ -203,7 +211,7 @@ if (isset($_REQUEST['hapus_menu'])) {
             </div>
       </div>
       </div>
-        <div class="photo">
+      <div class="photo">
           <input type="file" id="input_foto_menu" name="input_foto_menu">
         </div>
         <div class="refresh">
@@ -218,32 +226,41 @@ if (isset($_REQUEST['hapus_menu'])) {
               document.getElementById('spinner_keterangan').selectedIndex = 0;
               document.getElementById('spinner_jenis').selectedIndex = 0;
               document.getElementById('input_foto_menu').value = '';
+              document.getElementById('txt_idMenu').value = '';
             }
           </script>
         </div>
         <div class="update">
           <button type="submit" name="btn_ubah_menu">Update</button>
         </div>
-        <div class="save">
+        <div class="save" id="btn_save_menu">
           <!-- <button><i class="fa-solid fa-rotate-right" style="color: #000000;"></i></button> -->
-          <button type="submit" name="btn_save_menu">Simpan</button>
+          <button type="submit" name="btn_save_menu" id="btn_save_menu">Simpan</button>
         </div>
       </div>
       </form>
     </div>
     <div class="table">
       <div class="table-header">
-        <div class="container-input">
-          <input type="text" placeholder="Search" name="text" class="input" />
+      <div class="container-input">
+          <input type="text" placeholder="Search" name="text" id="searchInput" class="input" />
           <svg
-            fill="#000000"
-            width="20px"
-            height="20px"
-            viewBox="0 0 1920 1920"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
+              fill="#000000"
+              width="20px"
+              height="20px"
+              viewBox="0 0 1920 1920"
+              xmlns="http://www.w3.org/2000/svg"
+              onclick="cari()">
+              <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
           </svg>
-        </div>
+      </div>
+<script>
+    function cari() {
+        var searchInputValue = document.getElementById("searchInput").value;
+        window.location.href="menu.php?cari="+searchInputValue;
+    }
+</script>
+
       </div>
       <div class="table-section">
         <table>
@@ -259,7 +276,60 @@ if (isset($_REQUEST['hapus_menu'])) {
               <th>Aksi</th>
             </tr>
           </thead>
-          <tbody>
+          <?php
+          if (isset($_GET['cari'])) {
+            $cari=$_GET['cari'];
+            ?>
+            <tbody>
+          <?php
+              $query="SELECT * FROM barang WHERE LOWER(nama_barang) LIKE LOWER('%$cari%');";
+              $result=mysqli_query($koneksi, $query);
+              $no=1;
+              while($row=mysqli_fetch_array($result)){
+                $id=$row['id_barang'];
+                $namaMenu=$row['nama_barang'];
+                $deskripsiMenu=$row['deskripsi'];
+                $hargaJual=$row['harga_jual'];
+                $keteranganMenu=$row['keterangan'];
+                $jenisMenu=$row['jenis_kue'];
+                $gambarMenu=$row['gambar_barang'];              
+          ?>
+            <tr>
+              <td><?php echo $no;?></td>
+              <td><?php echo $namaMenu;?></td>
+              <td><?php echo $deskripsiMenu;?></td>
+              <td>Rp. <?php echo number_format($hargaJual, 0,',','.'); ?></td>
+              <td><?php echo $keteranganMenu;?></td>
+              <td><?php echo $jenisMenu;?></td>
+              <td><img src="../gambar/<?php echo $gambarMenu; ?>" width="100" height="120" ></td>
+              <td>
+                <button id="tampil" onclick="editMenu(<?php echo $id; ?>)"><a href="menu.php?edit_menu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                <button><a href="menu.php?hapus_menu=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
+              </td>
+              <script>
+                function editMenu(id) {
+                document.getElementById('btn_save_menu').style.display = 'none';
+                window.addEventListener('DOMContentLoaded', function () {
+                  var urlParams = new URLSearchParams(window.location.search);
+                  var editAdminId = urlParams.get('edit_menu');
+                  if (editAdminId !== null) {
+                    document.getElementById('btn_save_menu').style.display = 'none';
+                  } else {
+                    document.getElementById('btn_save_menu').style.display = 'block';
+                  }
+                });
+              }
+              </script>
+            </tr>
+            <?php
+                $no++;
+            }
+            ?>
+          </tbody>
+            <?php
+          }else {
+            ?>
+            <tbody>
           <?php
               $query="select * from barang";
               $result=mysqli_query($koneksi, $query);
@@ -282,15 +352,32 @@ if (isset($_REQUEST['hapus_menu'])) {
               <td><?php echo $jenisMenu;?></td>
               <td><img src="../gambar/<?php echo $gambarMenu; ?>" width="100" height="120" ></td>
               <td>
-                <button><a href="menu.php?edit_menu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                <button id="tampil" onclick="editMenu(<?php echo $id; ?>)"><a href="menu.php?edit_menu=<?php echo $id; ?>"><i class="fa-solid fa-pen-to-square"></i></a></button>
                 <button><a href="menu.php?hapus_menu=<?php echo $id; ?>" onclick="return confirm('apakah kamu yakin akan menghapus data ini?');" ><i class="fa-solid fa-trash"></i></a></button>
               </td>
+              <script>
+                function editMenu(id) {
+                document.getElementById('btn_save_menu').style.display = 'none';
+                window.addEventListener('DOMContentLoaded', function () {
+                  var urlParams = new URLSearchParams(window.location.search);
+                  var editAdminId = urlParams.get('edit_menu');
+                  if (editAdminId !== null) {
+                    document.getElementById('btn_save_menu').style.display = 'none';
+                  } else {
+                    document.getElementById('btn_save_menu').style.display = 'block';
+                  }
+                });
+              }
+              </script>
             </tr>
             <?php
                 $no++;
             }
             ?>
           </tbody>
+            <?php
+          }
+          ?>
         </table>
         <?php
                             if (isset($_GET['edit_menu'])) {   

@@ -108,7 +108,7 @@ if (isset($_POST['btn_edit'])) {
                         <!-- // <tr>
                         // </tr> -->
                         <script>
-                            alert("<?php echo $tanggal;?>")
+                            //alert("<?php echo $tanggal;?>")
                         </script>
                         <?php }   
                     //}
